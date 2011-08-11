@@ -20,3 +20,7 @@ Apache Karaf:
 
 features:addurl mvn:org.apache.karaf.webconsole/features/1.0.0-SNAPSHOT/xml/features
 
+after you've installed those packages successfully point your browser to:
+
+http://localhost:8181/cns
+
