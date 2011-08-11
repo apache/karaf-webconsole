@@ -1,0 +1,134 @@
+* {
+    font-family: Arial, Tahoma;
+    font-size: 16px;
+}
+
+body {
+    background: #FFFFFF;
+}
+
+#container {
+    width: 1000px;
+}
+
+a {
+    color: #0F3B5F;
+}
+
+li.current {
+    font-weight: bold;
+}
+
+div.widget {
+    float: left;
+    width: 250px;
+}
+
+#wrapper {
+    
+}
+
+#content {
+    float: left;
+    width: 750px;
+    margin: 0 auto;
+}
+
+#sidebar {
+    float: left;
+    width: 250px;
+}
+
+#sidebar ul li {
+    list-style-type: none;
+}
+
+#topmenu ul li, #top-panel ul li {
+    display: inline;
+}
+
+#topmenu {
+    background: #CC9752;
+}
+
+#top-panel ul {
+    margin: 0px;
+}
+
+#top-panel {
+    background: #CCCC00;
+}
+
+table.dataview {
+	margin-bottom: 10px;
+	border-bottom: 1px solid #0079d6;
+	font-size: 1em;
+	font-family: arial;
+	}
+
+table.dataview caption { text-align: left; }
+table.dataview tr { padding-top: 2px; padding-bottom: 2px; }
+table.dataview tr.even { background-color: #ffebcd; }
+table.dataview tr.odd { background-color: #fff; }
+table.dataview tr td { padding-left: 8px; padding-right: 30px; }
+table.dataview tr th { color: black; padding-top: 3px; padding-bottom: 3px; padding-left: 8px; padding-right: 30px; background-color: #c1e4ff; border-bottom: 1px solid #0079d6; border-top: 1px solid #0079d6; text-align: left; white-space: nowrap; vertical-align: middle;}
+
+table.dataview tr th { background-position: right; background-repeat:no-repeat; }
+table.dataview tr th.wicket_orderDown {
+	background-color: #87cbff; background-image: url(displaytag/img/arrow_down.png); }
+table.dataview tr th.wicket_orderUp {
+	background-color: #87cbff; background-image: url(displaytag/img/arrow_up.png); }
+table.dataview tr th.wicket_orderNone {
+	background-image: url(displaytag/img/arrow_off.png);
+}
+table.dataview tr th a { font-weight: normal; }
+table.dataview #message { padding-left: 3px; }
+table.dataview caption { padding-bottom: 2px; }
+
+div.tabpanel div.tab-row{
+  float:left;
+  width:100%;
+  background:#DAE0D2 url("tabs/bg.gif") repeat-x bottom;
+  line-height:normal;
+  }
+
+div.tabpanel div.tab-row ul {
+  margin:0;
+  padding:10px 10px 0;
+  list-style:none;
+  }
+
+div.tabpanel div.tab-row li {
+  float:left;
+  background:url("tabs/left.gif") no-repeat left top;
+  margin:0;
+  padding:0 0 0 9px;
+  }
+
+div.tabpanel div.tab-row a {
+  display:block;
+  background:url("tabs/right.gif") no-repeat right top;
+  padding:5px 15px 4px 6px;
+  text-decoration:none;
+  font-weight:bold;
+  white-space:nowrap;
+  color:#eee;
+  }
+
+div.tab-panel {
+	clear: left;
+}
+
+div.tabpanel div.tab-row a:hover {
+  color:#fff;
+  }
+
+div.tabpanel div.tab-row li.selected {
+  background-image:url("tabs/left_on.gif");
+  }
+
+div.tabpanel div.tab-row li.selected a {
+  background-image:url("tabs/right_on.gif");
+  color:#333;
+  padding-bottom:5px;
+}

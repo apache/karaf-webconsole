@@ -1,0 +1,46 @@
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
+    <body>
+        <h1>Bundle details</h1>
+
+        <wicket:extend>
+            Details of <span wicket:id="name">symbolic name</span>
+
+            <h3>Imports</h3>
+            <ul>
+                <li wicket:id="imports">
+                    <span wicket:id="importPackage">org.osgi.framework</span>
+                </li>
+            </ul>
+
+            <h3>Exports</h3>
+            <ul>
+                <li wicket:id="exports">
+                    <span wicket:id="exportPackage">org.osgi.framework</span>
+                </li>
+            </ul>
+
+            <h3>Services in use</h3>
+            <ul>
+                <li wicket:id="servicesInUse">
+                    <span wicket:id="serviceInUse">org.osgi.framework</span>
+                    <table>
+                        <tr>
+                            <th>Property Name</th>
+                            <th>Property Value</th>
+                        </tr>
+                        <tr wicket:id="serviceInUseProperty">
+                            <td wicket:id="propertyName">Property Name</td>
+                            <td wicket:id="propertyValue">Property Value</td>
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+            <!-- 
+            <ul>
+                <li wicket:id="servicesExported">
+                    <span wicket:id="serviceExported">org.osgi.framework</span>
+                </li>
+            </ul> -->
+        </wicket:extend>
+    </body>
+</html>

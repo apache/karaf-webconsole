@@ -1,0 +1,1 @@
+The base idea is to take the current felix webconsole (we use in Karaf), base it on wicket and handle the entire thing on pax-wicket. Based on this method it should be very simple to provide an VERY configurable and extendable webconsole which should be much easier to write than the current one based on plain jscript and servlets.

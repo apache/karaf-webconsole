@@ -1,0 +1,73 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.apache.karaf</groupId>
+        <artifactId>webconsole</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>org.apache.karaf.webconsole</groupId>
+    <artifactId>org.apache.karaf.webconsole.osgi</artifactId>
+    <packaging>bundle</packaging>
+    <name>Apache Karaf :: Karaf Webconsole Prototype :: OSGi Bundle Presentation</name>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.karaf.webconsole</groupId>
+            <artifactId>org.apache.karaf.webconsole.core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>2.3.5</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                        <!-- The bundle activator is only required if we 
+                            do the things by hand. -->
+                        <Import-Package>
+                            *,<!-- let bnd import direct dependencies -->
+                            org.apache.wicket.settings,
+                            org.apache.wicket.session,
+                            org.apache.wicket.util.file,
+                            org.apache.wicket.request,
+                            org.apache.wicket.ajax,
+                            org.apache.wicket.markup,
+                            org.apache.wicket.markup.html.link,
+                            org.apache.wicket.session.pagemap,
+                            org.apache.wicket.protocol.http,
+                            org.apache.wicket.markup.html.internal,
+                            org.apache.wicket.util.convert,
+                            org.apache.wicket.markup.html,
+                            <!-- then wicket stuff -->
+                            org.ops4j.pax.wicket.api,
+                            org.ops4j.pax.wicket.util,
+                            org.ops4j.pax.wicket.util.proxy,
+                            <!-- osgi stuff -->
+                            org.osgi.framework,
+                            org.osgi.service.blueprint,
+                            org.osgi.service.startlevel,
+                            <!-- cglib -->
+                            net.sf.cglib.proxy;version="[2,3)",
+                            net.sf.cglib.core;version="[2,3)",
+                            net.sf.cglib.reflect;version="[2,3)",
+                            <!-- and servlet api -->
+                            javax.servlet,
+                            javax.servlet.http
+                        </Import-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

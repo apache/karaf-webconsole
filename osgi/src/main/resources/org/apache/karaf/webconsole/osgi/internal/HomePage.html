@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
+    <wicket:head>
+
+        <title>Karaf Wicket console</title>
+        
+        <style type="text/css">
+            tr.system {
+                background-color: #CC6600;
+            }
+
+            tr.framework {
+                background-color: #EAB988;
+            }
+
+            tr.blueprint {
+                background-color: #FDF8F2;
+            }
+
+            tr.spring {
+                background-color: #D5D50D;
+            }
+        </style>
+
+    </wicket:head>
+
+    <body>
+
+        <wicket:extend>
+
+            <h1>Bundles</h1>
+
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Symbolic name</th>
+                    <th>Version</th>
+                    <th>Details</th>
+                </tr>
+
+                <tr wicket:id="bundles">
+                    <td wicket:id="id">Id</td>
+                    <td wicket:id="symbolicName">Symbolic name</td>
+                    <td wicket:id="version">Version</td>
+                    <td>
+                        <a wicket:id="link" href="DetailsPage.html">bundle details</a>
+                    </td>
+                </tr>
+            </table>
+        </wicket:extend>
+    </body>
+</html>
