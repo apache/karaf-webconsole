@@ -23,6 +23,8 @@ public class BasePage extends WebPage {
         List<Class> subPages = getSubPages();
         if (subPages != null && subPages.size() > 0) {
             add(new SidebarPanel("sidebar", getClass(), subPages));
+        } else {
+            add(new Label("sidebar").setRenderBodyOnly(true));
         }
 
 //        List tabPanels = new ArrayList();
