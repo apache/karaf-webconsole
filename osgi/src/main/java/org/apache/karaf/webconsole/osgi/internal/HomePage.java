@@ -2,6 +2,7 @@ package org.apache.karaf.webconsole.osgi.internal;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.karaf.webconsole.core.BasePage;
@@ -150,5 +151,13 @@ public class HomePage extends BasePage {
             }
         });
 
+    }
+
+    @Override
+    protected List<Class> getSubPages() {
+        List<Class> subpages = new LinkedList<Class>();
+        subpages.add(ConfigurationsPage.class);
+        subpages.add(EventsPage.class);
+        return subpages;
     }
 }

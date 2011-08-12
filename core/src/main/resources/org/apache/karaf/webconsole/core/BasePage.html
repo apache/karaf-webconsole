@@ -11,57 +11,12 @@
         <div id="header">
             <h2>Karaf administrator</h2>
 
-            <div wicket:id="tabPanels" class="tabpanel">[tabbed panel will be here]</div>
-
-            <div id="topmenu">
-                <ul>
-                    <li wicket:id="tabs">
-                        <a wicket:id="moduleLink">
-                            <span wicket:id="moduleLabel">Category</span>
-                        </a>
-
-                        <ul>
-                            <li wicket:id="topLinks">
-                                <a wicket:id="topLink">
-                                    <span wicket:id="linkLabel">Label</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+            <div wicket:id="navigationPanel">Navigation goes here</div>
         </div>
-
-        <!--
-        <div id="top-panel">
-            <div id="panel">
-                <ul>
-                    <li class="current"><a href="#">OSGi</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Features</a></li>
-                </ul>
-            </div>
-        </div>
-        -->
 
         <div id="wrapper">
 
-            <!--
-            <div id="sidebar">
-                <ul>
-                    <li>
-                        <h3>
-                            <a href="#">OSGi</a>
-                        </h3>
-                        <ul>
-                            <li class="current"><a href="#">Bundles</a></li>
-                            <li><a href="#">Configuration</a></li>
-                            <li><a href="#">Events</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            -->
+            <div wicket:id="sidebar">Sidebar goes here</div>
 
             <div id="content">
                 <wicket:child />
