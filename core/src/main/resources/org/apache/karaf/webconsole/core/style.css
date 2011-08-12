@@ -16,8 +16,7 @@ li.current {
 }
 
 div.widget {
-    float: left;
-    width: 250px;
+    border: 1px dotted black;
 }
 
 #container {
@@ -124,3 +123,4 @@ div.tabpanel div.tab-row li.selected a {
   color:#333;
   padding-bottom:5px;
 }
+
