@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Karaf wicket console</title>
+</head>
+
+<body>
+    <div class="container container_12">
+        <div class="grid_3">
+            <img wicket:id="karafLogo" alt="karaf-logo" height="70" width="150" />
+        </div>
+        <div class="grid_9">
+            <h3>Administration console</h3>
+        </div>
+        <div class="clear"></div>
+
+        <div class="grid_12">
+            <div wicket:id="navigationPanel">Navigation goes here</div>
+        </div>
+        <div class="clear"></div>
+
+        <div class="grid_3">
+            <div wicket:id="sidebar">Sidebar goes here</div>
+        </div>
+        <div class="grid_9" wicket:id="content">
+            <wicket:child />
+        </div>
+        <div class="clear"></div>
+
+        <div class="grid_12">
+            <div wicket:id="footer">Footer</div>
+        </div>
+    </div>
+</body>
+</html>
