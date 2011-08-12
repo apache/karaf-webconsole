@@ -5,6 +5,7 @@ import org.apache.wicket.extensions.markup.html.tabs.TabbedPanel;
 import org.apache.wicket.markup.html.CSSPackageResource;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.PageLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
@@ -19,7 +20,7 @@ import java.util.List;
 public class BasePage extends WebPage {
 
     @PaxWicketBean(name = "tabs")
-    private List<ConsoleTab> tabs;
+    private transient List<ConsoleTab> tabs;
 
     public BasePage() {
         add(CSSPackageResource.getHeaderContribution(BasePage.class, "style.css"));
@@ -30,14 +31,14 @@ public class BasePage extends WebPage {
             @Override
             protected void populateItem(ListItem<ConsoleTab> item) {
                 final ConsoleTab tab = item.getModelObject();
-                item.add(new PageLink("moduleLink", tab.getModuleHomePage()).add(new Label("moduleLabel", tab.getLabel())));
+                item.add(new BookmarkablePageLink("moduleLink", tab.getModuleHomePage()).add(new Label("moduleLabel", tab.getLabel())));
 
                 List<String> subItems = new LinkedList<String>(tab.getItems().keySet());
                 item.add(new ListView<String>("topLinks", subItems) {
                     @Override
                     protected void populateItem(ListItem<String> item) {
                         String subItem = item.getModelObject();
-                        item.add(new PageLink("topLink", tab.getItems().get(subItem)).add(new Label("linkLabel", subItem)));
+                        item.add(new BookmarkablePageLink("topLink", tab.getItems().get(subItem)).add(new Label("linkLabel", subItem)));
                     }
                 });
             }
