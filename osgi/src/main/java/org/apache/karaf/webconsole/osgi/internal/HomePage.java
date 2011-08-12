@@ -153,6 +153,7 @@ public class HomePage extends BasePage {
 
     }
 
+    /*
     @Override
     protected List<Class> getSubPages() {
         List<Class> subpages = new LinkedList<Class>();
@@ -160,4 +161,5 @@ public class HomePage extends BasePage {
         subpages.add(EventsPage.class);
         return subpages;
     }
+    */
 }

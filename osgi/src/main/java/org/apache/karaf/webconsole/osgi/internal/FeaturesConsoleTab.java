@@ -19,8 +19,8 @@ public class FeaturesConsoleTab implements ConsoleTab {
 
     public Map<String, Class> getItems() {
         Map<String, Class> features = new HashMap<String, Class>();
-        features.put("Features List", FeaturesPage.class);
-        features.put("Feature repoz", RepositoriesPage.class);
+        features.put("Features list", FeaturesPage.class);
+        features.put("Features repositories", RepositoriesPage.class);
         return features;
     }
 

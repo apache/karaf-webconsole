@@ -1,34 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Karaf wicket console</title>
 </head>
+
 <body>
-
     <div id="container">
-
-        <div id="header">
-            <h2>Karaf administrator</h2>
-
+        <table>
+            <tr>
+                <td align="left"><img wicket:id="karafLogo" alt="karaf-logo" height="70" width="150"/></td>
+                <td align="right">Administration console</td>
+            </tr>
+            <!--
+            <tr>
             <div wicket:id="navigationPanel">Navigation goes here</div>
-        </div>
-
-        <div id="wrapper">
-
             <div wicket:id="sidebar">Sidebar goes here</div>
+            </tr>
+            -->
+            <tr>
+                <td colspan="2">
+                    <div wicket:id="tabPanels" class="tabpanel">[tabbed panel will be here]</div>
 
-            <div id="content">
-                <wicket:child />
-            </div>
-        </div>
+                    <div id="topmenu">
+                        <ul>
+                            <li wicket:id="tabs">
+                                <a wicket:id="moduleLink">
+                                    <span wicket:id="moduleLabel">Category</span>
+                                </a>
 
-        <div id="footer">
-            <div id="credits" wicket:id="footer">Footer</div>
-        </div>
-
+                                <ul>
+                                    <li wicket:id="topLinks">
+                                        <a wicket:id="topLink">
+                                            <span wicket:id="linkLabel">Label</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div id="content">
+                        <wicket:child/>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">&nbsp</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div id="footer" align="right">
+                        <div wicket:id="footer">Footer</div>
+                    </div>
+                 </td>
+            </tr>
+        </table>
     </div>
-
-
 </body>
 </html>

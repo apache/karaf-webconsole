@@ -1,58 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
     <wicket:head>
-
         <title>Karaf Wicket console - Features page</title>
-
-        <!--
-        <style type="text/css">
-            tr.system {
-                background-color: #CC6600;
-            }
-
-            tr.framework {
-                background-color: #EAB988;
-            }
-
-            tr.blueprint {
-                background-color: #FDF8F2;
-            }
-
-            tr.spring {
-                background-color: #D5D50D;
-            }
-        </style>
-        -->
     </wicket:head>
 
     <body>
-
-        <wicket:extend>
-
+       <wicket:extend>
             <h1>Features</h1>
-
-            <!--
-            <table>
-                <tr>
-                    <th>State</th>
-                    <th>Version</th>
-                    <th>Name</th>
-                    <th>Repository</th>
-                    <th>Description</th>
-                </tr>
-
-                <tr wicket:id="features">
-                    <td wicket:id="state">State</td>
-                    <td wicket:id="version">Version</td>
-                    <td wicket:id="name">Name</td>
-                    <td wicket:id="repository">Repository</td>
-                    <td wicket:id="description">Description</td>
-                    <td>
-                        <a href="FeatureDetailsPage.html" wicket:id="featuresDetailsPageLink">details</a>
-                    </td>
-                </tr>
-            </table>
-            -->
             <table wicket:id="features" class="dataview"/>
         </wicket:extend>
     </body>
