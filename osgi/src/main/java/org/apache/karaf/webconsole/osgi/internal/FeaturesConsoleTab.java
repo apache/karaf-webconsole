@@ -8,6 +8,8 @@ import java.util.Map;
 public class FeaturesConsoleTab implements ConsoleTab {
 
     private static final long serialVersionUID = 1L;
+    private static String featuresList = "features.list";
+    private static String featuresRepositories = "features.repositories";
 
     public String getLabel() {
         return "Features";
@@ -17,11 +19,10 @@ public class FeaturesConsoleTab implements ConsoleTab {
         return FeaturesPage.class;
     }
 
-    //new ResourceModel("features.console.list").getObject().toString()
     public Map<String, Class> getItems() {
         Map<String, Class> features = new HashMap<String, Class>();
-        features.put("Features list", FeaturesPage.class);
-        features.put("Features repositories", RepositoriesPage.class);
+        features.put(featuresList, FeaturesPage.class);
+        features.put(featuresRepositories, RepositoriesPage.class);
         return features;
     }
 

@@ -1,11 +1,13 @@
 package org.apache.karaf.webconsole.osgi.internal;
 
+import org.apache.karaf.webconsole.core.ConsoleTab;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.karaf.webconsole.core.ConsoleTab;
-
 public class OsgiConsoleTab implements ConsoleTab {
+
+    private static String osgiHome = "osgi";
 
 	public String getLabel() {
 		return "Runtime";
@@ -17,7 +19,7 @@ public class OsgiConsoleTab implements ConsoleTab {
 
 	public Map<String, Class> getItems() {
 		Map<String, Class> map = new HashMap<String, Class>();
-		map.put("OSGi", HomePage.class);
+		map.put(osgiHome, HomePage.class);
 		return map;
 	}
 
