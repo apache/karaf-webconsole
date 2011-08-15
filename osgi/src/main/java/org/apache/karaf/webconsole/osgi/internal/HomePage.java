@@ -9,6 +9,7 @@ import org.apache.karaf.webconsole.core.BasePage;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.behavior.SimpleAttributeModifier;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
@@ -140,20 +141,17 @@ public class HomePage extends BasePage {
                 }
 
                 item.add(new SimpleAttributeModifier("class", classes.toString()));
-                item.add(new Link("link") {
-                    @Override
-                    public void onClick() {
-                        PageParameters params = new PageParameters();
-                        params.put("bundleId", bundle.getBundleId());
-                        setResponsePage(new DetailsPage(params));
-                    }
-                });
+
+
+                PageParameters params = new PageParameters();
+                params.put("bundleId", bundle.getBundleId());
+
+                item.add(new BookmarkablePageLink<DetailsPage>("link", DetailsPage.class, params));
             }
         });
 
     }
 
-    /*
     @Override
     protected List<Class> getSubPages() {
         List<Class> subpages = new LinkedList<Class>();
@@ -161,5 +159,5 @@ public class HomePage extends BasePage {
         subpages.add(EventsPage.class);
         return subpages;
     }
-    */
+
 }
