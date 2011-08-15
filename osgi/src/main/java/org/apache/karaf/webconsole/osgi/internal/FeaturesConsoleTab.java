@@ -17,6 +17,7 @@ public class FeaturesConsoleTab implements ConsoleTab {
         return FeaturesPage.class;
     }
 
+    //new ResourceModel("features.console.list").getObject().toString()
     public Map<String, Class> getItems() {
         Map<String, Class> features = new HashMap<String, Class>();
         features.put("Features list", FeaturesPage.class);

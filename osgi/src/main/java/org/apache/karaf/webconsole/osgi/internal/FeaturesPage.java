@@ -10,6 +10,7 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColu
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.model.StringResourceModel;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 
 import java.util.*;
@@ -45,37 +46,18 @@ public class FeaturesPage extends BasePage {
             }
         }
 
-/*        add(new ListView<ExtendedFeature>("features", model) {
-            @Override
-            protected void populateItem(ListItem<ExtendedFeature> item) {
-                final ExtendedFeature feature = item.getModelObject();
-                item.add(new Label("state", feature.getState().toString()));
-                item.add(new Label("version", feature.getVersion()));
-                item.add(new Label("name", feature.getName()));
-                item.add(new Label("repository", feature.getRepository()));
-                item.add(new Label("description", feature.getDescription()));
-
-                item.add(new Link("featuresDetailsPageLink") {
-                    @Override
-                    public void onClick() {
-                        PageParameters params = new PageParameters();
-                        params.put("featureId", feature.getId());
-                    }
-                });
-            }
-        });*/
+        IModel state = Model.of("state");
+        IModel version = Model.of("version");
+        IModel name = Model.of("name");
+        IModel repository = Model.of("repository");
+        IModel description = Model.of("description");
 
         List<IColumn<ExtendedFeature>> columns = new ArrayList<IColumn<ExtendedFeature>>();
-		columns.add(new PropertyColumn<ExtendedFeature>(Model.of("state"), "state",
-				"state"));
-		columns.add(new PropertyColumn<ExtendedFeature>(Model.of("version"), "version",
-				"version"));
-        columns.add(new PropertyColumn<ExtendedFeature>(Model.of("name"), "name",
-				"name"));
-        columns.add(new PropertyColumn<ExtendedFeature>(Model.of("repository"), "repository",
-				"repository"));
-        columns.add(new PropertyColumn<ExtendedFeature>(Model.of("description"), "description",
-				"description"));
+		columns.add(new PropertyColumn<ExtendedFeature>(new StringResourceModel("table.state",this,state),"state","state"));
+		columns.add(new PropertyColumn<ExtendedFeature>(new StringResourceModel("table.version",this,version),"version","version"));
+        columns.add(new PropertyColumn<ExtendedFeature>(new StringResourceModel("table.name",this,state),"name","name"));
+        columns.add(new PropertyColumn<ExtendedFeature>(new StringResourceModel("table.repository",this,repository),"repository","repository"));
+        columns.add(new PropertyColumn<ExtendedFeature>(new StringResourceModel("table.description",this,description),"description","description"));
 
 		add(new DefaultDataTable<ExtendedFeature>("features", columns,
 				new FeaturesProvider(model), 20));
