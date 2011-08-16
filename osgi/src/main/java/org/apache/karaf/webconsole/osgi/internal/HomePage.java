@@ -5,12 +5,12 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.karaf.webconsole.core.BasePage;
+import org.apache.karaf.webconsole.core.SidebarPage;
+import org.apache.wicket.Page;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.behavior.SimpleAttributeModifier;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
-import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
@@ -22,7 +22,7 @@ import org.osgi.service.startlevel.StartLevel;
 /**
  * Homepage
  */
-public class HomePage extends BasePage {
+public class HomePage extends SidebarPage {
 
     @PaxWicketBean(name = "blueprintBundleContext")
     private BundleContext context;
@@ -153,8 +153,8 @@ public class HomePage extends BasePage {
     }
 
     @Override
-    protected List<Class> getSubPages() {
-        List<Class> subpages = new LinkedList<Class>();
+    protected List<Class<? extends Page>> getSubPages() {
+        List<Class<? extends Page>> subpages = new LinkedList<Class<? extends Page>>();
         subpages.add(ConfigurationsPage.class);
         subpages.add(EventsPage.class);
         return subpages;

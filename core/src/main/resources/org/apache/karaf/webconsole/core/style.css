@@ -30,8 +30,12 @@ div.widget {
     width: 250px;
 }
 
-#sidebar ul li {
+#sidebar ul li, #languages ul li {
     list-style-type: none;
+}
+
+#languages ul li {
+    display: inline;
 }
 
 #topmenu ul li, #top-panel ul li {
