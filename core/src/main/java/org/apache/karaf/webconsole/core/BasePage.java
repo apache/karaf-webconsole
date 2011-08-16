@@ -1,20 +1,17 @@
 package org.apache.karaf.webconsole.core;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
+
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.markup.html.CSSPackageResource;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.image.Image;
-import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
-import org.apache.wicket.markup.html.link.PageLink;
 import org.apache.wicket.model.util.ListModel;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
-import sun.awt.util.IdentityLinkedList;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
 
 public class BasePage extends WebPage {
 
