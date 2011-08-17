@@ -8,8 +8,7 @@ import org.apache.wicket.protocol.http.WebApplication;
  * 
  * @see org.code-house.Start#main(String[])
  */
-public class WicketApplication extends WebApplication
-{
+public class WicketApplication extends WebApplication {
 
     public WicketApplication() {
         super();

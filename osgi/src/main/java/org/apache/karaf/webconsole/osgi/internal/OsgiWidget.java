@@ -1,23 +1,21 @@
 package org.apache.karaf.webconsole.osgi.internal;
 
 import org.apache.karaf.webconsole.core.DashboardWidget;
-import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.karaf.webconsole.osgi.internal.widget.OsgiWidgetPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.osgi.framework.BundleContext;
 
-public class OsgiWidget extends Panel implements DashboardWidget {
+public class OsgiWidget implements DashboardWidget {
+
+    private final BundleContext context;
 
     public OsgiWidget(BundleContext context) {
-        super("none");
-
-        add(new Label("bundleCount", "" + context.getBundles().length));
-
-        add(new BookmarkablePageLink<HomePage>("osgiLink", HomePage.class).add(new Label("osgiLinkLabel", "Manage")));
+        this.context = context;
+        
     }
 
-    public Panel getWidgetPanel() {
-        return this;
+    public Panel getWidgetPanel(String id) {
+        return new OsgiWidgetPanel(id, context);
     }
 
 }

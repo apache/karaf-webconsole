@@ -4,6 +4,6 @@ import org.apache.wicket.markup.html.panel.Panel;
 
 public interface DashboardWidget {
 
-    Panel getWidgetPanel();
+    Panel getWidgetPanel(String id);
 
 }

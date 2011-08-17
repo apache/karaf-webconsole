@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Karaf wicket console</title>
+</head>
+<body>
+
+    <wicket:panel>
+        <div class="grid_3 widget">
+            <h3>Karaf Features</h3>
+            <p>
+                You have <span wicket:id="featuresCount">10</span> features.
+                <span wicket:id="installedCount">10</span> installed and
+                <span wicket:id="uninstalledCount">10</span> waiting for installation.
+            </p>
+
+            <p>
+                <a wicket:id="featuresLink">Go to feature management</a>
+                <a wicket:id="repositoriesLink">Go to repository management</a>
+            </p>
+        </div>
+    </wicket:panel>
+
+</body>
+</html>
