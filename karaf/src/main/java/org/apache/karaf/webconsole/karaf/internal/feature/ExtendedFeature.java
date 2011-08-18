@@ -12,7 +12,7 @@ import java.util.Map;
  * Class extending Feature class to provide additional info
  * like Repository name, ...
  */
-class ExtendedFeature implements Feature, Serializable {
+public class ExtendedFeature implements Feature, Serializable {
 
     public enum State {
         INSTALLED, UNINSTALLED;
