@@ -44,7 +44,7 @@
                             <!-- transient dependencies -->
                             org.ops4j.pax.wicket.api,
                             org.ops4j.pax.wicket.util,
-                            org.ops4j.pax.wicket.util.proxy
+                            org.ops4j.pax.wicket.util.proxy,
                             <!-- karaf -->
                             org.apache.karaf.featurtes.core
                         </Import-Package>

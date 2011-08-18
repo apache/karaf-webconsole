@@ -72,7 +72,7 @@
                             net.sf.cglib.reflect;version="[2,3)",
                             <!-- and servlet api -->
                             javax.servlet,
-                            javax.servlet.http
+                            javax.servlet.http,
                             <!-- karaf -->
                             org.apache.karaf.features
                         </Import-Package>
