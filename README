@@ -7,7 +7,7 @@ be very simple to provide an VERY configurable and extendable webconsole which s
 be much easier to write than the current one based on plain jscript and servlets.
 
 This version uses the current snapshot of the OPS4J Pax Wicket Project. Although snapshots
-are avialable via Sonatype please make sure that you've the latest build of Pax Wicket master
+are available via Sonatype please make sure that you've the latest build of Pax Wicket master
 in your local .m2 repositories:
 
 Instructions to build and deploy the project

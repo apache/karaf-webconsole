@@ -47,6 +47,17 @@
             <name>wiquery wicket components</name>
             <url>http://wiquery.googlecode.com/svn/repo/</url>
         </repository>
+        <repository>
+            <id>sonatype</id>
+            <name>sonatype repo</name>
+            <url>http://oss.sonatype.org/content/repositories/ops4j-snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
     </repositories>
 
 </project>
