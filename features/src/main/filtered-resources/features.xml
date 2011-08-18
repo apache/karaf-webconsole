@@ -20,6 +20,12 @@
 
   <repository>mvn:org.ops4j.pax.wicket/features/${ops4j.paxwicket.version}/xml/features</repository>
 
+  <feature name="webconsole-wicket" version="${project.version}" description="Karaf Wicket Webconsole">
+    <feature>webconsole-blueprint</feature>
+    <feature>webconsole-core</feature>
+    <feature>webconsole-osgi</feature>
+    <feature>webconsole-karaf</feature>
+  </feature>
   <!-- Pax-Wicket Core Feature; loading all required features. Do a feature:install paxwicket and you're ready to go -->
   <feature name="webconsole-core" version="${project.version}" description="Karaf Webconsole Core">
     <details>The Webconsole core package provides the base view required for all bundles</details>
