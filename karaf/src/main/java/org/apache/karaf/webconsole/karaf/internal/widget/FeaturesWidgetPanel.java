@@ -22,7 +22,7 @@ public class FeaturesWidgetPanel extends Panel {
             add(new Label("uninstalledCount", "" + (allFeatures.length - installed.length)));
 
             add(new BookmarkablePageLink<FeaturesPage>("featuresLink", FeaturesPage.class));
-            add(new BookmarkablePageLink<FeaturesPage>("repositoriesLink", RepositoriesPage.class));
+            add(new BookmarkablePageLink<RepositoriesPage>("repositoriesLink", RepositoriesPage.class));
         } catch (Exception e) {
             e.printStackTrace();
         }
