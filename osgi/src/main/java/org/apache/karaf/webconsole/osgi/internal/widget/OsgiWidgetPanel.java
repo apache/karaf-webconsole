@@ -1,6 +1,7 @@
 package org.apache.karaf.webconsole.osgi.internal.widget;
 
-import org.apache.karaf.webconsole.osgi.internal.HomePage;
+import org.apache.karaf.webconsole.osgi.internal.OsgiPage;
+import org.apache.karaf.webconsole.osgi.internal.bundle.BundlesPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -16,7 +17,7 @@ public class OsgiWidgetPanel extends Panel {
 
         add(new Label("bundleCount", "" + context.getBundles().length));
 
-        add(new BookmarkablePageLink<HomePage>("osgiLink", HomePage.class).add(new Label("osgiLinkLabel", "Manage")));
+        add(new BookmarkablePageLink<OsgiPage>("osgiLink", BundlesPage.class).add(new Label("osgiLinkLabel", "Manage")));
 
     }
 }

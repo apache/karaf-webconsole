@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
+    <wicket:head>
+        <title>Karaf Wicket console - Blueprint page</title>
+    </wicket:head>
+
+    <body>
+       <wicket:extend>
+            <h1>Blueprint container details</h1>
+
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Component type</th>
+                    <th>Operations</th>
+                </tr>
+                <tr wicket:id="components">
+                    <td>
+                        <span wicket:id="componentId">component-id</span>
+                    </td>
+                    <td>
+                        <span wicket:id="type">org.osgi.service.blueprint.reflect.ComponentMetadata</span>
+                    </td>
+                    <td>
+                        <a wicket:id="details">Details</a>
+                    </td>
+                </tr>
+            </table>
+        </wicket:extend>
+    </body>
+</html>

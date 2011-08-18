@@ -1,0 +1,21 @@
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" xmlns:wicket="http://www.ops4j.org/schema/wicket">
+
+    <wicket:application id="karafWebConsole" 
+        class="org.apache.karaf.webconsole.core.internal.WebConsoleApplication"
+        applicationName="karafWebConsole" mountPoint="cns" />
+
+    <reference-list id="tabs" interface="org.apache.karaf.webconsole.core.navigation.ConsoleTab" availability="optional" />
+
+    <!-- He is not ready yet ... -->
+    <reference-list id="widgets" interface="org.apache.karaf.webconsole.core.widget.WidgetProvider" availability="optional"
+        filter="(intention=dashboard)" />
+
+    <service interface="org.apache.karaf.webconsole.core.navigation.ConsoleTab">
+        <bean class="org.apache.karaf.webconsole.core.navigation.i18n.LocalizableConsoleTab">
+            <argument>
+                <bean class="org.apache.karaf.webconsole.core.internal.SystemConsoleTab" />
+            </argument>
+        </bean>
+    </service>
+
+</blueprint>

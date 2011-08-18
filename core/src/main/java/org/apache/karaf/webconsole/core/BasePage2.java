@@ -1,5 +1,10 @@
 package org.apache.karaf.webconsole.core;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.karaf.webconsole.core.navigation.ConsoleTab;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.extensions.markup.html.tabs.AbstractTab;
 import org.apache.wicket.extensions.markup.html.tabs.TabbedPanel;
@@ -13,10 +18,6 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 public class BasePage2 extends WebPage {
 

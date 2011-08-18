@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Locale;
 
 import org.apache.karaf.webconsole.core.internal.LanguagePanel;
+import org.apache.karaf.webconsole.core.navigation.ConsoleTab;
+import org.apache.karaf.webconsole.core.navigation.markup.NavigationPanel;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.markup.html.CSSPackageResource;
 import org.apache.wicket.markup.html.WebPage;

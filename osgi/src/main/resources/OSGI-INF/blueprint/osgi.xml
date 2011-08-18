@@ -1,0 +1,36 @@
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.osgi.org/xmlns/blueprint/v1.0.0
+        http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+    ">
+
+    <service interface="org.apache.karaf.webconsole.core.navigation.ConsoleTab">
+        <bean class="org.apache.karaf.webconsole.core.navigation.ExtendableConsoleTab">
+            <argument>
+                <bean class="org.apache.karaf.webconsole.core.navigation.i18n.LocalizableConsoleTab">
+                    <argument>
+                        <bean class="org.apache.karaf.webconsole.osgi.internal.navigation.OsgiConsoleTab" />
+                    </argument>
+                </bean>
+            </argument>
+            <property name="extensions">
+                <reference-list interface="org.apache.karaf.webconsole.core.navigation.NavigationProvider"
+                    availability="optional" filter="(extends=osgi)" />
+            </property>
+        </bean>
+    </service>
+
+    <service ref="widgetProvider" interface="org.apache.karaf.webconsole.core.widget.WidgetProvider">
+        <service-properties>
+            <entry key="intention" value="dashboard" />
+        </service-properties>
+    </service>
+
+    <bean id="widgetProvider" class="org.apache.karaf.webconsole.osgi.internal.widget.OsgiWidgetProvider">
+        <argument ref="blueprintBundleContext" />
+    </bean>
+
+    <reference id="configurationAdmin" interface="org.osgi.service.cm.ConfigurationAdmin" availability="optional" />
+
+</blueprint>

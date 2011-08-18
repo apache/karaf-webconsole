@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
+    <wicket:head>
+        <title>Karaf Wicket console - Blueprint page</title>
+    </wicket:head>
+
+    <body>
+       <wicket:extend>
+            <h1>Blueprint containers</h1>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Version</th>
+                    <th>Operations</th>
+                </tr>
+                <tr wicket:id="containers">
+                    <td>
+                        <span wicket:id="symbolicName">com.example</span>
+                    </td>
+                    <td>
+                        <span wicket:id="version">0.0.0</span>
+                    </td>
+                    <td>
+                        <a wicket:id="details">Details</a>
+                    </td>
+                </tr>
+            </table>
+        </wicket:extend>
+    </body>
+</html>

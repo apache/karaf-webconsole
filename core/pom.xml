@@ -23,36 +23,22 @@
 
         <!-- WICKET DEPENDENCIES -->
         <dependency>
+            <groupId>org.apache.wicket</groupId>
+            <artifactId>wicket</artifactId>
+            <version>1.4.17</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.wicket</groupId>
+            <artifactId>wicket-extensions</artifactId>
+            <version>1.4.17</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.ops4j.pax.wicket</groupId>
             <artifactId>org.ops4j.pax.wicket.service</artifactId>
             <version>${ops4j.paxwicket.version}</version>
         </dependency>
 
-        <!-- JUNIT DEPENDENCY FOR TESTING -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.8.1</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- Karaf -->
-        <dependency>
-          <groupId>org.apache.karaf.features</groupId>
-          <artifactId>org.apache.karaf.features.core</artifactId>
-          <version>${karaf.version}</version>
-        </dependency>
-
-        <!-- <dependency> -->
-        <!-- <groupId>org.odlabs.wiquery</groupId> -->
-        <!-- <artifactId>wiquery</artifactId> -->
-        <!-- <version>1.2.4</version> -->
-        <!-- </dependency> -->
-        <!-- <dependency> -->
-        <!-- <groupId>org.slf4j</groupId> -->
-        <!-- <artifactId>slf4j-api</artifactId> -->
-        <!-- <version>1.6</version> -->
-        <!-- </dependency> -->
     </dependencies>
 
     <build>
@@ -68,6 +54,7 @@
                         <!-- The bundle activator is only required if we 
                             do the things by hand. -->
                         <Import-Package>
+                            !org.apache.karaf.webconsole.core*,
                             *,<!-- let bnd import direct dependencies -->
                             org.apache.wicket.settings,
                             org.apache.wicket.session,
@@ -90,9 +77,7 @@
                             net.sf.cglib.reflect;version="[2,3)",
                             <!-- and servlet api -->
                             javax.servlet,
-                            javax.servlet.http,
-                            <!-- Karaf -->
-                            org.apache.karaf.features
+                            javax.servlet.http
                         </Import-Package>
                     </instructions>
                 </configuration>

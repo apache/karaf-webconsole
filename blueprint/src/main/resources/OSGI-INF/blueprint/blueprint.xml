@@ -1,0 +1,18 @@
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+    xmlns:wicket="http://www.ops4j.org/schema/wicket">
+
+    <reference-list id="containers" interface="org.osgi.service.blueprint.container.BlueprintContainer"
+        member-type="service-reference"
+    />
+
+    <service ref="provider" interface="org.apache.karaf.webconsole.core.navigation.NavigationProvider">
+        <service-properties>
+            <entry key="extends" value="osgi" />
+        </service-properties>
+
+    </service>
+
+
+    <bean id="provider" class="org.apache.karaf.webconsole.blueprint.internal.internal.navigation.BlueprintNavigationProvider" />
+
+</blueprint>
