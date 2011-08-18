@@ -34,7 +34,7 @@
   </feature>
 
   <feature name="webconsole-karaf" version="${project.version}" description="Karaf Webconsole Features">
-    <details>Adds support for various internal karaf features such as the feature files.</details>
+    <details>Karaf bundle will contain all the pages and java classes about content specific to Karaf like features,repositories and obr.</details>
     <feature>webconsole-core</feature>
     <bundle>mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.karaf/${project.version}</bundle>
   </feature>
