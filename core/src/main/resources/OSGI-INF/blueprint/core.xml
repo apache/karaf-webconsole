@@ -18,4 +18,10 @@
         </bean>
     </service>
 
+    <service interface="org.apache.karaf.webconsole.core.brand.BrandProvider">
+        <bean class="org.apache.karaf.webconsole.core.brand.DefaultBrandProvider" />
+    </service>
+
+    <reference id="brandProvider" interface="org.apache.karaf.webconsole.core.brand.BrandProvider" />
+
 </blueprint>

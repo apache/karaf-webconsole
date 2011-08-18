@@ -1,17 +1,22 @@
 package org.apache.karaf.webconsole.karaf.internal.feature;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+
 import org.apache.karaf.features.Feature;
 import org.apache.karaf.features.FeaturesService;
 import org.apache.karaf.features.Repository;
 import org.apache.karaf.webconsole.core.BasePage;
-import org.apache.karaf.webconsole.karaf.internal.ActionsPanel;
-import org.apache.karaf.webconsole.karaf.internal.ComponentType;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
+import org.apache.wicket.markup.html.CSSPackageResource;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
@@ -19,8 +24,6 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.model.StringResourceModel;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
-
-import java.util.*;
 
 /**
  * Features
@@ -31,6 +34,7 @@ public class FeaturesPage extends BasePage {
     private FeaturesService featuresService;
 
     public FeaturesPage() throws Exception {
+        add(CSSPackageResource.getHeaderContribution(FeaturesPage.class, "features.css"));
 
         // Create a form for external Submit link
         Form<?> form = new Form("form");
@@ -66,7 +70,7 @@ public class FeaturesPage extends BasePage {
         columns.add(new PropertyColumn<ExtendedFeature>(new StringResourceModel("table.state", this, state), "state", "state"));
         columns.add(new AbstractColumn<ExtendedFeature>(new ResourceModel("table.actions")) {
             public void populateItem(Item<ICellPopulator<ExtendedFeature>> cellItem, String componentId, IModel<ExtendedFeature> model) {
-               cellItem.add(new ActionsPanel(componentId, model, ComponentType.FEATURES));
+               cellItem.add(new FeaturesActionsPanel(componentId, model));
             }
         });
 

@@ -1,0 +1,13 @@
+div.actions ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+div.actions ul li {
+    list-style-type: none;
+    display: inline;
+}
+
+div.actions ul li.node, div.actions ul li.last {
+    padding-left: 10px;
+}

@@ -1,0 +1,13 @@
+div.actions ul li a {
+    width: 16px;
+    height: 16px;
+    display: block;
+}
+
+div.actions ul li a.installed {
+    background: url("images/feature_uninstall.png");
+}
+
+div.actions ul li a.uninstalled {
+    background: url("images/feature_install.png");
+}

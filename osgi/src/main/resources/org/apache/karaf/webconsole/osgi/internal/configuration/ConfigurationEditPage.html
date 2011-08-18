@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
+    <wicket:head>
+        <title>Karaf Wicket console</title>
+    </wicket:head>
+
+    <body>
+
+        <wicket:extend>
+            <h1>Edit <span wicket:id="pid">org.apache.felix.filemount</span></h1>
+
+            <form wicket:id="edit">
+                <input type="text" wicket:id="pid" style="width: 100%" />
+
+                <ul>
+                    <li wicket:id="properties">
+                        <div class="grid_9">
+                            <div class="grid_9">
+                                <span wicket:id="key" style="width: 100%">key</span>
+                            </div>
+                            <input type="text" wicket:id="value" style="width: 100%" />
+                        </div>
+                    </li>
+                </ul>
+            </form>
+        </wicket:extend>
+    </body>
+</html>

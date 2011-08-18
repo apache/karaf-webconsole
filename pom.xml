@@ -24,6 +24,8 @@
         <module>blueprint</module>
         <module>karaf</module>
         <module>features</module>
+
+        <module>examples</module>
     </modules>
 
     <build>

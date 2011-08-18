@@ -10,6 +10,7 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColu
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
+import org.apache.wicket.markup.html.CSSPackageResource;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
@@ -25,6 +26,7 @@ public class ConfigurationsPage extends OsgiPage {
     private ConfigurationAdmin configurationAdmin;
 
     public ConfigurationsPage() {
+        add(CSSPackageResource.getHeaderContribution(ConfigurationsPage.class, "configurations.css"));
 
         Configuration[] configurations = new Configuration[0];
         try {
@@ -41,7 +43,7 @@ public class ConfigurationsPage extends OsgiPage {
         columns.add(new PropertyColumn<Configuration>(pid, "pid"));
         columns.add(new AbstractColumn<Configuration>(Model.of("operations")) {
             public void populateItem(Item<ICellPopulator<Configuration>> cellItem, String componentId, IModel<Configuration> model) {
-                cellItem.add(new Label("info", "operation"));
+                cellItem.add(new ConfigurationsActionPanel(componentId, model));
             }
         });
 
