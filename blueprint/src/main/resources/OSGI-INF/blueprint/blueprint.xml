@@ -13,6 +13,6 @@
     </service>
 
 
-    <bean id="provider" class="org.apache.karaf.webconsole.blueprint.internal.internal.navigation.BlueprintNavigationProvider" />
+    <bean id="provider" class="org.apache.karaf.webconsole.blueprint.internal.navigation.BlueprintNavigationProvider" />
 
 </blueprint>

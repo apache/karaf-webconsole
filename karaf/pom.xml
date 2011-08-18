@@ -46,7 +46,7 @@
                             org.ops4j.pax.wicket.util,
                             org.ops4j.pax.wicket.util.proxy,
                             <!-- karaf -->
-                            org.apache.karaf.featurtes.core
+                            org.apache.karaf.features
                         </Import-Package>
                     </instructions>
                 </configuration>

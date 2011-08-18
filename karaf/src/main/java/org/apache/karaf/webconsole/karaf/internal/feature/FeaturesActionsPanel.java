@@ -15,8 +15,8 @@ public class FeaturesActionsPanel extends Panel {
     private FeaturesService featuresService;
     private ExtendedFeature extendedFeature;
 
-    private static ResourceReference INSTALL_IMG = new ResourceReference(FeaturesActionsPanel.class, "images/feature_install.png");
-    private static ResourceReference UNINSTALL_IMG = new ResourceReference(FeaturesActionsPanel.class, "images/feature_uninstall.png");
+    private static ResourceReference INSTALL_IMG = new ResourceReference(FeaturesActionsPanel.class,"images/feature_install.png");
+    private static ResourceReference UNINSTALL_IMG = new ResourceReference(FeaturesActionsPanel.class,"images/feature_uninstall.png");
 
     public FeaturesActionsPanel(String componentId, IModel<?> model) {
 
