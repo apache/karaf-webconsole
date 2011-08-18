@@ -21,10 +21,28 @@
   <repository>mvn:org.ops4j.pax.wicket/features/${ops4j.paxwicket.version}/xml/features</repository>
 
   <!-- Pax-Wicket Core Feature; loading all required features. Do a feature:install paxwicket and you're ready to go -->
-  <feature name="karaf-webconsole" version="${project.version}">
+  <feature name="webconsole-core" version="${project.version}" description="Karaf Webconsole Core">
+    <details>The Webconsole core package provides the base view required for all bundles</details>
     <feature>wicket-spring</feature>
     <bundle>mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.core/${project.version}</bundle>
+  </feature>
+
+  <feature name="webconsole-osgi" version="${project.version}" description="Karaf Webconsole OSGi">
+    <details>Adds support for osgi packages to the webconsole.</details>
+    <feature>webconsole-core</feature>
     <bundle>mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.osgi/${project.version}</bundle>
+  </feature>
+
+  <feature name="webconsole-karaf" version="${project.version}" description="Karaf Webconsole Features">
+    <details>Adds support for various internal karaf features such as the feature files.</details>
+    <feature>webconsole-core</feature>
+    <bundle>mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.karaf/${project.version}</bundle>
+  </feature>
+
+  <feature name="webconsole-blueprint" version="${project.version}" description="Karaf Webconsole Blueprint">
+    <details>Adds support for blueprint specific features to the webconsole.</details>
+    <feature>webconsole-core</feature>
+    <bundle>mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.blueprint/${project.version}</bundle>
   </feature>
 
 </features>
