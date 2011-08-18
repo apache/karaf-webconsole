@@ -20,7 +20,11 @@
             <artifactId>org.apache.karaf.webconsole.core</artifactId>
             <version>${project.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.apache.karaf.features</groupId>
+            <artifactId>org.apache.karaf.features.core</artifactId>
+            <version>2.2.2</version>
+        </dependency>
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.compendium</artifactId>
@@ -69,6 +73,8 @@
                             <!-- and servlet api -->
                             javax.servlet,
                             javax.servlet.http
+                            <!-- karaf -->
+                            org.apache.karaf.features
                         </Import-Package>
                     </instructions>
                 </configuration>
