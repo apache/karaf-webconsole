@@ -22,6 +22,7 @@
         <bean class="org.apache.karaf.webconsole.core.brand.DefaultBrandProvider" />
     </service>
 
-    <reference id="brandProvider" interface="org.apache.karaf.webconsole.core.brand.BrandProvider" />
+    <reference id="brandProvider" interface="org.apache.karaf.webconsole.core.brand.BrandProvider" 
+	availability="optional" />
 
 </blueprint>
