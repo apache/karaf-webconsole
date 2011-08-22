@@ -9,8 +9,10 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 import org.osgi.framework.Bundle;
 
+@PaxWicketMountPoint(mountPoint = "/osgi/bundles")
 public class BundlesPage extends OsgiPage {
 
     public BundlesPage() {

@@ -11,11 +11,13 @@ import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvid
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
+import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 
 import java.io.Serializable;
 import java.net.URI;
 import java.util.*;
 
+@PaxWicketMountPoint(mountPoint = "/karaf/repositories")
 public class RepositoriesPage extends BasePage {
 
 	@PaxWicketBean(name = "featuresService")

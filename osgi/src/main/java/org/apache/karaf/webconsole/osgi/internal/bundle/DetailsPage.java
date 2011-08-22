@@ -8,11 +8,13 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
+import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceReference;
 
+@PaxWicketMountPoint(mountPoint = "/osgi/bundle/detail")
 public class DetailsPage extends BasePage {
 
 	@PaxWicketBean(name = "blueprintBundleContext")

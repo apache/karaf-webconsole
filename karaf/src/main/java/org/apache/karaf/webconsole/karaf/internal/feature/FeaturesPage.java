@@ -24,10 +24,12 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.model.StringResourceModel;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
+import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 
 /**
  * Features
  */
+@PaxWicketMountPoint(mountPoint = "/karaf/features")
 public class FeaturesPage extends BasePage {
 
     @PaxWicketBean(name = "featuresService")

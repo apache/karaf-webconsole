@@ -10,9 +10,11 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.util.ListModel;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
+import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.Version;
 
+@PaxWicketMountPoint(mountPoint = "/osgi/blueprint")
 public class BlueprintPage extends BasePage {
 
     @PaxWicketBean(name = "containers")

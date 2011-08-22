@@ -24,9 +24,11 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.util.ListModel;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
+import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 import org.osgi.service.cm.Configuration;
 import org.osgi.service.cm.ConfigurationAdmin;
 
+@PaxWicketMountPoint(mountPoint = "/osgi/configuration/edit")
 public class ConfigurationEditPage extends OsgiPage {
 
     @PaxWicketBean(name = "configurationAdmin")
