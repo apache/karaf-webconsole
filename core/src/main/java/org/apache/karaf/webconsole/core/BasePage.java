@@ -8,12 +8,11 @@ import org.apache.karaf.webconsole.core.brand.BrandProvider;
 import org.apache.karaf.webconsole.core.internal.LanguagePanel;
 import org.apache.karaf.webconsole.core.navigation.ConsoleTab;
 import org.apache.karaf.webconsole.core.navigation.markup.NavigationPanel;
-import org.apache.wicket.ResourceReference;
 import org.apache.wicket.behavior.IBehavior;
 import org.apache.wicket.markup.html.CSSPackageResource;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.image.Image;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.util.ListModel;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
@@ -44,6 +43,12 @@ public class BasePage extends WebPage {
         for (IBehavior behavior : brandProvider.getBehaviors()) {
             add(behavior);
         }
+
+        add(new FeedbackPanel("feedback"));
+    }
+
+    public void get() {
+        
     }
 
 }

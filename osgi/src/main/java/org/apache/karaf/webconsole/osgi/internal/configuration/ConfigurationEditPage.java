@@ -11,12 +11,16 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.karaf.webconsole.osgi.internal.OsgiPage;
+import org.apache.karaf.webconsole.osgi.internal.configuration.model.ConfigurationModel;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.IFormSubmittingComponent;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.util.ListModel;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
@@ -27,9 +31,10 @@ public class ConfigurationEditPage extends OsgiPage {
 
     @PaxWicketBean(name = "configurationAdmin")
     private ConfigurationAdmin configurationAdmin;
+    private String pid;
 
     public ConfigurationEditPage(PageParameters params) {
-        String pid = params.getString("pid");
+        pid = params.getString("pid");
 
         add(new Label("pid", pid));
 
@@ -42,9 +47,17 @@ public class ConfigurationEditPage extends OsgiPage {
     }
 
     private Form form(Configuration configuration) {
-        Form<Configuration> form = new Form<Configuration>("edit");
+        CompoundPropertyModel<Configuration> model = new CompoundPropertyModel<Configuration>(null);
+        model.setChainedModel(new ConfigurationModel(pid, configurationAdmin));
 
-        form.add(new TextField<String>("pid", Model.of(configuration.getPid())) {
+        Form<Configuration> form = new Form<Configuration>("edit", model) {
+            @Override
+            public void process(IFormSubmittingComponent submittingComponent) {
+                System.out.println("--> " + getModelObject());
+            }
+        };
+
+        form.add(new TextField<String>("pid") {
             @Override
             public boolean isEnabled() {
                 return false;
@@ -52,6 +65,8 @@ public class ConfigurationEditPage extends OsgiPage {
         });
 
         Dictionary<String, Serializable> properties = configuration.getProperties();
+        properties.get("service.pid");
+        properties.get("service.factory");
 
         Map<String, Serializable> map = new LinkedHashMap<String, Serializable>();
         Enumeration<String> keys = properties.keys();
@@ -67,8 +82,13 @@ public class ConfigurationEditPage extends OsgiPage {
                 item.add(new Label("key", item.getModelObject().getKey()));
                 item.add(new TextField<String>("value", new Model(item.getModelObject().getValue())));
             }
+            @Override
+            public boolean getReuseItems() {
+                return true;
+            }
         });
 
+        form.add(new Button("submit"));
         return form;
     }
 

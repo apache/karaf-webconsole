@@ -7,10 +7,12 @@
     <body>
 
         <wicket:extend>
-            <h1>Configurations</h1>
+            <h1>Confirm removal of <span wicket:id="pid">org.apache.felix.filemount</span> configuration</h1>
 
-            <table wicket:id="configurations" class="dataview" />
-
+            <form wicket:id="remove">
+                Are you sure want to delete this configuration?
+                <input type="submit" wicket:id="submit" value="Confirm" />
+            </form>
         </wicket:extend>
     </body>
 </html>
