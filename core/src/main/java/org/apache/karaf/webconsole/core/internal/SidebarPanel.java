@@ -13,13 +13,14 @@ public class SidebarPanel extends Panel {
     public SidebarPanel(String id, Class<? extends Page> basePage, ListModel<Class<? extends Page>> listModel) {
         super(id, listModel);
 
-        add(new BookmarkablePageLink<Page>("masterPageLink", basePage).add(new Label("masterPageLabel", basePage.getName())));
+        add(new BookmarkablePageLink<Page>("masterPageLink", basePage).add(new Label("masterPageLabel", basePage.getSimpleName())));
 
         add(new ListView<Class<? extends Page>>("subPageLinks", listModel) {
             @Override
             protected void populateItem(ListItem<Class<? extends Page>> item) {
-                BookmarkablePageLink<Page> link = new BookmarkablePageLink<Page>("subPageLink", item.getModelObject());
-                link.add(new Label("subPageLabel", item.getModelObject().getName()));
+                Class<? extends Page> page = item.getModelObject();
+                BookmarkablePageLink<Page> link = new BookmarkablePageLink<Page>("subPageLink", page);
+                link.add(new Label("subPageLabel", page.getSimpleName()));
                 item.add(link);
             }
         });
