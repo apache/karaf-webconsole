@@ -14,18 +14,26 @@
 
     <bean id="provider" class="org.apache.karaf.webconsole.blueprint.internal.navigation.BlueprintNavigationProvider" />
 
-    <!--
+    <bean id="tracker" class="org.apache.karaf.webconsole.blueprint.internal.BlueprintBundleStateTracker" />
+
     <service interface="org.apache.karaf.webconsole.osgi.bundle.IActionProvider">
-        <bean class="org.apache.karaf.webconsole.blueprint.internal.bundle.BlueprintActionProvider" />
-    </service>
-    -->
-
-    <service auto-export="interfaces">
-        <bean class="org.apache.karaf.webconsole.blueprint.internal.bundle.BlueprintColumnProvider" />
+        <bean class="org.apache.karaf.webconsole.blueprint.internal.bundle.BlueprintActionProvider">
+            <argument ref="tracker" />
+        </bean>
     </service>
 
     <service auto-export="interfaces">
-        <bean class="org.apache.karaf.webconsole.blueprint.internal.bundle.BlueprintDecorationProvider" />
+        <bean class="org.apache.karaf.webconsole.blueprint.internal.bundle.BlueprintColumnProvider">
+            <argument ref="tracker" />
+        </bean>
     </service>
+
+    <service auto-export="interfaces">
+        <bean class="org.apache.karaf.webconsole.blueprint.internal.bundle.BlueprintDecorationProvider">
+            <argument ref="tracker" />
+        </bean>
+    </service>
+
+    <service ref="tracker" auto-export="interfaces" />
 
 </blueprint>

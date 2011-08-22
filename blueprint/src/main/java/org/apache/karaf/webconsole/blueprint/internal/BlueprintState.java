@@ -1,4 +1,4 @@
-package org.apache.karaf.webconsole.blueprint.internal.bundle;
+package org.apache.karaf.webconsole.blueprint.internal;
 
 public enum BlueprintState {
     Unknown,
