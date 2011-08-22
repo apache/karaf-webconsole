@@ -1,57 +1,59 @@
 package org.apache.karaf.webconsole.osgi.internal.bundle;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.karaf.webconsole.core.table.PropertyColumnExt;
+import org.apache.karaf.webconsole.osgi.bundle.IActionProvider;
+import org.apache.karaf.webconsole.osgi.bundle.IColumnProvider;
+import org.apache.karaf.webconsole.osgi.bundle.IDecorationProvider;
 import org.apache.karaf.webconsole.osgi.internal.OsgiPage;
-import org.apache.wicket.PageParameters;
-import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.link.BookmarkablePageLink;
-import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.markup.html.list.ListView;
+import org.apache.karaf.webconsole.osgi.internal.bundle.view.BundlesDataTable;
+import org.apache.karaf.webconsole.osgi.internal.bundle.view.DecorationPanel;
+import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
+import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
+import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
+import org.apache.wicket.markup.repeater.Item;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
+import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 import org.osgi.framework.Bundle;
 
 @PaxWicketMountPoint(mountPoint = "/osgi/bundles")
 public class BundlesPage extends OsgiPage {
 
+    @PaxWicketBean(name = "columnProviders")
+    private List<IColumnProvider> columnProviders;
+
+    @PaxWicketBean(name = "actionProviders")
+    private List<IActionProvider> actionProviders;
+
+    @PaxWicketBean(name = "decorationProviders")
+    private List<IDecorationProvider> decorationProviders;
+
     public BundlesPage() {
-
-        List<Bundle> model = Arrays.asList(context.getBundles());
-
-        add(new ListView<Bundle>("bundles", model) {
-            @Override
-            protected void populateItem(ListItem<Bundle> item) {
-                final Bundle bundle = item.getModelObject();
-                item.add(new Label("id", "" + bundle.getBundleId()));
-                item.add(new Label("symbolicName", bundle.getSymbolicName()));
-                item.add(new Label("version", bundle.getVersion().toString()));
-
-//                List<String> classes = new ArrayList<String>() {
-//                    @Override
-//                    public String toString() {
-//                        String toString = "";
-//                        for (String item : this) {
-//                            toString += " " + item;
-//                        }
-//                        return toString;
-//                    }
-//                };
-
-//                for (ItemClassModifier modifier : modifiers) {
-//                    classes.addAll(modifier.getCssClasses(bundle));
-//                }
-
-//                item.add(new SimpleAttributeModifier("class", classes.toString()));
-
-
-                PageParameters params = new PageParameters();
-                params.put("bundleId", bundle.getBundleId());
-
-                item.add(new BookmarkablePageLink<DetailsPage>("link", DetailsPage.class, params));
+        List<IColumn<Bundle>> columns = new ArrayList<IColumn<Bundle>>();
+        columns.add(new AbstractColumn<Bundle>(Model.of("")) {
+            public void populateItem(Item<ICellPopulator<Bundle>> cellItem, final String componentId, final IModel<Bundle> rowModel) {
+                cellItem.add(new DecorationPanel(componentId, rowModel, decorationProviders));
             }
         });
+        columns.add(new PropertyColumnExt<Bundle>("Bundle Id", "bundleId"));
 
+        for (IColumnProvider provider : columnProviders) {
+            columns.add(provider.getColumn());
+        }
+
+        columns.add(new PropertyColumnExt<Bundle>("Name", "symbolicName"));
+        columns.add(new PropertyColumnExt<Bundle>("Version", "version.toString"));
+//        columns.add(new AbstractColumn<Bundle>(Model.of("Operations")) {
+//            public void populateItem(Item<ICellPopulator<Bundle>> cellItem, final String componentId, final IModel<Bundle> rowModel) {
+//                cellItem.add(new BundleActionsPanel(componentId, rowModel, actionProviders));
+//            }
+//        });
+
+        add(new BundlesDataTable("bundles", columns, new BundlesDataProvider(context), 100));
     }
 
 }

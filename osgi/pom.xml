@@ -45,6 +45,10 @@
                             org.ops4j.pax.wicket.util,
                             org.ops4j.pax.wicket.util.proxy
                         </Import-Package>
+                        <Export-Package>
+                            org.apache.karaf.webconsole.osgi.bundle,
+                            org.apache.karaf.webconsole.osgi.bundle.view
+                        </Export-Package>
                     </instructions>
                 </configuration>
             </plugin>

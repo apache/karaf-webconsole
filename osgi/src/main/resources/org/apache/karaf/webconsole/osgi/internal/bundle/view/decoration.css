@@ -1,0 +1,23 @@
+div.decorations {
+    display: inline;
+}
+
+div.decorations ul {
+    list-style-type: none;
+    margin: 0px;
+}
+
+div.decorations ul li {
+    display: inline;
+}
+
+div.decoration {
+    display: inline;
+}
+
+span.system {
+    background: url("system.gif");
+    width: 16px;
+    height: 16px;
+    display: block;
+}
