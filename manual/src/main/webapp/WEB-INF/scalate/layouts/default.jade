@@ -1,0 +1,29 @@
+-@ var body: String
+-@ var title : String = "Apache Karaf WebConsole ${webconsole.version}"
+
+- layout("/WEB-INF/scalate/layouts/headers.jade")
+  body
+    .container_12
+      .grid_12
+        .grid_4
+          img(src={uri("images/karaf-logo.png")})
+
+        .grid_8
+          h1 Apache Karaf WebConsole
+
+          p.small
+            | This page is related to version ${webconsole.version}.
+      .clear
+
+      .grid_3.sidebar
+        = include("_navigation.jade")
+
+      .grid_9
+        !~~ body
+      .clear
+
+      .grid_12.footer
+        | &copy; 2008-2011 The Apache Software Foundation
+        br
+        | Apache Karaf, Karaf, Apache, the Apache feather logo, and the Apache Karaf project logo are trademarks of The Apache Software Foundation.
+      .clear

@@ -1,0 +1,36 @@
+-@ var body: String
+-@ var title : String = "Apache Karaf WebConsole ${webconsole.version}"
+-
+  response.setContentType("text/html")
+
+  // Only include the console if it's available and the engine is in dev mode.
+  val include_console = engine.isDevelopmentMode
+
+!!! Basic
+html(lang="en")
+  head
+    meta(http-equiv="Content-Type" content="text/html; charset=utf-8")
+
+    - if (include_console)
+      = include("/org/fusesource/scalate/console/console_head.scaml")
+      link(href={uri("/css/scalate/console.css")} rel="stylesheet" type="text/css")
+
+    link(href={uri("/css/grid.css")} rel="stylesheet" type="text/css")
+    link(href={uri("/css/style.css")} rel="stylesheet" type="text/css")
+    link(href={uri("/css/reset.css")} rel="stylesheet" type="text/css")
+
+    - if (include_console)
+      link(href={uri("/css/scalate/console.css")} rel="stylesheet" type="text/css")
+
+    title
+      = title
+
+    - for ( css:String <- attributes.set("css") )
+      link(href={uri(css)} rel="stylesheet" type="text/css")
+    - for ( head:String <- attributes.list("head") )
+      !~~ head
+
+  !~~ body
+
+  - for ( js:String <- attributes.set("js") )
+    script(type="text/javascript" src={uri(js)})

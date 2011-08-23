@@ -1,0 +1,20 @@
+-@ var body: String
+-@ var title: String = "Apache Karaf WebConsole ${webconsole.version}"
+-@ var css : String = load("/css/print.css")
+
+html
+  head
+    style(type="text/css")
+      !~~ css
+
+    title= title
+
+  body
+    #titlepage
+      #title
+        | Apache Karaf WebConsole
+      #subtitle
+        | Version ${webconsole.version}
+
+    #main
+      !~~ body
