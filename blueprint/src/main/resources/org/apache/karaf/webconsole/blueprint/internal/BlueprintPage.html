@@ -7,24 +7,8 @@
     <body>
        <wicket:extend>
             <h1>Blueprint containers</h1>
-            <table>
-                <tr>
-                    <th>Name</th>
-                    <th>Version</th>
-                    <th>Operations</th>
-                </tr>
-                <tr wicket:id="containers">
-                    <td>
-                        <span wicket:id="symbolicName">com.example</span>
-                    </td>
-                    <td>
-                        <span wicket:id="version">0.0.0</span>
-                    </td>
-                    <td>
-                        <a wicket:id="details">Details</a>
-                    </td>
-                </tr>
-            </table>
+
+            <table wicket:id="containers" class="dataview" />
         </wicket:extend>
     </body>
 </html>

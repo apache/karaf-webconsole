@@ -2,17 +2,11 @@ package org.apache.karaf.webconsole.blueprint.internal;
 
 import java.util.List;
 
+import org.apache.karaf.webconsole.blueprint.internal.view.BlueprintDataTable;
 import org.apache.karaf.webconsole.core.BasePage;
-import org.apache.wicket.PageParameters;
-import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.link.BookmarkablePageLink;
-import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.markup.html.list.ListView;
-import org.apache.wicket.model.util.ListModel;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 import org.osgi.framework.ServiceReference;
-import org.osgi.framework.Version;
 
 @PaxWicketMountPoint(mountPoint = "/osgi/blueprint")
 public class BlueprintPage extends BasePage {
@@ -21,6 +15,9 @@ public class BlueprintPage extends BasePage {
     private List<ServiceReference> containers;
 
     public BlueprintPage() {
+        add(new BlueprintDataTable("containers", new BlueprintDataProvider(containers), 100));
+
+        /*
         add(new ListView<ServiceReference>("containers", new ListModel<ServiceReference>(containers)) {
 
             @Override
@@ -39,6 +36,7 @@ public class BlueprintPage extends BasePage {
             }
             
         });
+        */
 
     }
 

@@ -1,7 +1,7 @@
-package org.apache.karaf.webconsole.blueprint.internal;
+package org.apache.karaf.webconsole.blueprint.internal.details;
 
-import java.util.Collection;
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.karaf.webconsole.core.BasePage;
@@ -31,40 +31,43 @@ public class DetailsPage extends BasePage {
         ServiceReference reference = null;
 
         for (ServiceReference ref : references) {
-            if ("org.osgi.service.blueprint.container.BlueprintContainer".equals(ref.getProperty("objectClass"))) {
-                reference = ref;
-                break;
+            String[] classes = (String[]) ref.getProperty("objectClass");
+            for (String clazz : classes) {
+                if ("org.osgi.service.blueprint.container.BlueprintContainer".equals(clazz)) {
+                    reference = ref;
+                    break;
+                }
             }
         }
 
         if (reference == null) {
+            add(new ListView("components") {
+                @Override
+                protected void populateItem(ListItem item) {
+                    // do nothing :)
+                }
+            });
             return;
         }
 
         final BlueprintContainer container = (BlueprintContainer) context.getService(reference);
 
-        LoadableDetachableModel<List<SerializableComponentMetadata>> model = new LoadableDetachableModel<List<SerializableComponentMetadata>>() {
+        LoadableDetachableModel<List<ComponentMetadata>> model = new LoadableDetachableModel<List<ComponentMetadata>>() {
             @Override
-            protected List<SerializableComponentMetadata> load() {
-                @SuppressWarnings("unchecked")
-                Collection<ComponentMetadata> metadata = container.getMetadata(ComponentMetadata.class);
-
-                List<SerializableComponentMetadata> serializable = new LinkedList<SerializableComponentMetadata>();
-                for (ComponentMetadata componentMetadata : metadata) {
-                    serializable.add(new SerializableComponentMetadata(componentMetadata));
-                }
-
-                return serializable;
+            protected List<ComponentMetadata> load() {
+                return new ArrayList<ComponentMetadata>(container.getMetadata(ComponentMetadata.class));
             }
         };
 
-        add(new ListView<SerializableComponentMetadata>("components", model) {
+        add(new ListView<ComponentMetadata>("components", model) {
             @Override
-            protected void populateItem(ListItem<SerializableComponentMetadata> item) {
-                SerializableComponentMetadata metadata = item.getModelObject();
+            protected void populateItem(ListItem<ComponentMetadata> item) {
+                ComponentMetadata metadata = item.getModelObject();
+
+                Class<?>[] interfaces = metadata.getClass().getInterfaces();
 
                 item.add(new Label("componentId", metadata.getId()));
-                item.add(new Label("type", metadata.getTypeName()));
+                item.add(new Label("type", Arrays.toString(interfaces)));
             }
         });
 
