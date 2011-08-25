@@ -14,6 +14,7 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.util.ListModel;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 
@@ -28,6 +29,7 @@ public class BasePage extends WebPage {
     // list of supported Locales - should be replaced by resolver/detector or something similar
     private IModel<List<Locale>> supportedLocales = new ListModel<Locale>(Arrays.asList(Locale.FRENCH, Locale.ENGLISH));
 
+    @SuppressWarnings("serial")
     public BasePage() {
         add(CSSPackageResource.getHeaderContribution(BasePage.class, "style.css"));
         add(CSSPackageResource.getHeaderContribution(BasePage.class, "grid.css"));
@@ -38,7 +40,12 @@ public class BasePage extends WebPage {
 
         add(new LanguagePanel("languagePanel", supportedLocales));
 
-        add(new NavigationPanel("navigationPanel", new ListModel<ConsoleTab>(tabs)));
+        add(new NavigationPanel("navigationPanel", new LoadableDetachableModel<List<ConsoleTab>>() {
+            @Override
+            protected List<ConsoleTab> load() {
+                return tabs;
+            }
+        }));
 
         for (IBehavior behavior : brandProvider.getBehaviors()) {
             add(behavior);
@@ -48,7 +55,7 @@ public class BasePage extends WebPage {
     }
 
     public void get() {
-        
+
     }
 
 }
