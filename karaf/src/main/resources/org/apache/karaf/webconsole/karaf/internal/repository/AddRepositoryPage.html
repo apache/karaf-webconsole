@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
+    <wicket:head>
+        <title>Karaf Wicket console - Features page</title>
+    </wicket:head>
+
+    <body>
+        <wicket:extend>
+            <h1>Add feature repository</h1>
+
+            <form wicket:id="add">
+                <span wicket:id="border">
+                    <input type="text" wicket:id="uri" value="mvn:foo/bar/1.0.0/xml/features" />
+                </span>
+
+                <input type="submit" wicket:id="submit" value="Confirm" />
+            </form>
+
+        </wicket:extend>
+    </body>
+
+</html>
