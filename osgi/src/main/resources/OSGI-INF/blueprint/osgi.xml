@@ -33,6 +33,7 @@
 
     <reference id="configurationAdmin" interface="org.osgi.service.cm.ConfigurationAdmin" availability="optional" />
     <reference id="startLevel" interface="org.osgi.service.startlevel.StartLevel" />
+    <reference id="metaTypeService" interface="org.osgi.service.metatype.MetaTypeService" />
 
     <reference-list id="columnProviders" interface="org.apache.karaf.webconsole.osgi.bundle.IColumnProvider" availability="optional" />
     <reference-list id="actionProviders" interface="org.apache.karaf.webconsole.osgi.bundle.IActionProvider" availability="optional" />

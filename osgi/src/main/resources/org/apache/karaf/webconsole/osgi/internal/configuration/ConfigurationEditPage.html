@@ -10,21 +10,19 @@
             <h1>Edit <span wicket:id="pid">org.apache.felix.filemount</span></h1>
 
             <form wicket:id="edit">
-                <input type="text" wicket:id="pid" style="width: 100%" />
-
-                <ul style="list-style-type: none;">
-                    <li wicket:id="properties">
-                        <div class="grid_9">
-                            <div class="grid_9">
-                                <span wicket:id="key" style="width: 100%">key</span>
-                            </div>
-                            <input type="text" wicket:id="value" style="width: 100%" />
-                        </div>
+                <ul>
+                    <li wicket:id="entries">
+                        <input type="text" wicket:id="value" />
                     </li>
                 </ul>
-                
                 <input type="submit" wicket:id="submit" value="Confirm" />
             </form>
+
+            <p>
+                System properties (not editable)
+            </p>
+            <table wicket:id="system" class="dataview" />
+
         </wicket:extend>
     </body>
 </html>
