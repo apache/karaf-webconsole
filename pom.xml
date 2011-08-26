@@ -32,6 +32,7 @@
         <log4j.version>1.2.14</log4j.version>
         <ops4j.paxwicket.version>0.8.0-SNAPSHOT</ops4j.paxwicket.version>
         <karaf.version>2.2.2</karaf.version>
+        <nmr.version>1.4.0</nmr.version>
     </properties>
 
     <modules>
@@ -40,6 +41,7 @@
         <module>blueprint</module>
         <module>karaf</module>
         <module>features</module>
+        <module>servicemix</module>
 
         <module>examples</module>
         <module>manual</module>
