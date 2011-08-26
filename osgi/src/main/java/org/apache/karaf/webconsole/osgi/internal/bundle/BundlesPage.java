@@ -10,6 +10,7 @@ import org.apache.karaf.webconsole.osgi.bundle.IActionProvider;
 import org.apache.karaf.webconsole.osgi.bundle.IColumnProvider;
 import org.apache.karaf.webconsole.osgi.bundle.IDecorationProvider;
 import org.apache.karaf.webconsole.osgi.internal.OsgiPage;
+import org.apache.karaf.webconsole.osgi.internal.bundle.view.BundleActionsPanel;
 import org.apache.karaf.webconsole.osgi.internal.bundle.view.BundlesDataTable;
 import org.apache.karaf.webconsole.osgi.internal.bundle.view.DecorationPanel;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
@@ -18,6 +19,7 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 import org.osgi.framework.Bundle;
@@ -59,11 +61,11 @@ public class BundlesPage extends OsgiPage {
 
         columns.add(new PropertyColumnExt<Bundle>("Name", "symbolicName"));
         columns.add(new PropertyColumnExt<Bundle>("Version", "version.toString"));
-//        columns.add(new AbstractColumn<Bundle>(Model.of("Operations")) {
-//            public void populateItem(Item<ICellPopulator<Bundle>> cellItem, final String componentId, final IModel<Bundle> rowModel) {
-//                cellItem.add(new BundleActionsPanel(componentId, rowModel, actionProviders));
-//            }
-//        });
+        columns.add(new AbstractColumn<Bundle>(Model.of("Operations")) {
+            public void populateItem(Item<ICellPopulator<Bundle>> cellItem, final String componentId, final IModel<Bundle> rowModel) {
+                cellItem.add(new BundleActionsPanel(componentId, rowModel, actionProviders));
+            }
+        });
 
         add(new BundlesDataTable("bundles", columns, new BundlesDataProvider(context), 100));
     }

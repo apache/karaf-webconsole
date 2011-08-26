@@ -40,7 +40,7 @@ public class BasePage extends WebPage {
 
         add(new LanguagePanel("languagePanel", supportedLocales));
 
-        add(new NavigationPanel("navigationPanel", new LoadableDetachableModel<List<ConsoleTab>>() {
+       add(new NavigationPanel("navigationPanel", new LoadableDetachableModel<List<ConsoleTab>>() {
             @Override
             protected List<ConsoleTab> load() {
                 return tabs;

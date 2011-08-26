@@ -22,13 +22,14 @@ public class FeaturesActionsPanel extends ActionsPanel<Feature> {
     }
 
     @Override
-    protected List<Link> getLinks(final Feature object, String id) {
+    protected List<Link> getLinks(Feature object, String id) {
         Link link = new Link(id) {
 
             @Override
             public void onClick() {
 
                 try {
+                    Feature object = (Feature) FeaturesActionsPanel.this.getDefaultModelObject();
                     if (isInstalled(object)) {
                         featuresService.uninstallFeature(object.getName());
                     } else {

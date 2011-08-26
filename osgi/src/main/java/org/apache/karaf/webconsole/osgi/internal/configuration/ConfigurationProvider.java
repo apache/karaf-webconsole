@@ -36,4 +36,9 @@ public class ConfigurationProvider extends SortableDataProvider<Configuration> {
         return configurations.length;
     }
 
+    @Override
+    public void detach() {
+        super.detach();
+        configurations = null;
+    }
 }

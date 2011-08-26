@@ -43,4 +43,6 @@ public class ActionsPanel<T> extends Panel {
     protected List<Link> getLinks(T object, String id) {
         return Collections.emptyList();
     }
+
+    
 }

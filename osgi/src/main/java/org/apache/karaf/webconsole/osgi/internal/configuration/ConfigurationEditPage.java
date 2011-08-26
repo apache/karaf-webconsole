@@ -31,7 +31,7 @@ public class ConfigurationEditPage extends OsgiPage {
         pid = params.getString("pid");
 
         add(new Label("pid", pid));
-        final Configuration configuration = new ConfigurationModel(pid, configurationAdmin).getObject();
+        Configuration configuration = new ConfigurationModel(pid, configurationAdmin).getObject();
 
         @SuppressWarnings("unchecked")
         Map<String, String> properties = DictionaryUtils.map(configuration.getProperties());
@@ -44,6 +44,7 @@ public class ConfigurationEditPage extends OsgiPage {
                 Map<String, String> map = getModelObject();
 
                 try {
+                    Configuration configuration = new ConfigurationModel(pid, configurationAdmin).getObject();
                     configuration.update(DictionaryUtils.dictionary(map));
 
                     Session.get().info("Configuration " + pid + " updated.");

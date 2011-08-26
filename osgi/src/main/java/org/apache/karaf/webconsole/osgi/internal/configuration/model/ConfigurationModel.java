@@ -31,4 +31,9 @@ public class ConfigurationModel extends LoadableDetachableModel<Configuration> {
         }
     }
 
+    @Override
+    protected void onDetach() {
+        super.onDetach();
+        setObject(null);
+    }
 }

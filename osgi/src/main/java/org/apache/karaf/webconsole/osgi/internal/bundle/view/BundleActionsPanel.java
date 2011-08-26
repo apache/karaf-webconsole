@@ -10,10 +10,7 @@ import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
-import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.util.ListModel;
 import org.osgi.framework.Bundle;
 
 public class BundleActionsPanel extends ActionsPanel<Bundle> {
@@ -21,12 +18,14 @@ public class BundleActionsPanel extends ActionsPanel<Bundle> {
     public BundleActionsPanel(String componentId, final IModel<Bundle> model, List<IActionProvider> actionProviders) {
         super(componentId, model);
 
+        /*
         add(new ListView<IActionProvider>("extensions", new ListModel<IActionProvider>(actionProviders)) {
             @Override
             protected void populateItem(ListItem<IActionProvider> item) {
                 item.add(item.getModelObject().create("extension", model.getObject()));
             }
         });
+        */
     }
 
     @Override

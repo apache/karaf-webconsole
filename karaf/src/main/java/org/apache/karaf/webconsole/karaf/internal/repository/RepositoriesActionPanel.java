@@ -22,12 +22,14 @@ public class RepositoriesActionPanel extends ActionsPanel<Repository> {
     }
 
     @Override
-    protected List<Link> getLinks(final Repository object, String id) {
+    protected List<Link> getLinks(Repository object, String id) {
         List<Link> links = new ArrayList<Link>();
 
         Link remove = new Link(id) {
             @Override
             public void onClick() {
+                Repository object = (Repository) RepositoriesActionPanel.this.getDefaultModelObject();
+
                 featuresService.removeRepository(object.getURI());
 
                 Session.get().info("Repository " + object.getURI() + " was removed");
