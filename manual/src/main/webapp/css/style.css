@@ -42,3 +42,7 @@ a:link, a:active, a:visited {
     color: #834C24;
     text-decoration: none;
 }
+
+pre {
+    font-family: monospace;
+}

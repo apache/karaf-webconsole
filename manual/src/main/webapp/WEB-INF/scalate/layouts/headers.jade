@@ -19,6 +19,28 @@ html(lang="en")
     link(href={uri("/css/style.css")} rel="stylesheet" type="text/css")
     link(href={uri("/css/reset.css")} rel="stylesheet" type="text/css")
 
+    link(href={uri("/css/sh/shCore.css")} rel="stylesheet" type="text/css")
+    link(href={uri("/css/sh/shThemeDefault.css")} rel="stylesheet" type="text/css")
+    link(href={uri("/css/sh/shThemeEclipse.css")} rel="stylesheet" type="text/css")
+
+    script(type="text/javascript" src={uri("/js/jquery.js")})
+    script(type="text/javascript" src={uri("/js/sh/XRegExp.js")})
+    script(type="text/javascript" src={uri("/js/sh/shCore.js")})
+    script(type="text/javascript" src={uri("/js/sh/shBrushJava.js")})
+    script(type="text/javascript" src={uri("/js/sh/shBrushPlain.js")})
+    script(type="text/javascript" src={uri("/js/sh/shBrushXml.js")})
+    :javascript
+      $(function() {
+        // find all pre elements and add brush: java/xml to class attribute
+        $('pre').each(function(key, value) {
+          attrs = $(value).attr('class'); // old value
+          arr = attrs.split(' ');
+          $(value).attr('class', attrs + '; brush: ' + arr[0]); // just append brush..
+
+          SyntaxHighlighter.all({toolbar: true}); // paint my worl?d
+        })
+      })
+
     - if (include_console)
       link(href={uri("/css/scalate/console.css")} rel="stylesheet" type="text/css")
 
