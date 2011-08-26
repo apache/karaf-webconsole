@@ -35,6 +35,7 @@
   <feature name="webconsole-osgi" version="${project.version}" description="Karaf Webconsole OSGi">
     <details>Adds support for osgi packages to the webconsole.</details>
     <feature>webconsole-core</feature>
+    <bundle>mvn:org.apache.felix/org.apache.felix.metatype/${felix-metatype.version}</bundle>
     <bundle>mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.osgi/${project.version}</bundle>
   </feature>
 
