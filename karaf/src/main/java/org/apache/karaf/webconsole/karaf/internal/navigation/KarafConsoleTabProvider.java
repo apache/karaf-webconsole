@@ -26,6 +26,7 @@ import org.apache.wicket.Page;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.model.ResourceModel;
 
 public class KarafConsoleTabProvider implements ConsoleTabProvider {
 
@@ -39,7 +40,7 @@ public class KarafConsoleTabProvider implements ConsoleTabProvider {
         Link<Page> link = createFeaturesLink(componentId, labelId);
 
         link = new BookmarkablePageLink<Page>(componentId, RepositoriesPage.class);
-        link.add(new Label(labelId, "Repositories"));
+        link.add(new Label(labelId, new ResourceModel("repositories", "Repositories")));
         items.add(link);
 
         return items;
@@ -47,7 +48,7 @@ public class KarafConsoleTabProvider implements ConsoleTabProvider {
 
     private Link<Page> createFeaturesLink(String componentId, String labelId) {
         Link<Page> link = new BookmarkablePageLink<Page>(componentId, FeaturesPage.class);
-        link.add(new Label(labelId, "Features"));
+        link.add(new Label(labelId, new ResourceModel("features", "Features")));
 
         return link;
     }

@@ -34,6 +34,10 @@ div.widget {
     list-style-type: none;
 }
 
+#languages ul li a:link {
+    text-decoration: none;
+}
+
 #languages ul li {
     display: inline;
 }
