@@ -24,7 +24,7 @@ import java.util.Map;
 import org.apache.karaf.features.Feature;
 import org.apache.karaf.features.FeaturesService;
 import org.apache.karaf.features.Repository;
-import org.apache.karaf.webconsole.core.BasePage;
+import org.apache.karaf.webconsole.core.page.SinglePage;
 import org.apache.karaf.webconsole.karaf.internal.FeaturesProvider;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
@@ -45,7 +45,7 @@ import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
  * Features
  */
 @PaxWicketMountPoint(mountPoint = "/karaf/features")
-public class FeaturesPage extends BasePage {
+public class FeaturesPage extends SinglePage {
 
     @PaxWicketBean(name = "featuresService")
     private FeaturesService featuresService;

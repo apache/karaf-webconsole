@@ -17,15 +17,33 @@
 package org.apache.karaf.webconsole.core.internal;
 
 import org.apache.karaf.webconsole.core.dashboard.DashboardPage;
-import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.karaf.webconsole.core.page.LoginPage;
+import org.apache.karaf.webconsole.core.security.JaasWebSession;
+import org.apache.wicket.authentication.AuthenticatedWebApplication;
+import org.apache.wicket.authentication.AuthenticatedWebSession;
+import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.pages.AccessDeniedPage;
+import org.apache.wicket.markup.html.pages.PageExpiredErrorPage;
 
 /**
  * Root class for wicket.
  */
-public class WebConsoleApplication extends WebApplication {
+public class WebConsoleApplication extends AuthenticatedWebApplication {
 
     public WebConsoleApplication() {
         super();
+    }
+
+    @Override
+    protected void init() {
+        super.init();
+
+        mountBookmarkablePage("/login", LoginPage.class);
+        mountBookmarkablePage("/error/401", AccessDeniedPage.class);
+        mountBookmarkablePage("/error/404", PageExpiredErrorPage.class);
+
+        getApplicationSettings().setAccessDeniedPage(AccessDeniedPage.class);
+        getApplicationSettings().setPageExpiredErrorPage(PageExpiredErrorPage.class);
     }
 
     /**
@@ -34,6 +52,16 @@ public class WebConsoleApplication extends WebApplication {
     @Override
     public Class<DashboardPage> getHomePage() {
         return DashboardPage.class;
+    }
+
+    @Override
+    protected Class<? extends WebPage> getSignInPageClass() {
+        return LoginPage.class;
+    }
+
+    @Override
+    protected Class<? extends AuthenticatedWebSession> getWebSessionClass() {
+        return JaasWebSession.class;
     }
 
 }

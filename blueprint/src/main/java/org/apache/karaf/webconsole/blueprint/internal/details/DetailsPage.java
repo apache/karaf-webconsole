@@ -22,7 +22,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import org.apache.karaf.webconsole.core.BasePage;
+import org.apache.karaf.webconsole.core.page.SinglePage;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -38,7 +38,7 @@ import org.osgi.service.blueprint.container.BlueprintContainer;
 import org.osgi.service.blueprint.reflect.ComponentMetadata;
 
 @PaxWicketMountPoint(mountPoint = "/osgi/blueprint/details")
-public class DetailsPage extends BasePage {
+public class DetailsPage extends SinglePage {
 
     @PaxWicketBean(name = "blueprintBundleContext")
     private BundleContext context;

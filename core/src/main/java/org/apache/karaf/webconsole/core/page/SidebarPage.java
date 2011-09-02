@@ -14,29 +14,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.osgi.internal;
+package org.apache.karaf.webconsole.core.page;
 
-import java.util.LinkedList;
+import java.util.Collections;
 import java.util.List;
 
-import org.apache.karaf.webconsole.core.page.SidebarPage;
-import org.apache.karaf.webconsole.osgi.internal.configuration.ConfigurationsPage;
-import org.apache.karaf.webconsole.osgi.internal.event.EventsPage;
+import org.apache.karaf.webconsole.core.internal.SidebarPanel;
 import org.apache.wicket.Page;
-import org.ops4j.pax.wicket.api.PaxWicketBean;
-import org.osgi.framework.BundleContext;
+import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.util.ListModel;
 
-public abstract class OsgiPage extends SidebarPage {
+public class SidebarPage extends SecuredPage {
 
-    @PaxWicketBean(name = "blueprintBundleContext")
-    protected BundleContext context;
+    private Panel sidebar;
 
-    @Override
+    public SidebarPage() {
+        ListModel<Class<? extends Page>> listModel = new ListModel<Class<? extends Page>>(getSubPages());
+
+        sidebar = new SidebarPanel("sidebar", getClass(), listModel);
+        add(sidebar);
+    }
+
+    public Panel getSidebar() {
+        return sidebar;
+    }
+
     protected List<Class<? extends Page>> getSubPages() {
-        List<Class<? extends Page>> subpages = new LinkedList<Class<? extends Page>>();
-        subpages.add(ConfigurationsPage.class);
-        subpages.add(EventsPage.class);
-        return subpages;
+        return Collections.emptyList();
     }
 
 }

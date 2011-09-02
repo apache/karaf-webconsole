@@ -56,6 +56,11 @@
             <version>${ops4j.paxwicket.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.karaf.jaas</groupId>
+            <artifactId>org.apache.karaf.jaas.modules</artifactId>
+            <version>${karaf.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -79,6 +84,7 @@
                             org.apache.wicket.request,
                             org.apache.wicket.ajax,
                             org.apache.wicket.markup.html.link,
+                            org.apache.wicket.protocol.http,
 
                             <!-- then wicket stuff -->
                             org.ops4j.pax.wicket.api,

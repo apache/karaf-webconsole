@@ -19,13 +19,13 @@ package org.apache.karaf.webconsole.blueprint.internal;
 import java.util.List;
 
 import org.apache.karaf.webconsole.blueprint.internal.view.BlueprintDataTable;
-import org.apache.karaf.webconsole.core.BasePage;
+import org.apache.karaf.webconsole.core.page.SinglePage;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 import org.osgi.framework.ServiceReference;
 
 @PaxWicketMountPoint(mountPoint = "/osgi/blueprint")
-public class BlueprintPage extends BasePage {
+public class BlueprintPage extends SinglePage {
 
     @PaxWicketBean(name = "containers")
     private List<ServiceReference> containers;

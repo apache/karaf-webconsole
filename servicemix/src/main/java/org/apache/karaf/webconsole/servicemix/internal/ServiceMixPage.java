@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.karaf.webconsole.core.BasePage;
+import org.apache.karaf.webconsole.core.page.SinglePage;
 import org.apache.karaf.webconsole.core.table.OrdinalColumn;
 import org.apache.karaf.webconsole.core.table.PropertyColumnExt;
 import org.apache.servicemix.nmr.api.Endpoint;
@@ -19,7 +19,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 
-public class ServiceMixPage extends BasePage {
+public class ServiceMixPage extends SinglePage {
 
     @PaxWicketBean(name = "nmr")
     private NMR nmr;

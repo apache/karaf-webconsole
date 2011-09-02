@@ -64,6 +64,12 @@ public class BundlesPage extends OsgiPage {
             }
         });
         columns.add(new PropertyColumnExt<Bundle>("Bundle Id", "bundleId"));
+        columns.add(new AbstractColumn<Bundle>(of("State")) {
+            public void populateItem(Item<ICellPopulator<Bundle>> cellItem, final String componentId, final IModel<Bundle> rowModel) {
+                cellItem.add(new Label(componentId, State.of(rowModel.getObject().getState()).name()));
+            }
+            
+        });
         columns.add(new AbstractColumn<Bundle>(of("Start level")) {
             public void populateItem(Item<ICellPopulator<Bundle>> cellItem, final String componentId, final IModel<Bundle> rowModel) {
                 cellItem.add(new Label(componentId, of(startLevel.getBundleStartLevel(rowModel.getObject()))));

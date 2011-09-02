@@ -23,22 +23,17 @@
 </head>
 
 <body>
-    <div class="container container_12">
+
+    <wicket:extend>
         <div class="grid_3">
-            <img wicket:id="logo" />
+            <div wicket:id="sidebar">Sidebar goes here</div>
         </div>
         <div class="grid_9">
-            <h3>Administration console</h3>
-
-            <div wicket:id="languagePanel" id="languages">Languages go here</div>
+            <span wicket:id="feedback">Feedback stuff</span>
+            <wicket:child />
         </div>
         <div class="clear"></div>
+    </wicket:extend>
 
-        <wicket:child />
-
-        <div class="grid_12">
-            <div wicket:id="footer">Footer</div>
-        </div>
-    </div>
 </body>
 </html>

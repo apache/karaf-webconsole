@@ -21,7 +21,7 @@ import java.util.List;
 
 import org.apache.karaf.features.FeaturesService;
 import org.apache.karaf.features.Repository;
-import org.apache.karaf.webconsole.core.SidebarPage;
+import org.apache.karaf.webconsole.core.page.SidebarPage;
 import org.apache.karaf.webconsole.core.table.OrdinalColumn;
 import org.apache.karaf.webconsole.karaf.internal.RepositoriesProvider;
 import org.apache.wicket.Page;

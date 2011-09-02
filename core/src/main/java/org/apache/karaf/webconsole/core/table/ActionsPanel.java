@@ -47,7 +47,7 @@ public class ActionsPanel<T> extends Panel {
 
                 if (item.getIndex() == 0) {
                     item.add(new SimpleAttributeModifier("class", "first"));
-                } else if (item.getIndex() -1 == links.size()) {
+                } else if (item.getIndex() + 1 == links.size()) {
                     item.add(new SimpleAttributeModifier("class", "last"));
                 } else {
                     item.add(new SimpleAttributeModifier("class", "node"));

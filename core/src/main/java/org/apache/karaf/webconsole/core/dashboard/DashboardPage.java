@@ -18,21 +18,24 @@ package org.apache.karaf.webconsole.core.dashboard;
 
 import java.util.List;
 
-import org.apache.karaf.webconsole.core.BasePage;
+import org.apache.karaf.webconsole.core.page.SinglePage;
 import org.apache.karaf.webconsole.core.widget.WidgetProvider;
+import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.CSSPackageResource;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.util.ListModel;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
+import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 
-public class DashboardPage extends BasePage {
+@PaxWicketMountPoint(mountPoint = "/dashboard")
+public class DashboardPage extends SinglePage {
 
     @PaxWicketBean(name = "widgets")
     private List<WidgetProvider> widgets;
 
-    public DashboardPage() {
+    public DashboardPage(PageParameters parameters) {
         add(CSSPackageResource.getHeaderContribution(DashboardPage.class, "dashboard.css"));
 
         add(new Label("noWidgets", "So far there is no widgets to display") {
@@ -48,7 +51,10 @@ public class DashboardPage extends BasePage {
                 item.add(item.getModelObject().getWidgetPanel("widget"));
             }
         });
+    }
 
+    public DashboardPage() {
+        this(null);
     }
 
 }
