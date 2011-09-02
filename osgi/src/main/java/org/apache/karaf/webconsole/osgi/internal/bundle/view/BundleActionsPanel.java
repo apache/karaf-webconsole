@@ -21,15 +21,25 @@ import java.util.List;
 
 import org.apache.karaf.webconsole.core.table.ActionsPanel;
 import org.apache.karaf.webconsole.osgi.bundle.IActionProvider;
+import org.apache.karaf.webconsole.osgi.internal.bundle.BundlesPage;
 import org.apache.karaf.webconsole.osgi.internal.bundle.DetailsPage;
+import org.apache.karaf.webconsole.osgi.internal.bundle.State;
 import org.apache.wicket.PageParameters;
+import org.apache.wicket.RequestCycle;
+import org.apache.wicket.Session;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IModel;
+import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleException;
+import org.osgi.service.packageadmin.PackageAdmin;
 
 public class BundleActionsPanel extends ActionsPanel<Bundle> {
+
+    @PaxWicketBean(name = "packageAdmin")
+    private PackageAdmin admin;
 
     public BundleActionsPanel(String componentId, final IModel<Bundle> model, List<IActionProvider> actionProviders) {
         super(componentId, model);
@@ -57,6 +67,95 @@ public class BundleActionsPanel extends ActionsPanel<Bundle> {
 
         links.add(link);
 
+        switch (State.of(object.getState())) {
+        case ACTIVE:
+            links.add(createStopLink(id));
+            break;
+        case INSTALLED:
+        case RESOLVED:
+            links.add(createStartLink(id));
+        }
+
+        links.add(createRefreshLink(id));
+        links.add(createUninstallLink(id));
+
         return links;
+    }
+
+    private Link createUninstallLink(String id) {
+        Link link = new Link(id) {
+            @Override
+            public void onClick() {
+                Bundle bundle = (Bundle) BundleActionsPanel.this.getDefaultModelObject();
+
+                try {
+                    bundle.uninstall();
+
+                    Session.get().info("Bundle " + bundle.getSymbolicName() + " uninstalled");
+                    RequestCycle.get().setResponsePage(BundlesPage.class);
+                } catch (BundleException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+            
+        };
+        link.add(new Label("label", "Uninstall"));
+        return link;
+    }
+
+    private Link createRefreshLink(String id) {
+        Link link = new Link(id) {
+            @Override
+            public void onClick() {
+                Bundle bundle = (Bundle) BundleActionsPanel.this.getDefaultModelObject();
+
+                admin.refreshPackages(new Bundle[] {bundle});
+                Session.get().info("Bundle " + bundle.getSymbolicName() + " refreshed");
+                RequestCycle.get().setResponsePage(BundlesPage.class);
+            }
+            
+        };
+        link.add(new Label("label", "Refresh"));
+        return link;
+    }
+
+    private Link createStartLink(String id) {
+        Link link = new Link(id) {
+            @Override
+            public void onClick() {
+                Bundle bundle = (Bundle) BundleActionsPanel.this.getDefaultModelObject();
+
+                try {
+                    bundle.start();
+                    Session.get().info("Bundle " + bundle.getSymbolicName() + " started");
+                    RequestCycle.get().setResponsePage(BundlesPage.class);
+                } catch (BundleException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+            
+        };
+        link.add(new Label("label", "Start"));
+        return link;
+    }
+
+    private Link createStopLink(String id) {
+        Link link = new Link(id) {
+            public void onClick() {
+                Bundle bundle = (Bundle) BundleActionsPanel.this.getDefaultModelObject();
+                try {
+                    bundle.stop();
+                    Session.get().info("Bundle " + bundle.getSymbolicName() + " stopped");
+                    RequestCycle.get().setResponsePage(BundlesPage.class);
+                } catch (BundleException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        };
+        link.add(new Label("label", "Stop"));
+        return link;
     }
 }
