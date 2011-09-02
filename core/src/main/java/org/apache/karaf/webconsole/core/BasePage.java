@@ -22,7 +22,7 @@ import java.util.Locale;
 
 import org.apache.karaf.webconsole.core.brand.BrandProvider;
 import org.apache.karaf.webconsole.core.internal.LanguagePanel;
-import org.apache.karaf.webconsole.core.navigation.ConsoleTab;
+import org.apache.karaf.webconsole.core.navigation.ConsoleTabProvider;
 import org.apache.karaf.webconsole.core.navigation.markup.NavigationPanel;
 import org.apache.wicket.behavior.IBehavior;
 import org.apache.wicket.markup.html.CSSPackageResource;
@@ -37,7 +37,7 @@ import org.ops4j.pax.wicket.api.PaxWicketBean;
 public class BasePage extends WebPage {
 
     @PaxWicketBean(name = "tabs")
-    private List<ConsoleTab> tabs;
+    private List<ConsoleTabProvider> tabs;
 
     @PaxWicketBean(name = "brandProvider")
     private BrandProvider brandProvider;
@@ -56,9 +56,9 @@ public class BasePage extends WebPage {
 
         add(new LanguagePanel("languagePanel", supportedLocales));
 
-       add(new NavigationPanel("navigationPanel", new LoadableDetachableModel<List<ConsoleTab>>() {
+       add(new NavigationPanel("navigationPanel", new LoadableDetachableModel<List<ConsoleTabProvider>>() {
             @Override
-            protected List<ConsoleTab> load() {
+            protected List<ConsoleTabProvider> load() {
                 return tabs;
             }
         }));

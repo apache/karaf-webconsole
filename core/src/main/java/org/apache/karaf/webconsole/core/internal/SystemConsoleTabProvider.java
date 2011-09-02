@@ -17,27 +17,26 @@
 package org.apache.karaf.webconsole.core.internal;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collections;
+import java.util.List;
 
 import org.apache.karaf.webconsole.core.dashboard.DashboardPage;
-import org.apache.karaf.webconsole.core.navigation.ConsoleTab;
+import org.apache.karaf.webconsole.core.navigation.ConsoleTabProvider;
 import org.apache.wicket.Page;
+import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.wicket.markup.html.link.Link;
 
-public class SystemConsoleTab implements ConsoleTab, Serializable {
+public class SystemConsoleTabProvider implements ConsoleTabProvider, Serializable {
 
-    public String getLabel() {
-        return "dashboard";
+    public Link<Page> getModuleLink(String componentId, String labelId) {
+        Link<Page> link = new BookmarkablePageLink<Page>(componentId, DashboardPage.class);
+        link.add(new Label(labelId, "Dashboard"));
+        return link;
     }
 
-    public Class<? extends Page> getModuleHomePage() {
-        return DashboardPage.class;
-    }
-
-    public Map<String, Class<? extends Page>> getItems() {
-        Map<String, Class<? extends Page>> map = new HashMap<String, Class<? extends Page>>();
-        map.put("dashboard", DashboardPage.class);
-        return map;
+    public List<Link<Page>> getItems(String componentId, String labelId) {
+        return Collections.emptyList();
     }
 
 }

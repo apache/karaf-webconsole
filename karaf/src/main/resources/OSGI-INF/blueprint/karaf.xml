@@ -17,8 +17,8 @@
 -->
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
 
-    <service interface="org.apache.karaf.webconsole.core.navigation.ConsoleTab">
-        <bean class="org.apache.karaf.webconsole.karaf.internal.navigation.KarafConsoleTab" />
+    <service interface="org.apache.karaf.webconsole.core.navigation.ConsoleTabProvider">
+        <bean class="org.apache.karaf.webconsole.karaf.internal.navigation.KarafConsoleTabProvider" />
     </service>
 
     <reference id="featuresService" interface="org.apache.karaf.features.FeaturesService"/>

@@ -14,27 +14,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.osgi.internal.navigation;
+package org.apache.karaf.webconsole.core.navigation;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.apache.karaf.webconsole.core.navigation.ConsoleTab;
-import org.apache.karaf.webconsole.osgi.internal.bundle.BundlesPage;
 import org.apache.wicket.Page;
+import org.apache.wicket.markup.html.link.Link;
 
-public class OsgiConsoleTab implements ConsoleTab {
+/**
+ * Console tab is top level extension of webconsole. It may provide new elements
+ * to navigation.
+ */
+public interface ConsoleTabProvider extends NavigationProvider {
 
-    public String getLabel() {
-        return "osgi";
-    }
-
-    public Class<? extends Page> getModuleHomePage() {
-        return BundlesPage.class;
-    }
-
-    public Map<String, Class<? extends Page>> getItems() {
-        return new HashMap<String, Class<? extends Page>>();
-    }
+    /**
+     * Gets module home link.
+     * 
+     * @param componentId Identifier of created link.
+     * @param labelId Identifier of label inside link.
+     * @return Link to module home page.
+     */
+    Link<Page> getModuleLink(String componentId, String labelId);
 
 }

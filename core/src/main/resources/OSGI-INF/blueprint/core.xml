@@ -21,18 +21,14 @@
         class="org.apache.karaf.webconsole.core.internal.WebConsoleApplication"
         applicationName="karafWebConsole" mountPoint="cns" />
 
-    <reference-list id="tabs" interface="org.apache.karaf.webconsole.core.navigation.ConsoleTab" availability="optional" />
+    <reference-list id="tabs" interface="org.apache.karaf.webconsole.core.navigation.ConsoleTabProvider" availability="optional" />
 
     <!-- He is not ready yet ... -->
     <reference-list id="widgets" interface="org.apache.karaf.webconsole.core.widget.WidgetProvider" availability="optional"
         filter="(intention=dashboard)" />
 
-    <service interface="org.apache.karaf.webconsole.core.navigation.ConsoleTab">
-        <bean class="org.apache.karaf.webconsole.core.navigation.i18n.LocalizableConsoleTab">
-            <argument>
-                <bean class="org.apache.karaf.webconsole.core.internal.SystemConsoleTab" />
-            </argument>
-        </bean>
+    <service interface="org.apache.karaf.webconsole.core.navigation.ConsoleTabProvider">
+        <bean class="org.apache.karaf.webconsole.core.internal.SystemConsoleTabProvider" />
     </service>
 
     <service interface="org.apache.karaf.webconsole.core.brand.BrandProvider">

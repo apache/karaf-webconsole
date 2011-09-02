@@ -14,35 +14,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.blueprint.internal.navigation;
-
-import static org.apache.wicket.model.Model.of;
+package org.apache.karaf.webconsole.karaf.internal.navigation;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.karaf.webconsole.blueprint.internal.BlueprintPage;
-import org.apache.karaf.webconsole.core.navigation.NavigationProvider;
+import org.apache.karaf.webconsole.core.navigation.ConsoleTabProvider;
+import org.apache.karaf.webconsole.karaf.internal.feature.FeaturesPage;
+import org.apache.karaf.webconsole.karaf.internal.repository.RepositoriesPage;
 import org.apache.wicket.Page;
-import org.apache.wicket.behavior.AttributeAppender;
-import org.apache.wicket.markup.html.CSSPackageResource;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 
-public class BlueprintNavigationProvider implements NavigationProvider {
+public class KarafConsoleTabProvider implements ConsoleTabProvider {
+
+    public Link<Page> getModuleLink(String componentId, String labelId) {
+        return createFeaturesLink(componentId, labelId);
+    }
 
     public List<Link<Page>> getItems(String componentId, String labelId) {
         List<Link<Page>> items = new ArrayList<Link<Page>>();
 
-        Link<Page> link = new BookmarkablePageLink<Page>(componentId, BlueprintPage.class);
-        Label label = new Label(labelId, "Blueprint");
-        label.add(new AttributeAppender("class", of("blueprint"), " "));
-        link.add(label);
-        link.add(CSSPackageResource.getHeaderContribution(BlueprintPage.class, "navigation.css"));
+        Link<Page> link = createFeaturesLink(componentId, labelId);
+
+        link = new BookmarkablePageLink<Page>(componentId, RepositoriesPage.class);
+        link.add(new Label(labelId, "Repositories"));
         items.add(link);
 
         return items;
+    }
+
+    private Link<Page> createFeaturesLink(String componentId, String labelId) {
+        Link<Page> link = new BookmarkablePageLink<Page>(componentId, FeaturesPage.class);
+        link.add(new Label(labelId, "Features"));
+
+        return link;
     }
 
 }

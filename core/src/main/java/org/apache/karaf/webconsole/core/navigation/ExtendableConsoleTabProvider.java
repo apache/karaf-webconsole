@@ -16,37 +16,36 @@
  */
 package org.apache.karaf.webconsole.core.navigation;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Map;
+import java.util.List;
 
 import org.apache.wicket.Page;
+import org.apache.wicket.markup.html.link.Link;
 
 /**
  * Implementation of console tab which allows external providers to put own
  * items to it.
  */
-public class ExtendableConsoleTab implements ConsoleTab {
+public class ExtendableConsoleTabProvider implements ConsoleTabProvider {
 
     private Collection<NavigationProvider> extensions;
-    private ConsoleTab base;
+    private ConsoleTabProvider base;
 
-    public ExtendableConsoleTab(ConsoleTab base) {
+    public ExtendableConsoleTabProvider(ConsoleTabProvider base) {
         this.base = base;
     }
 
-    public String getLabel() {
-        return base.getLabel();
+    public Link<Page> getModuleLink(String componentId, String labelId) {
+        return base.getModuleLink(componentId, labelId);
     }
 
-    public Class<? extends Page> getModuleHomePage() {
-        return base.getModuleHomePage();
-    }
-
-    public Map<String, Class<? extends Page>> getItems() {
-        Map<String, Class<? extends Page>> items = base.getItems();
+    public List<Link<Page>> getItems(String componentId, String labelId) {
+        // create new list because instance returned from base provider may be read only..
+        List<Link<Page>> items = new ArrayList<Link<Page>>(base.getItems(componentId, labelId));
 
         for (NavigationProvider provider : extensions) {
-            items.putAll(provider.getItems());
+            items.addAll(provider.getItems(componentId, labelId));
         }
 
         return items;

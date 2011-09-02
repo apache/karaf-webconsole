@@ -22,14 +22,10 @@
         http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
     ">
 
-    <service interface="org.apache.karaf.webconsole.core.navigation.ConsoleTab">
-        <bean class="org.apache.karaf.webconsole.core.navigation.ExtendableConsoleTab">
+    <service interface="org.apache.karaf.webconsole.core.navigation.ConsoleTabProvider">
+        <bean class="org.apache.karaf.webconsole.core.navigation.ExtendableConsoleTabProvider">
             <argument>
-                <bean class="org.apache.karaf.webconsole.core.navigation.i18n.LocalizableConsoleTab">
-                    <argument>
-                        <bean class="org.apache.karaf.webconsole.osgi.internal.navigation.OsgiConsoleTab" />
-                    </argument>
-                </bean>
+                <bean class="org.apache.karaf.webconsole.osgi.internal.navigation.OsgiConsoleTabProvider" />
             </argument>
             <property name="extensions">
                 <reference-list interface="org.apache.karaf.webconsole.core.navigation.NavigationProvider"

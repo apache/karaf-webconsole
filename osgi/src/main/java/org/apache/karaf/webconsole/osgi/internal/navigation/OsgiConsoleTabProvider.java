@@ -14,27 +14,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.core.navigation;
+package org.apache.karaf.webconsole.osgi.internal.navigation;
 
-import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
+import org.apache.karaf.webconsole.core.navigation.ConsoleTabProvider;
+import org.apache.karaf.webconsole.osgi.internal.bundle.BundlesPage;
 import org.apache.wicket.Page;
+import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 
-/**
- * Base extension point in console. Allow suppliers to ship new navigation
- * elements which points to new wicket pages.
- */
-public interface NavigationProvider extends Serializable {
+public class OsgiConsoleTabProvider implements ConsoleTabProvider {
 
-    /**
-     * Return list of links to pages to add in navigation. 
-     * @param componentId Identifier of the link.
-     * @param labelId Identifier of link label.
-     * 
-     * @return Pages to add in navigation.
-     */
-    List<Link<Page>> getItems(String componentId, String labelId);
+    public Link<Page> getModuleLink(String componentId, String labelId) {
+        Link<Page> link = new BookmarkablePageLink<Page>(componentId, BundlesPage.class);
+        link.add(new Label(labelId, "Bundles"));
+        return link;
+    }
+
+    public List<Link<Page>> getItems(String componentId, String labelId) {
+        return Collections.emptyList();
+    }
 
 }
