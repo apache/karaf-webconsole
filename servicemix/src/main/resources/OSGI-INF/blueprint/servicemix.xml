@@ -21,6 +21,15 @@
         <bean class="org.apache.karaf.webconsole.servicemix.internal.navigation.ServiceMixConsoleTabProvider" />
     </service>
 
+    <bean id="tracker" class="org.apache.karaf.webconsole.servicemix.internal.TrackingExchangeListener" />
+
+    <service ref="tracker">
+        <interfaces>
+            <value>org.apache.servicemix.nmr.api.event.Listener</value>
+            <value>org.apache.servicemix.nmr.api.event.ExchangeListener</value>
+        </interfaces>
+    </service>
+
     <reference id="nmr" interface="org.apache.servicemix.nmr.api.NMR"/>
 
     <!--
