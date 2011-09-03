@@ -16,16 +16,14 @@
  */
 package org.apache.karaf.webconsole.karaf.internal.repository;
 
-import org.apache.karaf.webconsole.core.page.SidebarPage;
+import org.apache.karaf.webconsole.karaf.internal.KarafFeaturesPage;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 
 @PaxWicketMountPoint(mountPoint = "/karaf/repositories/add")
-public class AddRepositoryPage extends SidebarPage {
+public class AddRepositoryPage extends KarafFeaturesPage {
 
     public AddRepositoryPage() {
-
         add(new AddRepositoryForm("add"));
-
     }
 
 }

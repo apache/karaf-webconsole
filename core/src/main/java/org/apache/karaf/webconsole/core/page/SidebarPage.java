@@ -16,31 +16,31 @@
  */
 package org.apache.karaf.webconsole.core.page;
 
-import java.util.Collections;
-import java.util.List;
-
 import org.apache.karaf.webconsole.core.internal.SidebarPanel;
-import org.apache.wicket.Page;
+import org.apache.karaf.webconsole.core.navigation.SidebarProvider;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.util.ListModel;
 
+/**
+ * Page with sidebar on left side which may be used to place additiona links
+ * and widgets.
+ */
 public class SidebarPage extends SecuredPage {
 
     private Panel sidebar;
 
-    public SidebarPage() {
-        ListModel<Class<? extends Page>> listModel = new ListModel<Class<? extends Page>>(getSubPages());
-
-        sidebar = new SidebarPanel("sidebar", getClass(), listModel);
-        add(sidebar);
+    protected void setSidebarProvider(SidebarProvider provider) {
+        if (sidebar == null) {
+            sidebar = new SidebarPanel("sidebar", provider);
+            add(sidebar);
+        }
     }
 
-    public Panel getSidebar() {
+    /**
+     * Sidebar accessor for child pages.
+     * @return
+     */
+    protected final Panel getSidebar() {
         return sidebar;
-    }
-
-    protected List<Class<? extends Page>> getSubPages() {
-        return Collections.emptyList();
     }
 
 }

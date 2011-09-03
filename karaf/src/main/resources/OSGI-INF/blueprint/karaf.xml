@@ -33,4 +33,6 @@
         <argument ref="featuresService" />
     </bean>
 
+    <bean id="featuresSidebar" class="org.apache.karaf.webconsole.karaf.internal.sidebar.KarafFeaturesSidebar" />
+
 </blueprint>

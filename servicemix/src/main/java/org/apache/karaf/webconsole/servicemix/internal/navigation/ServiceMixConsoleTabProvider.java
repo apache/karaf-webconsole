@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.karaf.webconsole.core.navigation.ConsoleTabProvider;
-import org.apache.karaf.webconsole.servicemix.internal.ServiceMixPage;
+import org.apache.karaf.webconsole.servicemix.internal.EndpointsPage;
 import org.apache.karaf.webconsole.servicemix.internal.TrackNmrPage;
 import org.apache.wicket.Page;
 import org.apache.wicket.markup.html.basic.Label;
@@ -42,7 +42,7 @@ public class ServiceMixConsoleTabProvider implements ConsoleTabProvider {
     }
 
     public Link<Page> getModuleLink(String componentId, String labelId) {
-        Link<Page> link = new BookmarkablePageLink<Page>(componentId, ServiceMixPage.class);
+        Link<Page> link = new BookmarkablePageLink<Page>(componentId, EndpointsPage.class);
         link.add(new Label(labelId, "ServiceMix"));
         return link;
     }

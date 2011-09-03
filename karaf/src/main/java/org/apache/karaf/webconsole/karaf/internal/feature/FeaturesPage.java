@@ -22,10 +22,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.karaf.features.Feature;
-import org.apache.karaf.features.FeaturesService;
 import org.apache.karaf.features.Repository;
-import org.apache.karaf.webconsole.core.page.SinglePage;
 import org.apache.karaf.webconsole.karaf.internal.FeaturesProvider;
+import org.apache.karaf.webconsole.karaf.internal.KarafFeaturesPage;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
@@ -38,17 +37,13 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.model.StringResourceModel;
-import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 
 /**
  * Features
  */
 @PaxWicketMountPoint(mountPoint = "/karaf/features")
-public class FeaturesPage extends SinglePage {
-
-    @PaxWicketBean(name = "featuresService")
-    private FeaturesService featuresService;
+public class FeaturesPage extends KarafFeaturesPage {
 
     private Map<String, String> feature2repo = new HashMap<String, String>();
 

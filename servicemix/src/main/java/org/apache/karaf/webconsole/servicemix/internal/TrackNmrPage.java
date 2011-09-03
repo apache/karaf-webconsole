@@ -36,7 +36,7 @@ import org.ops4j.pax.wicket.api.PaxWicketBean;
 /**
  * Page which shows list of last exchanges. 
  */
-public class TrackNmrPage extends SidebarPage {
+public class TrackNmrPage extends ServiceMixPage {
 
     @PaxWicketBean(name = "tracker")
     private ITrackingExchangeListener listener;

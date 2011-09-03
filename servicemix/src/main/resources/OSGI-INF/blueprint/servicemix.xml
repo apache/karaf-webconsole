@@ -32,6 +32,8 @@
 
     <reference id="nmr" interface="org.apache.servicemix.nmr.api.NMR"/>
 
+    <bean id="smxSidebar" class="org.apache.karaf.webconsole.servicemix.internal.sidebar.ServicemixSidebar" />
+
     <!--
     <service ref="widgetProvider" interface="org.apache.karaf.webconsole.core.widget.WidgetProvider">
         <service-properties>

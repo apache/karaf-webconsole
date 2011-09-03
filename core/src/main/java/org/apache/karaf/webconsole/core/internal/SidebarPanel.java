@@ -16,28 +16,32 @@
  */
 package org.apache.karaf.webconsole.core.internal;
 
+import org.apache.karaf.webconsole.core.navigation.SidebarProvider;
+import org.apache.karaf.webconsole.core.widget.WidgetProvider;
 import org.apache.wicket.Page;
-import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.util.ListModel;
 
 public class SidebarPanel extends Panel {
 
-    public SidebarPanel(String id, Class<? extends Page> basePage, ListModel<Class<? extends Page>> listModel) {
-        super(id, listModel);
+    public SidebarPanel(String id, SidebarProvider provider) {
+        super(id);
 
-        add(new BookmarkablePageLink<Page>("masterPageLink", basePage).add(new Label("masterPageLabel", basePage.getSimpleName())));
+        add(provider.getMasterPageLink("masterPageLink", "masterPageLabel"));
 
-        add(new ListView<Class<? extends Page>>("subPageLinks", listModel) {
+        add(new ListView<Link<Page>>("subPageLinks", provider.getItems("subPageLink", "subPageLabel")) {
             @Override
-            protected void populateItem(ListItem<Class<? extends Page>> item) {
-                Class<? extends Page> page = item.getModelObject();
-                BookmarkablePageLink<Page> link = new BookmarkablePageLink<Page>("subPageLink", page);
-                link.add(new Label("subPageLabel", page.getSimpleName()));
-                item.add(link);
+            protected void populateItem(ListItem<Link<Page>> item) {
+                item.add(item.getModelObject());
+            }
+        });
+
+        add(new ListView<WidgetProvider>("widgets", provider.getWidgetProviders()) {
+            @Override
+            protected void populateItem(ListItem<WidgetProvider> item) {
+                item.add(item.getModelObject().getWidgetPanel("widget"));
             }
         });
     }
