@@ -16,18 +16,11 @@
  */
 package org.apache.karaf.webconsole.core;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.apache.karaf.webconsole.core.brand.DefaultBrandProvider;
 import org.apache.karaf.webconsole.core.dashboard.DashboardPage;
-import org.apache.karaf.webconsole.core.internal.WebConsoleApplication;
 import org.apache.karaf.webconsole.core.page.LoginPage;
 import org.apache.wicket.authorization.UnauthorizedInstantiationException;
-import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.tester.WicketTester;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.BlockJUnit4ClassRunner;
@@ -36,22 +29,7 @@ import org.junit.runners.BlockJUnit4ClassRunner;
  * Test login operation and role verification.
  */
 @RunWith(BlockJUnit4ClassRunner.class)
-public class LoginTest {
-
-    /**
-     * Application instance.
-     */
-    private WebApplication application;
-
-    @Before
-    public void setUp() {
-        application = new WebConsoleApplication();
-
-        final Map<String, Object> values = new HashMap<String, Object>();
-        values.put("brandProvider", new DefaultBrandProvider());
-
-        application.addComponentInstantiationListener(new TestInjector(values));
-    }
+public class LoginTest extends WebConsoleTest {
 
     @Test
     public void testSuccessLogin() throws Exception {

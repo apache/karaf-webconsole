@@ -16,17 +16,14 @@
  */
 package org.apache.karaf.webconsole.core;
 
-import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.Map;
-
-import net.sf.cglib.proxy.Enhancer;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.application.IComponentInstantiationListener;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.ops4j.pax.wicket.internal.injection.AbstractPaxWicketInjector;
-import org.ops4j.pax.wicket.internal.injection.ComponentProxy;
+import org.ops4j.pax.wicket.util.proxy.LazyInitProxyFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,9 +41,16 @@ public class TestInjector extends AbstractPaxWicketInjector implements IComponen
     /**
      * Values to inject.
      */
-    private final Map<String, Object> values;
+    private Map<String, Object> values;
 
     public TestInjector(Map<String, Object> values) {
+        this.values = values;
+    }
+
+    /**
+     * Set values to be injected.
+     */
+    public void setValues(Map<String, Object> values) {
         this.values = values;
     }
 
@@ -54,7 +58,6 @@ public class TestInjector extends AbstractPaxWicketInjector implements IComponen
      * {@inheritDoc}
      */
     public void onInstantiation(Component component) {
-
         for (Field field : getFields(component.getClass())) {
             // iterate over fields and check if there is values to inject 
             String name = field.getName();
@@ -62,24 +65,17 @@ public class TestInjector extends AbstractPaxWicketInjector implements IComponen
 
             if (values.containsKey(name)) {
                 // we have value..
-                Object value = values.get(name);
+                final Object value = values.get(name);
 
                 // create instance proxy, just like pax-wicket does
                 if (type.isAssignableFrom(value.getClass())){
-                    Enhancer enhancer = new Enhancer();
-                    enhancer.setSuperclass(value.getClass());
-                    if (!(value instanceof Serializable)) {
-                        logger.warn("Value for field {}.{} is not serializable. Adding Serializable interface for test, result in production may vary",
-                            field.getDeclaringClass(), name);
-                        enhancer.setInterfaces(new Class[] {Serializable.class});
-                    }
-                    enhancer.setCallback(new ComponentProxy("test", null));
-                    setField(component, field, enhancer.create());
+                    logger.debug("Setting value {} for field {}.{}", new Object[] {value, field.getDeclaringClass().getName(), name});
+                    Object createProxy = LazyInitProxyFactory.createProxy(field.getType(), new TestTargetLocator(value));
+                    setField(component, field, createProxy);
                 } else {
                     logger.error("Type mismath for field {}.{}. Expected {} but {} given", new Object[] {
                         field.getDeclaringClass().getName(), name, field.getType().getName(), value.getClass().getName()
                     });
-                    System.err.println("Unknown type " + field.getType());
                 }
             } else {
                 logger.warn("No value provided for field {}.{}", field.getDeclaringClass().getName(), name);
