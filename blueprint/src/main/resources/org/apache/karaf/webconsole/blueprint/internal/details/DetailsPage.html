@@ -24,24 +24,25 @@
        <wicket:extend>
             <h1>Blueprint container details</h1>
 
-            <table>
-                <tr>
-                    <th>Id</th>
-                    <th>Component type</th>
-                    <th>Operations</th>
-                </tr>
-                <tr wicket:id="components">
+            <table class="dataview grid_12">
+                <tr wicket:id="components" class="component">
                     <td>
-                        <span wicket:id="componentId">component-id</span>
+                        <span wicket:id="componentId">.component-1</span>
                     </td>
                     <td>
                         <span wicket:id="type">org.osgi.service.blueprint.reflect.ComponentMetadata</span>
                     </td>
                     <td>
-<!--                         <a wicket:id="details">Details</a> -->
+                        <ul>
+                            <li wicket:id="dependencies">
+                                <span wicket:id="dependency">.component-12</span>
+                            </li>
+                        </ul>
                     </td>
                 </tr>
             </table>
+
+            <div id="graph" class="grid_12" style="height: 550px"></div>
         </wicket:extend>
     </body>
 </html>
