@@ -21,8 +21,7 @@ import java.util.List;
 import org.apache.karaf.webconsole.core.BasePage;
 import org.apache.karaf.webconsole.core.navigation.ConsoleTabProvider;
 import org.apache.karaf.webconsole.core.navigation.markup.NavigationPanel;
-import org.apache.wicket.RequestCycle;
-import org.apache.wicket.authentication.AuthenticatedWebSession;
+import org.apache.wicket.Session;
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
@@ -48,8 +47,9 @@ public class SecuredPage extends BasePage {
         add(new Link<Void>("logoutLink") {
             @Override
             public void onClick() {
-                AuthenticatedWebSession.get().invalidateNow();
-                RequestCycle.get().setResponsePage(LoginPage.class);
+                Session.get().invalidateNow();
+                getRequestCycle().setRedirect(true);
+                setResponsePage(LoginPage.class);
             }
         });
     }
