@@ -28,10 +28,14 @@ import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.osgi.service.cm.Configuration;
+import org.osgi.service.cm.ConfigurationAdmin;
 
-public class ConfigurationstDataTable extends DefaultDataTable<Configuration> {
+/**
+ * Datatable which shows list of configurations from OSGi {@link ConfigurationAdmin}.
+ */
+@SuppressWarnings({"rawtypes", "unchecked"})
+public class ConfigurationsDataTable extends DefaultDataTable<Configuration> {
 
-    @SuppressWarnings({"rawtypes", "unchecked"})
     private static List COLUMNS = Arrays.asList(
         new PropertyColumn<Configuration>(Model.of("pid"), "pid"),
         new AbstractColumn<Configuration>(Model.of("operations")) {
@@ -41,7 +45,7 @@ public class ConfigurationstDataTable extends DefaultDataTable<Configuration> {
         }
     );
 
-    public ConfigurationstDataTable(String id, ISortableDataProvider<Configuration> dataProvider, int rowsPerPage) {
+    public ConfigurationsDataTable(String id, ISortableDataProvider<Configuration> dataProvider, int rowsPerPage) {
         super(id, COLUMNS, dataProvider, rowsPerPage);
     }
 

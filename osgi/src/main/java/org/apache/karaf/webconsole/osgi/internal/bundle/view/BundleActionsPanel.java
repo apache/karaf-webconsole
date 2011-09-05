@@ -36,6 +36,10 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleException;
 import org.osgi.service.packageadmin.PackageAdmin;
 
+/**
+ * Action panel for bundles list.
+ */
+@SuppressWarnings("rawtypes")
 public class BundleActionsPanel extends ActionsPanel<Bundle> {
 
     @PaxWicketBean(name = "packageAdmin")

@@ -16,6 +16,9 @@
  */
 package org.apache.karaf.webconsole.core.page;
 
+/**
+ * Page which body uses all available space - all screen width.
+ */
 public class SinglePage extends SecuredPage {
 
     public SinglePage() {

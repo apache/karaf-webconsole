@@ -28,6 +28,9 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 
+/**
+ * Page which requires admin role, in other words authorized user.
+ */
 @AuthorizeInstantiation("admin")
 public class SecuredPage extends BasePage {
 

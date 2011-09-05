@@ -25,6 +25,9 @@ import org.apache.wicket.behavior.IBehavior;
 import org.apache.wicket.markup.html.CSSPackageResource;
 import org.apache.wicket.markup.html.image.Image;
 
+/**
+ * Example brand provider which modify console look and feel.
+ */
 public class ExampleBrandProvider implements BrandProvider {
 
     public Image getHeaderImage(String imageId) {

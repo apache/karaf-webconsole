@@ -17,7 +17,7 @@
 package org.apache.karaf.webconsole.osgi.internal.configuration;
 
 import org.apache.karaf.webconsole.osgi.internal.OsgiPage;
-import org.apache.karaf.webconsole.osgi.internal.configuration.view.ConfigurationstDataTable;
+import org.apache.karaf.webconsole.osgi.internal.configuration.view.ConfigurationsDataTable;
 import org.apache.wicket.markup.html.CSSPackageResource;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
@@ -32,7 +32,7 @@ public class ConfigurationsPage extends OsgiPage {
     public ConfigurationsPage() {
         add(CSSPackageResource.getHeaderContribution(ConfigurationsPage.class, "configurations.css"));
 
-        add(new ConfigurationstDataTable("configurations", new ConfigurationProvider(configurationAdmin), 20));
+        add(new ConfigurationsDataTable("configurations", new ConfigurationProvider(configurationAdmin), 20));
 
     }
 

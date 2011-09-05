@@ -37,6 +37,9 @@ import org.osgi.framework.ServiceReference;
 import org.osgi.service.blueprint.container.BlueprintContainer;
 import org.osgi.service.blueprint.reflect.ComponentMetadata;
 
+/**
+ * Page with blueprint container details.
+ */
 @PaxWicketMountPoint(mountPoint = "/osgi/blueprint/details")
 public class DetailsPage extends SinglePage {
 
