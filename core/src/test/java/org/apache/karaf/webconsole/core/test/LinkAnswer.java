@@ -14,17 +14,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.core.page;
+package org.apache.karaf.webconsole.core.test;
 
-import org.apache.wicket.markup.html.panel.FeedbackPanel;
+import org.apache.karaf.webconsole.core.util.LinkUtils;
+import org.apache.wicket.Page;
+import org.apache.wicket.markup.html.link.Link;
 
 /**
- * Page which body uses all available space - all screen width.
+ * Easy mock answer to return prepared link.
  */
-public class SinglePage extends SecuredPage {
+public class LinkAnswer extends BaseLinkAnswer<Link<Page>> {
 
-    public SinglePage() {
-        add(new FeedbackPanel("feedback"));
+    private String label;
+    private Class<? extends Page> page;
+
+    public LinkAnswer(String label, Class<? extends Page> page) {
+        this.label = label;
+        this.page = page;
     }
 
+    protected Link<Page> createAnswer(String linkId, String labelId) throws Throwable {
+        return LinkUtils.createPageLink(linkId, labelId, label, page);
+    }
 }

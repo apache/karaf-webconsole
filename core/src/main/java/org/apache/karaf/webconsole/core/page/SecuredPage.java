@@ -24,7 +24,6 @@ import org.apache.karaf.webconsole.core.navigation.markup.NavigationPanel;
 import org.apache.wicket.Session;
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.link.Link;
-import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 
@@ -44,8 +43,6 @@ public class SecuredPage extends BasePage {
                 return tabs;
             }
         }));
-
-        add(new FeedbackPanel("feedback"));
 
         add(new Link<Void>("logoutLink") {
             @Override

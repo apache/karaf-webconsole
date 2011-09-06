@@ -14,17 +14,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.core.page;
+package org.apache.karaf.webconsole.core.test;
 
-import org.apache.wicket.markup.html.panel.FeedbackPanel;
+import static org.easymock.EasyMock.getCurrentArguments;
+
+import java.io.Serializable;
+
+import org.easymock.IAnswer;
 
 /**
- * Page which body uses all available space - all screen width.
+ * Base class for link answers in many providers..
  */
-public class SinglePage extends SecuredPage {
+public abstract class BaseLinkAnswer<T> implements IAnswer<T>, Serializable {
 
-    public SinglePage() {
-        add(new FeedbackPanel("feedback"));
+    public final T answer() throws Throwable {
+        String linkId = (String) getCurrentArguments()[0];
+        String labelId = (String) getCurrentArguments()[1];
+
+        return createAnswer(linkId, labelId);
     }
+
+    protected abstract T createAnswer(String linkId, String labelId) throws Throwable;
 
 }

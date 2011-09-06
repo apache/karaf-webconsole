@@ -16,6 +16,7 @@
  */
 package org.apache.karaf.webconsole.core.brand;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,7 +26,7 @@ import org.apache.wicket.behavior.IBehavior;
 import org.apache.wicket.behavior.SimpleAttributeModifier;
 import org.apache.wicket.markup.html.image.Image;
 
-public class DefaultBrandProvider implements BrandProvider {
+public class DefaultBrandProvider implements BrandProvider, Serializable /* for tests mainly */ {
 
     public Image getHeaderImage(String imageId) {
         Image image = new Image(imageId, new ResourceReference(BasePage.class, "images/karaf-logo.png"));
