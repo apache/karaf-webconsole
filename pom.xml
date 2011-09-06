@@ -34,6 +34,7 @@
         <ops4j.paxwicket.version>0.8.0-SNAPSHOT</ops4j.paxwicket.version>
         <karaf.version>2.2.2</karaf.version>
         <nmr.version>1.4.0</nmr.version>
+        <camel.version>[2.6.0,3)</camel.version>
     </properties>
 
     <modules>
@@ -43,6 +44,7 @@
         <module>karaf</module>
         <module>features</module>
         <module>servicemix</module>
+        <module>camel</module>
 
         <module>examples</module>
         <module>manual</module>
