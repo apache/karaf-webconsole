@@ -49,4 +49,8 @@ public class LinksAnswer extends BaseLinkAnswer<List<Link<Page>>> {
         return pageLinks;
     }
 
+    public List<Link<Page>> getPageLinks() {
+        return pageLinks;
+    }
+
 }
