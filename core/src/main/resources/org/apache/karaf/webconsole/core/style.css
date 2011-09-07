@@ -59,11 +59,13 @@ div.widget {
 }
 
 table.dataview {
+	width: 100%;
+	margin-top: 20px;
 	margin-bottom: 10px;
 	border-bottom: 1px solid #0079d6;
 	font-size: 1em;
 	font-family: arial;
-	}
+}
 
 table.dataview caption { text-align: left; }
 table.dataview tr { padding-top: 2px; padding-bottom: 2px; }
@@ -74,11 +76,11 @@ table.dataview tr th { color: black; padding-top: 3px; padding-bottom: 3px; padd
 
 table.dataview tr th { background-position: right; background-repeat:no-repeat; }
 table.dataview tr th.wicket_orderDown {
-	background-color: #87cbff; background-image: url(displaytag/img/arrow_down.png); }
+	background-color: #87cbff; background-image: url(images/arrow_down.png); }
 table.dataview tr th.wicket_orderUp {
-	background-color: #87cbff; background-image: url(displaytag/img/arrow_up.png); }
+	background-color: #87cbff; background-image: url(images/arrow_up.png); }
 table.dataview tr th.wicket_orderNone {
-	background-image: url(displaytag/img/arrow_off.png);
+	background-image: url(images/arrow_off.png);
 }
 table.dataview tr th a { font-weight: normal; }
 table.dataview #message { padding-left: 3px; }
