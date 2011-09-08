@@ -22,14 +22,13 @@
     <parent>
         <groupId>org.apache.karaf</groupId>
         <artifactId>webconsole</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>0.3.0-SNAPSHOT</version>
     </parent>
 
     <groupId>org.apache.karaf.webconsole</groupId>
     <artifactId>org.apache.karaf.webconsole.osgi</artifactId>
+    <name>Apache Karaf :: WebConsole :: OSGi Bundle Presentation</name>
     <packaging>bundle</packaging>
-    <name>Apache Karaf :: Karaf Webconsole Prototype :: OSGi Bundle Presentation</name>
-    <version>1.0.0-SNAPSHOT</version>
 
     <dependencies>
         <dependency>

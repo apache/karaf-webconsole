@@ -22,12 +22,12 @@
     <parent>
         <groupId>org.apache.karaf</groupId>
         <artifactId>webconsole</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>0.3.0-SNAPSHOT</version>
     </parent>
 
     <groupId>org.apache.karaf.webconsole</groupId>
     <artifactId>manual</artifactId>
-    <name>Apache Karaf :: Karaf Webconsole Prototype :: Manual</name>
+    <name>Apache Karaf :: WebConsole :: Manual</name>
     <packaging>war</packaging>
 
     <properties>

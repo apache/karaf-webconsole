@@ -22,14 +22,13 @@
     <parent>
         <groupId>org.apache.karaf.webconsole</groupId>
         <artifactId>examples</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>0.3.0-SNAPSHOT</version>
     </parent>
 
     <groupId>org.apache.karaf.webconsole.examples</groupId>
     <artifactId>branding</artifactId>
+    <name>Apache Karaf :: WebConsole :: Examples :: Branding</name>
     <packaging>bundle</packaging>
-
-    <name>Apache Karaf :: Karaf Webconsole Prototype :: Examples :: Branding</name>
 
     <dependencies>
         <dependency>
