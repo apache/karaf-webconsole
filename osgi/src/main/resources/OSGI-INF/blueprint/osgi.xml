@@ -50,6 +50,7 @@
     <reference id="startLevel" interface="org.osgi.service.startlevel.StartLevel" />
     <reference id="packageAdmin" interface="org.osgi.service.packageadmin.PackageAdmin" />
     <reference id="metaTypeService" interface="org.osgi.service.metatype.MetaTypeService" />
+    <reference id="logReader" interface="org.osgi.service.log.LogReaderService" />
 
     <reference-list id="columnProviders" interface="org.apache.karaf.webconsole.osgi.bundle.IColumnProvider" availability="optional" />
     <reference-list id="actionProviders" interface="org.apache.karaf.webconsole.osgi.bundle.IActionProvider" availability="optional" />
