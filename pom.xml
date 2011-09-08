@@ -34,7 +34,8 @@
         <ops4j.paxwicket.version>0.8.0-SNAPSHOT</ops4j.paxwicket.version>
         <karaf.version>2.2.2</karaf.version>
         <nmr.version>1.4.0</nmr.version>
-        <camel.version>[2.6.0,3)</camel.version>
+        <camel.version>2.6.0</camel.version>
+        <cxf.version>2.5.0-SNAPSHOT</cxf.version>
     </properties>
 
     <modules>
@@ -45,6 +46,7 @@
         <module>features</module>
         <module>servicemix</module>
         <module>camel</module>
+        <module>cxf</module>
 
         <module>examples</module>
         <module>manual</module>
@@ -70,6 +72,17 @@
             <id>wiquery</id>
             <name>wiquery wicket components</name>
             <url>http://wiquery.googlecode.com/svn/repo/</url>
+        </repository>
+        <repository>
+            <id>apache-snapshot</id>
+            <name>Apache Snapshots</name>
+            <url>http://repository.apache.org/content/groups/snapshots-group/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
         </repository>
         <repository>
             <id>sonatype</id>
