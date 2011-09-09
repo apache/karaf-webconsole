@@ -16,18 +16,18 @@
  */
 package org.apache.karaf.webconsole.core.page;
 
+import java.util.List;
+
 import org.apache.karaf.webconsole.core.BasePage;
 import org.apache.karaf.webconsole.core.navigation.ConsoleTabProvider;
 import org.apache.karaf.webconsole.core.navigation.markup.NavigationPanel;
-import org.apache.wicket.Session;
+import org.apache.karaf.webconsole.core.security.WebConsoleSession;
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.StringResourceModel;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
-
-import java.util.List;
 
 /**
  * Page which requires admin role, in other words authorized user.
@@ -46,10 +46,12 @@ public class SecuredPage extends BasePage {
             }
         }));
 
-        Link aLink = new Link<Void>("logoutLink") {
+        add(new Label("username", WebConsoleSession.get().getUsername()));
+
+        Link<Void> aLink = new Link<Void>("logoutLink") {
             @Override
             public void onClick() {
-                Session.get().invalidateNow();
+                WebConsoleSession.get().invalidateNow();
                 getRequestCycle().setRedirect(true);
                 setResponsePage(LoginPage.class);
             }

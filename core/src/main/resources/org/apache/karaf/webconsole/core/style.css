@@ -30,6 +30,14 @@ div.widget {
     width: 250px;
 }
 
+#userbox span {
+    font-weight: bold;
+}
+
+#usebox a span {
+    font-weight: normal;
+}
+
 #sidebar ul li, #languages ul li {
     list-style-type: none;
 }

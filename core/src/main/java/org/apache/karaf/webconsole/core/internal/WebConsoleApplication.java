@@ -18,7 +18,7 @@ package org.apache.karaf.webconsole.core.internal;
 
 import org.apache.karaf.webconsole.core.dashboard.DashboardPage;
 import org.apache.karaf.webconsole.core.page.LoginPage;
-import org.apache.karaf.webconsole.core.security.JaasWebSession;
+import org.apache.karaf.webconsole.core.security.KarafJaasWebSession;
 import org.apache.wicket.authentication.AuthenticatedWebApplication;
 import org.apache.wicket.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.html.WebPage;
@@ -61,7 +61,7 @@ public class WebConsoleApplication extends AuthenticatedWebApplication {
 
     @Override
     protected Class<? extends AuthenticatedWebSession> getWebSessionClass() {
-        return JaasWebSession.class;
+        return KarafJaasWebSession.class;
     }
 
 }

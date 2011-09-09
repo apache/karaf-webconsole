@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.apache.karaf.webconsole.core.brand.DefaultBrandProvider;
 import org.apache.karaf.webconsole.core.internal.WebConsoleApplication;
-import org.apache.karaf.webconsole.core.security.JaasWebSession;
+import org.apache.karaf.webconsole.core.security.KarafJaasWebSession;
 import org.apache.wicket.authentication.AuthenticatedWebSession;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.junit.Before;
@@ -43,6 +43,6 @@ public class WebConsoleTest {
     }
 
     protected Class<? extends AuthenticatedWebSession> getWebSessionClass() {
-        return JaasWebSession.class;
+        return KarafJaasWebSession.class;
     }
 }

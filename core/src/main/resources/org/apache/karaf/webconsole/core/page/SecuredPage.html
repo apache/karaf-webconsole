@@ -25,7 +25,12 @@
 <body>
 
     <wicket:extend>
-        <a href="#" wicket:id="logoutLink"><div wicket:id="logoutTranslatedLink"/></a>
+        <div id="userbox" class="grid_1 prefix_11 suffix_0">
+            <p>
+                Welcome <span wicket:id="username">admin</span>
+                <a href="#" wicket:id="logoutLink"><span wicket:id="logoutTranslatedLink"/></a>
+            </p>
+        </div>
 
         <div class="grid_12">
             <div wicket:id="navigationPanel">Navigation goes here</div>

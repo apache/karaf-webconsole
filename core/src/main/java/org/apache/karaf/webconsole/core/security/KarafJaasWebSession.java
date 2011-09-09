@@ -14,38 +14,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.core.test;
+package org.apache.karaf.webconsole.core.security;
 
-import org.apache.karaf.webconsole.core.security.WebConsoleSession;
+import java.security.Principal;
+
+import org.apache.karaf.jaas.modules.RolePrincipal;
 import org.apache.wicket.Request;
-import org.apache.wicket.authorization.strategies.role.Roles;
 
 /**
- * Dummy session which does not handle authentication, simply returns true for
- * all input values and only one role.
+ * Authenticated web session which uses JAAS to authenticate user and obtain roles.
  */
-public class AlwaysAuthenticatedWebSession extends WebConsoleSession {
+public class KarafJaasWebSession extends JaasWebSession {
 
-    private Roles roles;
+    private static final String KARAF_REALM = "karaf";
 
-    public AlwaysAuthenticatedWebSession(Request request) {
+    public KarafJaasWebSession(Request request) {
         super(request);
-        roles = new Roles("admin");
     }
 
     @Override
-    public boolean authenticate(String username, String password) {
-        return true;
+    protected boolean isRole(Principal p) {
+        return p instanceof RolePrincipal;
     }
 
     @Override
-    public String getUsername() {
-        return "test";
-    }
-
-    @Override
-    public Roles getRoles() {
-        return roles;
+    protected String getRealmName() {
+        return KARAF_REALM;
     }
 
 }

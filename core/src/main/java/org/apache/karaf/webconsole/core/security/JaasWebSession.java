@@ -16,47 +16,49 @@
  */
 package org.apache.karaf.webconsole.core.security;
 
-import java.io.IOException;
 import java.security.Principal;
 
-import javax.security.auth.callback.Callback;
-import javax.security.auth.callback.CallbackHandler;
-import javax.security.auth.callback.NameCallback;
-import javax.security.auth.callback.PasswordCallback;
-import javax.security.auth.callback.UnsupportedCallbackException;
 import javax.security.auth.login.LoginContext;
 import javax.security.auth.login.LoginException;
 
-import org.apache.karaf.jaas.modules.RolePrincipal;
 import org.apache.wicket.Request;
-import org.apache.wicket.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authorization.strategies.role.Roles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Authenticated web session which uses JAAS to authenticate user and obtain roles.
+ * Base class for JAAS based authentication sessions.
  */
-public class JaasWebSession extends AuthenticatedWebSession {
+public abstract class JaasWebSession extends WebConsoleSession {
 
-    private Logger logger = LoggerFactory.getLogger(JaasWebSession.class);
+    /**
+     * Logger.
+     */
+    protected Logger logger = LoggerFactory.getLogger(JaasWebSession.class);
 
-    public static final String APPLICATION_POLICY_NAME = "karaf";
+    /**
+     * Roles.
+     */
+    protected final Roles roles = new Roles();
 
-    private Roles roles = new Roles();
+    /**
+     * Name of current user;
+     */
+    private String username;
 
     public JaasWebSession(Request request) {
         super(request);
     }
 
-    public boolean authenticate(String username, String password) {
+    public final boolean authenticate(String username, String password) {
         boolean authenticated = false;
         LoginCallbackHandler handler = new LoginCallbackHandler(username, password);
 
         try {
-            LoginContext ctx = new LoginContext(APPLICATION_POLICY_NAME, handler);
+            LoginContext ctx = new LoginContext(getRealmName(), handler);
             ctx.login();
             authenticated = true;
+            this.username = username;
 
             for (Principal p : ctx.getSubject().getPrincipals()) {
                 if (isRole(p)) {
@@ -70,39 +72,30 @@ public class JaasWebSession extends AuthenticatedWebSession {
         return authenticated;
     }
 
-    protected boolean isRole(Principal p) {
-        return p instanceof RolePrincipal;
-    }
-
-    public Roles getRoles() {
+    @Override
+    public final Roles getRoles() {
         return roles;
     }
 
-    private class LoginCallbackHandler implements CallbackHandler {
-
-        private String username;
-
-        private String password;
-
-        public LoginCallbackHandler(String username, String password) {
-            this.username = username;
-            this.password = password;
-        }
-
-        public void handle(Callback[] callbacks) throws IOException,
-                UnsupportedCallbackException {
-            for (int i = 0; i < callbacks.length; i++) {
-                Callback callback = callbacks[i];
-                if (callback instanceof NameCallback) {
-                    ((NameCallback) callback).setName(username);
-                } else if (callback instanceof PasswordCallback) {
-                    PasswordCallback pwCallback = (PasswordCallback) callback;
-                    pwCallback.setPassword(password.toCharArray());
-                } else {
-                    throw new UnsupportedCallbackException(callbacks[i], "Callback type not supported");
-                }
-            }
-        }
+    @Override
+    public final String getUsername() {
+        return username;
     }
+
+    /**
+     * Gets name of JAAS realm to use during authentication process.
+     */
+    protected abstract String getRealmName();
+
+    /**
+     * Verify if given JAAS principal assigned after authentication is role or
+     * not. The name of the principal will be added to list of roles assigned
+     * to this session.
+     * 
+     * @param principal Principal
+     * @return True if principal name should be used as role name.
+     */
+    protected abstract boolean isRole(Principal principal);
+
 
 }

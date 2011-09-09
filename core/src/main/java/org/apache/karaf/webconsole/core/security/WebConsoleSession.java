@@ -14,38 +14,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.core.test;
+package org.apache.karaf.webconsole.core.security;
 
-import org.apache.karaf.webconsole.core.security.WebConsoleSession;
 import org.apache.wicket.Request;
-import org.apache.wicket.authorization.strategies.role.Roles;
+import org.apache.wicket.authentication.AuthenticatedWebSession;
 
 /**
- * Dummy session which does not handle authentication, simply returns true for
- * all input values and only one role.
+ * Base class for web console session implementation.
  */
-public class AlwaysAuthenticatedWebSession extends WebConsoleSession {
+public abstract class WebConsoleSession extends AuthenticatedWebSession {
 
-    private Roles roles;
-
-    public AlwaysAuthenticatedWebSession(Request request) {
+    public WebConsoleSession(Request request) {
         super(request);
-        roles = new Roles("admin");
     }
 
-    @Override
-    public boolean authenticate(String username, String password) {
-        return true;
-    }
+    public abstract String getUsername();
 
-    @Override
-    public String getUsername() {
-        return "test";
+    public static WebConsoleSession get() {
+        return (WebConsoleSession) AuthenticatedWebSession.get();
     }
-
-    @Override
-    public Roles getRoles() {
-        return roles;
-    }
-
 }
