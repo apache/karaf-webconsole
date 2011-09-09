@@ -21,11 +21,14 @@ import java.util.List;
 import java.util.Locale;
 
 import org.apache.karaf.webconsole.core.brand.BrandProvider;
+import org.apache.karaf.webconsole.core.dashboard.DashboardPage;
 import org.apache.karaf.webconsole.core.internal.LanguagePanel;
 import org.apache.wicket.behavior.IBehavior;
 import org.apache.wicket.markup.html.CSSPackageResource;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.util.ListModel;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
@@ -49,7 +52,9 @@ public class BasePage extends WebPage {
         add(CSSPackageResource.getHeaderContribution(BasePage.class, "style.css"));
         add(CSSPackageResource.getHeaderContribution(BasePage.class, "grid.css"));
 
-        add(brandProvider.getHeaderImage("logo"));
+        Link homeLink = new BookmarkablePageLink("homeLink", DashboardPage.class);
+        homeLink.add(brandProvider.getHeaderImage("logo"));
+        add(homeLink);
 
         add(new Label("footer", "Apache Karaf Console"));
 

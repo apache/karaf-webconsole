@@ -16,7 +16,12 @@
  */
 package org.apache.karaf.webconsole.core;
 
-import static org.easymock.EasyMock.*;
+import static org.easymock.EasyMock.anyObject;
+import static org.easymock.EasyMock.createMock;
+import static org.easymock.EasyMock.expect;
+import static org.easymock.EasyMock.getCurrentArguments;
+import static org.easymock.EasyMock.replay;
+import static org.easymock.EasyMock.verify;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -61,7 +66,7 @@ public class BasePageTest extends WebConsoleTest {
         WicketTester tester = new WicketTester(application);
         tester.startPage(BasePage.class);
 
-        tester.assertVisible(imageId);
+        tester.assertVisible("homeLink:" + imageId);
 
         verify(brandProvider);
     }
