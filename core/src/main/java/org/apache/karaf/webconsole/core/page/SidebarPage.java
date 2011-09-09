@@ -34,10 +34,7 @@ public class SidebarPage extends SecuredPage {
     }
 
     protected void setSidebarProvider(SidebarProvider provider) {
-        if (sidebar == null) {
-            sidebar = new SidebarPanel("sidebar", provider);
-            add(sidebar);
-        }
+        addOrReplace(sidebar = new SidebarPanel("sidebar", provider));
     }
 
     /**

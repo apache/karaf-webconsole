@@ -200,20 +200,6 @@ public class SecuredPageTest extends WebConsoleTest {
         return AlwaysAuthenticatedWebSession.class;
     }
 
-    /**
-     * Easy mock argument matcher.
-     */
-    private static String anyString() {
-        return anyObject();
-    }
-
-    /**
-     * Empty list stub.
-     */
-    private static List<Link<Page>> emptyLinkList() {
-        return Collections.<Link<Page>>emptyList();
-    }
-
     // Marker interface for tests, normally serialization is controlled by paxwicket
     // as ConsoleTabProviders are OSGi services.
     interface SerializableConsoleTabProvider extends Serializable, ConsoleTabProvider {}
