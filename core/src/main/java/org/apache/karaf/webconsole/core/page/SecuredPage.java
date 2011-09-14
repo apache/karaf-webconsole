@@ -21,13 +21,16 @@ import java.util.List;
 import org.apache.karaf.webconsole.core.BasePage;
 import org.apache.karaf.webconsole.core.navigation.ConsoleTabProvider;
 import org.apache.karaf.webconsole.core.navigation.markup.NavigationPanel;
+import org.apache.karaf.webconsole.core.preferences.PreferencesPage;
 import org.apache.karaf.webconsole.core.security.WebConsoleSession;
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.StringResourceModel;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
+import org.osgi.service.prefs.PreferencesService;
 
 /**
  * Page which requires admin role, in other words authorized user.
@@ -38,6 +41,9 @@ public class SecuredPage extends BasePage {
     @PaxWicketBean(name = "tabs")
     private List<ConsoleTabProvider> tabs;
 
+    @PaxWicketBean(name = "preferencesService")
+    private PreferencesService preferences;
+
     public SecuredPage() {
         add(new NavigationPanel("navigationPanel", new LoadableDetachableModel<List<ConsoleTabProvider>>() {
             @Override
@@ -46,7 +52,11 @@ public class SecuredPage extends BasePage {
             }
         }));
 
-        add(new Label("username", WebConsoleSession.get().getUsername()));
+        String username = WebConsoleSession.get().getUsername();
+        add(new AvatarImage("avatar", preferences.getUserPreferences(username)));
+
+        add(new Label("username", username));
+        add(new BookmarkablePageLink<PreferencesPage>("preferencesLink", PreferencesPage.class));
 
         Link<Void> aLink = new Link<Void>("logoutLink") {
             @Override

@@ -14,7 +14,7 @@ public class CamelWidgetProvider implements WidgetProvider {
         this.contexts = contexts;
     }
 
-    public Panel getWidgetPanel(String id) {
+    public Panel createPanel(String id) {
         return new CamelWidget(id, contexts);
     }
 

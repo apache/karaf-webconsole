@@ -29,6 +29,7 @@
     <properties>
         <jetty.version>6.1.25</jetty.version>
         <felix-metatype.version>1.0.4</felix-metatype.version>
+        <felix-prefs.version>1.0.4</felix-prefs.version>
         <slf4j.version>1.5.8</slf4j.version>
         <log4j.version>1.2.14</log4j.version>
         <ops4j.paxwicket.version>0.8.0-SNAPSHOT</ops4j.paxwicket.version>
@@ -107,5 +108,20 @@
             </releases>
         </repository>
     </repositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>org.apache.felix.metatype</artifactId>
+                <version>${felix-metatype.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>org.apache.felix.prefs</artifactId>
+                <version>${felix-prefs.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>

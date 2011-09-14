@@ -41,7 +41,7 @@ public class SidebarPanel extends Panel {
         add(new ListView<WidgetProvider>("widgets", provider.getWidgetProviders()) {
             @Override
             protected void populateItem(ListItem<WidgetProvider> item) {
-                item.add(item.getModelObject().getWidgetPanel("widget"));
+                item.add(item.getModelObject().createPanel("widget"));
             }
         });
     }

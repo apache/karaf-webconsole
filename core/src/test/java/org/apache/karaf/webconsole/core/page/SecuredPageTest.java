@@ -16,7 +16,6 @@
  */
 package org.apache.karaf.webconsole.core.page;
 
-import static org.easymock.EasyMock.anyObject;
 import static org.easymock.EasyMock.createStrictMock;
 import static org.easymock.EasyMock.expect;
 import static org.easymock.EasyMock.replay;
@@ -33,6 +32,7 @@ import org.apache.karaf.webconsole.core.BasePage;
 import org.apache.karaf.webconsole.core.WebConsoleTest;
 import org.apache.karaf.webconsole.core.brand.DefaultBrandProvider;
 import org.apache.karaf.webconsole.core.navigation.ConsoleTabProvider;
+import org.apache.karaf.webconsole.core.preferences.util.JdkPreferencesService;
 import org.apache.karaf.webconsole.core.test.AlwaysAuthenticatedWebSession;
 import org.apache.karaf.webconsole.core.test.LinkAnswer;
 import org.apache.karaf.webconsole.core.test.LinksAnswer;
@@ -71,6 +71,7 @@ public class SecuredPageTest extends WebConsoleTest {
         Map<String, Object> values = new HashMap<String, Object>();
 
         values.put("brandProvider", new DefaultBrandProvider());
+        values.put("preferencesService", new JdkPreferencesService());
 
         List<ConsoleTabProvider> tabs = new ArrayList<ConsoleTabProvider>();
 
@@ -101,6 +102,7 @@ public class SecuredPageTest extends WebConsoleTest {
         Map<String, Object> values = new HashMap<String, Object>();
 
         values.put("brandProvider", new DefaultBrandProvider());
+        values.put("preferencesService", new JdkPreferencesService());
 
         List<ConsoleTabProvider> tabs = new ArrayList<ConsoleTabProvider>();
 
@@ -136,6 +138,7 @@ public class SecuredPageTest extends WebConsoleTest {
         Map<String, Object> values = new HashMap<String, Object>();
 
         values.put("brandProvider", new DefaultBrandProvider());
+        values.put("preferencesService", new JdkPreferencesService());
 
         List<ConsoleTabProvider> tabs = new ArrayList<ConsoleTabProvider>();
 

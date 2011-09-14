@@ -16,32 +16,25 @@
    limitations under the License.
 -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Karaf WebConsole</title>
 </head>
-
 <body>
 
-    <wicket:extend>
-        <div id="userbox" class="grid_2">
-            <img wicket:id="avatar" class="avatar" alt="User avatar" />
-            <span id="details">
-                Welcome <span wicket:id="username">admin</span>
+    <wicket:panel>
+        <h1>System preferences</h1>
 
-                <a href="#" wicket:id="logoutLink"><span wicket:id="logoutTranslatedLink"/></a>
-                <a href="#" wicket:id="preferencesLink">Preferences</a>
-            </span>
-        </div>
+        Current avatar
+        <img wicket:id="currentAvatar" />
 
-        <div class="grid_12">
-            <div wicket:id="navigationPanel">Navigation goes here</div>
-        </div>
-        <div class="clear"></div>
+        <form wicket:id="systemPreferences">
+            Select image to be used as your avatar:
+            <input wicket:id="avatar" type="file" />
 
-        <wicket:child />
-    </wicket:extend>
+            <input wicket:id="submit" type="submit" value="Save" />
+        </form>
+    </wicket:panel>
 
 </body>
 </html>

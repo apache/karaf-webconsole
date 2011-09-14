@@ -30,11 +30,26 @@ div.widget {
     width: 250px;
 }
 
-#userbox span {
+#userbox {
+    float: right;
+    width: 250px;
+}
+
+#userbox img.avatar {
+    padding: 3px;
+    float: left;
+}
+
+#details {
+    display: block;
+    float: left;
+}
+
+#details span {
     font-weight: bold;
 }
 
-#usebox a span {
+#details a span {
     font-weight: normal;
 }
 

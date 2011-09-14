@@ -14,22 +14,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.karaf.internal.widget;
+package org.apache.karaf.webconsole.core.internal.preferences;
 
-import org.apache.karaf.features.FeaturesService;
-import org.apache.karaf.webconsole.core.widget.WidgetProvider;
+import org.apache.karaf.webconsole.core.panel.PanelProvider;
 import org.apache.wicket.markup.html.panel.Panel;
 
-public class KarafFeaturesWidgetProvider implements WidgetProvider {
-
-    private final FeaturesService service;
-
-    public KarafFeaturesWidgetProvider(FeaturesService service) {
-        this.service = service;
-    }
+/**
+ * System preferences panel provider.
+ */
+public class SystemPreferencesPanelProvider implements PanelProvider {
 
     public Panel createPanel(String id) {
-        return new FeaturesWidgetPanel(id, service);
+        return new SystemPreferencesPanel(id);
     }
 
 }

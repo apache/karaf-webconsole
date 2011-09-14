@@ -29,6 +29,9 @@ import org.apache.wicket.model.util.ListModel;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 
+/**
+ * Default page shown to user after successful login or after click in logo.
+ */
 @PaxWicketMountPoint(mountPoint = "/dashboard")
 public class DashboardPage extends SinglePage {
 
@@ -48,7 +51,7 @@ public class DashboardPage extends SinglePage {
         add(new ListView<WidgetProvider>("widgets", new ListModel<WidgetProvider>(widgets)) {
             @Override
             protected void populateItem(ListItem<WidgetProvider> item) {
-                item.add(item.getModelObject().getWidgetPanel("widget"));
+                item.add(item.getModelObject().createPanel("widget"));
             }
         });
     }

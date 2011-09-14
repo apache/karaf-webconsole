@@ -63,6 +63,11 @@ public class TestInjector extends AbstractPaxWicketInjector implements IComponen
             String name = field.getName();
             Class<?> type = field.getType();
 
+            PaxWicketBean wicketBean = field.getAnnotation(PaxWicketBean.class);
+            if (wicketBean != null) {
+                name = wicketBean.name();
+            }
+
             if (values.containsKey(name)) {
                 // we have value..
                 final Object value = values.get(name);

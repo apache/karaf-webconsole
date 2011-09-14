@@ -23,7 +23,7 @@ import java.util.Map;
 
 import org.apache.karaf.webconsole.core.WebConsoleTest;
 import org.apache.karaf.webconsole.core.brand.DefaultBrandProvider;
-import org.apache.karaf.webconsole.core.dashboard.DashboardPage;
+import org.apache.karaf.webconsole.core.preferences.util.JdkPreferencesService;
 import org.apache.karaf.webconsole.core.test.AlwaysAuthenticatedWebSession;
 import org.apache.karaf.webconsole.core.widget.WidgetProvider;
 import org.apache.wicket.authentication.AuthenticatedWebSession;
@@ -41,7 +41,7 @@ import org.junit.runners.BlockJUnit4ClassRunner;
 public class DashboardPageTest extends WebConsoleTest {
 
     static class TestWidgetProvider implements WidgetProvider, Serializable {
-        public Panel getWidgetPanel(String id) {
+        public Panel createPanel(String id) {
             return new EmptyPanel(id);
         }
     }
@@ -55,6 +55,7 @@ public class DashboardPageTest extends WebConsoleTest {
 
         values.put("widgets", providers);
         values.put("brandProvider", new DefaultBrandProvider());
+        values.put("preferencesService", new JdkPreferencesService());
 
         injector.setValues(values);
 

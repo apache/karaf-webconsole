@@ -14,22 +14,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.karaf.internal.widget;
+package org.apache.karaf.webconsole.core.panel;
 
-import org.apache.karaf.features.FeaturesService;
-import org.apache.karaf.webconsole.core.widget.WidgetProvider;
 import org.apache.wicket.markup.html.panel.Panel;
 
-public class KarafFeaturesWidgetProvider implements WidgetProvider {
+/**
+ * Implementation of this interface are able to provide panel blocks.
+ */
+public interface PanelProvider {
 
-    private final FeaturesService service;
-
-    public KarafFeaturesWidgetProvider(FeaturesService service) {
-        this.service = service;
-    }
-
-    public Panel createPanel(String id) {
-        return new FeaturesWidgetPanel(id, service);
-    }
+    /**
+     * Create new panel with given id. This method will be called during page
+     * or parent component rendering - normally in container dispatching thread.
+     * 
+     * @param id Panel id.
+     * @return Panel to be put as widget.
+     */
+    public Panel createPanel(String id);
 
 }

@@ -23,9 +23,11 @@
 
     <reference-list id="tabs" interface="org.apache.karaf.webconsole.core.navigation.ConsoleTabProvider" availability="optional" />
 
-    <!-- He is not ready yet ... -->
     <reference-list id="widgets" interface="org.apache.karaf.webconsole.core.widget.WidgetProvider" availability="optional"
         filter="(intention=dashboard)" />
+
+    <reference-list id="preferencesProviders" interface="org.apache.karaf.webconsole.core.panel.PanelProvider" availability="optional"
+        filter="(intention=preferences)" />
 
     <service interface="org.apache.karaf.webconsole.core.navigation.ConsoleTabProvider">
         <bean class="org.apache.karaf.webconsole.core.internal.SystemConsoleTabProvider" />
@@ -35,7 +37,17 @@
         <bean class="org.apache.karaf.webconsole.core.brand.DefaultBrandProvider" />
     </service>
 
+    <service ref="systemPreferencesPanelProvider" auto-export="interfaces">
+        <service-properties>
+            <entry key="intention" value="preferences" />
+        </service-properties>
+    </service>
+
+    <bean id="systemPreferencesPanelProvider" class="org.apache.karaf.webconsole.core.internal.preferences.SystemPreferencesPanelProvider" />
+
+    <reference id="preferencesService" interface="org.osgi.service.prefs.PreferencesService" />
+
     <reference id="brandProvider" interface="org.apache.karaf.webconsole.core.brand.BrandProvider" 
-	availability="optional" />
+        availability="optional" />
 
 </blueprint>

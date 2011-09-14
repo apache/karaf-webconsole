@@ -16,32 +16,28 @@
    limitations under the License.
 -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Karaf WebConsole</title>
 </head>
-
 <body>
 
-    <wicket:extend>
-        <div id="userbox" class="grid_2">
-            <img wicket:id="avatar" class="avatar" alt="User avatar" />
-            <span id="details">
-                Welcome <span wicket:id="username">admin</span>
+    <wicket:panel>
+        <span wicket:id="path">some/path</span>
 
-                <a href="#" wicket:id="logoutLink"><span wicket:id="logoutTranslatedLink"/></a>
-                <a href="#" wicket:id="preferencesLink">Preferences</a>
-            </span>
-        </div>
+        <ul>
+            <li wicket:id="preferences">
+                <span wicket:id="key">key</span>
+                <span wicket:id="value">value</span>
+            </li>
+        </ul>
 
-        <div class="grid_12">
-            <div wicket:id="navigationPanel">Navigation goes here</div>
-        </div>
-        <div class="clear"></div>
-
-        <wicket:child />
-    </wicket:extend>
+        <ul>
+            <li wicket:id="children">
+                <div wicket:id="child">child details</div>
+            </li>
+        </ul>
+    </wicket:panel>
 
 </body>
 </html>

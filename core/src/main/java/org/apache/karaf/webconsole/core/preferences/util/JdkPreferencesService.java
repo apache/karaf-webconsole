@@ -14,22 +14,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.karaf.internal.widget;
+package org.apache.karaf.webconsole.core.preferences.util;
 
-import org.apache.karaf.features.FeaturesService;
-import org.apache.karaf.webconsole.core.widget.WidgetProvider;
-import org.apache.wicket.markup.html.panel.Panel;
+import org.osgi.service.prefs.Preferences;
+import org.osgi.service.prefs.PreferencesService;
 
-public class KarafFeaturesWidgetProvider implements WidgetProvider {
+/**
+ * Preferences service created on top of standard JDK implementation.
+ */
+public class JdkPreferencesService implements PreferencesService {
 
-    private final FeaturesService service;
-
-    public KarafFeaturesWidgetProvider(FeaturesService service) {
-        this.service = service;
+    public Preferences getSystemPreferences() {
+        return new JdkPreferences(java.util.prefs.Preferences.systemRoot());
     }
 
-    public Panel createPanel(String id) {
-        return new FeaturesWidgetPanel(id, service);
+    public Preferences getUserPreferences(String name) {
+        return new JdkPreferences(java.util.prefs.Preferences.userRoot());
+    }
+
+    public String[] getUsers() {
+        return new String[] { System.getProperty("user.name") };
     }
 
 }

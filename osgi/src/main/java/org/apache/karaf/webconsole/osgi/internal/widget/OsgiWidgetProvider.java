@@ -29,7 +29,7 @@ public class OsgiWidgetProvider implements WidgetProvider {
         
     }
 
-    public Panel getWidgetPanel(String id) {
+    public Panel createPanel(String id) {
         return new OsgiWidgetPanel(id, context);
     }
 
