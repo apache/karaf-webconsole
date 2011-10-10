@@ -51,6 +51,7 @@
 
         <module>examples</module>
         <module>manual</module>
+        <module>itest</module>
     </modules>
 
     <build>
