@@ -20,19 +20,39 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.apache.karaf</groupId>
-        <artifactId>webconsole</artifactId>
+        <groupId>org.apache.karaf.webconsole.examples</groupId>
+        <artifactId>events</artifactId>
         <version>0.3.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>org.apache.karaf.webconsole</groupId>
-    <artifactId>examples</artifactId>
-    <name>Apache Karaf :: WebConsole :: Examples</name>
-    <packaging>pom</packaging>
+    <groupId>org.apache.karaf.webconsole.examples.events</groupId>
+    <artifactId>consumer</artifactId>
+    <name>Apache Karaf :: WebConsole :: Examples :: Events :: Consumer</name>
+    <packaging>bundle</packaging>
 
-    <modules>
-        <module>branding</module>
-        <module>events</module>
-    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.compendium</artifactId>
+        </dependency>
+    </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>2.3.5</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                        <Import-Package>
+                            *
+                        </Import-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
