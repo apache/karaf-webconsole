@@ -27,6 +27,7 @@
     <packaging>pom</packaging>
 
     <properties>
+        <osgi.version>4.2.0</osgi.version>
         <jetty.version>6.1.25</jetty.version>
         <felix-metatype.version>1.0.4</felix-metatype.version>
         <felix-prefs.version>1.0.4</felix-prefs.version>
@@ -121,6 +122,17 @@
                 <groupId>org.apache.felix</groupId>
                 <artifactId>org.apache.felix.prefs</artifactId>
                 <version>${felix-prefs.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>org.osgi.core</artifactId>
+                <version>${osgi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>org.osgi.compendium</artifactId>
+                <version>${osgi.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
