@@ -21,6 +21,8 @@ import static org.openengsb.labs.paxexam.karaf.options.KarafDistributionOption.k
 import static org.ops4j.pax.exam.CoreOptions.maven;
 import static org.ops4j.pax.exam.CoreOptions.systemProperty;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -77,6 +79,20 @@ public class FeaturesIntegrationTest {
             installed.add(feature.getName());
         }
 
-        assertTrue("Webconsole feature should be installed", installed.contains("webconsole-wicket"));
+        assertIstalled("webconsole-wicket");
+        assertIstalled("webconsole-core");
+        assertIstalled("webconsole-karaf");
+        assertIstalled("webconsole-osgi");
+        assertIstalled("webconsole-config");
+        assertIstalled("webconsole-log");
+        assertIstalled("webconsole-event");
+        assertIstalled("webconsole-blueprint");
+        assertIstalled("webconsole-scr");
+    }
+
+    private void assertIstalled(String featureName) throws Exception {
+        Feature feature = features.getFeature(featureName);
+
+        assertTrue("Feature " + featureName + " should be installed", features.isInstalled(feature));
     }
 }

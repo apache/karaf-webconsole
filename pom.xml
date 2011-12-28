@@ -31,6 +31,7 @@
         <jetty.version>6.1.25</jetty.version>
         <felix-metatype.version>1.0.4</felix-metatype.version>
         <felix-prefs.version>1.0.4</felix-prefs.version>
+        <felix-scr.version>1.6.0</felix-scr.version>
         <slf4j.version>1.5.8</slf4j.version>
         <log4j.version>1.2.14</log4j.version>
         <ops4j.paxwicket.version>0.8.0-SNAPSHOT</ops4j.paxwicket.version>
@@ -43,7 +44,6 @@
     <modules>
         <module>core</module>
         <module>osgi</module>
-        <module>blueprint</module>
         <module>karaf</module>
         <module>features</module>
         <module>servicemix</module>
@@ -122,6 +122,11 @@
                 <groupId>org.apache.felix</groupId>
                 <artifactId>org.apache.felix.prefs</artifactId>
                 <version>${felix-prefs.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>org.apache.felix.scr</artifactId>
+                <version>${felix-scr.version}</version>
             </dependency>
 
             <dependency>

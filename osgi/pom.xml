@@ -37,6 +37,7 @@
         <module>config</module>
         <module>framework</module>
         <module>blueprint</module>
+        <module>scr</module>
     </modules>
 
     <dependencyManagement>
