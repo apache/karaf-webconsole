@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -15,25 +15,10 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
-    <parent>
-        <groupId>org.apache.karaf</groupId>
-        <artifactId>webconsole</artifactId>
-        <version>0.3.0-SNAPSHOT</version>
-    </parent>
-
-    <groupId>org.apache.karaf.webconsole</groupId>
-    <artifactId>examples</artifactId>
-    <name>Apache Karaf :: WebConsole :: Examples</name>
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>branding</module>
-        <module>events</module>
-        <module>scr</module>
-    </modules>
-
-</project>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="comparator">
+   <implementation class="org.apache.karaf.webconsole.examples.scr.ExampleComparator"/>
+   <service>
+      <provide interface="java.util.Comparator"/>
+   </service>
+   <property name="type" type="String" value="java.lang.String"/>
+</scr:component>
