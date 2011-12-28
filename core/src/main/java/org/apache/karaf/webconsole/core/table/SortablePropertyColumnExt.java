@@ -14,19 +14,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.core.brand;
+package org.apache.karaf.webconsole.core.table;
 
-import java.util.List;
+import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
+import org.apache.wicket.model.Model;
 
-import org.apache.wicket.Page;
-import org.apache.wicket.behavior.IBehavior;
-import org.apache.wicket.markup.html.image.Image;
+public class SortablePropertyColumnExt<T> extends PropertyColumn<T> {
 
-public interface BrandProvider {
+    public SortablePropertyColumnExt(String label, String property) {
+        super(Model.of(label), property, property);
+    }
 
-    Image getHeaderImage(String imageId);
+    public SortablePropertyColumnExt(String property) {
+        this(property, property);
+    }
 
-    List<IBehavior> getBehaviors();
-
-    void modify(Page page);
 }

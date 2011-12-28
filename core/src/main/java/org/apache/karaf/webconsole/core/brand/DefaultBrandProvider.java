@@ -21,6 +21,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.apache.karaf.webconsole.core.BasePage;
+import org.apache.wicket.Page;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.behavior.IBehavior;
 import org.apache.wicket.behavior.SimpleAttributeModifier;
@@ -39,6 +40,10 @@ public class DefaultBrandProvider implements BrandProvider, Serializable /* for 
 
     public List<IBehavior> getBehaviors() {
         return Collections.emptyList();
+    }
+
+    public void modify(Page page) {
+        // we don't modify page by default
     }
 
 }
