@@ -20,6 +20,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.karaf.webconsole.core.brand.BrandProvider;
+import org.apache.wicket.Page;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.behavior.IBehavior;
 import org.apache.wicket.markup.html.CSSPackageResource;
@@ -40,4 +42,7 @@ public class ExampleBrandProvider implements BrandProvider {
         return behaviors;
     }
 
+    public void modify(Page page) {
+        page.addOrReplace(new Label("footer", "Branded WebConsole"));
+    }
 }
