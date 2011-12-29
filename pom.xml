@@ -38,7 +38,7 @@
         <karaf.version>2.2.2</karaf.version>
         <nmr.version>1.4.0</nmr.version>
         <camel.version>2.6.0</camel.version>
-        <cxf.version>2.5.0-SNAPSHOT</cxf.version>
+        <cxf.version>2.5.1</cxf.version>
     </properties>
 
     <modules>
