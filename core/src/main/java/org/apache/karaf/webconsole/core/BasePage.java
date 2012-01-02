@@ -66,9 +66,10 @@ public class BasePage extends WebPage {
     }
 
     @Override
-    protected void onBeforeRender() {
-        super.onBeforeRender();
-
+    protected void onConfigure() {
         brandProvider.modify(this);
+
+        super.onConfigure();
     }
+
 }
