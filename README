@@ -12,14 +12,14 @@ in your local .m2 repositories:
 
 Instructions to build and deploy the project
 
-1) Download the code from : http://svn.apache.org/repos/asf/karaf/sandbox/pieber/karaf-webconsole/trunk
+1) Download the code from : http://svn.apache.org/repos/asf/karaf/webconsole/trunk webconsole
 2) Build it : mvn clean install -Dtest=false
 3) Download Karaf from here : https://repository.apache.org/content/repositories/releases/org/apache/karaf/apache-karaf/2.2.2/
 4) Unzip/untar it and open a DOS/Unix shell
 5) Go to bin directory and start Karaf bin/karaf.bat or bin/.karaf
 6) Execute the following instructions :
 
-features:addurl mvn:org.apache.karaf.webconsole/features/1.0.0-SNAPSHOT/xml/features
+features:addurl mvn:org.apache.karaf.webconsole/apache-karaf-webconsole/0.3.0-SNAPSHOT/xml/features
 features:install webconsole-wicket
 
 7) Open cns website in your browser : http://localhost:8181/cns/

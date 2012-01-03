@@ -45,7 +45,6 @@
         <module>core</module>
         <module>osgi</module>
         <module>karaf</module>
-        <module>features</module>
         <module>servicemix</module>
         <module>camel</module>
         <module>cxf</module>
@@ -53,6 +52,8 @@
         <module>examples</module>
         <module>manual</module>
         <module>itest</module>
+
+        <module>assembly</module>
     </modules>
 
     <build>
