@@ -39,7 +39,7 @@ public class ActionsPanel<T> extends Panel {
 
         add(CSSPackageResource.getHeaderContribution(ActionsPanel.class, "actions.css"));
 
-        final List<Link> links = getLinks(model.getObject(), "action");
+        final List<Link> links = getLinks(model.getObject(), "action", "label");
         add(new ListView<Link>("actions", new ListModel<Link>(links)) {
             @Override
             protected void populateItem(ListItem<Link> item) {
@@ -56,7 +56,7 @@ public class ActionsPanel<T> extends Panel {
         });
     }
 
-    protected List<Link> getLinks(T object, String id) {
+    protected List<Link> getLinks(T object, String linkId, String labelId) {
         return Collections.emptyList();
     }
 

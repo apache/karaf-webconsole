@@ -18,14 +18,14 @@ public class CxfBusesActionPanel extends ActionsPanel<Bus> {
     }
 
     @Override
-    protected List<Link> getLinks(Bus object, String id) {
+    protected List<Link> getLinks(Bus object, String linkId, String labelId) {
         List<Link> links = new ArrayList<Link>();
 
         PageParameters params = new PageParameters();
         params.put("busId", object.getId());
 
-        Link link = new BookmarkablePageLink<DetailsPage>(id, DetailsPage.class, params);
-        link.add(new Label("label", "Details"));
+        Link link = new BookmarkablePageLink<DetailsPage>(linkId, DetailsPage.class, params);
+        link.add(new Label(labelId, "Details"));
         links.add(link);
 
         return links;

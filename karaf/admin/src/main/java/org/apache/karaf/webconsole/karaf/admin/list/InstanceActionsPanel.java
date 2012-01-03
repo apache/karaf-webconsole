@@ -17,14 +17,14 @@ public class InstanceActionsPanel extends ActionsPanel<Instance> {
     }
 
     @Override
-    protected List<Link> getLinks(Instance object, String id) {
+    protected List<Link> getLinks(Instance object, String linkId, final String labelId) {
         List<Link> links = new ArrayList<Link>();
 
         try {
             if (Instance.STOPPED.equals(object.getState())) {
-                links.add(new Link(id) {
+                links.add(new Link(linkId) {
                     {
-                        add(new Label("label", "Start"));
+                        add(new Label(labelId, "Start"));
                     }
                     @Override
                     public void onClick() {
@@ -38,9 +38,9 @@ public class InstanceActionsPanel extends ActionsPanel<Instance> {
                     }
                 });
             } else {
-                links.add(new Link(id) {
+                links.add(new Link(linkId) {
                     {
-                        add(new Label("label", "Stop"));
+                        add(new Label(labelId, "Stop"));
                     }
                     @Override
                     public void onClick() {
@@ -58,9 +58,9 @@ public class InstanceActionsPanel extends ActionsPanel<Instance> {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        links.add(new Link(id) {
+        links.add(new Link(linkId) {
             {
-                add(new Label("label", "Destroy"));
+                add(new Label(labelId, "Destroy"));
             }
             @Override
             public void onClick() {

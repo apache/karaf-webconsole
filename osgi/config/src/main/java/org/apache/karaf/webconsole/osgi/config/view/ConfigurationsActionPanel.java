@@ -38,17 +38,17 @@ class ConfigurationsActionPanel extends ActionsPanel<Configuration> {
     }
 
     @Override
-    protected List<Link> getLinks(Configuration object, String id) {
+    protected List<Link> getLinks(Configuration object, String linkId, String labelId) {
         PageParameters params = new PageParameters();
         params.put("pid", object.getPid());
 
-        Link removeLink = new BookmarkablePageLink<ConfigurationEditPage>(id, ConfigurationRemovePage.class, params);
+        Link removeLink = new BookmarkablePageLink<ConfigurationEditPage>(linkId, ConfigurationRemovePage.class, params);
         removeLink.add(new SimpleAttributeModifier("class", "remove"));
-        removeLink.add(new Label("label", "remove"));
+        removeLink.add(new Label(labelId, "remove"));
 
-        Link editLink = new BookmarkablePageLink<ConfigurationEditPage>(id, ConfigurationEditPage.class, params);
+        Link editLink = new BookmarkablePageLink<ConfigurationEditPage>(linkId, ConfigurationEditPage.class, params);
         removeLink.add(new SimpleAttributeModifier("class", "edit"));
-        editLink.add(new Label("label", "edit"));
+        editLink.add(new Label(labelId, "edit"));
 
         return Arrays.asList(editLink, removeLink);
     }

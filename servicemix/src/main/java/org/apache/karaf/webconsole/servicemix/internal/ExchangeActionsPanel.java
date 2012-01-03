@@ -36,16 +36,16 @@ public class ExchangeActionsPanel extends ActionsPanel<Exchange> {
     }
 
     @Override
-    protected List<Link> getLinks(final Exchange object, String id) {
+    protected List<Link> getLinks(final Exchange object, String linkId, String labelId) {
         List<Link> links = new ArrayList<Link>();
 
-        Link link = new Link(id) {
+        Link link = new Link(linkId) {
             @Override
             public void onClick() {
                 RequestCycle.get().setResponsePage(new DetailsPage(object));
             }
         };
-        link.add(new Label("label", "Details"));
+        link.add(new Label(labelId, "Details"));
 
         links.add(link);
 

@@ -16,16 +16,10 @@
  */
 package org.apache.karaf.webconsole.karaf.features.repository;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.karaf.features.FeaturesService;
 import org.apache.karaf.features.Repository;
-import org.apache.karaf.webconsole.core.page.SidebarPage;
 import org.apache.karaf.webconsole.core.table.OrdinalColumn;
 import org.apache.karaf.webconsole.karaf.features.KarafFeaturesPage;
 import org.apache.karaf.webconsole.karaf.features.RepositoriesProvider;
-import org.apache.wicket.Page;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
@@ -34,7 +28,6 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColu
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 
 @PaxWicketMountPoint(mountPoint = "/karaf/repositories")

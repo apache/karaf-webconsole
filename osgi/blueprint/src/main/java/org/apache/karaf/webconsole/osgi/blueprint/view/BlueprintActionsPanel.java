@@ -35,12 +35,12 @@ public class BlueprintActionsPanel extends ActionsPanel<ServiceReference> {
     }
 
     @Override
-    protected List<Link> getLinks(ServiceReference object, String id) {
+    protected List<Link> getLinks(ServiceReference object, String linkId, String labelId) {
         PageParameters params = new PageParameters();
         params.put("bundleId", object.getBundle().getBundleId());
 
-        Link link = new BookmarkablePageLink(id, DetailsPage.class, params);
-        link.add(new Label("label", "View components"));
+        Link link = new BookmarkablePageLink(linkId, DetailsPage.class, params);
+        link.add(new Label(labelId, "View components"));
 
         return Arrays.asList(link);
     }

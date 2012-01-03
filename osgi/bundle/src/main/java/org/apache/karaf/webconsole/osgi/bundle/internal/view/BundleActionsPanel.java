@@ -59,35 +59,35 @@ public class BundleActionsPanel extends ActionsPanel<Bundle> {
     }
 
     @Override
-    protected List<Link> getLinks(Bundle object, String id) {
+    protected List<Link> getLinks(Bundle object, String linkId, String labelId) {
         PageParameters params = new PageParameters();
         params.put("bundleId", object.getBundleId());
 
         List<Link> links = new ArrayList<Link>();
 
         // details link
-        Link link = new BookmarkablePageLink<DetailsPage>(id, DetailsPage.class, params);
+        Link link = new BookmarkablePageLink<DetailsPage>(linkId, DetailsPage.class, params);
         link.add(new Label("label", "Details"));
 
         links.add(link);
 
         switch (State.of(object.getState())) {
         case ACTIVE:
-            links.add(createStopLink(id));
+            links.add(createStopLink(linkId, labelId));
             break;
         case INSTALLED:
         case RESOLVED:
-            links.add(createStartLink(id));
+            links.add(createStartLink(linkId, labelId));
         }
 
-        links.add(createRefreshLink(id));
-        links.add(createUninstallLink(id));
+        links.add(createRefreshLink(linkId, labelId));
+        links.add(createUninstallLink(linkId, labelId));
 
         return links;
     }
 
-    private Link createUninstallLink(String id) {
-        Link link = new Link(id) {
+    private Link createUninstallLink(String linkId, String labelId) {
+        Link link = new Link(linkId) {
             @Override
             public void onClick() {
                 Bundle bundle = (Bundle) BundleActionsPanel.this.getDefaultModelObject();
@@ -104,12 +104,12 @@ public class BundleActionsPanel extends ActionsPanel<Bundle> {
             }
             
         };
-        link.add(new Label("label", "Uninstall"));
+        link.add(new Label(labelId, "Uninstall"));
         return link;
     }
 
-    private Link createRefreshLink(String id) {
-        Link link = new Link(id) {
+    private Link createRefreshLink(String linkId, String labelId) {
+        Link link = new Link(linkId) {
             @Override
             public void onClick() {
                 Bundle bundle = (Bundle) BundleActionsPanel.this.getDefaultModelObject();
@@ -120,12 +120,12 @@ public class BundleActionsPanel extends ActionsPanel<Bundle> {
             }
             
         };
-        link.add(new Label("label", "Refresh"));
+        link.add(new Label(labelId, "Refresh"));
         return link;
     }
 
-    private Link createStartLink(String id) {
-        Link link = new Link(id) {
+    private Link createStartLink(String linkId, String labelId) {
+        Link link = new Link(linkId) {
             @Override
             public void onClick() {
                 Bundle bundle = (Bundle) BundleActionsPanel.this.getDefaultModelObject();
@@ -141,12 +141,12 @@ public class BundleActionsPanel extends ActionsPanel<Bundle> {
             }
             
         };
-        link.add(new Label("label", "Start"));
+        link.add(new Label(labelId, "Start"));
         return link;
     }
 
-    private Link createStopLink(String id) {
-        Link link = new Link(id) {
+    private Link createStopLink(String linkId, String labelId) {
+        Link link = new Link(linkId) {
             public void onClick() {
                 Bundle bundle = (Bundle) BundleActionsPanel.this.getDefaultModelObject();
                 try {
@@ -159,7 +159,7 @@ public class BundleActionsPanel extends ActionsPanel<Bundle> {
                 }
             }
         };
-        link.add(new Label("label", "Stop"));
+        link.add(new Label(labelId, "Stop"));
         return link;
     }
 }

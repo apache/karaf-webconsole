@@ -38,8 +38,8 @@ public class FeaturesActionsPanel extends ActionsPanel<Feature> {
     }
 
     @Override
-    protected List<Link> getLinks(Feature object, String id) {
-        Link link = new Link(id) {
+    protected List<Link> getLinks(Feature object, String linkId, String labelId) {
+        Link link = new Link(linkId) {
 
             @Override
             public void onClick() {
@@ -58,7 +58,7 @@ public class FeaturesActionsPanel extends ActionsPanel<Feature> {
         };
 
         link.add(new SimpleAttributeModifier("class", isInstalled(object) ? "installed" : "uninstalled"));
-        link.add(new Label("label"));
+        link.add(new Label(labelId));
 
         // add image to the link
         return Arrays.asList(link);

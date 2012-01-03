@@ -38,10 +38,10 @@ public class RepositoriesActionPanel extends ActionsPanel<Repository> {
     }
 
     @Override
-    protected List<Link> getLinks(Repository object, String id) {
+    protected List<Link> getLinks(Repository object, String linkId, String labelId) {
         List<Link> links = new ArrayList<Link>();
 
-        Link remove = new Link(id) {
+        Link remove = new Link(linkId) {
             @Override
             public void onClick() {
                 Repository object = (Repository) RepositoriesActionPanel.this.getDefaultModelObject();
@@ -51,7 +51,7 @@ public class RepositoriesActionPanel extends ActionsPanel<Repository> {
                 Session.get().info("Repository " + object.getURI() + " was removed");
             }
         };
-        remove.add(new Label("label", "Remove"));
+        remove.add(new Label(labelId, "Remove"));
 
         links.add(remove);
 

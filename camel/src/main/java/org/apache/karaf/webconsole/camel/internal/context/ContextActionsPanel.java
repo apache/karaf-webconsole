@@ -22,11 +22,11 @@ public class ContextActionsPanel extends ActionsPanel<CamelContext> {
     }
 
     @Override
-    protected List<Link> getLinks(CamelContext object, String id) {
+    protected List<Link> getLinks(CamelContext object, String linkId, String labelId) {
         List<Link> links = new ArrayList<Link>();
 
         if (!object.isTracing()) {
-            Link link = new Link<CamelContext>(id) {
+            Link link = new Link<CamelContext>(linkId) {
                 @Override
                 public void onClick() {
                     CamelContext context = (CamelContext) ContextActionsPanel.this.getDefaultModelObject();
@@ -35,10 +35,10 @@ public class ContextActionsPanel extends ActionsPanel<CamelContext> {
                     Session.get().info("Tracing enabled for context " + context.getName());
                 }
             };
-            link.add(new Label("label", "Enable tracing"));
+            link.add(new Label(labelId, "Enable tracing"));
             links.add(link);
         } else {
-            Link link = new Link<CamelContext>(id) {
+            Link link = new Link<CamelContext>(linkId) {
                 @Override
                 public void onClick() {
                     CamelContext context = (CamelContext) ContextActionsPanel.this.getDefaultModelObject();
@@ -47,19 +47,19 @@ public class ContextActionsPanel extends ActionsPanel<CamelContext> {
                     Session.get().info("Tracing disabled for context " + context.getName());
                 }
             };
-            link.add(new Label("label", "Disable tracing"));
+            link.add(new Label(labelId, "Disable tracing"));
             links.add(link);
         }
 
         if (container.isTracePossible(object)) {
-            Link link = new Link<CamelContext>(id) {
+            Link link = new Link<CamelContext>(linkId) {
                 @Override
                 public void onClick() {
                     CamelContext context = (CamelContext) ContextActionsPanel.this.getDefaultModelObject();
                     setResponsePage(new DumpPage(container, context));
                 }
             };
-            link.add(new Label("label", "View messages"));
+            link.add(new Label(labelId, "View messages"));
             links.add(link);
         }
 
