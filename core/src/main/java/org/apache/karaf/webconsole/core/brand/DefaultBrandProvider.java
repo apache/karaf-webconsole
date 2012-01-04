@@ -22,7 +22,6 @@ import java.util.List;
 
 import org.apache.karaf.webconsole.core.BasePage;
 import org.apache.karaf.webconsole.core.behavior.FormalizeBehavior;
-import org.apache.karaf.webconsole.core.behavior.JQueryUiThemeBehavior;
 import org.apache.wicket.Page;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.behavior.IBehavior;
@@ -46,7 +45,6 @@ public class DefaultBrandProvider implements BrandProvider, Serializable /* for 
 
     public void modify(Page page) {
         page.add(new FormalizeBehavior());
-        page.add(new JQueryUiThemeBehavior());
     }
 
 }
