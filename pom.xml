@@ -48,6 +48,7 @@
         <module>servicemix</module>
         <module>camel</module>
         <module>cxf</module>
+        <module>war</module>
 
         <module>examples</module>
         <module>manual</module>
