@@ -18,9 +18,11 @@ package org.apache.karaf.webconsole.core.internal;
 
 import org.apache.karaf.webconsole.core.dashboard.DashboardPage;
 import org.apache.karaf.webconsole.core.page.LoginPage;
+import org.apache.karaf.webconsole.core.security.HierarchicalRoleCheckingStrategy;
 import org.apache.karaf.webconsole.core.security.KarafJaasWebSession;
 import org.apache.wicket.authentication.AuthenticatedWebApplication;
 import org.apache.wicket.authentication.AuthenticatedWebSession;
+import org.apache.wicket.authorization.strategies.role.RoleAuthorizationStrategy;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.pages.AccessDeniedPage;
 import org.apache.wicket.markup.html.pages.PageExpiredErrorPage;
@@ -44,6 +46,8 @@ public class WebConsoleApplication extends AuthenticatedWebApplication {
 
         getApplicationSettings().setAccessDeniedPage(AccessDeniedPage.class);
         getApplicationSettings().setPageExpiredErrorPage(PageExpiredErrorPage.class);
+
+        getSecuritySettings().setAuthorizationStrategy(new RoleAuthorizationStrategy(new HierarchicalRoleCheckingStrategy()));
     }
 
     /**

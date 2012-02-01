@@ -22,10 +22,10 @@ import org.apache.karaf.webconsole.core.BasePage;
 import org.apache.karaf.webconsole.core.navigation.ConsoleTabProvider;
 import org.apache.karaf.webconsole.core.navigation.markup.NavigationPanel;
 import org.apache.karaf.webconsole.core.preferences.PreferencesPage;
+import org.apache.karaf.webconsole.core.security.SecuredPageLink;
 import org.apache.karaf.webconsole.core.security.WebConsoleSession;
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.StringResourceModel;
@@ -56,7 +56,7 @@ public class SecuredPage extends BasePage {
         add(new AvatarImage("avatar", preferences.getUserPreferences(username)));
 
         add(new Label("username", username));
-        add(new BookmarkablePageLink<PreferencesPage>("preferencesLink", PreferencesPage.class));
+        add(new SecuredPageLink<PreferencesPage>("preferencesLink", PreferencesPage.class));
 
         Link<Void> aLink = new Link<Void>("logoutLink") {
             @Override
