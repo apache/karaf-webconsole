@@ -9,7 +9,7 @@ public class JQueryBehavior extends AbstractHeaderContributor {
     @Override
     public IHeaderContributor[] getHeaderContributors() {
         return new IHeaderContributor[] {
-            JavascriptPackageResource.getHeaderContribution(JQueryBehavior.class, "jquery/jquery-1.4.2.min.js")
+            JavascriptPackageResource.getHeaderContribution(JQueryBehavior.class, "jquery/jquery-1.7.1.min.js")
         };
     }
 
