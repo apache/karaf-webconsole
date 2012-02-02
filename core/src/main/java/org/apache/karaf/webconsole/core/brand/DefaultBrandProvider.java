@@ -21,11 +21,11 @@ import java.util.Collections;
 import java.util.List;
 
 import org.apache.karaf.webconsole.core.BasePage;
-import org.apache.karaf.webconsole.core.behavior.FormalizeBehavior;
 import org.apache.wicket.Page;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.behavior.IBehavior;
 import org.apache.wicket.behavior.SimpleAttributeModifier;
+import org.apache.wicket.markup.html.CSSPackageResource;
 import org.apache.wicket.markup.html.image.Image;
 
 public class DefaultBrandProvider implements BrandProvider, Serializable /* for tests mainly */ {
@@ -44,7 +44,8 @@ public class DefaultBrandProvider implements BrandProvider, Serializable /* for 
     }
 
     public void modify(Page page) {
-        page.add(new FormalizeBehavior());
+        page.add(CSSPackageResource.getHeaderContribution(BasePage.class, "style.css"));
+        page.add(CSSPackageResource.getHeaderContribution(BasePage.class, "grid.css"));
     }
 
 }

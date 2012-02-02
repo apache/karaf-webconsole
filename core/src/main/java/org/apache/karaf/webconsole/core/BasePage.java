@@ -24,7 +24,6 @@ import org.apache.karaf.webconsole.core.brand.BrandProvider;
 import org.apache.karaf.webconsole.core.dashboard.DashboardPage;
 import org.apache.karaf.webconsole.core.internal.LanguagePanel;
 import org.apache.wicket.behavior.IBehavior;
-import org.apache.wicket.markup.html.CSSPackageResource;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
@@ -47,12 +46,8 @@ public class BasePage extends WebPage {
     // list of supported Locales - should be replaced by resolver/detector or something similar
     private IModel<List<Locale>> supportedLocales = new ListModel<Locale>(Arrays.asList(Locale.FRENCH, Locale.ENGLISH));
 
-    @SuppressWarnings("serial")
     public BasePage() {
-        add(CSSPackageResource.getHeaderContribution(BasePage.class, "style.css"));
-        add(CSSPackageResource.getHeaderContribution(BasePage.class, "grid.css"));
-
-        Link homeLink = new BookmarkablePageLink("homeLink", DashboardPage.class);
+        Link<DashboardPage> homeLink = new BookmarkablePageLink<DashboardPage>("homeLink", DashboardPage.class);
         homeLink.add(brandProvider.getHeaderImage("logo"));
         add(homeLink);
 
