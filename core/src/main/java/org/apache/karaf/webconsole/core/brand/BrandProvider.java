@@ -22,11 +22,31 @@ import org.apache.wicket.Page;
 import org.apache.wicket.behavior.IBehavior;
 import org.apache.wicket.markup.html.image.Image;
 
+/**
+ * Interface which allows to customize look and feel.
+ */
 public interface BrandProvider {
 
+    /**
+     * Header image customization.
+     * 
+     * @param imageId Identifier of image element.
+     * @return 
+     */
     Image getHeaderImage(String imageId);
 
+    /**
+     * List of generic behaviours to apply on every page.
+     * 
+     * @return Brand specific behaviors, like CSS or JavaScript references.
+     */
     List<IBehavior> getBehaviors();
 
+    /**
+     * Page specific hook which allows to modify or replace elements on singular
+     * page.
+     * 
+     * @param page Page to modify.
+     */
     void modify(Page page);
 }

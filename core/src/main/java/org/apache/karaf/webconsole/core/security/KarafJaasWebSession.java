@@ -26,6 +26,8 @@ import org.apache.wicket.Request;
  */
 public class KarafJaasWebSession extends JaasWebSession {
 
+    private static final long serialVersionUID = 1L;
+
     private static final String KARAF_REALM = "karaf";
 
     public KarafJaasWebSession(Request request) {

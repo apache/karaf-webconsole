@@ -26,7 +26,15 @@ import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 
+/**
+ * Generic map editing form.
+ *
+ * @param <K> Key type.
+ * @param <V> Value type.
+ */
 public abstract class MapEditForm<K, V> extends Form<Map<K, V>> {
+
+    private static final long serialVersionUID = 1L;
 
     public MapEditForm(String id, CompoundPropertyModel<Map<K, V>> model) {
         super(id, model);

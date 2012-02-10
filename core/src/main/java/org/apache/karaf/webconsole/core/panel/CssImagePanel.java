@@ -26,6 +26,8 @@ import org.apache.wicket.markup.html.basic.Label;
  */
 public class CssImagePanel extends AbstractImagePanel {
 
+    private static final long serialVersionUID = 1L;
+
     public CssImagePanel(String id, String cssClass) {
         super(id);
 

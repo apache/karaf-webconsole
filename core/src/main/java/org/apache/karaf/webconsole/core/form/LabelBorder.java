@@ -21,6 +21,8 @@ import org.apache.wicket.model.IModel;
 
 public class LabelBorder extends Border {
 
+    private static final long serialVersionUID = 1L;
+
     public LabelBorder(String id, IModel<?> model) {
         super(id, model);
     }

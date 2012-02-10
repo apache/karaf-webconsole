@@ -32,17 +32,25 @@ import java.util.Locale;
 
 public class LanguagePanel extends Panel {
 
+    private static final long serialVersionUID = 1L;
+
     public LanguagePanel(String id, IModel<List<Locale>> locales) {
         super(id);
 
         add(new Label("languagesTitle",new StringResourceModel("languages.available",this.getDefaultModel())));
 
         add(new ListView<Locale>("languages", locales) {
+
+            private static final long serialVersionUID = 1L;
+
             @Override
             protected void populateItem(final ListItem<Locale> item) {
                 final Locale model = item.getModelObject();
                 Image flagImage = new Image("flag", new ResourceReference(BasePage.class, "images/" + model.getDisplayName(Locale.ENGLISH).toLowerCase() + "-flag.png"));
                 Link<Void> link = new Link<Void>("languageLink") {
+
+                    private static final long serialVersionUID = 1L;
+
                     @Override
                     public void onClick() {
                         getSession().setLocale(model);

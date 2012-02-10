@@ -34,6 +34,8 @@ import org.slf4j.LoggerFactory;
  */
 public class SystemPreferencesForm extends Form<Preferences> {
 
+    private static final long serialVersionUID = 1L;
+
     private transient Logger logger = LoggerFactory.getLogger(SystemPreferencesForm.class);
 
     private FileUploadField upload;

@@ -24,6 +24,8 @@ import org.apache.wicket.markup.html.image.Image;
  */
 public class StaticImagePanel extends AbstractImagePanel {
 
+    private static final long serialVersionUID = 1L;
+
     public StaticImagePanel(String id, ResourceReference resource) {
         super(id);
 

@@ -26,12 +26,17 @@ import org.apache.wicket.markup.html.panel.Panel;
 
 public class SidebarPanel extends Panel {
 
+    private static final long serialVersionUID = 1L;
+
     public SidebarPanel(String id, SidebarProvider provider) {
         super(id);
 
         add(provider.getMasterPageLink("masterPageLink", "masterPageLabel"));
 
         add(new ListView<Link<Page>>("subPageLinks", provider.getItems("subPageLink", "subPageLabel")) {
+
+            private static final long serialVersionUID = 1L;
+
             @Override
             protected void populateItem(ListItem<Link<Page>> item) {
                 item.add(item.getModelObject());
@@ -39,6 +44,9 @@ public class SidebarPanel extends Panel {
         });
 
         add(new ListView<WidgetProvider>("widgets", provider.getWidgetProviders()) {
+
+            private static final long serialVersionUID = 1L;
+
             @Override
             protected void populateItem(ListItem<WidgetProvider> item) {
                 item.add(item.getModelObject().createPanel("widget"));

@@ -24,6 +24,8 @@ import org.apache.wicket.authentication.AuthenticatedWebSession;
  */
 public abstract class WebConsoleSession extends AuthenticatedWebSession {
 
+    private static final long serialVersionUID = 1L;
+
     public WebConsoleSession(Request request) {
         super(request);
     }

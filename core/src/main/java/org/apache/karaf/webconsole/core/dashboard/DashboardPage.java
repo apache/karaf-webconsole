@@ -42,6 +42,8 @@ public class DashboardPage extends SinglePage {
         add(CSSPackageResource.getHeaderContribution(DashboardPage.class, "dashboard.css"));
 
         add(new Label("noWidgets", "So far there is no widgets to display") {
+            private static final long serialVersionUID = 1L;
+
             @Override
             public boolean isVisible() {
                 return widgets.size() == 0;
@@ -49,6 +51,8 @@ public class DashboardPage extends SinglePage {
         });
 
         add(new ListView<WidgetProvider>("widgets", new ListModel<WidgetProvider>(widgets)) {
+            private static final long serialVersionUID = 1L;
+
             @Override
             protected void populateItem(ListItem<WidgetProvider> item) {
                 item.add(item.getModelObject().createPanel("widget"));

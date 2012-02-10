@@ -26,6 +26,8 @@ import org.osgi.service.prefs.PreferencesService;
  */
 public class PreferencesModel extends LoadableDetachableModel<Preferences> {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * Service to load preferences.
      */

@@ -29,6 +29,8 @@ import org.apache.wicket.markup.html.link.Link;
 
 public class SystemConsoleTabProvider implements ConsoleTabProvider, Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     public Link<Page> getModuleLink(String componentId, String labelId) {
         Link<Page> link = new BookmarkablePageLink<Page>(componentId, DashboardPage.class);
         link.add(new Label(labelId, "Dashboard"));

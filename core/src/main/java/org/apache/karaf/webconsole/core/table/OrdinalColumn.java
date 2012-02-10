@@ -28,7 +28,9 @@ import org.apache.wicket.model.Model;
  */
 public class OrdinalColumn<T> extends AbstractColumn<T> {
 
-    transient int counter = 1;
+    private static final long serialVersionUID = 1L;
+
+    private transient int counter = 1;
 
     public OrdinalColumn(String displayModel, String sortProperty) {
         super(Model.of(displayModel), sortProperty);

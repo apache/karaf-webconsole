@@ -30,6 +30,8 @@ import org.osgi.service.prefs.PreferencesService;
  */
 public class PreferencesPanel extends Panel {
 
+    private static final long serialVersionUID = 1L;
+
     public PreferencesPanel(String id, String user, PreferencesService service, IModel<Preferences> model) throws BackingStoreException {
         super(id, model);
 

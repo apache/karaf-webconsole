@@ -31,6 +31,8 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class JaasWebSession extends WebConsoleSession {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * Logger.
      */

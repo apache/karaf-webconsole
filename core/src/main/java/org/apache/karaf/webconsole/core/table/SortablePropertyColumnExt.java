@@ -19,7 +19,14 @@ package org.apache.karaf.webconsole.core.table;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
 import org.apache.wicket.model.Model;
 
+/**
+ * Sortable column which wraps given label in serializable model.
+ *
+ * @param <T> Type of displayed data.
+ */
 public class SortablePropertyColumnExt<T> extends PropertyColumn<T> {
+
+    private static final long serialVersionUID = 1L;
 
     public SortablePropertyColumnExt(String label, String property) {
         super(Model.of(label), property, property);

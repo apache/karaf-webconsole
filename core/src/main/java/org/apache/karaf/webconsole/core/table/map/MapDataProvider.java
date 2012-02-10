@@ -24,7 +24,15 @@ import java.util.Map.Entry;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.model.IModel;
 
+/**
+ * Generic data provider for map table.
+ *
+ * @param <K> Key type.
+ * @param <V> Value type.
+ */
 public class MapDataProvider<K, V> extends SortableDataProvider<Entry<K, V>> {
+
+    private static final long serialVersionUID = 1L;
 
     private final Map<K, V> map;
 

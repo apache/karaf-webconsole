@@ -26,7 +26,15 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.ISortableDataProvider;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 
+/**
+ * Generic map table.
+ *
+ * @param <K> Key type.
+ * @param <V> Value type.
+ */
 public class MapDataTable<K, V> extends DefaultDataTable<Entry<K, V>> {
+
+    private static final long serialVersionUID = 1L;
 
     public MapDataTable(String id, IColumn<Entry<K, V>>[] columns, ISortableDataProvider<Entry<K, V>> dataProvider, int rowsPerPage) {
         super(id, Arrays.asList(columns), dataProvider, rowsPerPage);

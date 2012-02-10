@@ -31,10 +31,15 @@ import org.apache.wicket.model.IModel;
  */
 public class NavigationPanel extends Panel {
 
+    private static final long serialVersionUID = 1L;
+
     public NavigationPanel(String id, IModel<List<ConsoleTabProvider>> model) {
         super(id);
 
         add(new ListView<ConsoleTabProvider>("tabs", model) {
+
+            private static final long serialVersionUID = 1L;
+
             @Override
             protected void populateItem(ListItem<ConsoleTabProvider> item) {
                 ConsoleTabProvider tab = item.getModelObject();
@@ -42,6 +47,9 @@ public class NavigationPanel extends Panel {
                 item.add(tab.getModuleLink("moduleLink", "moduleLabel"));
 
                 item.add(new ListView<Link<Page>>("moduleLinks", tab.getItems("link", "label")) {
+
+                    private static final long serialVersionUID = 1L;
+
                     @Override
                     protected void populateItem(ListItem<Link<Page>> item) {
                         item.add(item.getModelObject());

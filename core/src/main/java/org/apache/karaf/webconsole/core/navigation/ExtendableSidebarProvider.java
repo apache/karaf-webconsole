@@ -29,6 +29,8 @@ import org.apache.wicket.markup.html.link.Link;
  */
 public class ExtendableSidebarProvider implements SidebarProvider {
 
+    private static final long serialVersionUID = 1L;
+
     private Collection<NavigationProvider> navigationProviders;
     private Collection<WidgetProvider> widgetProviders;
     private SidebarProvider base;

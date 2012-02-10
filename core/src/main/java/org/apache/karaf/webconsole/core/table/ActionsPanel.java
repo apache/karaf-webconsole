@@ -34,6 +34,8 @@ import org.apache.wicket.model.util.ListModel;
 @SuppressWarnings("rawtypes")
 public class ActionsPanel<T> extends Panel {
 
+    private static final long serialVersionUID = 1L;
+
     public ActionsPanel(String componentId, IModel<T> model) {
         super(componentId, model);
 
@@ -41,6 +43,8 @@ public class ActionsPanel<T> extends Panel {
 
         final List<Link> links = getLinks(model.getObject(), "action", "label");
         add(new ListView<Link>("actions", new ListModel<Link>(links)) {
+            private static final long serialVersionUID = 1L;
+
             @Override
             protected void populateItem(ListItem<Link> item) {
                 item.addOrReplace(item.getModelObject());
@@ -60,5 +64,4 @@ public class ActionsPanel<T> extends Panel {
         return Collections.emptyList();
     }
 
-    
 }

@@ -20,7 +20,15 @@ import java.util.Map.Entry;
 
 import org.apache.wicket.model.IModel;
 
+/**
+ * Entry model for table row.
+ *
+ * @param <K> Key type.
+ * @param <V> Value type.
+ */
 public class EntryModel<K, V> implements IModel<Entry<K, V>> {
+
+    private static final long serialVersionUID = 1L;
 
     private Entry<K, V> object;
 

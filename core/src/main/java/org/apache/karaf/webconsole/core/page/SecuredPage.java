@@ -46,6 +46,9 @@ public class SecuredPage extends BasePage {
 
     public SecuredPage() {
         add(new NavigationPanel("navigationPanel", new LoadableDetachableModel<List<ConsoleTabProvider>>() {
+
+            private static final long serialVersionUID = 1L;
+
             @Override
             protected List<ConsoleTabProvider> load() {
                 return tabs;
@@ -59,6 +62,9 @@ public class SecuredPage extends BasePage {
         add(new SecuredPageLink<PreferencesPage>("preferencesLink", PreferencesPage.class));
 
         Link<Void> aLink = new Link<Void>("logoutLink") {
+
+            private static final long serialVersionUID = 1L;
+
             @Override
             public void onClick() {
                 WebConsoleSession.get().invalidateNow();
@@ -66,8 +72,8 @@ public class SecuredPage extends BasePage {
                 setResponsePage(LoginPage.class);
             }
         };
-        aLink.add(new Label("logoutTranslatedLink",new StringResourceModel("logout.link", this.getDefaultModel())));
-        add(aLink);
 
+        aLink.add(new Label("logoutTranslatedLink", new StringResourceModel("logout.link", this.getDefaultModel())));
+        add(aLink);
     }
 }

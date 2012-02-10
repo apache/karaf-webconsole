@@ -16,6 +16,8 @@
  */
 package org.apache.karaf.webconsole.core.brand;
 
+import static org.apache.wicket.markup.html.CSSPackageResource.getHeaderContribution;
+
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
@@ -25,10 +27,14 @@ import org.apache.wicket.Page;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.behavior.IBehavior;
 import org.apache.wicket.behavior.SimpleAttributeModifier;
-import org.apache.wicket.markup.html.CSSPackageResource;
 import org.apache.wicket.markup.html.image.Image;
 
+/**
+ * Default brand customization.
+ */
 public class DefaultBrandProvider implements BrandProvider, Serializable /* for tests mainly */ {
+
+    private static final long serialVersionUID = 1L;
 
     public Image getHeaderImage(String imageId) {
         Image image = new Image(imageId, new ResourceReference(BasePage.class, "images/karaf-logo.png"));
@@ -44,8 +50,8 @@ public class DefaultBrandProvider implements BrandProvider, Serializable /* for 
     }
 
     public void modify(Page page) {
-        page.add(CSSPackageResource.getHeaderContribution(BasePage.class, "style.css"));
-        page.add(CSSPackageResource.getHeaderContribution(BasePage.class, "grid.css"));
+        page.add(getHeaderContribution(BasePage.class, "style.css"));
+        page.add(getHeaderContribution(BasePage.class, "grid.css"));
     }
 
 }
