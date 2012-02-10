@@ -7,7 +7,7 @@
    (the "License"); you may not use this file except in compliance with
    the License.  You may obtain a copy of the License at
 
-     http://www.apache.org/licenses/LICENSE-2.0
+        http://www.apache.org/licenses/LICENSE-2.0
 
    Unless required by applicable law or agreed to in writing, software
    distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,167 +15,157 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 -->
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Karaf WebConsole</title>
-</head>
-<body>
+<wicket:extend xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+    <h1>Bus details</h1>
 
-    <wicket:extend>
-        <h1>Bus details</h1>
+    <a wicket:id="traceOn">Enable tracing</a>
+    <a wicket:id="traceOff">Disable tracing</a>
 
-        <a wicket:id="traceOn">Enable tracing</a>
-        <a wicket:id="traceOff">Disable tracing</a>
-
-        <table class="dataview">
+    <table class="dataview">
+        <tr>
+            <th colspan="2">Server</th>
+            <th>Operations</th>
+        </tr>
+        <wicket:container wicket:id="servers">
             <tr>
-                <th colspan="2">Server</th>
-                <th>Operations</th>
+                <td colspan="2">
+                    <span wicket:id="class">org.apache.cxf.rt.SomeClass</span>
+                </td>
+                <td>
+                    <a wicket:id="stop">stop</a>
+                    <a wicket:id="start">start</a>
+                </td>
             </tr>
-            <wicket:container wicket:id="servers">
+            <tr>
+                <td colspan="3"><hr /></td>
+            </tr>
+
+            <tr>
+                <th colspan="3">
+                    <h2>Endpoints</h2>
+                </th>
+            </tr>
+            <tr>
+                <th>Namespace</th>
+                <th>Element</th>
+                <th>Transport Id</th>
+            </tr>
+            <wicket:container wicket:id="endpoints">
                 <tr>
-                    <td colspan="2">
-                        <span wicket:id="class">org.apache.cxf.rt.SomeClass</span>
+                    <td>
+                        <span wicket:id="namespace">http://someuri</span>
                     </td>
                     <td>
-                        <a wicket:id="stop">stop</a>
-                        <a wicket:id="start">start</a>
+                        <span wicket:id="element">someelem</span>
+                    </td>
+                    <td>
+                        <span wicket:id="transport">soap</span>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="3"><hr /></td>
-                </tr>
-
-                <tr>
-                    <th colspan="3">
-                        <h2>Endpoints</h2>
-                    </th>
+                    <th colspan="3">Operations</th>
                 </tr>
                 <tr>
-                    <th>Namespace</th>
-                    <th>Element</th>
-                    <th>Transport Id</th>
+                    <th>Name</th>
+                    <th>Input</th>
+                    <th>Output</th>
                 </tr>
-                <wicket:container wicket:id="endpoints">
+                <wicket:container wicket:id="operations">
                     <tr>
                         <td>
-                            <span wicket:id="namespace">http://someuri</span>
+                            <span wicket:id="input">aaa</span>
                         </td>
                         <td>
-                            <span wicket:id="element">someelem</span>
+                            <span wicket:id="output">aaa</span>
                         </td>
                         <td>
-                            <span wicket:id="transport">soap</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th colspan="3">Operations</th>
-                    </tr>
-                    <tr>
-                        <th>Name</th>
-                        <th>Input</th>
-                        <th>Output</th>
-                    </tr>
-                    <wicket:container wicket:id="operations">
-                        <tr>
-                            <td>
-                                <span wicket:id="input">aaa</span>
-                            </td>
-                            <td>
-                                <span wicket:id="output">aaa</span>
-                            </td>
-                            <td>
-                                <span wicket:id="faults">aaa</span>
-                            </td>
-                        </tr>
-                    </wicket:container>
-                </wicket:container>
-                <tr>
-                    <td colspan="3"><hr /></td>
-                </tr>
-
-                <tr>
-                    <th colspan="3">
-                        <h3>In interceptors</h3>
-                    </th>
-                </tr>
-                <tr>
-                    <th width="150px">Id</th>
-                    <th>Class</th>
-                    <th>Phase</th>
-                </tr>
-                <wicket:container wicket:id="in-interceptors">
-                    <tr>
-                        <td>
-                            <span wicket:id="id">some-class</span>
-                        </td>
-                        <td>
-                            <span wicket:id="class">some-class</span>
-                        </td>
-                        <td>
-                            <span wicket:id="phase">some-class</span>
-                        </td>
-                    </tr>
-                </wicket:container>
-                <tr>
-                    <td colspan="3"><hr /></td>
-                </tr>
-
-                <tr>
-                    <th colspan="3">
-                        <h3>Out interceptors</h3>
-                    </th>
-                </tr>
-                <tr>
-                    <th width="150px">Id</th>
-                    <th>Class</th>
-                    <th>Phase</th>
-                </tr>
-                <wicket:container wicket:id="out-interceptors">
-                    <tr>
-                        <td>
-                            <span wicket:id="id">some-class</span>
-                        </td>
-                        <td>
-                            <span wicket:id="class">some-class</span>
-                        </td>
-                        <td>
-                            <span wicket:id="phase">some-class</span>
-                        </td>
-                    </tr>
-                </wicket:container>
-                <tr>
-                    <td colspan="3"><hr /></td>
-                </tr>
-
-                <tr>
-                    <th colspan="3">
-                        <h3>Fault interceptors</h3>
-                    </th>
-                </tr>
-                <tr>
-                    <th width="150px">Id</th>
-                    <th>Class</th>
-                    <th>Phase</th>
-                </tr>
-                <wicket:container wicket:id="fault-interceptors">
-                    <tr>
-                        <td>
-                            <span wicket:id="id">some-class</span>
-                        </td>
-                        <td>
-                            <span wicket:id="class">some-class</span>
-                        </td>
-                        <td>
-                            <span wicket:id="phase">some-class</span>
+                            <span wicket:id="faults">aaa</span>
                         </td>
                     </tr>
                 </wicket:container>
             </wicket:container>
-        </table>
+            <tr>
+                <td colspan="3"><hr /></td>
+            </tr>
 
-    </wicket:extend>
+            <tr>
+                <th colspan="3">
+                    <h3>In interceptors</h3>
+                </th>
+            </tr>
+            <tr>
+                <th width="150px">Id</th>
+                <th>Class</th>
+                <th>Phase</th>
+            </tr>
+            <wicket:container wicket:id="in-interceptors">
+                <tr>
+                    <td>
+                        <span wicket:id="id">some-class</span>
+                    </td>
+                    <td>
+                        <span wicket:id="class">some-class</span>
+                    </td>
+                    <td>
+                        <span wicket:id="phase">some-class</span>
+                    </td>
+                </tr>
+            </wicket:container>
+            <tr>
+                <td colspan="3"><hr /></td>
+            </tr>
 
-</body>
-</html>
+            <tr>
+                <th colspan="3">
+                    <h3>Out interceptors</h3>
+                </th>
+            </tr>
+            <tr>
+                <th width="150px">Id</th>
+                <th>Class</th>
+                <th>Phase</th>
+            </tr>
+            <wicket:container wicket:id="out-interceptors">
+                <tr>
+                    <td>
+                        <span wicket:id="id">some-class</span>
+                    </td>
+                    <td>
+                        <span wicket:id="class">some-class</span>
+                    </td>
+                    <td>
+                        <span wicket:id="phase">some-class</span>
+                    </td>
+                </tr>
+            </wicket:container>
+            <tr>
+                <td colspan="3"><hr /></td>
+            </tr>
+
+            <tr>
+                <th colspan="3">
+                    <h3>Fault interceptors</h3>
+                </th>
+            </tr>
+            <tr>
+                <th width="150px">Id</th>
+                <th>Class</th>
+                <th>Phase</th>
+            </tr>
+            <wicket:container wicket:id="fault-interceptors">
+                <tr>
+                    <td>
+                        <span wicket:id="id">some-class</span>
+                    </td>
+                    <td>
+                        <span wicket:id="class">some-class</span>
+                    </td>
+                    <td>
+                        <span wicket:id="phase">some-class</span>
+                    </td>
+                </tr>
+            </wicket:container>
+        </wicket:container>
+    </table>
+
+</wicket:extend>

@@ -26,4 +26,6 @@
 
     <reference id="adminService" interface="org.apache.karaf.admin.AdminService"/>
 
+    <reference id="preferencesService" interface="org.osgi.service.prefs.PreferencesService" />
+
 </blueprint>

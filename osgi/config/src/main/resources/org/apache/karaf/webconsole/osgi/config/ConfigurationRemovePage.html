@@ -7,7 +7,7 @@
    (the "License"); you may not use this file except in compliance with
    the License.  You may obtain a copy of the License at
 
-     http://www.apache.org/licenses/LICENSE-2.0
+        http://www.apache.org/licenses/LICENSE-2.0
 
    Unless required by applicable law or agreed to in writing, software
    distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,20 +15,11 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 -->
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
-    <wicket:head>
-        <title>Karaf WebConsole</title>
-    </wicket:head>
+<wicket:extend xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+     <h1>Confirm removal of <span wicket:id="pid">org.apache.felix.filemount</span> configuration</h1>
 
-    <body>
-
-        <wicket:extend>
-            <h1>Confirm removal of <span wicket:id="pid">org.apache.felix.filemount</span> configuration</h1>
-
-            <form wicket:id="remove">
-                Are you sure want to delete this configuration?
-                <input type="submit" wicket:id="submit" value="Confirm" />
-            </form>
-        </wicket:extend>
-    </body>
-</html>
+     <form wicket:id="remove">
+         Are you sure want to delete this configuration?
+         <input type="submit" wicket:id="submit" value="Confirm" />
+     </form>
+ </wicket:extend>

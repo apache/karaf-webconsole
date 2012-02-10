@@ -7,7 +7,7 @@
    (the "License"); you may not use this file except in compliance with
    the License.  You may obtain a copy of the License at
 
-     http://www.apache.org/licenses/LICENSE-2.0
+        http://www.apache.org/licenses/LICENSE-2.0
 
    Unless required by applicable law or agreed to in writing, software
    distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,54 +15,44 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 -->
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Karaf WebConsole</title>
-</head>
-<body>
+<wicket:extend xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+    <h1>Exchange <span wicket:id="id">24319433961</span></h1>
 
-    <wicket:extend>
-        <h1>Exchange <span wicket:id="id">24319433961</span></h1>
+    <h2>Properties</h2>
+    <table wicket:id="properties" class="dataview" />
 
-        <h2>Properties</h2>
-        <table wicket:id="properties" class="dataview" />
+    <h2>Input</h2>
 
-        <h2>Input</h2>
+    <h3>Message headers</h3>
+    <table wicket:id="inHeaders" class="dataview" />
 
-        <h3>Message headers</h3>
-        <table wicket:id="inHeaders" class="dataview" />
+    <h3>Message body</h3>
+    <pre class="message" wicket:id="inBody">
+        message body
+    </pre>
 
-        <h3>Message body</h3>
-        <pre class="message" wicket:id="inBody">
-            message body
-        </pre>
+    <h2>Output</h2>
 
-        <h2>Output</h2>
+    <h3>Message headers</h3>
+    <table wicket:id="outHeaders" class="dataview" />
 
-        <h3>Message headers</h3>
-        <table wicket:id="outHeaders" class="dataview" />
+    <h3>Message body</h3>
+    <pre class="message" wicket:id="outBody">
+        message body
+    </pre>
 
-        <h3>Message body</h3>
-        <pre class="message" wicket:id="outBody">
-            message body
-        </pre>
+    <h2>Fault</h2>
 
-        <h2>Fault</h2>
+    <h3>Fault headers</h3>
+    <table wicket:id="faultHeaders" class="dataview" />
 
-        <h3>Fault headers</h3>
-        <table wicket:id="faultHeaders" class="dataview" />
+    <h3>Fault body</h3>
+    <pre class="message" wicket:id="faultBody">
+        message body
+    </pre>
 
-        <h3>Fault body</h3>
-        <pre class="message" wicket:id="faultBody">
-            message body
-        </pre>
-
-        <h2>Exception</h2>
-        <pre class="message" wicket:id="exception">
-            Some stack trace
-        </pre>
-    </wicket:extend>
-
-</body>
-</html>
+    <h2>Exception</h2>
+    <pre class="message" wicket:id="exception">
+        Some stack trace
+    </pre>
+</wicket:extend>

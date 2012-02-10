@@ -15,25 +15,15 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 -->
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Karaf WebConsole</title>
-</head>
-<body>
+<wicket:extend xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+    <h1>Traced context details</h1>
 
-    <wicket:extend>
-        <h1>Traced context details</h1>
+    <h2>Info from trace</h2>
 
-        <h2>Info from trace</h2>
+    <ul>
+        <li wicket:id="properties">
+            <table wicket:id="propertyMap" class="dataview" />
+        </li>
+    </ul>
 
-        <ul>
-            <li wicket:id="properties">
-                <table wicket:id="propertyMap" class="dataview" />
-            </li>
-        </ul>
-
-    </wicket:extend>
-
-</body>
-</html>
+</wicket:extend>

@@ -7,7 +7,7 @@
    (the "License"); you may not use this file except in compliance with
    the License.  You may obtain a copy of the License at
 
-     http://www.apache.org/licenses/LICENSE-2.0
+        http://www.apache.org/licenses/LICENSE-2.0
 
    Unless required by applicable law or agreed to in writing, software
    distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,33 +15,22 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 -->
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:extend xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+    <div id="userbox" class="grid_2">
+        <img wicket:id="avatar" class="avatar" alt="User avatar" />
+        <span id="details">
+            Welcome <span wicket:id="username">admin</span>
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Karaf WebConsole</title>
-</head>
+            <a href="#" wicket:id="logoutLink"><span wicket:id="logoutTranslatedLink"/></a>
+            <a href="#" wicket:id="preferencesLink">Preferences</a>
+        </span>
+    </div>
 
-<body>
+    <div class="grid_12">
+        <div wicket:id="navigationPanel">Navigation goes here</div>
+    </div>
+    <div class="clear"></div>
 
-    <wicket:extend>
-        <div id="userbox" class="grid_2">
-            <img wicket:id="avatar" class="avatar" alt="User avatar" />
-            <span id="details">
-                Welcome <span wicket:id="username">admin</span>
+    <wicket:child />
 
-                <a href="#" wicket:id="logoutLink"><span wicket:id="logoutTranslatedLink"/></a>
-                <a href="#" wicket:id="preferencesLink">Preferences</a>
-            </span>
-        </div>
-
-        <div class="grid_12">
-            <div wicket:id="navigationPanel">Navigation goes here</div>
-        </div>
-        <div class="clear"></div>
-
-        <wicket:child />
-    </wicket:extend>
-
-</body>
-</html>
+</wicket:extend>

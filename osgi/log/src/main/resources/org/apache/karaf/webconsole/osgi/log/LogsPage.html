@@ -7,7 +7,7 @@
    (the "License"); you may not use this file except in compliance with
    the License.  You may obtain a copy of the License at
 
-     http://www.apache.org/licenses/LICENSE-2.0
+        http://www.apache.org/licenses/LICENSE-2.0
 
    Unless required by applicable law or agreed to in writing, software
    distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,53 +15,45 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 -->
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
-    <wicket:head>
-        <title>Karaf WebConsole</title>
-    </wicket:head>
+<wicket:extend xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+    <h1>Log entries</h1>
 
-    <body>
-        <wicket:extend>
-            <h1>Log entries</h1>
+    <div class="grid_9">
+        <form wicket:id="filters">
 
-            <div class="grid_9">
-                <form wicket:id="filters">
+            <label for="priority">
+                Priority
+                <select wicket:id="priority" id="priority">
+                    <wicket:container wicket:id="options">
+                        <option wicket:id="option">label</option>
+                    </wicket:container>
+                </select>
+            </label>
 
-                    <label for="priority">
-                        Priority
-                        <select wicket:id="priority" id="priority">
-                            <wicket:container wicket:id="options">
-                                <option wicket:id="option">label</option>
-                            </wicket:container>
-                        </select>
-                    </label>
+            <label for="dateFrom">
+                Date from
+                <input type="text" id="dateFrom" wicket:id="dateFrom" />
+            </label>
 
-                    <label for="dateFrom">
-                        Date from
-                        <input type="text" id="dateFrom" wicket:id="dateFrom" />
-                    </label>
+            <label for="dateTo">
+                Date to
+                <input type="text" id="dateTo" wicket:id="dateTo" />
+            </label>
 
-                    <label for="dateTo">
-                        Date to
-                        <input type="text" id="dateTo" wicket:id="dateTo" />
-                    </label>
+            <label for="messageFragment">
+                Message
+                <input type="text" id="messageFragment" wicket:id="messageFragment" />
+            </label>
 
-                    <label for="messageFragment">
-                        Message
-                        <input type="text" id="messageFragment" wicket:id="messageFragment" />
-                    </label>
+            <label for="bundleNameFragment">
+                Bundle
+                <input type="text" id="bundleNameFragment" wicket:id="bundleNameFragment" />
+            </label>
 
-                    <label for="bundleNameFragment">
-                        Bundle
-                        <input type="text" id="bundleNameFragment" wicket:id="bundleNameFragment" />
-                    </label>
+            <input wicket:id="submit" type="submit" value="Filter" />
+        </form>
+    </div>
 
-                    <input wicket:id="submit" type="submit" value="Filter" />
-                </form>
-            </div>
+    <table wicket:id="logs" class="dataview" />
 
-            <table wicket:id="logs" class="dataview" />
-
-        </wicket:extend>
-    </body>
-</html>
+</wicket:extend>
