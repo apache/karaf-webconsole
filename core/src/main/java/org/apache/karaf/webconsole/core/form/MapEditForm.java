@@ -19,8 +19,8 @@ package org.apache.karaf.webconsole.core.form;
 import java.util.Map;
 
 import org.apache.wicket.Component;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.CompoundPropertyModel;
@@ -50,9 +50,11 @@ public abstract class MapEditForm<K, V> extends Form<Map<K, V>> {
 
     @SuppressWarnings("unchecked")
     protected Component populateItem(String componentId, K key, IModel<V> value) {
-        LabelBorder border = new LabelBorder(componentId);
-        border.add(new Label("label", "" + key));
-        border.add(new TextField<V>("value", value, (Class<V>) value.getObject().getClass()));
+        FormComponent<V> field = new TextField<V>("value", value, (Class<V>) value.getObject().getClass());
+        LabelBorder border = new LabelBorder(componentId, ""+ key, field);
+//        border.add(new Label("label", "" + key));
+//        border.add();
+        border.setHelp("Value for " + key);
         return border;
     }
 }

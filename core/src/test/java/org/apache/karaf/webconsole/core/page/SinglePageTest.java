@@ -41,6 +41,7 @@ import org.apache.wicket.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.util.tester.WicketTester;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.BlockJUnit4ClassRunner;
@@ -48,20 +49,9 @@ import org.junit.runners.BlockJUnit4ClassRunner;
 /**
  * Test secured page and navigation rendering.
  */
+@Ignore("This test will be replaced by module tab panel test")
 @RunWith(BlockJUnit4ClassRunner.class)
-public class SecuredPageTest extends WebConsoleTest {
-
-    /**
-     * Test logout link behavior.
-     */
-    @Test
-    public void testLogout() {
-        WicketTester tester = new WicketTester(application);
-
-        tester.startPage(SecuredPage.class);
-        tester.clickLink("topPanel:logoutLink");
-        tester.assertRenderedPage(LoginPage.class);
-    }
+public class SinglePageTest extends WebConsoleTest {
 
     /**
      * Test only one tab without children.
@@ -76,8 +66,8 @@ public class SecuredPageTest extends WebConsoleTest {
         List<ConsoleTabProvider> tabs = new ArrayList<ConsoleTabProvider>();
 
         SerializableConsoleTabProvider mock = createStrictMock(SerializableConsoleTabProvider.class);
+        expect(mock.getModuleLink(anyString(), anyString())).andAnswer(new LinkAnswer("test", SinglePageExt.class));
         expect(mock.getItems(anyString(), anyString())).andReturn(emptyLinkList());
-        expect(mock.getModuleLink(anyString(), anyString())).andAnswer(new LinkAnswer("test", BasePage.class));
 
         tabs.add(mock);
         values.put("tabs", tabs);
@@ -86,10 +76,14 @@ public class SecuredPageTest extends WebConsoleTest {
         replay(mock);
 
         WicketTester tester = new WicketTester(application);
-        tester.startPage(SecuredPage.class);
+        tester.startPage(SinglePageExt.class);
+        tester.debugComponentTrees();
+
+        tester.clickLink("topPanel:tabs:0:moduleLink");
 
         assertTabs(tester, tabs);
-        assertTabLink(tester, 0, "test", BasePage.class);
+        assertTabLink(tester, 0, "test", SinglePageExt.class);
+
 
         verify(mock);
     }
@@ -197,7 +191,7 @@ public class SecuredPageTest extends WebConsoleTest {
         tester.assertLabel("topPanel:tabs:" + position + ":moduleLink:moduleLabel", label);
         tester.assertBookmarkablePageLink("topPanel:tabs:" + position + ":moduleLink", page, "");
         if (!children.isEmpty()) {
-            tester.assertListView("topPanel:tabs:" + position + ":moduleLinks", children);
+            tester.assertListView("tabs:moduleLinks", children);
         }
     }
 
@@ -210,4 +204,5 @@ public class SecuredPageTest extends WebConsoleTest {
     // as ConsoleTabProviders are OSGi services.
     interface SerializableConsoleTabProvider extends Serializable, ConsoleTabProvider {}
 
+    public static class SinglePageExt extends SinglePage {}
 }

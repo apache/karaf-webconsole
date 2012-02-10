@@ -38,9 +38,9 @@ public class DefaultBrandProvider implements BrandProvider, Serializable /* for 
     private static final long serialVersionUID = 1L;
 
     public Image getHeaderImage(String imageId) {
-        Image image = new Image(imageId, new ResourceReference(BasePage.class, "images/karaf-logo.png"));
-        image.add(new SimpleAttributeModifier("width", "150"));
-        image.add(new SimpleAttributeModifier("height", "70"));
+        Image image = new Image(imageId, new ResourceReference(BasePage.class, "images/karaf-logo-min.png"));
+        image.add(new SimpleAttributeModifier("width", "148"));
+        image.add(new SimpleAttributeModifier("height", "40"));
         image.add(new SimpleAttributeModifier("alt", "Karaf logo"));
         image.add(new SimpleAttributeModifier("title", "Karaf logo"));
         return image;

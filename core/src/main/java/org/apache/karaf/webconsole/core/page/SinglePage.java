@@ -16,6 +16,7 @@
  */
 package org.apache.karaf.webconsole.core.page;
 
+import org.apache.karaf.webconsole.core.navigation.markup.ModuleTabPanel;
 import org.apache.karaf.webconsole.core.panel.feedback.BootstrapFeedbackPanel;
 
 /**
@@ -24,6 +25,8 @@ import org.apache.karaf.webconsole.core.panel.feedback.BootstrapFeedbackPanel;
 public class SinglePage extends SecuredPage {
 
     public SinglePage() {
+        add(new ModuleTabPanel("tabs"));
+
         add(new BootstrapFeedbackPanel("feedback"));
     }
 

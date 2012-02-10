@@ -14,26 +14,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.core.navigation;
+package org.apache.karaf.webconsole.core.conventer;
 
-import java.util.List;
+import java.net.URI;
+import java.net.URL;
 
-import org.apache.wicket.Page;
-import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.util.convert.ConverterLocator;
 
 /**
- * Base extension point in console. Allow suppliers to ship new navigation
- * elements which points to new wicket pages.
+ * An extension of wicket base {@link ConverterLocator} which supports common
+ * types used in Java.
  */
-public interface NavigationProvider {
+public class WebConsoleConverterLocator extends ConverterLocator {
 
-    /**
-     * Return list of links to pages to add in navigation. 
-     * @param componentId Identifier of the link.
-     * @param labelId Identifier of link label.
-     * 
-     * @return Pages to add in navigation.
-     */
-    List<Link<Page>> getItems(String componentId, String labelId);
+    private static final long serialVersionUID = 1L;
 
+    public WebConsoleConverterLocator() {
+        set(URI.class, new URIConverter());
+        set(URL.class, new URLConverter());
+    }
 }

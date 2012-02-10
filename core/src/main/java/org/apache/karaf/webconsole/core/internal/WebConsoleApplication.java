@@ -16,10 +16,12 @@
  */
 package org.apache.karaf.webconsole.core.internal;
 
+import org.apache.karaf.webconsole.core.conventer.WebConsoleConverterLocator;
 import org.apache.karaf.webconsole.core.dashboard.DashboardPage;
 import org.apache.karaf.webconsole.core.page.LoginPage;
 import org.apache.karaf.webconsole.core.security.HierarchicalRoleCheckingStrategy;
 import org.apache.karaf.webconsole.core.security.KarafJaasWebSession;
+import org.apache.wicket.IConverterLocator;
 import org.apache.wicket.authentication.AuthenticatedWebApplication;
 import org.apache.wicket.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authorization.strategies.role.RoleAuthorizationStrategy;
@@ -49,6 +51,11 @@ public class WebConsoleApplication extends AuthenticatedWebApplication {
 
         getSecuritySettings().setAuthorizationStrategy(new RoleAuthorizationStrategy(new HierarchicalRoleCheckingStrategy()));
         getMarkupSettings().setStripWicketTags(true);
+    }
+
+    @Override
+    protected IConverterLocator newConverterLocator() {
+        return new WebConsoleConverterLocator();
     }
 
     /**

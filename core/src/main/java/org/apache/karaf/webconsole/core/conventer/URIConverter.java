@@ -14,22 +14,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.core.page;
+package org.apache.karaf.webconsole.core.conventer;
 
-import org.apache.karaf.webconsole.core.BasePage;
-import org.apache.karaf.webconsole.core.navigation.markup.NavigationTopPanel;
-import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
-import org.apache.wicket.markup.html.panel.Panel;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Locale;
+
+import org.apache.wicket.util.convert.converters.AbstractConverter;
 
 /**
- * Page which requires admin role, in other words authorized user.
+ * URI converter.
  */
-@AuthorizeInstantiation("admin")
-public class SecuredPage extends BasePage {
+public class URIConverter extends AbstractConverter {
+
+    private static final long serialVersionUID = 1L;
+
+    public Object convertToObject(String value, Locale locale) {
+        try {
+            return new URI(value);
+        } catch (URISyntaxException e) {
+            throw newConversionException("Illegal syntax: " + e.getReason(), value, locale);
+        } catch (IllegalArgumentException e) {
+            throw newConversionException("Invalid argument: " + e.getMessage(), value, locale);
+        }
+    }
 
     @Override
-    protected Panel createTopPanel(String id) {
-        return new NavigationTopPanel(id, getSupportedLocales());
+    protected Class<?> getTargetType() {
+        return URI.class;
     }
 
 }

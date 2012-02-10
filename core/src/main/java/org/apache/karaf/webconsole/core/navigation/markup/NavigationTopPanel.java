@@ -41,7 +41,7 @@ import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.osgi.service.prefs.PreferencesService;
 
 /**
- * Component responsible for rendering top navigation in webconsole.
+ * Panel which contains links to all active modules, without its children.
  */
 public class NavigationTopPanel extends LanguageTopPanel {
 
@@ -50,10 +50,13 @@ public class NavigationTopPanel extends LanguageTopPanel {
     @PaxWicketBean(name = "preferencesService")
     private PreferencesService preferences;
 
-    public NavigationTopPanel(String id, IModel<List<Locale>> locales, IModel<List<ConsoleTabProvider>> model) {
+    @PaxWicketBean(name = "tabs")
+    protected List<ConsoleTabProvider> tabs;
+
+    public NavigationTopPanel(String id, IModel<List<Locale>> locales) {
         super(id, locales);
 
-        add(createTabList(model));
+        add(createTabList());
 
         String username = WebConsoleSession.get().getUsername();
         add(new AvatarImage("avatar", preferences.getUserPreferences(username)));
@@ -67,22 +70,14 @@ public class NavigationTopPanel extends LanguageTopPanel {
 
     }
 
-    private Component createTabList(IModel<List<ConsoleTabProvider>> model) {
-        return new ListView<ConsoleTabProvider>("tabs", model) {
+    protected Component createTabList() {
+        return new ListView<ConsoleTabProvider>("tabs", tabs) {
 
             private static final long serialVersionUID = 1L;
 
             @Override
             protected void populateItem(ListItem<ConsoleTabProvider> item) {
-                ConsoleTabProvider tab = item.getModelObject();
-
-                List<Link<Page>> items = tab.getItems("link", "label");
-                if (!items.isEmpty()) {
-                    populateTabItem(item, tab);
-                    populateTabChildren(item, items);
-                } else {
-                    populateSingleTabItem(item, tab);
-                }
+                populateTabItem(item, item.getModelObject());
             }
         };
     }
@@ -91,7 +86,7 @@ public class NavigationTopPanel extends LanguageTopPanel {
         Link<Page> link = provider.getModuleLink("moduleLink", "moduleLabel");
         item.add(link);
 
-        if (LinkUtils.isActiveTrail(link, this)) {
+        if (LinkUtils.isActiveTrail(link)) {
             item.add(new AttributeAppender("class", Model.of("active"), " "));
         }
     }
@@ -104,7 +99,7 @@ public class NavigationTopPanel extends LanguageTopPanel {
         moduleLink.add(new SimpleAttributeModifier("data-toggle", ""));
         moduleLink.add(new SimpleAttributeModifier("class", ""));
 
-        if (LinkUtils.isActiveTrail(moduleLink, this)) {
+        if (LinkUtils.isActiveTrail(moduleLink)) {
             item.add(new AttributeAppender("class", Model.of("active"), " "));
         }
 
@@ -112,15 +107,5 @@ public class NavigationTopPanel extends LanguageTopPanel {
         item.add(new RepeatingView("moduleLinks"));
     }
 
-    protected void populateTabChildren(ListItem<ConsoleTabProvider> item, List<Link<Page>> listItems) {
-        item.add(new ListView<Link<Page>>("moduleLinks", listItems) {
 
-            private static final long serialVersionUID = 1L;
-
-            @Override
-            protected void populateItem(ListItem<Link<Page>> item) {
-                item.add(item.getModelObject());
-            }
-        });
-    }
 }

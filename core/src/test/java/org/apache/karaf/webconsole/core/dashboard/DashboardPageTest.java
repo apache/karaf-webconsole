@@ -41,6 +41,8 @@ import org.junit.runners.BlockJUnit4ClassRunner;
 public class DashboardPageTest extends WebConsoleTest {
 
     static class TestWidgetProvider implements WidgetProvider, Serializable {
+        private static final long serialVersionUID = 1L;
+
         public Panel createPanel(String id) {
             return new EmptyPanel(id);
         }

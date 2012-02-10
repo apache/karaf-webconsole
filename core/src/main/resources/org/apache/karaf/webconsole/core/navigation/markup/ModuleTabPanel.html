@@ -17,25 +17,12 @@
 -->
 <wicket:panel xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
 
-    <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container-fluid">
-
-                <!-- This part is visible for mobile devices -->
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </a>
-
-                <img wicket:id="logo" class="pull-left" />
-                <a class="brand" wicket:id="homeLink">
-                    WebConsole
-                </a>
-
-                <wicket:child />
-            </div>
-        </div>
-    </div>
+    <ul class="nav nav-tabs">
+        <li wicket:id="moduleLinks">
+            <a wicket:id="link">
+                <span wicket:id="label">Label</span>
+            </a>
+        </li>
+    </ul>
 
 </wicket:panel>

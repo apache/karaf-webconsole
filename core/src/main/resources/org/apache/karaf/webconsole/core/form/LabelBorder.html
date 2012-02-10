@@ -16,8 +16,12 @@
    limitations under the License.
 -->
 <wicket:border xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
-    <label class="form-item">
-        <span wicket:id="label">Label</span>
-        <wicket:body />
+    <label class="control-label">
+        <span wicket:id="label"></span>
     </label>
+    <div class="controls">
+        <wicket:body />
+        <span wicket:id="help" class="help-inline"></span>
+        <span wicket:id="error" class="help-inline"></span>
+    </div>
 </wicket:border>

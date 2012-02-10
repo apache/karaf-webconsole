@@ -29,8 +29,6 @@ import org.apache.wicket.markup.html.link.Link;
  */
 public class ExtendableConsoleTabProvider implements ConsoleTabProvider {
 
-    private static final long serialVersionUID = 1L;
-
     private Collection<NavigationProvider> extensions;
     private ConsoleTabProvider base;
 

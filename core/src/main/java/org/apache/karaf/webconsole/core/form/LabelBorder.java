@@ -16,19 +16,47 @@
  */
 package org.apache.karaf.webconsole.core.form;
 
+import org.apache.wicket.behavior.AttributeAppender;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.border.Border;
+import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 
 public class LabelBorder extends Border {
 
     private static final long serialVersionUID = 1L;
+    private final FormComponent<?> component;
 
-    public LabelBorder(String id, IModel<?> model) {
-        super(id, model);
+    public LabelBorder(String id, String fieldLabel, FormComponent<?> component) {
+        this(id, Model.of(fieldLabel), component);
     }
 
-    public LabelBorder(String id) {
+    public LabelBorder(String id, IModel<?> fieldLabel, FormComponent<?> component) {
         super(id);
+        this.component = component;
+        getBodyContainer().add(component);
+
+        add(new Label("label", fieldLabel).setRenderBodyOnly(true));
+        add(new Label("help", ""));
+        add(new Label("error", ""));
     }
 
+    public void setHelp(String message) {
+        addOrReplace(new Label("help", message));
+    }
+
+    public void setHelp(IModel<?> message) {
+        addOrReplace(new Label("help", message));
+    }
+
+    @Override
+    protected void onBeforeRender() {
+        super.onBeforeRender();
+
+        if (component.getFeedbackMessage() != null) {
+            addOrReplace(new Label("error", "" + component.getFeedbackMessage().getMessage()));
+            add(new AttributeAppender("class", Model.of("error"), " "));
+        }
+    }
 }
