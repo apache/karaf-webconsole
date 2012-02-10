@@ -19,10 +19,11 @@ package org.apache.karaf.webconsole.core.brand;
 import static org.apache.wicket.markup.html.CSSPackageResource.getHeaderContribution;
 
 import java.io.Serializable;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.karaf.webconsole.core.BasePage;
+import org.apache.karaf.webconsole.core.behavior.BootstrapBehavior;
 import org.apache.wicket.Page;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.behavior.IBehavior;
@@ -46,7 +47,9 @@ public class DefaultBrandProvider implements BrandProvider, Serializable /* for 
     }
 
     public List<IBehavior> getBehaviors() {
-        return Collections.emptyList();
+        List<IBehavior> behaviors = new ArrayList<IBehavior>();
+        behaviors.add(new BootstrapBehavior());
+        return behaviors;
     }
 
     public void modify(Page page) {
