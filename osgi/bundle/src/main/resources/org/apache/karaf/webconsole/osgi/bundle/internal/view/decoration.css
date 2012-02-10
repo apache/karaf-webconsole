@@ -1,18 +1,11 @@
-div.decorations {
-    display: inline;
-}
-
 div.decorations ul {
     list-style-type: none;
     margin: 0px;
 }
 
 div.decorations ul li {
-    display: inline;
-}
-
-div.decoration {
-    display: inline;
+    display: block;
+    float: left;
 }
 
 span.system {

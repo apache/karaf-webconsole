@@ -27,7 +27,7 @@ import org.osgi.framework.Bundle;
 /**
  * Initial page for OSGi module.
  */
-@PaxWicketMountPoint(mountPoint = "/osgi/framework")
+@PaxWicketMountPoint(mountPoint = "/osgi")
 @AuthorizeInstantiation({"admin", "osgi-user", "osgi-developer"})
 public class FrameworkPage extends OsgiPage {
 
