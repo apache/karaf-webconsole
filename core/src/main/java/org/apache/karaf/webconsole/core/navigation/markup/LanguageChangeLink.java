@@ -14,30 +14,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.core.preferences.util;
+package org.apache.karaf.webconsole.core.navigation.markup;
 
-import java.io.Serializable;
+import java.util.Locale;
 
-import org.osgi.service.prefs.Preferences;
-import org.osgi.service.prefs.PreferencesService;
+import org.apache.wicket.markup.html.link.Link;
 
 /**
- * Preferences service created on top of standard JDK implementation.
+ * Utility link to change session locale.
  */
-public class JdkPreferencesService implements PreferencesService, Serializable /* for tests*/ {
+public class LanguageChangeLink extends Link<Void> {
 
     private static final long serialVersionUID = 1L;
 
-    public Preferences getSystemPreferences() {
-        return new JdkPreferences(java.util.prefs.Preferences.systemRoot());
+    private final Locale locale;
+
+    public LanguageChangeLink(String id, Locale locale) {
+        super(id);
+        this.locale = locale;
     }
 
-    public Preferences getUserPreferences(String name) {
-        return new JdkPreferences(java.util.prefs.Preferences.userRoot());
+    @Override
+    public void onClick() {
+        getSession().setLocale(locale);
     }
-
-    public String[] getUsers() {
-        return new String[] { System.getProperty("user.name") };
-    }
-
 }

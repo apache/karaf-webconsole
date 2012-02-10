@@ -16,7 +16,9 @@
  */
 package org.apache.karaf.webconsole.core.util;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.Page;
+import org.apache.wicket.RequestCycle;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
@@ -44,4 +46,22 @@ public abstract class LinkUtils {
         return link;
     }
 
+    /**
+     * Checks if given link is in active trail. It detects a path only from
+     * bookmarkable links.
+     * 
+     * @param link Link.
+     * @param component Component which should be asked for rendering url.
+     * @return True if link path is contained in request path.
+     */
+    public static boolean isActiveTrail(Link<?> link, Component component) {
+        if (link instanceof BookmarkablePageLink) {
+            Class<? extends Page> pageClass = ((BookmarkablePageLink<?>) link).getPageClass();
+
+            String requestPath = RequestCycle.get().getRequest().getPath();
+            String linkPath = (component.urlFor(pageClass, null) + "").replace("../", "");
+            return requestPath.contains(linkPath);
+        }
+        return false;
+    }
 }

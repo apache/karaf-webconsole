@@ -14,30 +14,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.core.preferences.util;
+package org.apache.karaf.webconsole.core.panel.feedback;
 
-import java.io.Serializable;
-
-import org.osgi.service.prefs.Preferences;
-import org.osgi.service.prefs.PreferencesService;
+import org.apache.wicket.behavior.AttributeAppender;
+import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.Model;
 
 /**
- * Preferences service created on top of standard JDK implementation.
+ * Bootstrap based alert panel.
  */
-public class JdkPreferencesService implements PreferencesService, Serializable /* for tests*/ {
+public final class AlertPanel extends Panel {
 
     private static final long serialVersionUID = 1L;
 
-    public Preferences getSystemPreferences() {
-        return new JdkPreferences(java.util.prefs.Preferences.systemRoot());
+    private WebMarkupContainer wrapper;
+
+    public AlertPanel(String id, String message, AlertType type) {
+        super(id);
+
+        // make sure that wrapper is added before type of alert is set
+        add(wrapper = new WebMarkupContainer("wrapper"));
+
+        setType(type); // setter will modify css class
+
+        wrapper.add(new Label("message", message));
     }
 
-    public Preferences getUserPreferences(String name) {
-        return new JdkPreferences(java.util.prefs.Preferences.userRoot());
-    }
-
-    public String[] getUsers() {
-        return new String[] { System.getProperty("user.name") };
+    public void setType(AlertType type) {
+        wrapper.add(new AttributeAppender("class", Model.of(type.getCssClass()), " "));
     }
 
 }

@@ -68,7 +68,7 @@ public class BasePageTest extends WebConsoleTest {
         WicketTester tester = new WicketTester(application);
         tester.startPage(BasePage.class);
 
-        tester.assertVisible("homeLink:" + imageId);
+        tester.assertVisible("topPanel:" + imageId);
 
         verify(brandProvider);
     }

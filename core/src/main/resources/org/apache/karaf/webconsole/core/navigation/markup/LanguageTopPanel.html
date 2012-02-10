@@ -15,22 +15,25 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 -->
-<wicket:panel xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
-    <div id="topmenu">
-        <ul>
-            <li wicket:id="tabs">
-                <a wicket:id="moduleLink">
-                    <span wicket:id="moduleLabel">Category</span>
-                </a>
+<wicket:extend xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+    <div class="nav-collapse"><!-- Inner navigation -->
+        <wicket:child /><!-- make extensions be rendered first -->
 
-                <ul>
-                    <li wicket:id="moduleLinks">
-                        <a wicket:id="link">
-                            <span wicket:id="label">Label</span>
+        <ul class="nav pull-right">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    Language <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li wicket:id="languages">
+                        <a wicket:id="languageLink">
+                            <img wicket:id="flag" />
+                            <span wicket:id="label">English</span>
                         </a>
                     </li>
                 </ul>
             </li>
+
         </ul>
     </div>
-</wicket:panel>
+</wicket:extend>

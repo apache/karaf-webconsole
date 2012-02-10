@@ -14,30 +14,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.core.preferences.util;
+package org.apache.karaf.webconsole.core.navigation.markup;
 
-import java.io.Serializable;
-
-import org.osgi.service.prefs.Preferences;
-import org.osgi.service.prefs.PreferencesService;
+import org.apache.karaf.webconsole.core.page.LoginPage;
+import org.apache.karaf.webconsole.core.security.WebConsoleSession;
+import org.apache.wicket.markup.html.link.Link;
 
 /**
- * Preferences service created on top of standard JDK implementation.
+ * Utility link to destroy session.
  */
-public class JdkPreferencesService implements PreferencesService, Serializable /* for tests*/ {
+public class LogoutLink extends Link<Void> {
+
+    public LogoutLink(String id) {
+        super(id);
+    }
 
     private static final long serialVersionUID = 1L;
 
-    public Preferences getSystemPreferences() {
-        return new JdkPreferences(java.util.prefs.Preferences.systemRoot());
-    }
-
-    public Preferences getUserPreferences(String name) {
-        return new JdkPreferences(java.util.prefs.Preferences.userRoot());
-    }
-
-    public String[] getUsers() {
-        return new String[] { System.getProperty("user.name") };
+    @Override
+    public void onClick() {
+        WebConsoleSession.get().invalidateNow();
+        getRequestCycle().setRedirect(true);
+        setResponsePage(LoginPage.class);
     }
 
 }

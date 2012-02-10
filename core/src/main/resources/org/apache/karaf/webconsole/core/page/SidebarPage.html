@@ -16,12 +16,15 @@
    limitations under the License.
 -->
 <wicket:extend xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
-    <div class="grid_3 sidebar-wrapper">
-        <div class="sidebar" wicket:id="sidebar">Sidebar goes here</div>
+
+    <div class="row-fluid">
+        <div class="span4">
+            <div class="sidebar" wicket:id="sidebar">Sidebar goes here</div>
+        </div>
+        <div class="span8">
+            <span wicket:id="feedback">Feedback stuff</span>
+            <wicket:child />
+        </div>
     </div>
-    <div class="grid_9 sidebar-content content">
-        <span wicket:id="feedback">Feedback stuff</span>
-        <wicket:child />
-    </div>
-    <div class="clear"></div>
+
 </wicket:extend>

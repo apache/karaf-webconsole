@@ -54,7 +54,6 @@ public class DefaultBrandProvider implements BrandProvider, Serializable /* for 
 
     public void modify(Page page) {
         page.add(getHeaderContribution(BasePage.class, "style.css"));
-        page.add(getHeaderContribution(BasePage.class, "grid.css"));
     }
 
 }

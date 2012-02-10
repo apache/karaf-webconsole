@@ -20,17 +20,11 @@ import java.util.List;
 
 import org.apache.karaf.webconsole.core.BasePage;
 import org.apache.karaf.webconsole.core.navigation.ConsoleTabProvider;
-import org.apache.karaf.webconsole.core.navigation.markup.NavigationPanel;
-import org.apache.karaf.webconsole.core.preferences.PreferencesPage;
-import org.apache.karaf.webconsole.core.security.SecuredPageLink;
-import org.apache.karaf.webconsole.core.security.WebConsoleSession;
+import org.apache.karaf.webconsole.core.navigation.markup.NavigationTopPanel;
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
-import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.LoadableDetachableModel;
-import org.apache.wicket.model.StringResourceModel;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
-import org.osgi.service.prefs.PreferencesService;
 
 /**
  * Page which requires admin role, in other words authorized user.
@@ -41,39 +35,15 @@ public class SecuredPage extends BasePage {
     @PaxWicketBean(name = "tabs")
     private List<ConsoleTabProvider> tabs;
 
-    @PaxWicketBean(name = "preferencesService")
-    private PreferencesService preferences;
-
-    public SecuredPage() {
-        add(new NavigationPanel("navigationPanel", new LoadableDetachableModel<List<ConsoleTabProvider>>() {
-
+    @Override
+    protected Panel createTopPanel(String id) {
+        return new NavigationTopPanel(id, getSupportedLocales(), new LoadableDetachableModel<List<ConsoleTabProvider>>() {
             private static final long serialVersionUID = 1L;
 
             @Override
             protected List<ConsoleTabProvider> load() {
                 return tabs;
             }
-        }));
-
-        String username = WebConsoleSession.get().getUsername();
-        add(new AvatarImage("avatar", preferences.getUserPreferences(username)));
-
-        add(new Label("username", username));
-        add(new SecuredPageLink<PreferencesPage>("preferencesLink", PreferencesPage.class));
-
-        Link<Void> aLink = new Link<Void>("logoutLink") {
-
-            private static final long serialVersionUID = 1L;
-
-            @Override
-            public void onClick() {
-                WebConsoleSession.get().invalidateNow();
-                getRequestCycle().setRedirect(true);
-                setResponsePage(LoginPage.class);
-            }
-        };
-
-        aLink.add(new Label("logoutTranslatedLink", new StringResourceModel("logout.link", this.getDefaultModel())));
-        add(aLink);
+        });
     }
 }

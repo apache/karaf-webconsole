@@ -59,7 +59,7 @@ public class SecuredPageTest extends WebConsoleTest {
         WicketTester tester = new WicketTester(application);
 
         tester.startPage(SecuredPage.class);
-        tester.clickLink("logoutLink");
+        tester.clickLink("topPanel:logoutLink");
         tester.assertRenderedPage(LoginPage.class);
     }
 
@@ -76,8 +76,8 @@ public class SecuredPageTest extends WebConsoleTest {
         List<ConsoleTabProvider> tabs = new ArrayList<ConsoleTabProvider>();
 
         SerializableConsoleTabProvider mock = createStrictMock(SerializableConsoleTabProvider.class);
-        expect(mock.getModuleLink(anyString(), anyString())).andAnswer(new LinkAnswer("test", BasePage.class));
         expect(mock.getItems(anyString(), anyString())).andReturn(emptyLinkList());
+        expect(mock.getModuleLink(anyString(), anyString())).andAnswer(new LinkAnswer("test", BasePage.class));
 
         tabs.add(mock);
         values.put("tabs", tabs);
@@ -107,11 +107,11 @@ public class SecuredPageTest extends WebConsoleTest {
         List<ConsoleTabProvider> tabs = new ArrayList<ConsoleTabProvider>();
 
         SerializableConsoleTabProvider mock = createStrictMock(SerializableConsoleTabProvider.class);
-        expect(mock.getModuleLink(anyString(), anyString())).andAnswer(new LinkAnswer("test", BasePage.class));
         LinksAnswer answer = new LinksAnswer();
         answer.addLink("A1", SecuredPage.class);
         answer.addLink("B1", SidebarPage.class);
         expect(mock.getItems(anyString(), anyString())).andAnswer(answer);
+        expect(mock.getModuleLink(anyString(), anyString())).andAnswer(new LinkAnswer("test", BasePage.class));
 
         tabs.add(mock);
         values.put("tabs", tabs);
@@ -124,8 +124,9 @@ public class SecuredPageTest extends WebConsoleTest {
 
         assertTabs(tester, tabs);
         assertTabLink(tester, 0, "test", BasePage.class, answer.getPageLinks());
-        tester.assertLabel("navigationPanel:tabs:0:moduleLinks:0:link:label", "A1");
-        tester.assertLabel("navigationPanel:tabs:0:moduleLinks:1:link:label", "B1");
+
+        tester.assertLabel("topPanel:tabs:0:moduleLinks:0:link:label", "A1");
+        tester.assertLabel("topPanel:tabs:0:moduleLinks:1:link:label", "B1");
 
         verify(mock);
     }
@@ -143,27 +144,27 @@ public class SecuredPageTest extends WebConsoleTest {
         List<ConsoleTabProvider> tabs = new ArrayList<ConsoleTabProvider>();
 
         SerializableConsoleTabProvider mock = createStrictMock(SerializableConsoleTabProvider.class);
+        expect(mock.getItems(anyString(), anyString())).andReturn(emptyLinkList());
         expect(mock.getModuleLink(anyString(), anyString())).andAnswer(new LinkAnswer("test1", BasePage.class));
-        expect(mock.getItems(anyString(), anyString())).andReturn(emptyLinkList());
         replay(mock);
         tabs.add(mock);
 
         mock = createStrictMock(SerializableConsoleTabProvider.class);
+        expect(mock.getItems(anyString(), anyString())).andReturn(emptyLinkList());
         expect(mock.getModuleLink(anyString(), anyString())).andAnswer(new LinkAnswer("test2", SecuredPage.class));
-        expect(mock.getItems(anyString(), anyString())).andReturn(emptyLinkList());
         replay(mock);
         tabs.add(mock);
 
         mock = createStrictMock(SerializableConsoleTabProvider.class);
+        expect(mock.getItems(anyString(), anyString())).andReturn(emptyLinkList());
         expect(mock.getModuleLink(anyString(), anyString())).andAnswer(new LinkAnswer("test3", SinglePage.class));
-        expect(mock.getItems(anyString(), anyString())).andReturn(emptyLinkList());
         replay(mock);
         tabs.add(mock);
 
 
         mock = createStrictMock(SerializableConsoleTabProvider.class);
-        expect(mock.getModuleLink(anyString(), anyString())).andAnswer(new LinkAnswer("test4", SidebarPage.class));
         expect(mock.getItems(anyString(), anyString())).andReturn(emptyLinkList());
+        expect(mock.getModuleLink(anyString(), anyString())).andAnswer(new LinkAnswer("test4", SidebarPage.class));
         replay(mock);
         tabs.add(mock);
 
@@ -185,7 +186,7 @@ public class SecuredPageTest extends WebConsoleTest {
     // additional asserts
 
     private void assertTabs(WicketTester tester, List<ConsoleTabProvider> tabs) {
-        tester.assertListView("navigationPanel:tabs", tabs);
+        tester.assertListView("topPanel:tabs", tabs);
     }
 
     private void assertTabLink(WicketTester tester, int position, String label, Class<? extends WebPage> page) {
@@ -193,9 +194,11 @@ public class SecuredPageTest extends WebConsoleTest {
     }
 
     private void assertTabLink(WicketTester tester, int position, String label, Class<? extends WebPage> page, List<Link<Page>> children) {
-        tester.assertLabel("navigationPanel:tabs:" + position + ":moduleLink:moduleLabel", label);
-        tester.assertBookmarkablePageLink("navigationPanel:tabs:" + position + ":moduleLink", page, "");
-        tester.assertListView("navigationPanel:tabs:" + position + ":moduleLinks", children);
+        tester.assertLabel("topPanel:tabs:" + position + ":moduleLink:moduleLabel", label);
+        tester.assertBookmarkablePageLink("topPanel:tabs:" + position + ":moduleLink", page, "");
+        if (!children.isEmpty()) {
+            tester.assertListView("topPanel:tabs:" + position + ":moduleLinks", children);
+        }
     }
 
     @Override

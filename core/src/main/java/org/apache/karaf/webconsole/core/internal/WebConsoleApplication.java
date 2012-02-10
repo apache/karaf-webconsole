@@ -48,6 +48,7 @@ public class WebConsoleApplication extends AuthenticatedWebApplication {
         getApplicationSettings().setPageExpiredErrorPage(PageExpiredErrorPage.class);
 
         getSecuritySettings().setAuthorizationStrategy(new RoleAuthorizationStrategy(new HierarchicalRoleCheckingStrategy()));
+        getMarkupSettings().setStripWicketTags(true);
     }
 
     /**

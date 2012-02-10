@@ -14,30 +14,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.core.preferences.util;
-
-import java.io.Serializable;
-
-import org.osgi.service.prefs.Preferences;
-import org.osgi.service.prefs.PreferencesService;
+package org.apache.karaf.webconsole.core.panel.feedback;
 
 /**
- * Preferences service created on top of standard JDK implementation.
+ * Enumeration which contains style names for alert panel. It points directly to
+ * bootstrap css classes.
  */
-public class JdkPreferencesService implements PreferencesService, Serializable /* for tests*/ {
+public enum AlertType {
 
-    private static final long serialVersionUID = 1L;
+    /**
+     * By default alert is orange, we don't need any additional classes.
+     */
+    WARNING(""),
 
-    public Preferences getSystemPreferences() {
-        return new JdkPreferences(java.util.prefs.Preferences.systemRoot());
+    /**
+     * Red background.
+     */
+    ERROR("alert-error"),
+
+    /**
+     * Green background.
+     */
+    SUCCESS("alert-success"),
+
+    /**
+     * Blue background
+     */
+    INFO("alert-info");
+
+    private String cssClass;
+
+    AlertType(String css) {
+        this.cssClass = css;
     }
 
-    public Preferences getUserPreferences(String name) {
-        return new JdkPreferences(java.util.prefs.Preferences.userRoot());
+    public String getCssClass() {
+        return cssClass;
     }
-
-    public String[] getUsers() {
-        return new String[] { System.getProperty("user.name") };
-    }
-
 }

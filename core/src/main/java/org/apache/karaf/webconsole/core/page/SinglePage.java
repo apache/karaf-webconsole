@@ -16,7 +16,7 @@
  */
 package org.apache.karaf.webconsole.core.page;
 
-import org.apache.wicket.markup.html.panel.FeedbackPanel;
+import org.apache.karaf.webconsole.core.panel.feedback.BootstrapFeedbackPanel;
 
 /**
  * Page which body uses all available space - all screen width.
@@ -24,7 +24,7 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 public class SinglePage extends SecuredPage {
 
     public SinglePage() {
-        add(new FeedbackPanel("feedback"));
+        add(new BootstrapFeedbackPanel("feedback"));
     }
 
 }

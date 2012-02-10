@@ -15,8 +15,29 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 -->
-<wicket:extend xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:panel xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
 
-    <wicket:child />
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
 
-</wicket:extend>
+                <!-- This part is visible for mobile devices -->
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+
+                <a class="brand" wicket:id="homeLink">
+                    WebConsole
+                </a>
+
+                <wicket:child />
+            </div>
+        </div>
+    </div>
+    <div class="pull-right">
+        <img wicket:id="logo" />
+    </div>
+
+</wicket:panel>

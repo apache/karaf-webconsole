@@ -18,7 +18,7 @@ package org.apache.karaf.webconsole.core.page;
 
 import org.apache.karaf.webconsole.core.internal.SidebarPanel;
 import org.apache.karaf.webconsole.core.navigation.SidebarProvider;
-import org.apache.wicket.markup.html.panel.FeedbackPanel;
+import org.apache.karaf.webconsole.core.panel.feedback.BootstrapFeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 
 /**
@@ -30,7 +30,7 @@ public class SidebarPage extends SecuredPage {
     private Panel sidebar;
 
     public SidebarPage() {
-        add(new FeedbackPanel("feedback"));
+        add(new BootstrapFeedbackPanel("feedback"));
     }
 
     protected void setSidebarProvider(SidebarProvider provider) {
