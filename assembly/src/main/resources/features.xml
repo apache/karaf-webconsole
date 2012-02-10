@@ -41,8 +41,7 @@
   <feature name="webconsole-osgi" version="${project.version}" description="Karaf WebConsole OSGi Core">
     <details>Adds support for osgi packages to the webconsole.</details>
     <feature>webconsole-core</feature>
-    <bundle>mvn:org.apache.karaf.webconsole.osgi/org.apache.karaf.webconsole.osgi.framework/${project.version}</bundle>
-    <bundle>mvn:org.apache.karaf.webconsole.osgi/org.apache.karaf.webconsole.osgi.bundle/${project.version}</bundle>
+    <bundle>mvn:org.apache.karaf.webconsole.osgi/org.apache.karaf.webconsole.osgi.core/${project.version}</bundle>
   </feature>
 
   <feature name="webconsole-config" version="${project.version}" description="Karaf WebConsole OSGi ConfigurationAdmin">
@@ -82,7 +81,7 @@
     <details>Adds support for osgi Service Components. This feature also install felix scr runtime.</details>
     <feature>webconsole-osgi</feature>
     <bundle>mvn:org.apache.felix/org.apache.felix.scr/${felix-scr.version}</bundle>
-    <bundle>mvn:org.apache.karaf.webconsole.osgi/org.apache.karaf.webconsole.osgi.log/${project.version}</bundle>
+    <bundle>mvn:org.apache.karaf.webconsole.osgi/org.apache.karaf.webconsole.osgi.scr/${project.version}</bundle>
   </feature>
 
 </features>

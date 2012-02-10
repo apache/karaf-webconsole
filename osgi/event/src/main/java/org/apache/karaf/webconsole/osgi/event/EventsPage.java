@@ -21,9 +21,9 @@ import java.util.List;
 
 import org.apache.karaf.webconsole.core.table.OrdinalColumn;
 import org.apache.karaf.webconsole.core.table.PropertyColumnExt;
+import org.apache.karaf.webconsole.osgi.core.shared.OsgiPage;
 import org.apache.karaf.webconsole.osgi.event.model.EventTopicInfo;
 import org.apache.karaf.webconsole.osgi.event.model.EventTopicsProvider;
-import org.apache.karaf.webconsole.osgi.framework.OsgiPage;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;

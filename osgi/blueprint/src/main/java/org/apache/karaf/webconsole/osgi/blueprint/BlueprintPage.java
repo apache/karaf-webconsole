@@ -48,7 +48,7 @@ public class BlueprintPage extends SinglePage {
 
                 PageParameters params = new PageParameters();
                 params.put("bundleId", reference.getBundle().getBundleId());
-                item.add(new BookmarkablePageLink<DetailsPage>("details", DetailsPage.class, params));
+                item.add(new BookmarkablePageLink<SingleBundlePage>("details", SingleBundlePage.class, params));
             }
             
         });

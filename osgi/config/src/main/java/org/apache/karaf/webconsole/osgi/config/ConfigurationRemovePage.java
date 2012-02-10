@@ -18,7 +18,7 @@ package org.apache.karaf.webconsole.osgi.config;
 
 import org.apache.karaf.webconsole.osgi.config.model.ConfigurationModel;
 import org.apache.karaf.webconsole.osgi.config.view.ConfigurationRemoveForm;
-import org.apache.karaf.webconsole.osgi.framework.OsgiPage;
+import org.apache.karaf.webconsole.osgi.core.shared.OsgiPage;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
 import org.ops4j.pax.wicket.api.PaxWicketBean;

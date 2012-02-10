@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.karaf.webconsole.osgi.blueprint.model.ServiceReferenceModel;
+import org.apache.karaf.webconsole.osgi.core.shared.ServiceReferenceModel;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.model.IModel;
 import org.osgi.framework.ServiceReference;

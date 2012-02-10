@@ -19,7 +19,7 @@
    <implementation class="org.apache.karaf.webconsole.osgi.scr.ScrDecorationProvider" />
 
    <service>
-      <provide interface="org.apache.karaf.webconsole.osgi.bundle.IDecorationProvider"/>
+      <provide interface="org.apache.karaf.webconsole.osgi.core.spi.IDecorationProvider"/>
    </service>
 
    <reference name="ScrService" cardinality="1..1" interface="org.apache.felix.scr.ScrService" policy="static" bind="bind" unbind="unbind" />

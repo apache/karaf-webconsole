@@ -18,7 +18,7 @@ package org.apache.karaf.webconsole.osgi.blueprint.bundle;
 
 import org.apache.karaf.webconsole.osgi.blueprint.IBlueprintBundleStateTracker;
 import org.apache.karaf.webconsole.osgi.blueprint.details.DetailsPage;
-import org.apache.karaf.webconsole.osgi.bundle.IActionProvider;
+import org.apache.karaf.webconsole.osgi.core.spi.IActionProvider;
 import org.apache.wicket.Component;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;

@@ -19,7 +19,7 @@ package org.apache.karaf.webconsole.osgi.blueprint.details;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.karaf.webconsole.osgi.framework.OsgiPage;
+import org.apache.karaf.webconsole.osgi.core.shared.OsgiPage;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.JavascriptPackageResource;
 import org.apache.wicket.markup.html.basic.Label;

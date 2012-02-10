@@ -33,7 +33,7 @@
     <dependencies>
         <dependency>
             <groupId>org.apache.karaf.webconsole.osgi</groupId>
-            <artifactId>org.apache.karaf.webconsole.osgi.framework</artifactId>
+            <artifactId>org.apache.karaf.webconsole.osgi.core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.osgi</groupId>

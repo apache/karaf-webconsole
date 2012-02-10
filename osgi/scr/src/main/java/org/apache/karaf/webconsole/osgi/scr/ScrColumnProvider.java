@@ -16,7 +16,7 @@
  */
 package org.apache.karaf.webconsole.osgi.scr;
 
-import org.apache.karaf.webconsole.osgi.bundle.IColumnProvider;
+import org.apache.karaf.webconsole.osgi.core.spi.IColumnProvider;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.osgi.framework.Bundle;
 
@@ -24,6 +24,8 @@ import org.osgi.framework.Bundle;
  * Scr column provider, creates a dedicated column.
  */
 public class ScrColumnProvider extends ScrComponent implements IColumnProvider {
+
+    private static final long serialVersionUID = 1L;
 
     public IColumn<Bundle> getColumn() {
         return new ScrColumn(scr, "SCR");

@@ -31,11 +31,10 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>bundle</module>
         <module>log</module>
         <module>event</module>
         <module>config</module>
-        <module>framework</module>
+        <module>core</module>
         <module>blueprint</module>
         <module>scr</module>
     </modules>
@@ -44,7 +43,7 @@
         <dependencies>
             <dependency>
                 <groupId>org.apache.karaf.webconsole.osgi</groupId>
-                <artifactId>org.apache.karaf.webconsole.osgi.framework</artifactId>
+                <artifactId>org.apache.karaf.webconsole.osgi.core</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>

@@ -17,7 +17,7 @@
 package org.apache.karaf.webconsole.osgi.config;
 
 import org.apache.karaf.webconsole.osgi.config.view.ConfigurationsDataTable;
-import org.apache.karaf.webconsole.osgi.framework.OsgiPage;
+import org.apache.karaf.webconsole.osgi.core.shared.OsgiPage;
 import org.apache.wicket.markup.html.CSSPackageResource;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;

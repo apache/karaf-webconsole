@@ -20,7 +20,7 @@ package org.apache.karaf.webconsole.osgi.scr;
 import static org.apache.wicket.markup.html.CSSPackageResource.getHeaderContribution;
 
 import org.apache.karaf.webconsole.core.panel.CssImagePanel;
-import org.apache.karaf.webconsole.osgi.bundle.IDecorationProvider;
+import org.apache.karaf.webconsole.osgi.core.spi.IDecorationProvider;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.osgi.framework.Bundle;

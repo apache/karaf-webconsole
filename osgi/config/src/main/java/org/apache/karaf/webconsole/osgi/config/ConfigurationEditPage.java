@@ -24,7 +24,7 @@ import org.apache.karaf.webconsole.core.table.map.MapDataProvider;
 import org.apache.karaf.webconsole.core.table.map.MapDataTable;
 import org.apache.karaf.webconsole.core.util.DictionaryUtils;
 import org.apache.karaf.webconsole.osgi.config.model.ConfigurationModel;
-import org.apache.karaf.webconsole.osgi.framework.OsgiPage;
+import org.apache.karaf.webconsole.osgi.core.shared.OsgiPage;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.RequestCycle;
 import org.apache.wicket.Session;
