@@ -12,12 +12,12 @@ import org.apache.wicket.markup.html.link.Link;
 
 public class KarafConsoleTabProvider implements ConsoleTabProvider {
 
-    public List<Link<Page>> getItems(String componentId, String labelId) {
-        return Collections.emptyList();
-    }
-
     public Link<Page> getModuleLink(String componentId, String labelId) {
         return createPageLink(componentId, labelId, "Karaf", KarafOverviewPage.class);
+    }
+
+    public List<Link<Page>> getItems(String componentId, String labelId) {
+        return Collections.emptyList();
     }
 
 }

@@ -50,7 +50,7 @@ public class FeaturesIntegrationTest {
     @Configuration
     public Option[] config() {
         String karafVersion = MavenUtils.getArtifactVersion("org.apache.karaf", "karaf");
-        String webconsoleVersion = MavenUtils.getArtifactVersion("org.apache.karaf.webconsole", "features");
+        String webconsoleVersion = MavenUtils.getArtifactVersion("org.apache.karaf.webconsole", "apache-karaf-webconsole");
         return new Option[] {
             karafDistributionConfiguration().frameworkUrl(
                 maven().groupId("org.apache.karaf").artifactId("apache-karaf").version(karafVersion).type("zip")
@@ -68,7 +68,11 @@ public class FeaturesIntegrationTest {
 
     @Test
     public void someTest() throws Exception {
-        String url = maven("org.apache.karaf.webconsole", "features").version(featuresVersion).classifier("features").type("xml").getURL();
+        String url = maven("org.apache.karaf.webconsole", "apache-karaf-webconsole")
+            .version(featuresVersion)
+            .classifier("features")
+            .type("xml")
+            .getURL();
 
         features.addRepository(new URI(url));
 

@@ -33,7 +33,7 @@
     <modules>
         <module>core</module>
         <module>admin</module>
-        <module>features</module>
+        <module>feature</module>
     </modules>
 
     <dependencyManagement>

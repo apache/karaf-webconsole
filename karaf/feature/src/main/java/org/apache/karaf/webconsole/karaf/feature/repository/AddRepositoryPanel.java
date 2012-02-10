@@ -14,35 +14,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.karaf.admin.settings;
+package org.apache.karaf.webconsole.karaf.feature.repository;
 
-import org.apache.karaf.webconsole.karaf.admin.model.WicketInstanceSettings;
+import java.net.URI;
+
+import org.apache.karaf.features.FeaturesService;
+import org.apache.karaf.features.Repository;
+import org.apache.karaf.webconsole.core.form.LabelBorder;
 import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.ResourceModel;
+import org.ops4j.pax.wicket.api.PaxWicketBean;
 
-/**
- * Instance settings modification form.
- */
-public class InstanceSettingsForm extends Form<WicketInstanceSettings> {
+public class AddRepositoryPanel extends Panel {
 
     private static final long serialVersionUID = 1L;
 
-    public InstanceSettingsForm(String id, IModel<WicketInstanceSettings> model) {
-        super(id, new CompoundPropertyModel<WicketInstanceSettings>(model));
+    @PaxWicketBean(name = "featuresService")
+    private FeaturesService featuresService;
 
-        add(new TextField<Integer>("sshPort"));
-        add(new TextField<Integer>("rmiRegistryPort"));
-        add(new TextField<Integer>("rmiServerPort"));
+    private TextField<URI> uri;
 
-        add(new TextArea<String>("javaOpts"));
-        add(new TextField<String>("location"));
+    public AddRepositoryPanel(String id, IModel<Repository> model) {
+        super(id);
 
-        // we need additional checks here
-        //add(new TextArea<String>("features"));
-        //add(new TextArea<String>("featureURLs"));
+        Form<Repository> form = new Form<Repository>("add", new CompoundPropertyModel<Repository>(model));
+        uri = new TextField<URI>("uri");
+        uri.setRequired(true);
+
+        LabelBorder border = new LabelBorder("border", new ResourceModel("feature.repository.uri"), uri);
+        border.setHelp(new ResourceModel("feature.repository.uri.help"));
+        form.add(border);
+        add(form);
     }
+
 
 }

@@ -1,16 +1,16 @@
 package org.apache.karaf.webconsole.karaf.core;
 
-import org.apache.karaf.webconsole.core.page.SecuredPage;
-import org.apache.karaf.webconsole.karaf.core.model.Karaf;
+import org.apache.karaf.webconsole.core.page.SinglePage;
+import org.apache.karaf.webconsole.karaf.core.model.WicketKaraf;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 
 @PaxWicketMountPoint(mountPoint = "/karaf")
-public class KarafOverviewPage extends SecuredPage {
+public class KarafOverviewPage extends SinglePage {
 
     public KarafOverviewPage() {
-        setDefaultModel(new CompoundPropertyModel<Karaf>(new Karaf()));
+        setDefaultModel(new CompoundPropertyModel<WicketKaraf>(new WicketKaraf()));
 
         add(new Label("version"));
 

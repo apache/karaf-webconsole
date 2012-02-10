@@ -14,23 +14,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.karaf.admin.settings;
+package org.apache.karaf.webconsole.karaf.admin.model;
 
-import org.apache.karaf.webconsole.karaf.admin.model.WicketInstanceSettings;
-import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.IModel;
+import java.io.Serializable;
 
 /**
- * Panel to wrap instance settings.
+ * Serializable instance for wicket.
  */
-public class InstanceSettingsPanel extends Panel {
+public class WicketInstance implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public InstanceSettingsPanel(String id, IModel<WicketInstanceSettings> model) {
-        super(id, model);
+    private String name;
 
-        add(new InstanceSettingsForm("settings", model));
+    private WicketInstanceSettings settings;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public WicketInstanceSettings getSettings() {
+        return settings;
+    }
+
+    public void setSettings(WicketInstanceSettings settings) {
+        this.settings = settings;
     }
 
 }

@@ -14,23 +14,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.karaf.admin.settings;
+package org.apache.karaf.webconsole.karaf.feature.model;
 
-import org.apache.karaf.webconsole.karaf.admin.model.WicketInstanceSettings;
-import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.IModel;
+import java.net.URI;
 
-/**
- * Panel to wrap instance settings.
- */
-public class InstanceSettingsPanel extends Panel {
+public class RepositoryNotFoundException extends RuntimeException {
 
-    private static final long serialVersionUID = 1L;
-
-    public InstanceSettingsPanel(String id, IModel<WicketInstanceSettings> model) {
-        super(id, model);
-
-        add(new InstanceSettingsForm("settings", model));
+    public RepositoryNotFoundException(URI uri) {
+        super(uri.toString());
     }
 
 }

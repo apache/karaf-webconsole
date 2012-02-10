@@ -15,15 +15,13 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 -->
-<wicket:extend xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
-    <h1>Create new instance</h1>
-
-    <form wicket:id="instance">
-        Name<br />
-        <input type="text" wicket:id="name" />
-
-        <div wicket:id="settings"></div>
-
-        <input wicket:id="submit" type="submit" />
+<wicket:panel xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+    <form wicket:id="add">
+        <fieldset>
+            <legend>Feature details</legend>
+            <div class="control-group" wicket:id="border">
+                <input type="text" class="input-xlarge" id="uri" wicket:id="uri" />
+            </div>
+        </fieldset>
     </form>
-</wicket:extend>
+</wicket:panel>

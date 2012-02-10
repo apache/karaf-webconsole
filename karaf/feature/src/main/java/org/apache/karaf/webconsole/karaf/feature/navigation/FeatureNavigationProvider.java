@@ -14,27 +14,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.karaf.admin.navigation;
-
-import static org.apache.karaf.webconsole.core.util.LinkUtils.createPageLink;
+package org.apache.karaf.webconsole.karaf.feature.navigation;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.karaf.webconsole.core.navigation.NavigationProvider;
-import org.apache.karaf.webconsole.karaf.admin.list.InstancePage;
+import org.apache.karaf.webconsole.karaf.feature.feature.FeaturesPage;
+import org.apache.karaf.webconsole.karaf.feature.repository.RepositoriesPage;
 import org.apache.wicket.Page;
+import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.model.ResourceModel;
 
-/**
- * Navigation provider for admin module.
- */
-public class AdminNavigationProvider implements NavigationProvider {
+public class FeatureNavigationProvider implements NavigationProvider {
 
     public List<Link<Page>> getItems(String componentId, String labelId) {
-        List<Link<Page>> links = new ArrayList<Link<Page>>();
-        links.add(createPageLink(componentId, labelId, "Instances", InstancePage.class));
-        return links;
+        List<Link<Page>> items = new ArrayList<Link<Page>>();
+
+        Link<Page> link = new BookmarkablePageLink<Page>(componentId, FeaturesPage.class);
+        link.add(new Label(labelId, new ResourceModel("features", "Features")));
+        items.add(link);
+
+        link = new BookmarkablePageLink<Page>(componentId, RepositoriesPage.class);
+        link.add(new Label(labelId, new ResourceModel("repositories", "Repositories")));
+        items.add(link);
+
+        return items;
     }
+
 
 }

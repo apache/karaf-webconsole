@@ -14,31 +14,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.karaf.admin.model;
+package org.apache.karaf.webconsole.karaf.feature;
 
-import org.apache.karaf.admin.AdminService;
-import org.apache.karaf.admin.Instance;
+import org.apache.karaf.features.Feature;
+import org.apache.karaf.features.FeaturesService;
 import org.apache.wicket.model.LoadableDetachableModel;
 
-/**
- * Karaf instance model.
- */
-public class InstanceModel extends LoadableDetachableModel<Instance> {
+public class FeatureModel extends LoadableDetachableModel<Feature> {
 
-    private static final long serialVersionUID = 1L;
-
-    private AdminService admin;
+    private FeaturesService service;
+    private String version;
     private String name;
 
-    public InstanceModel(AdminService admin, Instance object) {
-        super(object);
-        this.admin = admin;
+    public FeatureModel(FeaturesService service, Feature object) {
+        this.service = service;
         this.name = object.getName();
+        this.version = object.getVersion();
     }
 
     @Override
-    protected Instance load() {
-        return admin.getInstance(name);
-    }
+    protected Feature load() {
+        Feature[] features = new Feature[0];
 
+        try {
+            features = service.listFeatures();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        for (Feature feature : features) {
+            if (name.equals(feature.getName()) && version.equals(feature.getVersion())) {
+                return feature;
+            }
+        }
+
+        throw new MissingFeatureException(name, version);
+    }
 }

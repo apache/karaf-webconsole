@@ -14,23 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.karaf.admin.settings;
+package org.apache.karaf.webconsole.karaf.feature;
 
-import org.apache.karaf.webconsole.karaf.admin.model.WicketInstanceSettings;
-import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.IModel;
+public class MissingFeatureException extends RuntimeException {
 
-/**
- * Panel to wrap instance settings.
- */
-public class InstanceSettingsPanel extends Panel {
-
-    private static final long serialVersionUID = 1L;
-
-    public InstanceSettingsPanel(String id, IModel<WicketInstanceSettings> model) {
-        super(id, model);
-
-        add(new InstanceSettingsForm("settings", model));
+    public MissingFeatureException(String name, String version) {
+        super("Feature " + name + " with version " + version + " is no longer available");
     }
 
 }

@@ -14,23 +14,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.karaf.admin.settings;
+package org.apache.karaf.webconsole.karaf.feature.widget;
 
-import org.apache.karaf.webconsole.karaf.admin.model.WicketInstanceSettings;
+import org.apache.karaf.features.FeaturesService;
+import org.apache.karaf.webconsole.core.widget.WidgetProvider;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.IModel;
 
-/**
- * Panel to wrap instance settings.
- */
-public class InstanceSettingsPanel extends Panel {
+public class KarafFeatureWidgetProvider implements WidgetProvider {
 
-    private static final long serialVersionUID = 1L;
+    private final FeaturesService service;
 
-    public InstanceSettingsPanel(String id, IModel<WicketInstanceSettings> model) {
-        super(id, model);
+    public KarafFeatureWidgetProvider(FeaturesService service) {
+        this.service = service;
+    }
 
-        add(new InstanceSettingsForm("settings", model));
+    public Panel createPanel(String id) {
+        return new FeatureWidgetPanel(id, service);
     }
 
 }

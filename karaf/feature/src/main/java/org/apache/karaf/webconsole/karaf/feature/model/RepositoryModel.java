@@ -14,31 +14,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.karaf.admin.model;
+package org.apache.karaf.webconsole.karaf.feature.model;
 
-import org.apache.karaf.admin.AdminService;
-import org.apache.karaf.admin.Instance;
+import java.net.URI;
+
+import org.apache.karaf.features.FeaturesService;
+import org.apache.karaf.features.Repository;
 import org.apache.wicket.model.LoadableDetachableModel;
 
-/**
- * Karaf instance model.
- */
-public class InstanceModel extends LoadableDetachableModel<Instance> {
+public class RepositoryModel extends LoadableDetachableModel<Repository> {
 
-    private static final long serialVersionUID = 1L;
+    private final FeaturesService service;
+    private URI uri;
 
-    private AdminService admin;
-    private String name;
-
-    public InstanceModel(AdminService admin, Instance object) {
-        super(object);
-        this.admin = admin;
-        this.name = object.getName();
+    public RepositoryModel(FeaturesService service, Repository object) {
+        this.service = service;
+        this.uri = object.getURI();
     }
 
     @Override
-    protected Instance load() {
-        return admin.getInstance(name);
+    protected Repository load() {
+        Repository[] repositories = service.listRepositories();
+        for (Repository repo : repositories) {
+            if (uri.equals(repo.getURI())) {
+                return repo;
+            }
+        }
+
+        throw new RepositoryNotFoundException(uri);
     }
 
 }

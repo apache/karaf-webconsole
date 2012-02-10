@@ -15,15 +15,18 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 -->
-<wicket:extend xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
-    <h1>Create new instance</h1>
+<wicket:panel xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+    <div class="span3 widget">
+        <h3>Karaf Features</h3>
+        <p>
+            You have <span wicket:id="featuresCount">10</span> features.
+            <span wicket:id="installedCount">10</span> installed and
+            <span wicket:id="uninstalledCount">10</span> waiting for installation.
+        </p>
 
-    <form wicket:id="instance">
-        Name<br />
-        <input type="text" wicket:id="name" />
-
-        <div wicket:id="settings"></div>
-
-        <input wicket:id="submit" type="submit" />
-    </form>
-</wicket:extend>
+        <p>
+            <a wicket:id="featuresLink">Go to feature management</a>
+            <a wicket:id="repositoriesLink">Go to repository management</a>
+        </p>
+    </div>
+</wicket:panel>

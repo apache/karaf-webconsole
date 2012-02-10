@@ -15,29 +15,23 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 -->
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
-    <wicket:head>
-        <title>Karaf WebConsole</title>
-    </wicket:head>
+<wicket:panel xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+    <form wicket:id="settings">
+        SSH port<br />
+        <input type="text" wicket:id="sshPort" />
 
-    <wicket:panel>
-        <form wicket:id="settings">
-            SSH port<br />
-            <input type="text" wicket:id="sshPort" />
+        <h2>RMI Connector</h2>
+        Registry port<br />
+        <input type="text" wicket:id="rmiRegistryPort" />
+        Server port<br />
+        <input type="text" wicket:id="rmiServerPort" />
 
-            <h2>RMI Connector</h2>
-            Registry port<br />
-            <input type="text" wicket:id="rmiRegistryPort" />
-            Server port<br />
-            <input type="text" wicket:id="rmiServerPort" />
+        <h2>Runtime</h2>
+        Java process options<br />
+        <textarea wicket:id="javaOpts"></textarea>
 
-            <h2>Runtime</h2>
-            Java process options<br />
-            <textarea wicket:id="javaOpts"></textarea>
-
-            <h2>Read only properties</h2>
-            Instance location<br />
-            <input type="text" wicket:id="location" />
-        </form>
-    </wicket:panel>
-</html>
+        <h2>Read only properties</h2>
+        Instance location<br />
+        <input type="text" wicket:id="location" />
+    </form>
+</wicket:panel>
