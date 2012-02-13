@@ -15,11 +15,16 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 -->
-<wicket:border xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
-    <label class="control-label" wicket:id="label"></label>
-    <div class="controls">
-        <wicket:body />
-        <span wicket:id="help" class="help-inline"></span>
-        <span wicket:id="error" class="help-inline"></span>
-    </div>
-</wicket:border>
+<wicket:extend xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+    <h1>Install bundle</h1>
+
+    <form wicket:id="install">
+        <div wicket:id="bundle">
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary" wicket:id="confirm">Install</button>
+            <a class="btn" wicket:id="cancel">Cancel</a>
+        </div>
+    </form>
+</wicket:extend>

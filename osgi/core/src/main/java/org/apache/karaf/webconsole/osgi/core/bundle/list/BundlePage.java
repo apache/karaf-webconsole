@@ -22,17 +22,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.karaf.webconsole.core.table.PropertyColumnExt;
+import org.apache.karaf.webconsole.osgi.core.bundle.install.InstallBundlePage;
 import org.apache.karaf.webconsole.osgi.core.shared.BundleDataProvider;
 import org.apache.karaf.webconsole.osgi.core.shared.OsgiPage;
 import org.apache.karaf.webconsole.osgi.core.shared.State;
 import org.apache.karaf.webconsole.osgi.core.spi.IActionProvider;
 import org.apache.karaf.webconsole.osgi.core.spi.IColumnProvider;
 import org.apache.karaf.webconsole.osgi.core.spi.IDecorationProvider;
+import org.apache.wicket.Page;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -90,6 +93,8 @@ public class BundlePage extends OsgiPage {
         });
 
         add(new DefaultDataTable<Bundle>("bundles", columns, new BundleDataProvider(context), 100));
+
+        add(new BookmarkablePageLink<Page>("install", InstallBundlePage.class));
     }
 
 }
