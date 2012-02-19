@@ -49,9 +49,9 @@ public class RefreshLink extends Link<Bundle> {
 
         try {
             admin.refreshPackages(new Bundle[] { bundle });
-            Session.get().info(getLocalizer().getString("bundle.refresh", this, getModel()));
+            Session.get().info(getString("bundle.refresh", getModel()));
         } catch (Exception e) {
-            Session.get().info(getLocalizer().getString("bundle.refresh.fail", this, Model.of(e)));
+            Session.get().info(getString("bundle.refresh.fail", Model.of(e)));
         }
         RequestCycle.get().setResponsePage(BundlePage.class);
     }

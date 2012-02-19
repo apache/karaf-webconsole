@@ -45,9 +45,9 @@ public class UpdateLink extends Link<Bundle> {
 
         try {
             bundle.update();
-            Session.get().info(getLocalizer().getString("bundle.update", this, getModel()));
+            Session.get().info(getString("bundle.update", getModel()));
         } catch (BundleException e) {
-            Session.get().error(getLocalizer().getString("bundle.update.fail", this, Model.of(e)));
+            Session.get().error(getString("bundle.update.fail", Model.of(e)));
         }
         RequestCycle.get().setResponsePage(BundlePage.class);
     }

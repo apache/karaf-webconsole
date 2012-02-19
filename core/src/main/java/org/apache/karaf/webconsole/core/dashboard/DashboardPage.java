@@ -41,7 +41,7 @@ public class DashboardPage extends SinglePage {
     public DashboardPage(PageParameters parameters) {
         add(CSSPackageResource.getHeaderContribution(DashboardPage.class, "dashboard.css"));
 
-        add(new Label("noWidgets", "So far there is no widgets to display") {
+        add(new Label("noWidgets", getString("widgets.empty")) {
             private static final long serialVersionUID = 1L;
 
             @Override

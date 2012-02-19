@@ -49,9 +49,9 @@ public class ResolveLink extends Link<Bundle> {
 
         try {
             admin.resolveBundles(new Bundle[] { bundle });
-            Session.get().info(getLocalizer().getString("bundle.resolve", this, getModel()));
+            Session.get().info(getString("bundle.resolve", getModel()));
         } catch (Exception e) {
-            Session.get().info(getLocalizer().getString("bundle.resolve.fail", this, Model.of(e)));
+            Session.get().info(getString("bundle.resolve.fail", Model.of(e)));
         }
         RequestCycle.get().setResponsePage(BundlePage.class);
     }

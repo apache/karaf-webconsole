@@ -44,9 +44,9 @@ public class StartLink extends Link<Bundle> {
 
         try {
             bundle.start();
-            Session.get().info(getLocalizer().getString("bundle.start", this, getModel()));
+            Session.get().info(getString("bundle.start", getModel()));
         } catch (BundleException e) {
-            Session.get().error(getLocalizer().getString("bundle.start.fail", this, Model.of(e)));
+            Session.get().error(getString("bundle.start.fail", Model.of(e)));
         }
         RequestCycle.get().setResponsePage(BundlePage.class);
     }

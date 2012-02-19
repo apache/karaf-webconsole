@@ -20,7 +20,7 @@
     <ul class="nav">
         <li wicket:id="tabs">
             <a wicket:id="moduleLink">
-                <span wicket:id="moduleLabel">Category</span>
+                <span wicket:id="moduleLabel"></span>
             </a>
         </li>
         <li class="divider-vertical"></li>
@@ -31,19 +31,21 @@
     <ul class="nav pull-right">
         <li class="dropdown active">
             <a href="#" data-toggle="dropdown" class="dropdown-toggle">
-                <span wicket:id="username">Admin</span>
+                <span wicket:id="username"></span>
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
                 <li>
                     <img wicket:id="avatar" />
-                    <a wicket:id="preferencesLink">Preferences</a>
+                    <a wicket:id="preferencesLink">
+                        <wicket:message key="preferences" />
+                    </a>
                 </li>
             </ul>
         </li>
         <li>
             <a wicket:id="logoutLink">
-                <span wicket:id="label">Logout</span>
+                <wicket:message key="logout" />
             </a>
         </li>
         

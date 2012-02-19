@@ -44,9 +44,9 @@ public class StopLink extends Link<Bundle> {
 
         try {
             bundle.stop();
-            Session.get().info(getLocalizer().getString("bundle.stop", this, getModel()));
+            Session.get().info(getString("bundle.stop", getModel()));
         } catch (BundleException e) {
-            Session.get().error(getLocalizer().getString("bundle.stop.fail", this, Model.of(e)));
+            Session.get().error(getString("bundle.stop.fail", Model.of(e)));
         }
         RequestCycle.get().setResponsePage(BundlePage.class);
     }

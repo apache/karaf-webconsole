@@ -36,7 +36,6 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.model.StringResourceModel;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.osgi.service.prefs.PreferencesService;
 
@@ -64,10 +63,7 @@ public class NavigationTopPanel extends LanguageTopPanel {
         add(new Label("username", username));
         add(new SecuredPageLink<PreferencesPage>("preferencesLink", PreferencesPage.class));
 
-        Link<Void> aLink = new LogoutLink("logoutLink");
-        aLink.add(new Label("label", new StringResourceModel("logout.link", this.getDefaultModel())));
-        add(aLink);
-
+        add(new LogoutLink("logoutLink"));
     }
 
     protected Component createTabList() {

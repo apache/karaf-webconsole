@@ -44,9 +44,9 @@ public class UninstallLink extends Link<Bundle> {
 
         try {
             bundle.uninstall();
-            Session.get().info(getLocalizer().getString("bundle.uninstall", this, getModel()));
+            Session.get().info(getString("bundle.uninstall", getModel()));
         } catch (BundleException e) {
-            Session.get().error(getLocalizer().getString("bundle.uninstall.fail", this, Model.of(e)));
+            Session.get().error(getString("bundle.uninstall.fail", Model.of(e)));
         }
         RequestCycle.get().setResponsePage(BundlePage.class);
     }
