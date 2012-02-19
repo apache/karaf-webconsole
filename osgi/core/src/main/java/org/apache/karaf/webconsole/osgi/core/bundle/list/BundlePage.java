@@ -44,6 +44,9 @@ import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 import org.osgi.framework.Bundle;
 import org.osgi.service.startlevel.StartLevel;
 
+/**
+ * Bundle list page.
+ */
 @PaxWicketMountPoint(mountPoint = "/osgi/bundle")
 public class BundlePage extends OsgiPage {
 
@@ -62,18 +65,24 @@ public class BundlePage extends OsgiPage {
     public BundlePage() {
         List<IColumn<Bundle>> columns = new ArrayList<IColumn<Bundle>>();
         columns.add(new AbstractColumn<Bundle>(of("")) {
+            private static final long serialVersionUID = 1L;
+
             public void populateItem(Item<ICellPopulator<Bundle>> cellItem, final String componentId, final IModel<Bundle> rowModel) {
                 cellItem.add(new DecorationPanel(componentId, rowModel, decorationProviders));
             }
         });
         columns.add(new PropertyColumnExt<Bundle>("Bundle Id", "bundleId"));
         columns.add(new AbstractColumn<Bundle>(of("State")) {
+            private static final long serialVersionUID = 1L;
+
             public void populateItem(Item<ICellPopulator<Bundle>> cellItem, final String componentId, final IModel<Bundle> rowModel) {
                 cellItem.add(new Label(componentId, State.of(rowModel.getObject().getState()).name()));
             }
             
         });
         columns.add(new AbstractColumn<Bundle>(of("Start level")) {
+            private static final long serialVersionUID = 1L;
+
             public void populateItem(Item<ICellPopulator<Bundle>> cellItem, final String componentId, final IModel<Bundle> rowModel) {
                 cellItem.add(new Label(componentId, of(startLevel.getBundleStartLevel(rowModel.getObject()))));
             }
@@ -87,6 +96,8 @@ public class BundlePage extends OsgiPage {
         columns.add(new PropertyColumnExt<Bundle>("Name", "symbolicName"));
         columns.add(new PropertyColumnExt<Bundle>("Version", "version.toString"));
         columns.add(new AbstractColumn<Bundle>(Model.of("Operations")) {
+            private static final long serialVersionUID = 1L;
+
             public void populateItem(Item<ICellPopulator<Bundle>> cellItem, final String componentId, final IModel<Bundle> rowModel) {
                 cellItem.add(new BundleActionsPanel(componentId, rowModel, actionProviders));
             }

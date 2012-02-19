@@ -64,4 +64,13 @@ public class ActionsPanel<T> extends Panel {
         return Collections.emptyList();
     }
 
+    /**
+     * Gets model
+     * 
+     * @return model
+     */
+    @SuppressWarnings("unchecked")
+    public final IModel<T> getModel() {
+        return (IModel<T>) getDefaultModel();
+    }
 }

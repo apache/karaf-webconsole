@@ -21,19 +21,19 @@ import java.util.List;
 
 import org.apache.karaf.webconsole.core.table.ActionsPanel;
 import org.apache.karaf.webconsole.osgi.core.bundle.SingleBundlePage;
+import org.apache.karaf.webconsole.osgi.core.bundle.list.link.RefreshLink;
+import org.apache.karaf.webconsole.osgi.core.bundle.list.link.ResolveLink;
+import org.apache.karaf.webconsole.osgi.core.bundle.list.link.StartLink;
+import org.apache.karaf.webconsole.osgi.core.bundle.list.link.StopLink;
+import org.apache.karaf.webconsole.osgi.core.bundle.list.link.UninstallLink;
+import org.apache.karaf.webconsole.osgi.core.bundle.list.link.UpdateLink;
 import org.apache.karaf.webconsole.osgi.core.shared.State;
 import org.apache.karaf.webconsole.osgi.core.spi.IActionProvider;
-import org.apache.wicket.PageParameters;
-import org.apache.wicket.RequestCycle;
-import org.apache.wicket.Session;
+import org.apache.wicket.behavior.SimpleAttributeModifier;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IModel;
-import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleException;
-import org.osgi.service.packageadmin.PackageAdmin;
 
 /**
  * Action panel for bundles list.
@@ -41,8 +41,7 @@ import org.osgi.service.packageadmin.PackageAdmin;
 @SuppressWarnings("rawtypes")
 public class BundleActionsPanel extends ActionsPanel<Bundle> {
 
-    @PaxWicketBean(name = "packageAdmin")
-    private PackageAdmin admin;
+    private static final long serialVersionUID = 1L;
 
     public BundleActionsPanel(String componentId, final IModel<Bundle> model, List<IActionProvider> actionProviders) {
         super(componentId, model);
@@ -59,14 +58,11 @@ public class BundleActionsPanel extends ActionsPanel<Bundle> {
 
     @Override
     protected List<Link> getLinks(Bundle object, String linkId, String labelId) {
-        PageParameters params = new PageParameters();
-        params.put("bundleId", object.getBundleId());
-
         List<Link> links = new ArrayList<Link>();
 
         // details link
-        Link link = new BookmarkablePageLink<SingleBundlePage>(linkId, SingleBundlePage.class, params);
-        link.add(new Label("label", "Details"));
+        Link link = SingleBundlePage.createLink(linkId, object);
+        link.add(new Label("label", "").add(new SimpleAttributeModifier("class", "icon-info-sign")));
 
         links.add(link);
 
@@ -75,90 +71,54 @@ public class BundleActionsPanel extends ActionsPanel<Bundle> {
             links.add(createStopLink(linkId, labelId));
             break;
         case INSTALLED:
+            // here we do not have break, because start operation will try to
+            // resolve imports too
+            links.add(createResolveLink(linkId, labelId));
         case RESOLVED:
             links.add(createStartLink(linkId, labelId));
         }
 
         links.add(createRefreshLink(linkId, labelId));
+        links.add(createUpdateLink(linkId, labelId));
         links.add(createUninstallLink(linkId, labelId));
 
         return links;
     }
 
     private Link createUninstallLink(String linkId, String labelId) {
-        Link link = new Link(linkId) {
-            @Override
-            public void onClick() {
-                Bundle bundle = (Bundle) BundleActionsPanel.this.getDefaultModelObject();
-
-                try {
-                    bundle.uninstall();
-
-                    Session.get().info("Bundle " + bundle.getSymbolicName() + " uninstalled");
-                    RequestCycle.get().setResponsePage(BundlePage.class);
-                } catch (BundleException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-            
-        };
-        link.add(new Label(labelId, "Uninstall"));
+        Link link = new UninstallLink(linkId, getModel());
+        link.add(new Label(labelId, "").add(new SimpleAttributeModifier("class", "icon-eject")));
         return link;
     }
 
     private Link createRefreshLink(String linkId, String labelId) {
-        Link link = new Link(linkId) {
-            @Override
-            public void onClick() {
-                Bundle bundle = (Bundle) BundleActionsPanel.this.getDefaultModelObject();
+        Link link = new RefreshLink(linkId, getModel());
+        link.add(new Label(labelId, "").add(new SimpleAttributeModifier("class", "icon-refresh")));
+        return link;
+    }
 
-                admin.refreshPackages(new Bundle[] {bundle});
-                Session.get().info("Bundle " + bundle.getSymbolicName() + " refreshed");
-                RequestCycle.get().setResponsePage(BundlePage.class);
-            }
-            
-        };
-        link.add(new Label(labelId, "Refresh"));
+    private Link createUpdateLink(String linkId, String labelId) {
+        Link link = new UpdateLink(linkId, getModel());
+        //link.add(new SimpleAttributeModifier("title", getLocalizer().getString("bundle.update.link", this, getModel())));
+        link.add(new Label(labelId, "").add(new SimpleAttributeModifier("class", "icon-retweet")));
+        return link;
+    }
+
+    private Link createResolveLink(String linkId, String labelId) {
+        Link link = new ResolveLink(linkId, getModel());
+        link.add(new Label(labelId, "").add(new SimpleAttributeModifier("class", "icon-step-forward")));
         return link;
     }
 
     private Link createStartLink(String linkId, String labelId) {
-        Link link = new Link(linkId) {
-            @Override
-            public void onClick() {
-                Bundle bundle = (Bundle) BundleActionsPanel.this.getDefaultModelObject();
-
-                try {
-                    bundle.start();
-                    Session.get().info("Bundle " + bundle.getSymbolicName() + " started");
-                    RequestCycle.get().setResponsePage(BundlePage.class);
-                } catch (BundleException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-            
-        };
-        link.add(new Label(labelId, "Start"));
+        Link link = new StartLink(linkId, getModel());
+        link.add(new Label(labelId, "").add(new SimpleAttributeModifier("class", "icon-play")));
         return link;
     }
 
     private Link createStopLink(String linkId, String labelId) {
-        Link link = new Link(linkId) {
-            public void onClick() {
-                Bundle bundle = (Bundle) BundleActionsPanel.this.getDefaultModelObject();
-                try {
-                    bundle.stop();
-                    Session.get().info("Bundle " + bundle.getSymbolicName() + " stopped");
-                    RequestCycle.get().setResponsePage(BundlePage.class);
-                } catch (BundleException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        };
-        link.add(new Label(labelId, "Stop"));
+        Link link = new StopLink(linkId, getModel());
+        link.add(new Label(labelId, "").add(new SimpleAttributeModifier("class", "icon-pause")));
         return link;
     }
 }

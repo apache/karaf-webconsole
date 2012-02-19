@@ -30,6 +30,8 @@ import org.osgi.framework.Bundle;
 
 public class DecorationPanel extends Panel {
 
+    private static final long serialVersionUID = 1L;
+
     public DecorationPanel(String id, IModel<Bundle> model, List<IDecorationProvider> decorationProviders) {
         super(id, model);
 
