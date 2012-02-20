@@ -18,23 +18,19 @@ package org.apache.karaf.webconsole.karaf.feature.repository;
 
 import java.net.URI;
 
-import org.apache.karaf.features.FeaturesService;
 import org.apache.karaf.features.Repository;
 import org.apache.karaf.webconsole.core.form.LabelBorder;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.RequiredTextField;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
-import org.ops4j.pax.wicket.api.PaxWicketBean;
 
 public class AddRepositoryPanel extends Panel {
 
     private static final long serialVersionUID = 1L;
-
-    @PaxWicketBean(name = "featuresService")
-    private FeaturesService featuresService;
 
     private TextField<URI> uri;
 
@@ -42,10 +38,11 @@ public class AddRepositoryPanel extends Panel {
         super(id);
 
         Form<Repository> form = new Form<Repository>("add", new CompoundPropertyModel<Repository>(model));
-        uri = new TextField<URI>("uri");
+        uri = new RequiredTextField<URI>("uri");
         uri.setRequired(true);
+        uri.setLabel(new ResourceModel("feature.repository.uri"));
 
-        LabelBorder border = new LabelBorder("border", new ResourceModel("feature.repository.uri"), uri);
+        LabelBorder border = new LabelBorder("border", uri);
         border.setHelp(new ResourceModel("feature.repository.uri.help"));
         form.add(border);
         add(form);
