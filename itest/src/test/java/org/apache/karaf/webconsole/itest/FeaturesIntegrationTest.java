@@ -21,8 +21,6 @@ import static org.openengsb.labs.paxexam.karaf.options.KarafDistributionOption.k
 import static org.ops4j.pax.exam.CoreOptions.maven;
 import static org.ops4j.pax.exam.CoreOptions.systemProperty;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +37,9 @@ import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 
+/**
+ * Features integration test.
+ */
 @RunWith(JUnit4TestRunner.class)
 public class FeaturesIntegrationTest {
 
@@ -54,7 +55,7 @@ public class FeaturesIntegrationTest {
         return new Option[] {
             karafDistributionConfiguration().frameworkUrl(
                 maven().groupId("org.apache.karaf").artifactId("apache-karaf").version(karafVersion).type("zip")
-            ),
+            ).karafVersion(karafVersion),
 
             // use system property to provide project version for tests
             systemProperty("webconsole-version").value(webconsoleVersion)
@@ -67,7 +68,7 @@ public class FeaturesIntegrationTest {
     }
 
     @Test
-    public void someTest() throws Exception {
+    public void shouldInstallAllFeatures() throws Exception {
         String url = maven("org.apache.karaf.webconsole", "apache-karaf-webconsole")
             .version(featuresVersion)
             .classifier("features")
