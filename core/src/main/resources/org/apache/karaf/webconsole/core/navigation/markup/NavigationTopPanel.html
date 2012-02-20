@@ -18,12 +18,14 @@
 <wicket:extend xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
 
     <ul class="nav">
-        <li wicket:id="tabs">
-            <a wicket:id="moduleLink">
-                <span wicket:id="moduleLabel"></span>
-            </a>
-        </li>
-        <li class="divider-vertical"></li>
+        <wicket:container wicket:id="tabs">
+            <li>
+                <a wicket:id="moduleLink">
+                    <span wicket:id="moduleLabel"></span>
+                </a>
+            </li>
+            <li class="divider-vertical"></li>
+        </wicket:container>
     </ul>
 
     <wicket:child />
@@ -43,6 +45,7 @@
                 </li>
             </ul>
         </li>
+        <li class="divider-vertical"></li>
         <li>
             <a wicket:id="logoutLink">
                 <wicket:message key="logout" />
