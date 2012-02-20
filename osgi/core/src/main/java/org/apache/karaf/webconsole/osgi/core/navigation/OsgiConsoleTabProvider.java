@@ -24,6 +24,7 @@ import java.util.List;
 import org.apache.karaf.webconsole.core.navigation.ConsoleTabProvider;
 import org.apache.karaf.webconsole.osgi.core.FrameworkPage;
 import org.apache.karaf.webconsole.osgi.core.bundle.list.BundlePage;
+import org.apache.karaf.webconsole.osgi.core.pkg.list.PackagePage;
 import org.apache.karaf.webconsole.osgi.core.service.list.ServicePage;
 import org.apache.wicket.Page;
 import org.apache.wicket.markup.html.basic.Label;
@@ -42,6 +43,7 @@ public class OsgiConsoleTabProvider implements ConsoleTabProvider {
         List<Link<Page>> links = new ArrayList<Link<Page>>();
         links.add(createPageLink(componentId, labelId, "Bundles", BundlePage.class));
         links.add(createPageLink(componentId, labelId, "Services", ServicePage.class));
+        links.add(createPageLink(componentId, labelId, "Packages", PackagePage.class));
         return links;
     }
 

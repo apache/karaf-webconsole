@@ -21,10 +21,14 @@ import java.io.IOException;
 import org.apache.karaf.webconsole.core.security.SecuredPageLink;
 import org.apache.karaf.webconsole.osgi.core.pkg.ExportPackageTable;
 import org.apache.karaf.webconsole.osgi.core.pkg.ImportPackageTable;
+import org.apache.karaf.webconsole.osgi.core.service.ExportServiceTable;
+import org.apache.karaf.webconsole.osgi.core.service.ImportServiceTable;
+import org.apache.karaf.webconsole.osgi.core.shared.BundleModel;
 import org.apache.karaf.webconsole.osgi.core.shared.OsgiPage;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.model.CompoundPropertyModel;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 import org.osgi.framework.Bundle;
 
@@ -39,67 +43,18 @@ public class SingleBundlePage extends OsgiPage {
         bundleId = params.getLong("bundleId");
         Bundle bundle = context.getBundle(bundleId);
 
-        //ExportedPackage[] exported = admin.getExportedPackages(bundle);
+        BundleModel model = new BundleModel(bundle);
+        setDefaultModel(new CompoundPropertyModel<Bundle>(model));
+        add(new BundlePanel("bundle", model));
 
-        add(new Label("name", bundle.getSymbolicName()).setRenderBodyOnly(true));
+        add(new Label("symbolicName").setRenderBodyOnly(true));
+        add(new Label("version").setRenderBodyOnly(true));
 
-//        String object = (String) bundle.getHeaders().get(Constants.IMPORT_PACKAGE);
-//        if (object == null) object = "";
         add(new ImportPackageTable("imports", bundle));
-
-//        add(new ListView<Package>("imports", parser.getImportPackages()) {
-//            @Override
-//            protected void populateItem(ListItem<Package> item) {
-//                Package model = item.getModelObject();
-//                String value = model.getName();
-//                item.add(new Label("importPackage", value));
-//            }
-//        });
-
         add(new ExportPackageTable("exports", bundle));
-
-//        IModel<List<ServiceReference>> model = new LoadableDetachableModel<List<ServiceReference>>() {
-//            @Override
-//            protected List<ServiceReference> load() {
-//                return Arrays.asList(context.getBundle(bundleId).getServicesInUse());
-//            }
-//        };
-//
-//        add(new ListView<ServiceReference>("servicesIn", model) {
-//            @Override
-//            protected void populateItem(ListItem<ServiceReference> item) {
-//                ServiceReference reference = item.getModelObject();
-//                item.add(new Label("serviceInUse", Arrays.toString((String[]) reference.getProperty("objectClass"))));
-//            }
-//        });
-//
-//        model = new LoadableDetachableModel<List<ServiceReference>>() {
-//            @Override
-//            protected List<ServiceReference> load() {
-//                return Arrays.asList(context.getBundle(bundleId).getRegisteredServices());
-//            }
-//        };
-//
-//        add(new ListView<ServiceReference>("servicesOut", model) {
-//            @Override
-//            protected void populateItem(ListItem<ServiceReference> item) {
-//                ServiceReference reference = item.getModelObject();
-//                item.add(new Label("serviceExported", Arrays.toString((String[]) reference.getProperty("objectClass"))));
-//            }
-//        });
+        add(new ImportServiceTable("serviceImports", bundle));
+        add(new ExportServiceTable("serviceExports", bundle));
     }
-
-//    public static void main(String[] args) throws IOException {
-//        Manifest manifest = new Manifest(new FileInputStream("target/classes/META-INF/MANIFEST.MF"));
-//        Attributes mainAttributes = manifest.getMainAttributes();
-//
-//        Map<String, Map<String, String>> keySet = OSGiHeader.parseHeader(manifest.getMainAttributes().getValue(Constants.IMPORT_PACKAGE));
-//        System.out.println(keySet);
-//
-////        for (Entry<Object, Object> string : mainAttributes.entrySet()) {
-////            System.out.println(OSGiHeader.parseHeader("" + string.getValue()));
-////        }
-//    }
 
     /**
      * Create link to page with given bundle.

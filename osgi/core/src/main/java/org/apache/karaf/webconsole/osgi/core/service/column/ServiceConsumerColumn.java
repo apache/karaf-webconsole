@@ -14,8 +14,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.osgi.core.pkg.column;
+package org.apache.karaf.webconsole.osgi.core.service.column;
 
-public class VersionColumn {
+import org.apache.karaf.webconsole.core.table.PropertyColumnExt;
+import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
+import org.apache.wicket.markup.repeater.Item;
+import org.apache.wicket.model.IModel;
+import org.osgi.framework.ServiceReference;
+
+public class ServiceConsumerColumn extends PropertyColumnExt<ServiceReference> {
+
+    private static final long serialVersionUID = 1L;
+
+    public ServiceConsumerColumn(String property) {
+        super(property);
+    }
+
+    @Override
+    public void populateItem(Item<ICellPopulator<ServiceReference>> item, String componentId, IModel<ServiceReference> rowModel) {
+        item.add(new ServiceConsumerPanel(componentId, rowModel));
+    }
 
 }

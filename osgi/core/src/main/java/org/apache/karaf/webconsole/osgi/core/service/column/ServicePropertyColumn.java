@@ -14,27 +14,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.osgi.core.pkg.column;
+package org.apache.karaf.webconsole.osgi.core.service.column;
 
-import org.apache.felix.utils.manifest.Clause;
+import java.io.Serializable;
+
 import org.apache.karaf.webconsole.core.table.PropertyColumnExt;
-import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
-import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
-import org.osgi.framework.Constants;
+import org.apache.wicket.model.Model;
+import org.osgi.framework.ServiceReference;
 
-public class VersionRangeColumn extends PropertyColumnExt<Clause> {
+public class ServicePropertyColumn extends PropertyColumnExt<ServiceReference> {
 
     private static final long serialVersionUID = 1L;
 
-    public VersionRangeColumn(String property) {
-        super(property);
+    public ServicePropertyColumn(String label, String property) {
+        super(label, property);
     }
 
     @Override
-    public void populateItem(Item<ICellPopulator<Clause>> item, String componentId, IModel<Clause> rowModel) {
-        String version = rowModel.getObject().getAttribute(Constants.VERSION_ATTRIBUTE);
-        item.add(new Label(componentId, version));
+    protected IModel<?> createLabelModel(IModel<ServiceReference> rowModel) {
+        Object property = rowModel.getObject().getProperty(getPropertyExpression());
+
+        if (property instanceof Serializable) {
+            return Model.of((Serializable) property);
+        } else {
+            return Model.of(property.toString());
+        }
     }
 }

@@ -14,8 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.osgi.core.pkg.column;
+package org.apache.karaf.webconsole.osgi.core.service;
 
-public class VersionColumn {
+import org.apache.karaf.webconsole.osgi.core.shared.ServiceDataProvider;
+import org.osgi.framework.Bundle;
+
+public class ExportServiceDataProvider extends ServiceDataProvider {
+
+    private static final long serialVersionUID = 1L;
+
+    public ExportServiceDataProvider(Bundle bundle) {
+        super(bundle.getRegisteredServices());
+    }
 
 }

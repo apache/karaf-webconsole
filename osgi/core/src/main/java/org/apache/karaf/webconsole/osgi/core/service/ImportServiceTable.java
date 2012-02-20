@@ -14,19 +14,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.osgi.core.pkg;
+package org.apache.karaf.webconsole.osgi.core.service;
 
-import org.apache.felix.utils.manifest.Clause;
+import org.apache.karaf.webconsole.osgi.core.service.column.ObjectClassColumn;
+import org.apache.karaf.webconsole.osgi.core.service.column.ServicePropertyColumn;
+import org.apache.karaf.webconsole.osgi.core.service.column.ServiceProviderColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
+import org.apache.wicket.model.Model;
 import org.osgi.framework.Bundle;
+import org.osgi.framework.Constants;
+import org.osgi.framework.ServiceReference;
 
-public class HeaderTable extends DefaultDataTable<Clause> {
+public class ImportServiceTable extends DefaultDataTable<ServiceReference> {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public HeaderTable(String id, IColumn<Clause>[] columns, Bundle bundle, String header) {
-		super(id, columns, new HeaderDataProvider(bundle, header), Integer.MAX_VALUE);
-	}
+    private static IColumn<ServiceReference>[] columns = new IColumn[] {
+        new ServicePropertyColumn("Service Id", Constants.SERVICE_ID),
+        new ObjectClassColumn(Model.of("Object classes")),
+        new ServiceProviderColumn(Model.of("Provider")),
+    };
+
+    public ImportServiceTable(String id, Bundle bundle) {
+        super(id, columns, new ImportServiceDataProvider(bundle), Integer.MAX_VALUE);
+    }
 
 }

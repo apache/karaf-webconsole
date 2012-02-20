@@ -1,3 +1,19 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.apache.karaf.webconsole.osgi.core.pkg.column;
 
 import org.apache.felix.utils.manifest.Clause;
@@ -9,29 +25,31 @@ import org.osgi.framework.Constants;
 
 public class ResolutionPanel extends Panel {
 
-	public ResolutionPanel(String id, IModel<Clause> model) {
-		super(id);
+    private static final long serialVersionUID = 1L;
 
-		Clause clause = model.getObject();
+    public ResolutionPanel(String id, IModel<Clause> model) {
+        super(id);
 
-		String resolution = clause.getDirective(Constants.RESOLUTION_DIRECTIVE);
-		if (resolution == null) {
-			resolution = Constants.RESOLUTION_MANDATORY;
-		}
+        Clause clause = model.getObject();
 
-		String css = "icon-question-sign"; // unknown resolution
-		if (Constants.RESOLUTION_MANDATORY.equals(resolution)) {
-			css = "icon-lock";
-		} else if (Constants.RESOLUTION_OPTIONAL.equals(resolution)) {
-			css = "icon-adjust";
-		}
+        String resolution = clause.getDirective(Constants.RESOLUTION_DIRECTIVE);
+        if (resolution == null) {
+            resolution = Constants.RESOLUTION_MANDATORY;
+        }
 
-		add(new Label("resolution", resolution).setRenderBodyOnly(true));
-		Label icon = new Label("icon");
-		icon.add(new SimpleAttributeModifier("class", css));
-		add(icon);
+        String css = "icon-question-sign"; // unknown resolution
+        if (Constants.RESOLUTION_MANDATORY.equals(resolution)) {
+            css = "icon-lock";
+        } else if (Constants.RESOLUTION_OPTIONAL.equals(resolution)) {
+            css = "icon-adjust";
+        }
 
-		add(new SimpleAttributeModifier("title", "Resolution is " + resolution));
-	}
+        add(new Label("resolution", resolution).setRenderBodyOnly(true));
+        Label icon = new Label("icon", "");
+        icon.add(new SimpleAttributeModifier("class", css));
+        add(icon);
+
+        add(new SimpleAttributeModifier("title", "Resolution is " + resolution));
+    }
 
 }

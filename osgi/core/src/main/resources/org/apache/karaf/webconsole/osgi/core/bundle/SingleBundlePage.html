@@ -16,42 +16,59 @@
    limitations under the License.
 -->
 <wicket:extend xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
-    <h1><span wicket:id="name">symbolic name</span> <small>details</small></h1>
+    <h1>
+        <wicket:message key="bundle" />
+        <span wicket:id="symbolicName"></span> 
+        <small>
+            <span wicket:id="version"></span>
+            <wicket:message key="details" />
+        </small>
+    </h1>
+
+    <div wicket:id="bundle"></div>
 
     <ul class="nav nav-pills">
         <li class="active">
-            <a href="#imports" data-toggle="tab">Imports</a>
+            <a href="#imports" data-toggle="tab">
+                <wicket:message key="package.imports" />
+            </a>
         </li>
         <li>
-            <a href="#exports" data-toggle="tab">Exports</a>
+            <a href="#exports" data-toggle="tab">
+                <wicket:message key="package.exports" />
+            </a>
         </li>
         <li>
-            <a href="#servicesIn" data-toggle="tab">Services in use</a>
+            <a href="#servicesIn" data-toggle="tab">
+                <wicket:message key="service.imports" />
+            </a>
         </li>
         <li>
-            <a href="#servicesOut" data-toggle="tab">Services provided</a>
+            <a href="#servicesOut" data-toggle="tab">
+                <wicket:message key="service.exports" />
+            </a>
         </li>
     </ul>
 
     <div class="tab-content">
         <div class="tab-pane active" id="imports">
-            <h2>Imports</h2>
+            <h2><wicket:message key="package.imports" /></h2>
             <table wicket:id="imports" class="table table-stripped table-bordered"></table>
         </div>
 
         <div class="tab-pane" id="exports">
-            <h3>Exports</h3>
+            <h3><wicket:message key="package.exports" /></h3>
             <table wicket:id="exports" class="table table-stripped table-bordered"></table>
         </div>
 
         <div class="tab-pane" id="servicesIn">
-            <h3>Services in use</h3>
-<!--             <div wicket:id="servicesIn"></div> -->
+            <h3><wicket:message key="service.imports" /></h3>
+            <table wicket:id="serviceImports" class="table table-stripped table-bordered"></table>
         </div>
 
         <div class="tab-pane" id="servicesOut">
-            <h3>Services provided by bundle</h3>
-<!--             <div wicket:id="servicesOut"></div> -->
+            <h3><wicket:message key="service.exports" /></h3>
+            <table wicket:id="serviceExports" class="table table-stripped table-bordered"></table>
         </div>
     </div>
 

@@ -14,46 +14,44 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.osgi.core.bundle.list;
+package org.apache.karaf.webconsole.osgi.core.service.column;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-import org.apache.karaf.webconsole.osgi.core.spi.IDecorationProvider;
-import org.apache.wicket.Component;
-import org.apache.wicket.markup.html.CSSPackageResource;
+import org.apache.karaf.webconsole.osgi.core.bundle.SingleBundlePage;
+import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.osgi.framework.Bundle;
+import org.osgi.framework.ServiceReference;
 
-public class DecorationPanel extends Panel {
+public class ServiceConsumerPanel extends Panel {
 
     private static final long serialVersionUID = 1L;
 
-    public DecorationPanel(String id, IModel<Bundle> model, List<IDecorationProvider> decorationProviders) {
+    public ServiceConsumerPanel(String id, IModel<ServiceReference> model) {
         super(id, model);
 
-        add(CSSPackageResource.getHeaderContribution(DecorationPanel.class, "decoration.css"));
-
-        List<Component> components = new ArrayList<Component>();
-        for (IDecorationProvider provider : decorationProviders) {
-            Component decoration = provider.getDecoration("extension", model);
-            if (decoration != null) {
-                components.add(decoration);
-            }
+        List<Bundle> consumers = new ArrayList<Bundle>();
+        Bundle[] usingBundles = model.getObject().getUsingBundles();
+        if (usingBundles != null && usingBundles.length > 0) {
+            Collections.addAll(consumers, usingBundles);
         }
-
-        add(new ListView<Component>("extensions", components) {
+        add(new ListView<Bundle>("bundles", consumers) {
             private static final long serialVersionUID = 1L;
 
             @Override
-            protected void populateItem(ListItem<Component> item) {
-                item.add(item.getModelObject());
+            protected void populateItem(ListItem<Bundle> item) {
+                Link<SingleBundlePage> link = SingleBundlePage.createLink("link", item.getModelObject());
+                link.add(new Label("label", item.getModelObject().getSymbolicName()));
+                item.add(link);
             }
         });
-
     }
 
 }

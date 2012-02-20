@@ -14,27 +14,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.osgi.core.pkg.column;
+package org.apache.karaf.webconsole.osgi.core.service.column;
 
-import org.apache.felix.utils.manifest.Clause;
-import org.apache.karaf.webconsole.core.table.PropertyColumnExt;
-import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
+import org.apache.karaf.webconsole.osgi.core.bundle.SingleBundlePage;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.repeater.Item;
+import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
-import org.osgi.framework.Constants;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.ServiceReference;
 
-public class VersionRangeColumn extends PropertyColumnExt<Clause> {
+public class ServiceProviderPanel extends Panel {
 
     private static final long serialVersionUID = 1L;
 
-    public VersionRangeColumn(String property) {
-        super(property);
+    public ServiceProviderPanel(String id, IModel<ServiceReference> model) {
+        super(id);
+
+        Bundle bundle = model.getObject().getBundle();
+        Link<SingleBundlePage> link = SingleBundlePage.createLink("link", bundle);
+        link.add(new Label("label", bundle.getSymbolicName()));
+        add(link);
     }
 
-    @Override
-    public void populateItem(Item<ICellPopulator<Clause>> item, String componentId, IModel<Clause> rowModel) {
-        String version = rowModel.getObject().getAttribute(Constants.VERSION_ATTRIBUTE);
-        item.add(new Label(componentId, version));
-    }
 }
