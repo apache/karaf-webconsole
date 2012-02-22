@@ -15,26 +15,12 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
 
-    <parent>
-        <groupId>org.apache.karaf</groupId>
-        <artifactId>webconsole</artifactId>
-        <version>0.3.0-SNAPSHOT</version>
-    </parent>
+    <reference id="mbeanServer" interface="javax.management.MBeanServer" />
 
-    <groupId>org.apache.karaf.webconsole</groupId>
-    <artifactId>examples</artifactId>
-    <name>Apache Karaf :: WebConsole :: Examples</name>
-    <packaging>pom</packaging>
+    <service auto-export="interfaces">
+        <bean class="org.apache.karaf.webconsole.examples.scala.ScalaNavigationProvider" />
+    </service>
 
-    <modules>
-        <module>branding</module>
-        <module>events</module>
-        <module>scr</module>
-        <module>scala</module>
-    </modules>
-
-</project>
+</blueprint>
