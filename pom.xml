@@ -39,6 +39,7 @@
         <nmr.version>1.4.0</nmr.version>
         <camel.version>2.6.0</camel.version>
         <cxf.version>2.5.1</cxf.version>
+        <maven-bundle.version>2.3.7</maven-bundle.version>
     </properties>
 
     <modules>
