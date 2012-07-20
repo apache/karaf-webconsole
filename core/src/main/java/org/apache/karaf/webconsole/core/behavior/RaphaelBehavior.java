@@ -16,22 +16,21 @@
  */
 package org.apache.karaf.webconsole.core.behavior;
 
-import org.apache.wicket.behavior.AbstractHeaderContributor;
-import org.apache.wicket.markup.html.IHeaderContributor;
-import org.apache.wicket.markup.html.JavascriptPackageResource;
+import org.apache.wicket.request.resource.JavaScriptResourceReference;
+import org.apache.wicket.request.resource.ResourceReference;
 
 /**
  * Raphael graphing library.
  * http://raphaeljs.com/
  */
-public class RaphaelBehavior extends AbstractHeaderContributor {
+public class RaphaelBehavior extends CompositeBehavior {
 
     private static final long serialVersionUID = 1L;
 
     @Override
-    public IHeaderContributor[] getHeaderContributors() {
-        return new IHeaderContributor[] {
-            JavascriptPackageResource.getHeaderContribution(RaphaelBehavior.class, "raphael/raphael-1.3.1.min.js")
+    protected ResourceReference[] getResourceReferences() {
+        return new ResourceReference[] {
+            new JavaScriptResourceReference(RaphaelBehavior.class, "raphael/raphael-1.3.1.min.js")
         };
     }
 

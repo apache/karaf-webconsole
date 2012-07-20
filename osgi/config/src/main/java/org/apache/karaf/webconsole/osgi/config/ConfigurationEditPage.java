@@ -25,12 +25,12 @@ import org.apache.karaf.webconsole.core.table.map.MapDataTable;
 import org.apache.karaf.webconsole.core.util.DictionaryUtils;
 import org.apache.karaf.webconsole.osgi.config.model.ConfigurationModel;
 import org.apache.karaf.webconsole.osgi.core.shared.OsgiPage;
-import org.apache.wicket.PageParameters;
-import org.apache.wicket.RequestCycle;
 import org.apache.wicket.Session;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.request.cycle.RequestCycle;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 import org.osgi.service.cm.Configuration;
@@ -44,7 +44,7 @@ public class ConfigurationEditPage extends OsgiPage {
     private String pid;
 
     public ConfigurationEditPage(PageParameters params) {
-        pid = params.getString("pid");
+        pid = params.get("pid").toString();
 
         add(new Label("pid", pid));
         Configuration configuration = new ConfigurationModel(pid, configurationAdmin).getObject();

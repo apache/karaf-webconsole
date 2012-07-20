@@ -18,7 +18,7 @@ package org.apache.karaf.webconsole.core.page;
 
 import org.apache.karaf.webconsole.core.BasePage;
 import org.apache.karaf.webconsole.core.navigation.markup.NavigationTopPanel;
-import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
+import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.panel.Panel;
 
 /**

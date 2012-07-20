@@ -21,11 +21,11 @@ import java.util.List;
 
 import org.apache.cxf.Bus;
 import org.apache.karaf.webconsole.core.table.ActionsPanel;
-import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 public class CxfBusesActionPanel extends ActionsPanel<Bus> {
 
@@ -38,7 +38,7 @@ public class CxfBusesActionPanel extends ActionsPanel<Bus> {
         List<Link> links = new ArrayList<Link>();
 
         PageParameters params = new PageParameters();
-        params.put("busId", object.getId());
+        params.add("busId", object.getId());
 
         Link link = new BookmarkablePageLink<DetailsPage>(linkId, DetailsPage.class, params);
         link.add(new Label(labelId, "Details"));

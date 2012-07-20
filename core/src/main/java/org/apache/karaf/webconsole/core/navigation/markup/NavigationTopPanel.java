@@ -25,10 +25,10 @@ import org.apache.karaf.webconsole.core.preferences.PreferencesPage;
 import org.apache.karaf.webconsole.core.security.SecuredPageLink;
 import org.apache.karaf.webconsole.core.security.WebConsoleSession;
 import org.apache.karaf.webconsole.core.util.LinkUtils;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.Page;
 import org.apache.wicket.behavior.AttributeAppender;
-import org.apache.wicket.behavior.SimpleAttributeModifier;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -89,11 +89,11 @@ public class NavigationTopPanel extends LanguageTopPanel {
 
     protected void populateSingleTabItem(ListItem<ConsoleTabProvider> item, ConsoleTabProvider provider) {
         Link<Page> moduleLink = provider.getModuleLink("moduleLink", "moduleLabel");
-        
+
         // remove dropdown stuff
-        item.add(new SimpleAttributeModifier("class", ""));
-        moduleLink.add(new SimpleAttributeModifier("data-toggle", ""));
-        moduleLink.add(new SimpleAttributeModifier("class", ""));
+        item.add(new AttributeModifier("class", ""));
+        moduleLink.add(new AttributeModifier("data-toggle", ""));
+        moduleLink.add(new AttributeModifier("class", ""));
 
         if (LinkUtils.isActiveTrail(moduleLink)) {
             item.add(new AttributeAppender("class", Model.of("active"), " "));

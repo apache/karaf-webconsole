@@ -21,10 +21,10 @@ import java.util.Arrays;
 import org.apache.karaf.webconsole.osgi.core.bundle.BundlePanel;
 import org.apache.karaf.webconsole.osgi.core.shared.BundleModel;
 import org.apache.karaf.webconsole.osgi.core.shared.OsgiPage;
-import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 import org.osgi.framework.Bundle;
@@ -39,8 +39,8 @@ public class SinglePackagePage extends OsgiPage {
     private PackageAdmin admin;
 
     public SinglePackagePage(PageParameters params) {
-        String pkg = params.getString("package");
-        String version = params.getString("version");
+        String pkg = params.get("package").toString();
+        String version = params.get("version").toString();
 
         add(new Label("package", pkg).setRenderBodyOnly(true));
         add(new Label("version", version).setRenderBodyOnly(true));

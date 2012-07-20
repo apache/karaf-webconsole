@@ -16,8 +16,8 @@
  */
 package org.apache.karaf.webconsole.core.security;
 
-import org.apache.wicket.Request;
-import org.apache.wicket.authentication.AuthenticatedWebSession;
+import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
+import org.apache.wicket.request.Request;
 
 /**
  * Base class for web console session implementation.
@@ -35,4 +35,5 @@ public abstract class WebConsoleSession extends AuthenticatedWebSession {
     public static WebConsoleSession get() {
         return (WebConsoleSession) AuthenticatedWebSession.get();
     }
+
 }

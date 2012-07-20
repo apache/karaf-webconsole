@@ -19,7 +19,7 @@ package org.apache.karaf.webconsole.core.brand;
 import java.util.List;
 
 import org.apache.wicket.Page;
-import org.apache.wicket.behavior.IBehavior;
+import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.html.image.Image;
 
 /**
@@ -40,7 +40,7 @@ public interface BrandProvider {
      * 
      * @return Brand specific behaviors, like CSS or JavaScript references.
      */
-    List<IBehavior> getBehaviors();
+    List<Behavior> getBehaviors();
 
     /**
      * Page specific hook which allows to modify or replace elements on singular

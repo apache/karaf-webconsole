@@ -26,7 +26,6 @@
 
     <properties>
         <bundlesDirectory>${project.build.directory}/bundles</bundlesDirectory>
-        <slf4j.version>1.6.1</slf4j.version>
     </properties>
 
     <dependencies>
@@ -74,8 +73,8 @@
 
         <dependency>
             <groupId>org.ops4j.pax.wicket</groupId>
-            <artifactId>pax-wicket-service</artifactId>
-            <version>0.8.0-SNAPSHOT</version>
+            <artifactId>org.ops4j.pax.wicket.service</artifactId>
+            <version>${ops4j.paxwicket.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

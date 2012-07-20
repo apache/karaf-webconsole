@@ -21,10 +21,10 @@ import java.util.List;
 
 import org.apache.karaf.webconsole.core.table.ActionsPanel;
 import org.apache.servicemix.nmr.api.Exchange;
-import org.apache.wicket.RequestCycle;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.request.cycle.RequestCycle;
 
 /**
  * Actions panel for Exchange.

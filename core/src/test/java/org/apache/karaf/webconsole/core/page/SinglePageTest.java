@@ -37,9 +37,10 @@ import org.apache.karaf.webconsole.core.test.AlwaysAuthenticatedWebSession;
 import org.apache.karaf.webconsole.core.test.LinkAnswer;
 import org.apache.karaf.webconsole.core.test.LinksAnswer;
 import org.apache.wicket.Page;
-import org.apache.wicket.authentication.AuthenticatedWebSession;
+import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -189,7 +190,7 @@ public class SinglePageTest extends WebConsoleTest {
 
     private void assertTabLink(WicketTester tester, int position, String label, Class<? extends WebPage> page, List<Link<Page>> children) {
         tester.assertLabel("topPanel:tabs:" + position + ":moduleLink:moduleLabel", label);
-        tester.assertBookmarkablePageLink("topPanel:tabs:" + position + ":moduleLink", page, "");
+        tester.assertBookmarkablePageLink("topPanel:tabs:" + position + ":moduleLink", page, new PageParameters());
         if (!children.isEmpty()) {
             tester.assertListView("tabs:moduleLinks", children);
         }

@@ -16,22 +16,21 @@
  */
 package org.apache.karaf.webconsole.core.behavior;
 
-import org.apache.wicket.behavior.AbstractHeaderContributor;
-import org.apache.wicket.markup.html.IHeaderContributor;
-import org.apache.wicket.markup.html.JavascriptPackageResource;
+import org.apache.wicket.request.resource.JavaScriptResourceReference;
+import org.apache.wicket.request.resource.ResourceReference;
 
 
 /**
  * JQuery behavior. http://jquery.com
  */
-public class JQueryBehavior extends AbstractHeaderContributor {
+public class JQueryBehavior extends CompositeBehavior {
 
     private static final long serialVersionUID = 1L;
 
     @Override
-    public IHeaderContributor[] getHeaderContributors() {
-        return new IHeaderContributor[] {
-            JavascriptPackageResource.getHeaderContribution(JQueryBehavior.class, "jquery/jquery-1.7.1.min.js")
+    protected ResourceReference[] getResourceReferences() {
+        return new ResourceReference[] {
+            new JavaScriptResourceReference(JQueryBehavior.class, "jquery/jquery-1.7.1.min.js")
         };
     }
 

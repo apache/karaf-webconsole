@@ -21,9 +21,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleEvent;
-import org.osgi.framework.BundleListener;
 import org.osgi.service.blueprint.container.BlueprintEvent;
-import org.osgi.service.blueprint.container.BlueprintListener;
 
 public class BlueprintBundleStateTracker implements IBlueprintBundleStateTracker {
 

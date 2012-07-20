@@ -16,30 +16,29 @@
  */
 package org.apache.karaf.webconsole.core.behavior;
 
-import static org.apache.wicket.markup.html.JavascriptPackageResource.getHeaderContribution;
-
-import org.apache.wicket.markup.html.IHeaderContributor;
+import org.apache.wicket.request.resource.JavaScriptResourceReference;
+import org.apache.wicket.request.resource.ResourceReference;
 
 /**
  * Dracula graphing library.
  * http://www.graphdracula.net/
  */
-public class DraculaBehavior extends CompositeHeaderContributor {
+public class DraculaBehavior extends CompositeBehavior {
 
     private static final long serialVersionUID = 1L;
 
-	public DraculaBehavior() {
+    public DraculaBehavior() {
         super(new JQueryBehavior(), new RaphaelBehavior());
     }
 
     @Override
-    protected IHeaderContributor[] getOwnHeaderContributors() {
-        return new IHeaderContributor[] {
-            getHeaderContribution(DraculaBehavior.class, "dracula/Curry-1.0.1.js"),
-            getHeaderContribution(DraculaBehavior.class, "dracula/seedrandom.js"),
-            getHeaderContribution(DraculaBehavior.class, "dracula/dracula_graph.js"),
-            getHeaderContribution(DraculaBehavior.class, "dracula/dracula_graffle.js"),
-            getHeaderContribution(DraculaBehavior.class, "dracula/dracula_algorithms.js"),
+    protected ResourceReference[] getResourceReferences() {
+        return new ResourceReference[] {
+            new JavaScriptResourceReference(DraculaBehavior.class, "dracula/Curry-1.0.1.js"),
+            new JavaScriptResourceReference(DraculaBehavior.class, "dracula/seedrandom.js"),
+            new JavaScriptResourceReference(DraculaBehavior.class, "dracula/dracula_graph.js"),
+            new JavaScriptResourceReference(DraculaBehavior.class, "dracula/dracula_graffle.js"),
+            new JavaScriptResourceReference(DraculaBehavior.class, "dracula/dracula_algorithms.js"),
         };
     }
 }

@@ -19,7 +19,7 @@ package org.apache.karaf.webconsole.core.conventer;
 import java.net.URI;
 import java.net.URL;
 
-import org.apache.wicket.util.convert.ConverterLocator;
+import org.apache.wicket.ConverterLocator;
 
 /**
  * An extension of wicket base {@link ConverterLocator} which supports common

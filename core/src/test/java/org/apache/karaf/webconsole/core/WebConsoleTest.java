@@ -28,7 +28,7 @@ import org.apache.karaf.webconsole.core.internal.WebConsoleApplication;
 import org.apache.karaf.webconsole.core.preferences.util.JdkPreferencesService;
 import org.apache.karaf.webconsole.core.security.KarafJaasWebSession;
 import org.apache.wicket.Page;
-import org.apache.wicket.authentication.AuthenticatedWebSession;
+import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.junit.Before;
@@ -66,7 +66,7 @@ public class WebConsoleTest {
         values.put("preferencesService", new JdkPreferencesService());
 
         injector = new TestInjector(values);
-        application.addComponentInstantiationListener(injector);
+        application.getComponentInstantiationListeners().add(injector);
     }
 
     protected Class<? extends AuthenticatedWebSession> getWebSessionClass() {

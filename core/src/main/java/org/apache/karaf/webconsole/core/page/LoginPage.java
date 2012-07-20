@@ -17,8 +17,8 @@
 package org.apache.karaf.webconsole.core.page;
 
 import org.apache.karaf.webconsole.core.BasePage;
-import org.apache.wicket.PageParameters;
-import org.apache.wicket.authentication.panel.SignInPanel;
+import org.apache.wicket.authroles.authentication.panel.SignInPanel;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 /**
  * Dummy login page used to aurgorize user.

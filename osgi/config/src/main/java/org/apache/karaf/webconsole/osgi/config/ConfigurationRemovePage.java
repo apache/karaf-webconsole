@@ -19,8 +19,8 @@ package org.apache.karaf.webconsole.osgi.config;
 import org.apache.karaf.webconsole.osgi.config.model.ConfigurationModel;
 import org.apache.karaf.webconsole.osgi.config.view.ConfigurationRemoveForm;
 import org.apache.karaf.webconsole.osgi.core.shared.OsgiPage;
-import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 import org.osgi.service.cm.ConfigurationAdmin;
@@ -36,7 +36,7 @@ public class ConfigurationRemovePage extends OsgiPage {
     private String pid;
 
     public ConfigurationRemovePage(PageParameters params) {
-        pid = params.getString("pid");
+        pid = params.get("pid").toString();
 
         add(new Label("pid", pid));
         add(new ConfigurationRemoveForm("remove", new ConfigurationModel(pid, configurationAdmin)));

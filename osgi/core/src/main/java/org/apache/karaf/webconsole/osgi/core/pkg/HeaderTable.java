@@ -16,6 +16,8 @@
  */
 package org.apache.karaf.webconsole.osgi.core.pkg;
 
+import java.util.Arrays;
+
 import org.apache.felix.utils.manifest.Clause;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
@@ -26,7 +28,7 @@ public class HeaderTable extends DefaultDataTable<Clause> {
 	private static final long serialVersionUID = 1L;
 
 	public HeaderTable(String id, IColumn<Clause>[] columns, Bundle bundle, String header) {
-		super(id, columns, new HeaderDataProvider(bundle, header), Integer.MAX_VALUE);
+		super(id, Arrays.asList(columns), new HeaderDataProvider(bundle, header), Integer.MAX_VALUE);
 	}
 
 }

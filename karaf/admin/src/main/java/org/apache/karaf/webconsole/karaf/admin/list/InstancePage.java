@@ -18,6 +18,8 @@ package org.apache.karaf.webconsole.karaf.admin.list;
 
 import static org.apache.wicket.model.Model.of;
 
+import java.util.Arrays;
+
 import org.apache.karaf.admin.Instance;
 import org.apache.karaf.webconsole.core.table.OrdinalColumn;
 import org.apache.karaf.webconsole.core.table.PropertyColumnExt;
@@ -55,7 +57,7 @@ public class InstancePage extends AdminPage {
             }
         };
 
-        add(new DefaultDataTable<Instance>("instances", columns, new InstanceDataProvider(admin), 20));
+        add(new DefaultDataTable<Instance>("instances", Arrays.asList(columns), new InstanceDataProvider(admin), 20));
     }
 
 }

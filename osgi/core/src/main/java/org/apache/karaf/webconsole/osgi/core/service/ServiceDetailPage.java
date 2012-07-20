@@ -17,10 +17,10 @@
 package org.apache.karaf.webconsole.osgi.core.service;
 
 import org.apache.karaf.webconsole.osgi.core.shared.OsgiPage;
-import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.repeater.RepeatingView;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.osgi.framework.Constants;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
@@ -31,7 +31,7 @@ import org.osgi.framework.ServiceReference;
 public class ServiceDetailPage extends OsgiPage {
 
     public ServiceDetailPage(PageParameters parameters) {
-        long serviceId = parameters.getLong("id");
+        long serviceId = parameters.get("id").toLong();
 
         RepeatingView repeatingView = new RepeatingView("keys");
         add(repeatingView);

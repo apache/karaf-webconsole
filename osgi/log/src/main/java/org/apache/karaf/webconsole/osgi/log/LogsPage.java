@@ -90,7 +90,7 @@ public class LogsPage extends OsgiPage {
         );
 
         LogEntriesDataProvider provider = new LogEntriesDataProvider(logReader, options, matchers);
-        DefaultDataTable<LogEntry> table = new DefaultDataTable<LogEntry>("logs", columns, provider, 20);
+        DefaultDataTable<LogEntry> table = new DefaultDataTable<LogEntry>("logs", Arrays.asList(columns), provider, 20);
 
         add(table);
         add(form);

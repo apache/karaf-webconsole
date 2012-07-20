@@ -20,16 +20,16 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Locale;
 
-import org.apache.wicket.util.convert.converters.AbstractConverter;
+import org.apache.wicket.util.convert.converter.AbstractConverter;
 
 /**
  * URI converter.
  */
-public class URIConverter extends AbstractConverter {
+public class URIConverter extends AbstractConverter<URI> {
 
     private static final long serialVersionUID = 1L;
 
-    public Object convertToObject(String value, Locale locale) {
+    public URI convertToObject(String value, Locale locale) {
         try {
             return new URI(value);
         } catch (URISyntaxException e) {
@@ -40,7 +40,7 @@ public class URIConverter extends AbstractConverter {
     }
 
     @Override
-    protected Class<?> getTargetType() {
+    protected Class<URI> getTargetType() {
         return URI.class;
     }
 

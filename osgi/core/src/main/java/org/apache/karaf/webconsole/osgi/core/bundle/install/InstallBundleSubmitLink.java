@@ -17,9 +17,9 @@
 package org.apache.karaf.webconsole.osgi.core.bundle.install;
 
 import org.apache.karaf.webconsole.osgi.core.bundle.list.BundlePage;
-import org.apache.wicket.RequestCycle;
 import org.apache.wicket.Session;
 import org.apache.wicket.markup.html.form.SubmitLink;
+import org.apache.wicket.request.cycle.RequestCycle;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;

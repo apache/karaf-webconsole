@@ -22,21 +22,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.karaf.webconsole.core.navigation.SidebarProvider;
-import org.apache.karaf.webconsole.core.page.SidebarPage;
 import org.apache.karaf.webconsole.core.table.OrdinalColumn;
 import org.apache.karaf.webconsole.core.table.PropertyColumnExt;
 import org.apache.servicemix.nmr.api.Endpoint;
 import org.apache.servicemix.nmr.api.EndpointRegistry;
-import org.apache.servicemix.nmr.api.NMR;
-import org.apache.wicket.Page;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.ISortableDataProvider;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-import org.ops4j.pax.wicket.api.PaxWicketBean;
 
 /**
  * ServiceMix page, it shows list of registered endpoints.
@@ -44,7 +39,7 @@ import org.ops4j.pax.wicket.api.PaxWicketBean;
 public class EndpointsPage extends ServiceMixPage {
 
     public EndpointsPage() {
-        IColumn[] columns = new IColumn[] {
+        IColumn<Map<String, Object>>[] columns = new IColumn[] {
             new OrdinalColumn<Map<String, Object>>(),
             new PropertyColumnExt<Map<String, Object>>("Name", Endpoint.NAME),
             new PropertyColumnExt<Map<String, Object>>("Version", Endpoint.VERSION),
@@ -78,7 +73,7 @@ public class EndpointsPage extends ServiceMixPage {
             }
         };
 
-        add(new DefaultDataTable<Map<String, Object>>("endpoints", columns, provider, 20));
+        add(new DefaultDataTable<Map<String, Object>>("endpoints", Arrays.asList(columns), provider, 20));
     }
 
 }

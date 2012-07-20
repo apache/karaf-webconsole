@@ -26,7 +26,7 @@ import org.apache.karaf.webconsole.core.brand.DefaultBrandProvider;
 import org.apache.karaf.webconsole.core.preferences.util.JdkPreferencesService;
 import org.apache.karaf.webconsole.core.test.AlwaysAuthenticatedWebSession;
 import org.apache.karaf.webconsole.core.widget.WidgetProvider;
-import org.apache.wicket.authentication.AuthenticatedWebSession;
+import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.html.panel.EmptyPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.util.tester.WicketTester;

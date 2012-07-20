@@ -55,6 +55,15 @@ public class TestInjector extends AbstractPaxWicketInjector implements IComponen
     }
 
     /**
+     * Gets values to inject.
+     * 
+     * @return Injection values
+     */
+    public Map<String, Object> getValues() {
+        return values;
+    }
+
+    /**
      * {@inheritDoc}
      */
     public void onInstantiation(Component component) {
@@ -94,4 +103,5 @@ public class TestInjector extends AbstractPaxWicketInjector implements IComponen
     public void inject(Object toInject, Class<?> toHandle) {
         throw new UnsupportedOperationException("inject operation should never be executed");
     }
+
 }

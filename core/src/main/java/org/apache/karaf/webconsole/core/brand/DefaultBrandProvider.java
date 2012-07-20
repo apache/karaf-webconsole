@@ -16,19 +16,18 @@
  */
 package org.apache.karaf.webconsole.core.brand;
 
-import static org.apache.wicket.markup.html.CSSPackageResource.getHeaderContribution;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.karaf.webconsole.core.BasePage;
 import org.apache.karaf.webconsole.core.behavior.BootstrapBehavior;
+import org.apache.karaf.webconsole.core.behavior.CssBehavior;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Page;
-import org.apache.wicket.ResourceReference;
-import org.apache.wicket.behavior.IBehavior;
-import org.apache.wicket.behavior.SimpleAttributeModifier;
+import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.html.image.Image;
+import org.apache.wicket.request.resource.PackageResourceReference;
 
 /**
  * Default brand customization.
@@ -38,22 +37,22 @@ public class DefaultBrandProvider implements BrandProvider, Serializable /* for 
     private static final long serialVersionUID = 1L;
 
     public Image getHeaderImage(String imageId) {
-        Image image = new Image(imageId, new ResourceReference(BasePage.class, "images/karaf-logo-min.png"));
-        image.add(new SimpleAttributeModifier("width", "148"));
-        image.add(new SimpleAttributeModifier("height", "40"));
-        image.add(new SimpleAttributeModifier("alt", "Karaf logo"));
-        image.add(new SimpleAttributeModifier("title", "Karaf logo"));
+        Image image = new Image(imageId, new PackageResourceReference(BasePage.class, "images/karaf-logo-min.png"));
+        image.add(new AttributeModifier("width", "148"));
+        image.add(new AttributeModifier("height", "40"));
+        image.add(new AttributeModifier("alt", "Karaf logo"));
+        image.add(new AttributeModifier("title", "Karaf logo"));
         return image;
     }
 
-    public List<IBehavior> getBehaviors() {
-        List<IBehavior> behaviors = new ArrayList<IBehavior>();
+    public List<Behavior> getBehaviors() {
+        List<Behavior> behaviors = new ArrayList<Behavior>();
         behaviors.add(new BootstrapBehavior());
         return behaviors;
     }
 
     public void modify(Page page) {
-        page.add(getHeaderContribution(BasePage.class, "style.css"));
+        page.add(new CssBehavior(BasePage.class, "style.css"));
     }
 
 }

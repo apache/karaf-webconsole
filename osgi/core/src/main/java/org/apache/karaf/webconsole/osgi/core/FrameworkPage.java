@@ -18,7 +18,7 @@ package org.apache.karaf.webconsole.osgi.core;
 
 import org.apache.karaf.webconsole.osgi.core.shared.OsgiPage;
 import org.apache.karaf.webconsole.osgi.core.shared.SystemBundleModel;
-import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
+import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;

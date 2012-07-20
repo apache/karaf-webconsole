@@ -23,6 +23,7 @@ import java.util.Map;
 
 import org.apache.karaf.features.Feature;
 import org.apache.karaf.features.Repository;
+import org.apache.karaf.webconsole.core.behavior.CssBehavior;
 import org.apache.karaf.webconsole.karaf.feature.FeaturesProvider;
 import org.apache.karaf.webconsole.karaf.feature.KarafFeaturesPage;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
@@ -30,7 +31,6 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColu
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
-import org.apache.wicket.markup.html.CSSPackageResource;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
@@ -48,7 +48,7 @@ public class FeaturesPage extends KarafFeaturesPage {
     private Map<String, String> feature2repo = new HashMap<String, String>();
 
     public FeaturesPage() throws Exception {
-        add(CSSPackageResource.getHeaderContribution(FeaturesPage.class, "features.css"));
+        add(new CssBehavior(FeaturesPage.class, "features.css"));
 
         for (Repository repository : featuresService.listRepositories()) {
             for (Feature feature : repository.getFeatures()) {

@@ -16,8 +16,8 @@
  */
 package org.apache.karaf.webconsole.core.panel;
 
-import org.apache.wicket.ResourceReference;
 import org.apache.wicket.markup.html.image.Image;
+import org.apache.wicket.request.resource.ResourceReference;
 
 /**
  * Panel which wraps an image.

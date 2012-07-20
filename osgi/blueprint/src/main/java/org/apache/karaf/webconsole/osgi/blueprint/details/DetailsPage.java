@@ -19,13 +19,14 @@ package org.apache.karaf.webconsole.osgi.blueprint.details;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.karaf.webconsole.core.behavior.DraculaBehavior;
+import org.apache.karaf.webconsole.core.behavior.JavaScriptBehavior;
 import org.apache.karaf.webconsole.osgi.core.shared.OsgiPage;
-import org.apache.wicket.PageParameters;
-import org.apache.wicket.markup.html.JavascriptPackageResource;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 import org.osgi.service.blueprint.reflect.ComponentMetadata;
 
@@ -36,16 +37,10 @@ import org.osgi.service.blueprint.reflect.ComponentMetadata;
 public class DetailsPage extends OsgiPage {
 
     public DetailsPage(PageParameters params) {
-        add(JavascriptPackageResource.getHeaderContribution(DetailsPage.class, "jquery-1.4.2.min.js"));
-        add(JavascriptPackageResource.getHeaderContribution(DetailsPage.class, "Curry-1.0.1.js"));
-        add(JavascriptPackageResource.getHeaderContribution(DetailsPage.class, "seedrandom.js"));
-        add(JavascriptPackageResource.getHeaderContribution(DetailsPage.class, "raphael-min.js"));
-        add(JavascriptPackageResource.getHeaderContribution(DetailsPage.class, "dracula_graph.js"));
-        add(JavascriptPackageResource.getHeaderContribution(DetailsPage.class, "dracula_graffle.js"));
-        add(JavascriptPackageResource.getHeaderContribution(DetailsPage.class, "dracula_algorithms.js"));
-        add(JavascriptPackageResource.getHeaderContribution(DetailsPage.class, "details.js"));
+        add(new DraculaBehavior());
+        add(new JavaScriptBehavior(DetailsPage.class, "details.js"));
 
-        IModel<List<ComponentMetadata>> model = new MetadataModel(context, params.getInt("bundleId"));
+        IModel<List<ComponentMetadata>> model = new MetadataModel(context, params.get("bundleId").toInt());
 
         add(new ListView<ComponentMetadata>("components", model) {
             @Override

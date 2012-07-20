@@ -19,8 +19,8 @@ package org.apache.karaf.webconsole.karaf.admin.create;
 import static org.apache.wicket.model.Model.of;
 
 import org.apache.karaf.webconsole.karaf.admin.AdminPage;
-import org.apache.karaf.webconsole.karaf.admin.model.WicketInstanceSettings;
 import org.apache.karaf.webconsole.karaf.admin.model.WicketInstance;
+import org.apache.karaf.webconsole.karaf.admin.model.WicketInstanceSettings;
 import org.apache.karaf.webconsole.karaf.admin.settings.InstanceSettingsPanel;
 import org.apache.wicket.Session;
 import org.apache.wicket.markup.html.form.Button;

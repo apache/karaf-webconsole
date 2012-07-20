@@ -21,11 +21,11 @@ import static org.apache.wicket.model.Model.of;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.karaf.webconsole.core.behavior.CssBehavior;
 import org.apache.karaf.webconsole.core.navigation.NavigationProvider;
 import org.apache.karaf.webconsole.osgi.blueprint.BlueprintPage;
 import org.apache.wicket.Page;
 import org.apache.wicket.behavior.AttributeAppender;
-import org.apache.wicket.markup.html.CSSPackageResource;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
@@ -39,7 +39,7 @@ public class BlueprintNavigationProvider implements NavigationProvider {
         Label label = new Label(labelId, "Blueprint");
         label.add(new AttributeAppender("class", of("blueprint"), " "));
         link.add(label);
-        link.add(CSSPackageResource.getHeaderContribution(BlueprintPage.class, "navigation.css"));
+        link.add(new CssBehavior(BlueprintPage.class, "navigation.css"));
         items.add(link);
 
         return items;

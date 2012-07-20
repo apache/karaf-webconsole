@@ -25,6 +25,7 @@ import java.util.List;
 
 import org.apache.karaf.features.Feature;
 import org.apache.karaf.features.FeaturesService;
+import org.apache.wicket.extensions.markup.html.repeater.data.sort.SortOrder;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.model.IModel;
 
@@ -35,7 +36,7 @@ public class FeaturesProvider extends SortableDataProvider<Feature> {
     public FeaturesProvider(FeaturesService service) {
         this.service = service;
 
-        setSort("name", true);
+        setSort("name", SortOrder.ASCENDING);
     }
 
     public Iterator<Feature> iterator(int first, int count) {

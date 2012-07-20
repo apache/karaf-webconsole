@@ -21,11 +21,11 @@ import java.util.List;
 
 import org.apache.karaf.webconsole.core.table.ActionsPanel;
 import org.apache.karaf.webconsole.osgi.blueprint.details.DetailsPage;
-import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.osgi.framework.ServiceReference;
 
 public class BlueprintActionsPanel extends ActionsPanel<ServiceReference> {
@@ -37,7 +37,7 @@ public class BlueprintActionsPanel extends ActionsPanel<ServiceReference> {
     @Override
     protected List<Link> getLinks(ServiceReference object, String linkId, String labelId) {
         PageParameters params = new PageParameters();
-        params.put("bundleId", object.getBundle().getBundleId());
+        params.add("bundleId", object.getBundle().getBundleId());
 
         Link link = new BookmarkablePageLink(linkId, DetailsPage.class, params);
         link.add(new Label(labelId, "View components"));

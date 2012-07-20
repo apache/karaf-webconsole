@@ -25,10 +25,10 @@ import org.apache.karaf.webconsole.osgi.core.service.ExportServiceTable;
 import org.apache.karaf.webconsole.osgi.core.service.ImportServiceTable;
 import org.apache.karaf.webconsole.osgi.core.shared.BundleModel;
 import org.apache.karaf.webconsole.osgi.core.shared.OsgiPage;
-import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 import org.osgi.framework.Bundle;
 
@@ -40,7 +40,7 @@ public class SingleBundlePage extends OsgiPage {
     private long bundleId;
 
     public SingleBundlePage(PageParameters params) throws IOException {
-        bundleId = params.getLong("bundleId");
+        bundleId = params.get("bundleId").toLong();
         Bundle bundle = context.getBundle(bundleId);
 
         BundleModel model = new BundleModel(bundle);
@@ -76,7 +76,7 @@ public class SingleBundlePage extends OsgiPage {
      */
     public static Link<SingleBundlePage> createLink(String id, long bundleId) {
         PageParameters params = new PageParameters();
-        params.put(BUNDLE_ID, bundleId);
+        params.add(BUNDLE_ID, bundleId);
         return new SecuredPageLink<SingleBundlePage>(id, SingleBundlePage.class, params);
     }
 

@@ -19,9 +19,9 @@ package org.apache.karaf.webconsole.osgi.core.bundle.list;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.karaf.webconsole.core.behavior.CssBehavior;
 import org.apache.karaf.webconsole.osgi.core.spi.IDecorationProvider;
 import org.apache.wicket.Component;
-import org.apache.wicket.markup.html.CSSPackageResource;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -35,7 +35,7 @@ public class DecorationPanel extends Panel {
     public DecorationPanel(String id, IModel<Bundle> model, List<IDecorationProvider> decorationProviders) {
         super(id, model);
 
-        add(CSSPackageResource.getHeaderContribution(DecorationPanel.class, "decoration.css"));
+        add(new CssBehavior(DecorationPanel.class, "decoration.css"));
 
         List<Component> components = new ArrayList<Component>();
         for (IDecorationProvider provider : decorationProviders) {

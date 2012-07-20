@@ -16,9 +16,9 @@
  */
 package org.apache.karaf.webconsole.core.security;
 
-import org.apache.wicket.authentication.AuthenticatedWebSession;
-import org.apache.wicket.authorization.strategies.role.IRoleCheckingStrategy;
-import org.apache.wicket.authorization.strategies.role.Roles;
+import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
+import org.apache.wicket.authroles.authorization.strategies.role.IRoleCheckingStrategy;
+import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 
 /**
  * Role checking strategy which follow the hierarchy.

@@ -20,17 +20,16 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
 
-import org.apache.wicket.util.convert.IConverter;
-import org.apache.wicket.util.convert.converters.AbstractConverter;
+import org.apache.wicket.util.convert.converter.AbstractConverter;
 
 /**
  * URI converter.
  */
-public class URLConverter extends AbstractConverter implements IConverter {
+public class URLConverter extends AbstractConverter<URL> {
 
     private static final long serialVersionUID = 1L;
 
-    public Object convertToObject(String value, Locale locale) {
+    public URL convertToObject(String value, Locale locale) {
         try {
             return new URL(value);
         } catch (MalformedURLException e) {
@@ -39,7 +38,7 @@ public class URLConverter extends AbstractConverter implements IConverter {
     }
 
     @Override
-    protected Class<?> getTargetType() {
+    protected Class<URL> getTargetType() {
         return URL.class;
     }
 

@@ -16,11 +16,12 @@
  */
 package org.apache.karaf.webconsole.karaf.feature.repository;
 
+import java.util.Arrays;
+
 import org.apache.karaf.features.Repository;
 import org.apache.karaf.webconsole.core.table.OrdinalColumn;
 import org.apache.karaf.webconsole.karaf.feature.KarafFeaturesPage;
 import org.apache.karaf.webconsole.karaf.feature.RepositoriesProvider;
-import org.apache.wicket.RequestCycle;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxFallbackLink;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
@@ -31,13 +32,14 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColu
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.request.cycle.RequestCycle;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 
 @PaxWicketMountPoint(mountPoint = "/karaf/repositories")
 public class RepositoriesPage extends KarafFeaturesPage {
 
     public RepositoriesPage() {
-        IColumn[] columns = new IColumn[] {
+        IColumn<Repository>[] columns = new IColumn[] {
             new OrdinalColumn<Repository>(),
             new PropertyColumn<Repository>(Model.of("name"), "name", "name"),
             new PropertyColumn<Repository>(Model.of("URI"), "URI", "URI"),
@@ -50,17 +52,17 @@ public class RepositoriesPage extends KarafFeaturesPage {
         };
 
         add(new AjaxFallbackLink("addRepository") {
-        	@Override
-        	public void onClick(AjaxRequestTarget target) {
-//        		if (target != null) {
-//        			target.addComponent(new AddRepositoryPanel(id, model));
-//        		} else {
-        			RequestCycle.get().setResponsePage(AddRepositoryPage.class);
-//        		}
-        	}
+            @Override
+            public void onClick(AjaxRequestTarget target) {
+//                if (target != null) {
+//                    target.addComponent(new AddRepositoryPanel(id, model));
+//                } else {
+                    RequestCycle.get().setResponsePage(AddRepositoryPage.class);
+//                }
+            }
         });
 
-        add(new DefaultDataTable<Repository>("repositories", columns, new RepositoriesProvider(featuresService), 20));
+        add(new DefaultDataTable<Repository>("repositories", Arrays.asList(columns), new RepositoriesProvider(featuresService), 20));
     }
 
 }

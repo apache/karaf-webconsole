@@ -22,9 +22,9 @@ import org.apache.karaf.webconsole.core.page.LoginPage;
 import org.apache.karaf.webconsole.core.security.HierarchicalRoleCheckingStrategy;
 import org.apache.karaf.webconsole.core.security.KarafJaasWebSession;
 import org.apache.wicket.IConverterLocator;
-import org.apache.wicket.authentication.AuthenticatedWebApplication;
-import org.apache.wicket.authentication.AuthenticatedWebSession;
-import org.apache.wicket.authorization.strategies.role.RoleAuthorizationStrategy;
+import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
+import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
+import org.apache.wicket.authroles.authorization.strategies.role.RoleAuthorizationStrategy;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.pages.AccessDeniedPage;
 import org.apache.wicket.markup.html.pages.PageExpiredErrorPage;
@@ -42,12 +42,16 @@ public class WebConsoleApplication extends AuthenticatedWebApplication {
     protected void init() {
         super.init();
 
-        mountBookmarkablePage("/login", LoginPage.class);
-        mountBookmarkablePage("/error/401", AccessDeniedPage.class);
-        mountBookmarkablePage("/error/404", PageExpiredErrorPage.class);
+        mountPage("/login", LoginPage.class);
+        mountPage("/error/401", AccessDeniedPage.class);
+        mountPage("/error/404", PageExpiredErrorPage.class);
 
         getApplicationSettings().setAccessDeniedPage(AccessDeniedPage.class);
         getApplicationSettings().setPageExpiredErrorPage(PageExpiredErrorPage.class);
+
+        // avoid exceptions when can't find label in property files
+        getResourceSettings().setThrowExceptionOnMissingResource(false);
+        getResourceSettings().setUseDefaultOnMissingResource(true);
 
         getSecuritySettings().setAuthorizationStrategy(new RoleAuthorizationStrategy(new HierarchicalRoleCheckingStrategy()));
         getMarkupSettings().setStripWicketTags(true);

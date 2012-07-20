@@ -21,8 +21,8 @@ import java.security.Principal;
 import javax.security.auth.login.LoginContext;
 import javax.security.auth.login.LoginException;
 
-import org.apache.wicket.Request;
-import org.apache.wicket.authorization.strategies.role.Roles;
+import org.apache.wicket.authroles.authorization.strategies.role.Roles;
+import org.apache.wicket.request.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -18,12 +18,12 @@ package org.apache.karaf.webconsole.osgi.core.pkg.column;
 
 import org.apache.felix.utils.manifest.Clause;
 import org.apache.karaf.webconsole.osgi.core.pkg.SinglePackagePage;
-import org.apache.wicket.PageParameters;
 import org.apache.wicket.behavior.SimpleAttributeModifier;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.osgi.framework.Constants;
 import org.osgi.framework.Version;

@@ -17,8 +17,8 @@
 package org.apache.karaf.webconsole.core.test;
 
 import org.apache.karaf.webconsole.core.security.WebConsoleSession;
-import org.apache.wicket.Request;
-import org.apache.wicket.authorization.strategies.role.Roles;
+import org.apache.wicket.authroles.authorization.strategies.role.Roles;
+import org.apache.wicket.request.Request;
 
 /**
  * Dummy session which does not handle authentication, simply returns true for

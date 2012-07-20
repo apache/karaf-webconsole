@@ -20,14 +20,15 @@ import java.util.List;
 import java.util.Locale;
 
 import org.apache.karaf.webconsole.core.BasePage;
-import org.apache.wicket.ResourceReference;
-import org.apache.wicket.behavior.SimpleAttributeModifier;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.request.resource.PackageResourceReference;
+import org.apache.wicket.request.resource.ResourceReference;
 
 /**
  * Top panel which allows to switch session language.
@@ -61,12 +62,12 @@ public class LanguageTopPanel extends AnonymousTopPanel {
 
     protected Image getImage(String id, Locale locale) {
         String localeName = locale.getDisplayName(Locale.ENGLISH);
-        ResourceReference resource = new ResourceReference(BasePage.class, "images/" + localeName.toLowerCase() + "-flag.png");
+        ResourceReference resource = new PackageResourceReference(BasePage.class, "images/" + localeName.toLowerCase() + "-flag.png");
         Image image = new Image(id, resource);
-        image.add(new SimpleAttributeModifier("width", "20"));
-        image.add(new SimpleAttributeModifier("height", "14"));
-        image.add(new SimpleAttributeModifier("alt", localeName));
-        image.add(new SimpleAttributeModifier("title", localeName));
+        image.add(new AttributeModifier("width", "20"));
+        image.add(new AttributeModifier("height", "14"));
+        image.add(new AttributeModifier("alt", localeName));
+        image.add(new AttributeModifier("title", localeName));
         return image;
     }
 }

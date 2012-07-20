@@ -17,9 +17,9 @@
 package org.apache.karaf.webconsole.servicemix.internal;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
-import org.apache.karaf.webconsole.core.page.SidebarPage;
 import org.apache.karaf.webconsole.core.table.PropertyColumnExt;
 import org.apache.servicemix.nmr.api.Exchange;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
@@ -72,7 +72,7 @@ public class TrackNmrPage extends ServiceMixPage {
 
         };
 
-        add(new DefaultDataTable<Exchange>("exchanges", columns, dataProvider, 20));
+        add(new DefaultDataTable<Exchange>("exchanges", Arrays.asList(columns), dataProvider, 20));
 
     }
 

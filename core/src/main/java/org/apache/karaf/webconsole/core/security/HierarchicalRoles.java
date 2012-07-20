@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.apache.wicket.authorization.strategies.role.Roles;
+import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 
 /**
  * An extension of roles to support hierarchical roles. Hierarchy is created by

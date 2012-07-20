@@ -19,23 +19,23 @@ package org.apache.karaf.webconsole.core.navigation.markup;
 import org.apache.karaf.webconsole.core.page.LoginPage;
 import org.apache.karaf.webconsole.core.security.WebConsoleSession;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.request.cycle.RequestCycle;
 
 /**
  * Utility link to destroy session.
  */
 public class LogoutLink extends Link<Void> {
 
+    private static final long serialVersionUID = 1L;
+
     public LogoutLink(String id) {
         super(id);
     }
 
-    private static final long serialVersionUID = 1L;
-
     @Override
     public void onClick() {
         WebConsoleSession.get().invalidateNow();
-        getRequestCycle().setRedirect(true);
-        setResponsePage(LoginPage.class);
+        RequestCycle.get().setResponsePage(LoginPage.class);
     }
 
 }

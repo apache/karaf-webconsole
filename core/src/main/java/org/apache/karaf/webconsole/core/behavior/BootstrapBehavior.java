@@ -16,17 +16,15 @@
  */
 package org.apache.karaf.webconsole.core.behavior;
 
-import static org.apache.wicket.markup.html.JavascriptPackageResource.getHeaderContribution;
-
-import org.apache.wicket.ResourceReference;
-import org.apache.wicket.markup.html.CSSPackageResource;
-import org.apache.wicket.markup.html.IHeaderContributor;
+import org.apache.wicket.request.resource.CssResourceReference;
+import org.apache.wicket.request.resource.JavaScriptResourceReference;
+import org.apache.wicket.request.resource.ResourceReference;
 
 /**
  * A Twitter bootstrap behavior which contains css and javascript resources.
  * http://twitter.github.com/bootstrap
  */
-public class BootstrapBehavior extends CompositeHeaderContributor {
+public class BootstrapBehavior extends CompositeBehavior {
 
     private static final long serialVersionUID = 1L;
 
@@ -35,21 +33,21 @@ public class BootstrapBehavior extends CompositeHeaderContributor {
     }
 
     @Override
-    protected IHeaderContributor[] getOwnHeaderContributors() {
-        return new IHeaderContributor[] {
-            CSSPackageResource.getHeaderContribution(new ResourceReference(BootstrapBehavior.class, "bootstrap/css/bootstrap.css")),
-            getHeaderContribution(new ResourceReference(BootstrapBehavior.class, "bootstrap/js/bootstrap-alert.js")),
-            getHeaderContribution(new ResourceReference(BootstrapBehavior.class, "bootstrap/js/bootstrap-button.js")),
-            getHeaderContribution(new ResourceReference(BootstrapBehavior.class, "bootstrap/js/bootstrap-carousel.js")),
-            getHeaderContribution(new ResourceReference(BootstrapBehavior.class, "bootstrap/js/bootstrap-collapse.js")),
-            getHeaderContribution(new ResourceReference(BootstrapBehavior.class, "bootstrap/js/bootstrap-dropdown.js")),
-            getHeaderContribution(new ResourceReference(BootstrapBehavior.class, "bootstrap/js/bootstrap-modal.js")),
-            getHeaderContribution(new ResourceReference(BootstrapBehavior.class, "bootstrap/js/bootstrap-scrollspy.js")),
-            getHeaderContribution(new ResourceReference(BootstrapBehavior.class, "bootstrap/js/bootstrap-tab.js")),
-            getHeaderContribution(new ResourceReference(BootstrapBehavior.class, "bootstrap/js/bootstrap-tooltip.js")),
-            getHeaderContribution(new ResourceReference(BootstrapBehavior.class, "bootstrap/js/bootstrap-popover.js")),
-            getHeaderContribution(new ResourceReference(BootstrapBehavior.class, "bootstrap/js/bootstrap-transition.js")),
-            getHeaderContribution(new ResourceReference(BootstrapBehavior.class, "bootstrap/js/bootstrap-typeahead.js"))
+    protected ResourceReference[] getResourceReferences() {
+        return new ResourceReference[] {
+            new CssResourceReference(BootstrapBehavior.class, "bootstrap/css/bootstrap.css"),
+            new JavaScriptResourceReference(BootstrapBehavior.class, "bootstrap/js/bootstrap-alert.js"),
+            new JavaScriptResourceReference(BootstrapBehavior.class, "bootstrap/js/bootstrap-button.js"),
+            new JavaScriptResourceReference(BootstrapBehavior.class, "bootstrap/js/bootstrap-carousel.js"),
+            new JavaScriptResourceReference(BootstrapBehavior.class, "bootstrap/js/bootstrap-collapse.js"),
+            new JavaScriptResourceReference(BootstrapBehavior.class, "bootstrap/js/bootstrap-dropdown.js"),
+            new JavaScriptResourceReference(BootstrapBehavior.class, "bootstrap/js/bootstrap-modal.js"),
+            new JavaScriptResourceReference(BootstrapBehavior.class, "bootstrap/js/bootstrap-scrollspy.js"),
+            new JavaScriptResourceReference(BootstrapBehavior.class, "bootstrap/js/bootstrap-tab.js"),
+            new JavaScriptResourceReference(BootstrapBehavior.class, "bootstrap/js/bootstrap-tooltip.js"),
+            new JavaScriptResourceReference(BootstrapBehavior.class, "bootstrap/js/bootstrap-popover.js"),
+            new JavaScriptResourceReference(BootstrapBehavior.class, "bootstrap/js/bootstrap-transition.js"),
+            new JavaScriptResourceReference(BootstrapBehavior.class, "bootstrap/js/bootstrap-typeahead.js")
         };
     }
 

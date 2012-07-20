@@ -27,12 +27,12 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 
+import org.apache.karaf.webconsole.core.behavior.CssBehavior;
 import org.apache.karaf.webconsole.core.page.SinglePage;
 import org.apache.karaf.webconsole.core.table.map.MapDataProvider;
 import org.apache.karaf.webconsole.core.table.map.MapDataTable;
 import org.apache.servicemix.nmr.api.Exchange;
 import org.apache.servicemix.nmr.api.Message;
-import org.apache.wicket.markup.html.CSSPackageResource;
 import org.apache.wicket.markup.html.basic.Label;
 
 /**
@@ -41,7 +41,7 @@ import org.apache.wicket.markup.html.basic.Label;
 public class DetailsPage extends SinglePage {
 
     public DetailsPage(Exchange object) {
-        add(CSSPackageResource.getHeaderContribution(DetailsPage.class, "message.css"));
+        add(new CssBehavior(DetailsPage.class, "message.css"));
 
         Map<String, Object> properties = object.getProperties();
 

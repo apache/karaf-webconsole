@@ -19,8 +19,8 @@ package org.apache.karaf.webconsole.core.table;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.wicket.behavior.SimpleAttributeModifier;
-import org.apache.wicket.markup.html.CSSPackageResource;
+import org.apache.karaf.webconsole.core.behavior.CssBehavior;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
@@ -39,7 +39,7 @@ public class ActionsPanel<T> extends Panel {
     public ActionsPanel(String componentId, IModel<T> model) {
         super(componentId, model);
 
-        add(CSSPackageResource.getHeaderContribution(ActionsPanel.class, "actions.css"));
+        add(new CssBehavior(ActionsPanel.class, "actions.css"));
 
         final List<Link> links = getLinks(model.getObject(), "action", "label");
         add(new ListView<Link>("actions", new ListModel<Link>(links)) {
@@ -50,11 +50,11 @@ public class ActionsPanel<T> extends Panel {
                 item.addOrReplace(item.getModelObject());
 
                 if (item.getIndex() == 0) {
-                    item.add(new SimpleAttributeModifier("class", "first"));
+                    item.add(new AttributeModifier("class", "first"));
                 } else if (item.getIndex() + 1 == links.size()) {
-                    item.add(new SimpleAttributeModifier("class", "last"));
+                    item.add(new AttributeModifier("class", "last"));
                 } else {
-                    item.add(new SimpleAttributeModifier("class", "node"));
+                    item.add(new AttributeModifier("class", "node"));
                 }
             }
         });

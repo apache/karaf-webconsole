@@ -17,10 +17,10 @@
 package org.apache.karaf.webconsole.core.util;
 
 import org.apache.wicket.Page;
-import org.apache.wicket.RequestCycle;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.request.cycle.RequestCycle;
 
 /**
  * Utility class to create links.
@@ -59,7 +59,7 @@ public abstract class LinkUtils {
             RequestCycle requestCycle = RequestCycle.get();
             String linkPath = (requestCycle.urlFor(pageClass, null) + "").replace("../", "");
 
-            String requestPath = requestCycle.getRequest().getPath();
+            String requestPath = requestCycle.getRequest().getUrl().toString();
             return requestPath.contains(linkPath);
         }
         return false;

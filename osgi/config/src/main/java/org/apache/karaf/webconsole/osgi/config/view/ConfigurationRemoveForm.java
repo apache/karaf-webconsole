@@ -22,7 +22,7 @@ import org.apache.karaf.webconsole.osgi.config.ConfigurationsPage;
 import org.apache.karaf.webconsole.osgi.config.model.ConfigurationNotFoundException;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.form.IFormSubmittingComponent;
+import org.apache.wicket.markup.html.form.IFormSubmitter;
 import org.apache.wicket.model.IModel;
 import org.osgi.service.cm.Configuration;
 
@@ -38,7 +38,7 @@ public class ConfigurationRemoveForm extends Form<Configuration> {
     }
 
     @Override
-    public void process(IFormSubmittingComponent submittingComponent) {
+    public void process(IFormSubmitter submittingComponent) {
         try {
             Configuration cfg = getModelObject();
             String pid = cfg.getPid();

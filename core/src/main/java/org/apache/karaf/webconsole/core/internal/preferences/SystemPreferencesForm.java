@@ -17,7 +17,7 @@
 package org.apache.karaf.webconsole.core.internal.preferences;
 
 import org.apache.karaf.webconsole.core.preferences.PreferencesPage;
-import org.apache.wicket.RequestCycle;
+import org.apache.wicket.RestartResponseException;
 import org.apache.wicket.Session;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
@@ -64,8 +64,6 @@ public class SystemPreferencesForm extends Form<Preferences> {
             Session.get().error("Cannot store avatar");
         }
 
-        RequestCycle requestCycle = RequestCycle.get();
-        requestCycle.setRedirect(true);
-        requestCycle.setResponsePage(PreferencesPage.class);
+        throw new RestartResponseException(PreferencesPage.class);
     }
 }

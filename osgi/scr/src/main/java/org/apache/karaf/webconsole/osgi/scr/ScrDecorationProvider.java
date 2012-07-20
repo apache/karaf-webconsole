@@ -17,8 +17,7 @@
 
 package org.apache.karaf.webconsole.osgi.scr;
 
-import static org.apache.wicket.markup.html.CSSPackageResource.getHeaderContribution;
-
+import org.apache.karaf.webconsole.core.behavior.CssBehavior;
 import org.apache.karaf.webconsole.core.panel.CssImagePanel;
 import org.apache.karaf.webconsole.osgi.core.spi.IDecorationProvider;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -39,7 +38,7 @@ public class ScrDecorationProvider extends ScrComponent implements IDecorationPr
 
         // if scr is present and components are not null - then we have a scr components
         CssImagePanel imagePanel = new CssImagePanel(componentId, "scr");
-        imagePanel.add(getHeaderContribution(getClass(), "decorator.css"));
+        imagePanel.add(new CssBehavior(getClass(), "decorator.css"));
         return imagePanel;
     }
 

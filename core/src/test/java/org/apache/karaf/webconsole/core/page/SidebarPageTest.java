@@ -29,8 +29,9 @@ import org.apache.karaf.webconsole.core.navigation.SidebarProvider;
 import org.apache.karaf.webconsole.core.test.AlwaysAuthenticatedWebSession;
 import org.apache.karaf.webconsole.core.test.LinkAnswer;
 import org.apache.karaf.webconsole.core.widget.WidgetProvider;
-import org.apache.wicket.authentication.AuthenticatedWebSession;
+import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.MarkupException;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -54,7 +55,7 @@ public class SidebarPageTest extends WebConsoleTest {
         replay(provider);
 
         tester.startPage(new TestSidebarPage(provider));
-        tester.assertBookmarkablePageLink("sidebar:masterPageLink", DashboardPage.class, "");
+        tester.assertBookmarkablePageLink("sidebar:masterPageLink", DashboardPage.class, new PageParameters());
         tester.assertLabel("sidebar:masterPageLink:masterPageLabel", "Test link");
         tester.assertListView("sidebar:subPageLinks", emptyLinkList());
 

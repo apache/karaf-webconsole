@@ -30,13 +30,13 @@ import org.apache.cxf.service.model.OperationInfo;
 import org.apache.cxf.service.model.ServiceInfo;
 import org.apache.karaf.webconsole.core.page.SinglePage;
 import org.apache.karaf.webconsole.cxf.internal.trace.TraceInterceptor;
-import org.apache.wicket.PageParameters;
 import org.apache.wicket.Session;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.LoadableDetachableModel;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 
 public class DetailsPage extends SinglePage {
@@ -48,7 +48,7 @@ public class DetailsPage extends SinglePage {
     private TraceInterceptor traceOut = new TraceInterceptor(Phase.PRE_STREAM, "out");
 
     public DetailsPage(PageParameters params) {
-        String busId = params.getString("busId");
+        String busId = params.get("busId").toString();
 
         final BusModel model = new BusModel(buses, busId);
 

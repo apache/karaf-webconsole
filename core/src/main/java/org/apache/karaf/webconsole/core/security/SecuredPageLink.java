@@ -17,9 +17,9 @@
 package org.apache.karaf.webconsole.core.security;
 
 import org.apache.karaf.webconsole.core.page.SecuredPage;
-import org.apache.wicket.PageParameters;
-import org.apache.wicket.authentication.AuthenticatedWebSession;
+import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 /**
  * Bookmarkable secured link which hides link if destination page is not

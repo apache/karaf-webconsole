@@ -19,7 +19,7 @@ package org.apache.karaf.webconsole.core.security;
 import java.security.Principal;
 
 import org.apache.karaf.jaas.modules.RolePrincipal;
-import org.apache.wicket.Request;
+import org.apache.wicket.request.Request;
 
 /**
  * Authenticated web session which uses JAAS to authenticate user and obtain roles.

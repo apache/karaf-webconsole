@@ -17,6 +17,7 @@
 package org.apache.karaf.webconsole.cxf.internal.services;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -66,7 +67,7 @@ public class CxfServicesPage extends SinglePage {
             }
         };
 
-        add(new DefaultDataTable<Bus>("buses", columns, provider, 20));
+        add(new DefaultDataTable<Bus>("buses", Arrays.asList(columns), provider, 20));
     }
 
 }

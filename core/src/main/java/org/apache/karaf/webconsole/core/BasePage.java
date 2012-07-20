@@ -22,7 +22,7 @@ import java.util.Locale;
 
 import org.apache.karaf.webconsole.core.brand.BrandProvider;
 import org.apache.karaf.webconsole.core.navigation.markup.LanguageTopPanel;
-import org.apache.wicket.behavior.IBehavior;
+import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -49,7 +49,7 @@ public class BasePage extends WebPage {
 
         add(new Label("footer", "Apache Karaf Console"));
 
-        for (IBehavior behavior : brandProvider.getBehaviors()) {
+        for (Behavior behavior : brandProvider.getBehaviors()) {
             add(behavior);
         }
     }

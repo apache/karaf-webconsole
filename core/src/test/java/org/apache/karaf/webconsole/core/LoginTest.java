@@ -16,8 +16,11 @@
  */
 package org.apache.karaf.webconsole.core;
 
+import java.util.ArrayList;
+
 import org.apache.karaf.webconsole.core.dashboard.DashboardPage;
 import org.apache.karaf.webconsole.core.page.LoginPage;
+import org.apache.karaf.webconsole.core.widget.WidgetProvider;
 import org.apache.wicket.authorization.UnauthorizedInstantiationException;
 import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.tester.WicketTester;
@@ -33,6 +36,8 @@ public class LoginTest extends WebConsoleTest {
 
     @Test
     public void testSuccessLogin() throws Exception {
+        injector.getValues().put("widgets", new ArrayList<WidgetProvider>());
+
         WicketTester tester = new WicketTester(application);
         tester.startPage(LoginPage.class);
         //tester.debugComponentTrees();

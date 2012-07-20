@@ -20,9 +20,9 @@ import org.apache.karaf.webconsole.osgi.blueprint.IBlueprintBundleStateTracker;
 import org.apache.karaf.webconsole.osgi.blueprint.details.DetailsPage;
 import org.apache.karaf.webconsole.osgi.core.spi.IActionProvider;
 import org.apache.wicket.Component;
-import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.osgi.framework.Bundle;
 
 
@@ -36,7 +36,7 @@ public class BlueprintActionProvider implements IActionProvider {
 
     public Component create(String componentId, Bundle model) {
         PageParameters params = new PageParameters();
-        params.put("bundleId", model.getBundleId());
+        params.add("bundleId", model.getBundleId());
         BookmarkablePageLink link = new BookmarkablePageLink(componentId, DetailsPage.class, params);
         link.setModel(Model.of("Blueprint"));
         return link;

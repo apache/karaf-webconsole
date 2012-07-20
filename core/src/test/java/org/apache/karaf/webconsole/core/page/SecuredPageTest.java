@@ -18,7 +18,7 @@ package org.apache.karaf.webconsole.core.page;
 
 import org.apache.karaf.webconsole.core.WebConsoleTest;
 import org.apache.karaf.webconsole.core.test.AlwaysAuthenticatedWebSession;
-import org.apache.wicket.authentication.AuthenticatedWebSession;
+import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Test;
 import org.junit.runner.RunWith;

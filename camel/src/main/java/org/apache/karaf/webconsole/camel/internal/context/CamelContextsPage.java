@@ -17,6 +17,7 @@
 package org.apache.karaf.webconsole.camel.internal.context;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -86,7 +87,7 @@ public class CamelContextsPage extends CamelPage {
             }
         };
 
-        add(new DefaultDataTable<CamelContext>("contexts", columns, provider, 20));
+        add(new DefaultDataTable<CamelContext>("contexts", Arrays.asList(columns), provider, 20));
     }
 
 }

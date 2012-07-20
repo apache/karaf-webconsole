@@ -30,7 +30,7 @@ import java.util.Map;
 import org.apache.karaf.webconsole.core.brand.BrandProvider;
 import org.apache.karaf.webconsole.core.brand.DefaultBrandProvider;
 import org.apache.wicket.Page;
-import org.apache.wicket.behavior.IBehavior;
+import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.util.tester.WicketTester;
 import org.easymock.IAnswer;
@@ -52,10 +52,10 @@ public class BasePageTest extends WebConsoleTest {
         expect(brandProvider.getHeaderImage((String) anyObject())).andAnswer(new IAnswer<Image>() {
             public Image answer() throws Throwable {
                 imageId = (String) getCurrentArguments()[0];
-                return new Image(imageId);
+                return new Image(imageId, "");
             }
         });
-        expect(brandProvider.getBehaviors()).andReturn(Collections.<IBehavior>emptyList());
+        expect(brandProvider.getBehaviors()).andReturn(Collections.<Behavior>emptyList());
         brandProvider.modify(anyObject(Page.class));
 
         replay(brandProvider);

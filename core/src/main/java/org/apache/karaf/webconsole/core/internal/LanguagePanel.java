@@ -16,8 +16,10 @@
  */
 package org.apache.karaf.webconsole.core.internal;
 
+import java.util.List;
+import java.util.Locale;
+
 import org.apache.karaf.webconsole.core.BasePage;
-import org.apache.wicket.ResourceReference;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.link.Link;
@@ -26,9 +28,7 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.StringResourceModel;
-
-import java.util.List;
-import java.util.Locale;
+import org.apache.wicket.request.resource.PackageResourceReference;
 
 public class LanguagePanel extends Panel {
 
@@ -46,7 +46,7 @@ public class LanguagePanel extends Panel {
             @Override
             protected void populateItem(final ListItem<Locale> item) {
                 final Locale model = item.getModelObject();
-                Image flagImage = new Image("flag", new ResourceReference(BasePage.class, "images/" + model.getDisplayName(Locale.ENGLISH).toLowerCase() + "-flag.png"));
+                Image flagImage = new Image("flag", new PackageResourceReference(BasePage.class, "images/" + model.getDisplayName(Locale.ENGLISH).toLowerCase() + "-flag.png"));
                 Link<Void> link = new Link<Void>("languageLink") {
 
                     private static final long serialVersionUID = 1L;

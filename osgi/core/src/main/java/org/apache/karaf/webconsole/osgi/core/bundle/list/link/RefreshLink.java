@@ -17,13 +17,13 @@
 package org.apache.karaf.webconsole.osgi.core.bundle.list.link;
 
 import org.apache.karaf.webconsole.osgi.core.bundle.list.BundlePage;
-import org.apache.wicket.RequestCycle;
 import org.apache.wicket.Session;
 import org.apache.wicket.authorization.Action;
-import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeAction;
+import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeAction;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.request.cycle.RequestCycle;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.osgi.framework.Bundle;
 import org.osgi.service.packageadmin.PackageAdmin;

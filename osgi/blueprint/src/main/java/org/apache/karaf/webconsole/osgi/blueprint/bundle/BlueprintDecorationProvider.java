@@ -19,9 +19,9 @@ package org.apache.karaf.webconsole.osgi.blueprint.bundle;
 import org.apache.karaf.webconsole.core.panel.StaticImagePanel;
 import org.apache.karaf.webconsole.osgi.blueprint.IBlueprintBundleStateTracker;
 import org.apache.karaf.webconsole.osgi.core.spi.IDecorationProvider;
-import org.apache.wicket.ResourceReference;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.request.resource.PackageResourceReference;
 import org.osgi.framework.Bundle;
 
 /**
@@ -38,7 +38,7 @@ public class BlueprintDecorationProvider implements IDecorationProvider {
 
     public Panel getDecoration(final String componentId, IModel<Bundle> model) {
         if (tracker.getState(model.getObject()) != null) {
-            return new StaticImagePanel(componentId, new ResourceReference(getClass(), "blueprint.gif"));
+            return new StaticImagePanel(componentId, new PackageResourceReference(getClass(), "blueprint.gif"));
         }
         return null;
     }

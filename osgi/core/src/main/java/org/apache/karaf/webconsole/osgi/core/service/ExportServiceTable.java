@@ -16,6 +16,8 @@
  */
 package org.apache.karaf.webconsole.osgi.core.service;
 
+import java.util.Arrays;
+
 import org.apache.karaf.webconsole.osgi.core.service.column.ObjectClassColumn;
 import org.apache.karaf.webconsole.osgi.core.service.column.ServiceConsumerColumn;
 import org.apache.karaf.webconsole.osgi.core.service.column.ServicePropertyColumn;
@@ -37,7 +39,7 @@ public class ExportServiceTable extends DefaultDataTable<ServiceReference> {
     };
 
     public ExportServiceTable(String id, Bundle bundle) {
-        super(id, columns, new ExportServiceDataProvider(bundle), Integer.MAX_VALUE);
+        super(id, Arrays.asList(columns), new ExportServiceDataProvider(bundle), Integer.MAX_VALUE);
     }
 
 }

@@ -17,13 +17,13 @@
 package org.apache.karaf.webconsole.core.behavior;
 
 import org.apache.wicket.Component;
-import org.apache.wicket.behavior.AbstractBehavior;
+import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.ComponentTag;
 
 /**
  * Simple behavior to remove some attributes from output markup.
  */
-public class RemoveAttributeBehavior extends AbstractBehavior {
+public class RemoveAttributeBehavior extends Behavior {
 
     private static final long serialVersionUID = 1L;
 

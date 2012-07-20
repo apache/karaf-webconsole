@@ -22,12 +22,12 @@ import java.util.List;
 import org.apache.karaf.webconsole.core.table.ActionsPanel;
 import org.apache.karaf.webconsole.osgi.config.ConfigurationEditPage;
 import org.apache.karaf.webconsole.osgi.config.ConfigurationRemovePage;
-import org.apache.wicket.PageParameters;
-import org.apache.wicket.behavior.SimpleAttributeModifier;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.osgi.service.cm.Configuration;
 
 @SuppressWarnings("rawtypes")
@@ -40,14 +40,14 @@ class ConfigurationsActionPanel extends ActionsPanel<Configuration> {
     @Override
     protected List<Link> getLinks(Configuration object, String linkId, String labelId) {
         PageParameters params = new PageParameters();
-        params.put("pid", object.getPid());
+        params.add("pid", object.getPid());
 
         Link removeLink = new BookmarkablePageLink<ConfigurationEditPage>(linkId, ConfigurationRemovePage.class, params);
-        removeLink.add(new SimpleAttributeModifier("class", "remove"));
+        removeLink.add(new AttributeModifier("class", "remove"));
         removeLink.add(new Label(labelId, "remove"));
 
         Link editLink = new BookmarkablePageLink<ConfigurationEditPage>(linkId, ConfigurationEditPage.class, params);
-        removeLink.add(new SimpleAttributeModifier("class", "edit"));
+        removeLink.add(new AttributeModifier("class", "edit"));
         editLink.add(new Label(labelId, "edit"));
 
         return Arrays.asList(editLink, removeLink);
