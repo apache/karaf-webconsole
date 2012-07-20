@@ -32,6 +32,8 @@ import org.osgi.framework.Bundle;
  */
 public class ScrColumn extends AbstractColumn<Bundle> {
 
+    private static final long serialVersionUID = 1L;
+
     private ScrService scr;
 
     public ScrColumn(ScrService scr, String title) {

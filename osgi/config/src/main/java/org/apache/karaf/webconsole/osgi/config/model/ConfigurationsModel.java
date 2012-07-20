@@ -20,7 +20,12 @@ import org.apache.wicket.model.LoadableDetachableModel;
 import org.osgi.service.cm.Configuration;
 import org.osgi.service.cm.ConfigurationAdmin;
 
+/**
+ * Model for configurations.
+ */
 public class ConfigurationsModel extends LoadableDetachableModel<Configuration[]> {
+
+    private static final long serialVersionUID = 1L;
 
     private final ConfigurationAdmin configurationAdmin;
 

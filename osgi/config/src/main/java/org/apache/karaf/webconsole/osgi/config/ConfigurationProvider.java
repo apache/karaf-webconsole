@@ -26,7 +26,12 @@ import org.apache.wicket.model.IModel;
 import org.osgi.service.cm.Configuration;
 import org.osgi.service.cm.ConfigurationAdmin;
 
+/**
+ * Data provider for configuration list.
+ */
 public class ConfigurationProvider extends SortableDataProvider<Configuration> {
+
+    private static final long serialVersionUID = 1L;
 
     private Configuration[] configurations = new Configuration[0];
     private ConfigurationAdmin configurationAdmin;

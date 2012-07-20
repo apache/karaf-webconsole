@@ -39,7 +39,12 @@ import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 
+/**
+ * Page with bus details.
+ */
 public class DetailsPage extends SinglePage {
+
+    private static final long serialVersionUID = 1L;
 
     @PaxWicketBean(name = "busList")
     private List<Bus> buses;
@@ -47,6 +52,7 @@ public class DetailsPage extends SinglePage {
     private TraceInterceptor traceIn = new TraceInterceptor(Phase.RECEIVE, "in");
     private TraceInterceptor traceOut = new TraceInterceptor(Phase.PRE_STREAM, "out");
 
+    @SuppressWarnings({"serial", "rawtypes"})
     public DetailsPage(PageParameters params) {
         String busId = params.get("busId").toString();
 
@@ -130,9 +136,9 @@ public class DetailsPage extends SinglePage {
                 });
 
                 Endpoint endpoint = server.getEndpoint();
-                List<Interceptor> inInterceptors = (List) endpoint.getInInterceptors();
-                List<Interceptor> outInterceptors = (List) endpoint.getOutInterceptors();
-                List<Interceptor> faultInterceptors = (List) endpoint.getInFaultInterceptors();
+                List<Interceptor<?>> inInterceptors = (List) endpoint.getInInterceptors();
+                List<Interceptor<?>> outInterceptors = (List) endpoint.getOutInterceptors();
+                List<Interceptor<?>> faultInterceptors = (List) endpoint.getInFaultInterceptors();
 
                 item.add(new InterceptorView("in-interceptors", inInterceptors));
                 item.add(new InterceptorView("out-interceptors", outInterceptors));

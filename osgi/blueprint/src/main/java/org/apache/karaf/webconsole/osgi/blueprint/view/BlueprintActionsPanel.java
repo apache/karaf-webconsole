@@ -28,13 +28,19 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.osgi.framework.ServiceReference;
 
+/**
+ * Actions panel for blueprint.
+ */
 public class BlueprintActionsPanel extends ActionsPanel<ServiceReference> {
+
+    private static final long serialVersionUID = 1L;
 
     public BlueprintActionsPanel(String componentId, IModel<ServiceReference> model) {
         super(componentId, model);
     }
 
     @Override
+    @SuppressWarnings({"rawtypes", "unchecked"})
     protected List<Link> getLinks(ServiceReference object, String linkId, String labelId) {
         PageParameters params = new PageParameters();
         params.add("bundleId", object.getBundle().getBundleId());

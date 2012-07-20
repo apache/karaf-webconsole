@@ -21,6 +21,8 @@ package org.apache.karaf.webconsole.osgi.core.shared;
  */
 public class MissingServiceReferenceException extends RuntimeException {
 
+    private static final long serialVersionUID = 1L;
+
     public MissingServiceReferenceException(String symbolicName, Long serviceId) {
         super("Bundle " + symbolicName + " doesn't register service with id " + serviceId);
     }

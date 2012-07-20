@@ -20,7 +20,12 @@ import org.apache.karaf.features.FeaturesService;
 import org.apache.karaf.webconsole.core.page.SinglePage;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 
+/**
+ * Base page for karaf features.
+ */
 public class KarafFeaturesPage extends SinglePage {
+
+    private static final long serialVersionUID = 1L;
 
     @PaxWicketBean(name = "featuresService")
     protected FeaturesService featuresService;

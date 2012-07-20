@@ -25,6 +25,8 @@ import org.ops4j.pax.wicket.api.PaxWicketBean;
  */
 public class AdminPage extends SinglePage {
 
+    private static final long serialVersionUID = 1L;
+
     @PaxWicketBean(name = "adminService")
     protected AdminService admin;
 

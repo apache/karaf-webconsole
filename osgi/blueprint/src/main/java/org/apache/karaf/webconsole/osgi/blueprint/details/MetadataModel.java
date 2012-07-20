@@ -26,6 +26,9 @@ import org.osgi.framework.ServiceReference;
 import org.osgi.service.blueprint.container.BlueprintContainer;
 import org.osgi.service.blueprint.reflect.ComponentMetadata;
 
+/**
+ * Model for blueprint metadata.
+ */
 class MetadataModel extends LoadableDetachableModel<List<ComponentMetadata>> {
 
     private static final long serialVersionUID = 1L;

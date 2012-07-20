@@ -29,7 +29,12 @@ import org.apache.wicket.extensions.markup.html.repeater.data.sort.SortOrder;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.model.IModel;
 
+/**
+ * Feature list data provider.
+ */
 public class FeaturesProvider extends SortableDataProvider<Feature> {
+
+    private static final long serialVersionUID = 1L;
 
     private final FeaturesService service;
 

@@ -22,7 +22,12 @@ import org.apache.cxf.interceptor.Fault;
 import org.apache.cxf.message.Message;
 import org.apache.cxf.phase.AbstractPhaseInterceptor;
 
+/**
+ * Tracing interceptor for CXF.
+ */
 public class TraceInterceptor extends AbstractPhaseInterceptor<Message> implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private String direction;
 

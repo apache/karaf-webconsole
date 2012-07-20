@@ -26,6 +26,8 @@ import org.apache.wicket.model.LoadableDetachableModel;
  */
 public class ExchangeModel extends LoadableDetachableModel<Exchange> {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * Listener - it keeps references.
      */

@@ -29,29 +29,34 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 
+/**
+ * Repository input page.
+ */
 @PaxWicketMountPoint(mountPoint = "/karaf/repositories/add")
 public class AddRepositoryPage extends KarafFeaturesPage {
 
+    private static final long serialVersionUID = 1L;
+
+    @SuppressWarnings({"rawtypes", "unchecked", "serial"})
     public AddRepositoryPage() {
         final IModel<Repository> model = new Model(new WicketRepository());
 
         final Form<Repository> form = new Form<Repository>("form", model);
         form.add(new AddRepositoryPanel("repository", model));
         form.add(new SubmitLink("submit") {
-            private static final long serialVersionUID = 1L;
-
             @Override
             public void onSubmit() {
-				URI uri = model.getObject().getURI();
+                URI uri = model.getObject().getURI();
                 try {
-					featuresService.addRepository(uri);
-				} catch (Exception e) {
-					Map<String, Object> map = new HashMap<String, Object>();
-					map.put("uri", uri);
-					form.error("Can not create repository " + e.getMessage(), map);
-				}
+                    featuresService.addRepository(uri);
+                } catch (Exception e) {
+                    Map<String, Object> map = new HashMap<String, Object>();
+                    map.put("uri", uri);
+                    form.error("Can not create repository " + e.getMessage(), map);
+                }
             }
         });
+
         add(form);
     }
 

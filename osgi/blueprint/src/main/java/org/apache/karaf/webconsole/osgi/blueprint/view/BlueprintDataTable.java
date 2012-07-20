@@ -28,9 +28,14 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.osgi.framework.ServiceReference;
 
+/**
+ * Table with blueprint containers.
+ */
 public class BlueprintDataTable extends DefaultDataTable<ServiceReference> {
 
-    @SuppressWarnings({"rawtypes", "unchecked"})
+    private static final long serialVersionUID = 1L;
+
+    @SuppressWarnings({"rawtypes", "unchecked", "serial"})
     private static final List COLUMNS = Arrays.asList(
         new DefaultServiceReferencePropertyColumn("Id", "service.id"),
         new DefaultServiceReferencePropertyColumn("Container", "osgi.blueprint.container.symbolicname"),
@@ -42,6 +47,7 @@ public class BlueprintDataTable extends DefaultDataTable<ServiceReference> {
         }
     );
 
+    @SuppressWarnings("unchecked")
     public BlueprintDataTable(String id, ISortableDataProvider<ServiceReference> dataProvider, int rowsPerPage) {
         super(id, COLUMNS, dataProvider, rowsPerPage);
     }

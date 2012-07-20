@@ -24,7 +24,12 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.osgi.framework.ServiceReference;
 
+/**
+ * Column representing single service reference property.
+ */
 public abstract class ServiceReferencePropertyColumn extends AbstractColumn<ServiceReference> {
+
+    private static final long serialVersionUID = 1L;
 
     public ServiceReferencePropertyColumn(String displayModel, String sortProperty) {
         super(Model.of(displayModel), sortProperty);

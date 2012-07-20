@@ -35,6 +35,8 @@ import org.ops4j.pax.wicket.api.PaxWicketBean;
  */
 public class BasePage extends WebPage {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * Brand provider responsible for l&f customization.
      */

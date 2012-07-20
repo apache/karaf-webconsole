@@ -21,7 +21,12 @@ import org.apache.wicket.markup.repeater.OddEvenItem;
 import org.apache.wicket.model.IModel;
 import org.osgi.service.cm.Configuration;
 
+/**
+ * Item which add "factory" class to configuration produced my configuration factory.
+ */
 public class FactoryPidItem extends OddEvenItem<Configuration> {
+
+    private static final long serialVersionUID = 1L;
 
     public FactoryPidItem(String id, int index, IModel<Configuration> model) {
         super(id, index, model);

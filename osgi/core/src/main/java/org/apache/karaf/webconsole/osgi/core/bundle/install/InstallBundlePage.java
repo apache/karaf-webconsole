@@ -31,6 +31,8 @@ import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 @PaxWicketMountPoint(mountPoint = "/osgi/bundle/add")
 public class InstallBundlePage extends OsgiPage {
 
+    private static final long serialVersionUID = 1L;
+
     public InstallBundlePage() {
         IModel<WicketInstallModel> model = of(new WicketInstallModel());
 

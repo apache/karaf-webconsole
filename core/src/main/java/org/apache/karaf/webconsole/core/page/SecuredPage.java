@@ -27,6 +27,8 @@ import org.apache.wicket.markup.html.panel.Panel;
 @AuthorizeInstantiation("admin")
 public class SecuredPage extends BasePage {
 
+    private static final long serialVersionUID = 1L;
+
     @Override
     protected Panel createTopPanel(String id) {
         return new NavigationTopPanel(id, getSupportedLocales());

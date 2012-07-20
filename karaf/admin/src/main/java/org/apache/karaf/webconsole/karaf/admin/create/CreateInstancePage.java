@@ -35,6 +35,9 @@ import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 @PaxWicketMountPoint(mountPoint = "/karaf/admin/create")
 public class CreateInstancePage extends AdminPage {
 
+    private static final long serialVersionUID = 1L;
+
+    @SuppressWarnings("serial")
     public CreateInstancePage() {
         WicketInstance instance = new WicketInstance();
         instance.setSettings(new WicketInstanceSettings());

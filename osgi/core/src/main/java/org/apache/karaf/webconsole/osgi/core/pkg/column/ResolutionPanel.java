@@ -17,7 +17,7 @@
 package org.apache.karaf.webconsole.osgi.core.pkg.column;
 
 import org.apache.felix.utils.manifest.Clause;
-import org.apache.wicket.behavior.SimpleAttributeModifier;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
@@ -46,10 +46,10 @@ public class ResolutionPanel extends Panel {
 
         add(new Label("resolution", resolution).setRenderBodyOnly(true));
         Label icon = new Label("icon", "");
-        icon.add(new SimpleAttributeModifier("class", css));
+        icon.add(new AttributeModifier("class", css));
         add(icon);
 
-        add(new SimpleAttributeModifier("title", "Resolution is " + resolution));
+        add(new AttributeModifier("title", "Resolution is " + resolution));
     }
 
 }

@@ -22,7 +22,12 @@ import org.apache.karaf.features.FeaturesService;
 import org.apache.karaf.features.Repository;
 import org.apache.wicket.model.LoadableDetachableModel;
 
+/**
+ * Repository model.
+ */
 public class RepositoryModel extends LoadableDetachableModel<Repository> {
+
+    private static final long serialVersionUID = 1L;
 
     private final FeaturesService service;
     private URI uri;

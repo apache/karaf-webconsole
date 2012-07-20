@@ -34,6 +34,8 @@ import org.osgi.service.event.EventHandler;
  */
 public class EventTopicsProvider  extends SortableDataProvider<EventTopicInfo> {
 
+    private static final long serialVersionUID = 1L;
+
     private Map<String, EventTopicInfo> topics = new HashMap<String, EventTopicInfo>();
 
     public EventTopicsProvider(BundleContext context) {

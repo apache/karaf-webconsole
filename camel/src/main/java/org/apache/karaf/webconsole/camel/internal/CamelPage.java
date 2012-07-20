@@ -18,6 +18,11 @@ package org.apache.karaf.webconsole.camel.internal;
 
 import org.apache.karaf.webconsole.core.page.SinglePage;
 
+/**
+ * Base page for camel extension pages.
+ */
 public class CamelPage extends SinglePage {
+
+    private static final long serialVersionUID = 1L;
 
 }

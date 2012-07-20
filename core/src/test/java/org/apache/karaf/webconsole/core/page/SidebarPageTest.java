@@ -74,6 +74,7 @@ public class SidebarPageTest extends WebConsoleTest {
         return AlwaysAuthenticatedWebSession.class;
     }
 
+    @SuppressWarnings("serial")
     static class TestSidebarPage extends SidebarPage {
         public TestSidebarPage(SidebarProvider provider) {
             setSidebarProvider(provider);

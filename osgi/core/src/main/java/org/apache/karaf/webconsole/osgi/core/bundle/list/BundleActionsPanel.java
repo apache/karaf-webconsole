@@ -29,7 +29,7 @@ import org.apache.karaf.webconsole.osgi.core.bundle.list.link.UninstallLink;
 import org.apache.karaf.webconsole.osgi.core.bundle.list.link.UpdateLink;
 import org.apache.karaf.webconsole.osgi.core.shared.State;
 import org.apache.karaf.webconsole.osgi.core.spi.IActionProvider;
-import org.apache.wicket.behavior.SimpleAttributeModifier;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IModel;
@@ -62,7 +62,7 @@ public class BundleActionsPanel extends ActionsPanel<Bundle> {
 
         // details link
         Link link = SingleBundlePage.createLink(linkId, object);
-        link.add(new Label("label", "").add(new SimpleAttributeModifier("class", "icon-info-sign")));
+        link.add(new Label("label", "").add(new AttributeModifier("class", "icon-info-sign")));
 
         links.add(link);
 
@@ -87,38 +87,38 @@ public class BundleActionsPanel extends ActionsPanel<Bundle> {
 
     private Link createUninstallLink(String linkId, String labelId) {
         Link link = new UninstallLink(linkId, getModel());
-        link.add(new Label(labelId, "").add(new SimpleAttributeModifier("class", "icon-eject")));
+        link.add(new Label(labelId, "").add(new AttributeModifier("class", "icon-eject")));
         return link;
     }
 
     private Link createRefreshLink(String linkId, String labelId) {
         Link link = new RefreshLink(linkId, getModel());
-        link.add(new Label(labelId, "").add(new SimpleAttributeModifier("class", "icon-refresh")));
+        link.add(new Label(labelId, "").add(new AttributeModifier("class", "icon-refresh")));
         return link;
     }
 
     private Link createUpdateLink(String linkId, String labelId) {
         Link link = new UpdateLink(linkId, getModel());
         //link.add(new SimpleAttributeModifier("title", getLocalizer().getString("bundle.update.link", this, getModel())));
-        link.add(new Label(labelId, "").add(new SimpleAttributeModifier("class", "icon-retweet")));
+        link.add(new Label(labelId, "").add(new AttributeModifier("class", "icon-retweet")));
         return link;
     }
 
     private Link createResolveLink(String linkId, String labelId) {
         Link link = new ResolveLink(linkId, getModel());
-        link.add(new Label(labelId, "").add(new SimpleAttributeModifier("class", "icon-step-forward")));
+        link.add(new Label(labelId, "").add(new AttributeModifier("class", "icon-step-forward")));
         return link;
     }
 
     private Link createStartLink(String linkId, String labelId) {
         Link link = new StartLink(linkId, getModel());
-        link.add(new Label(labelId, "").add(new SimpleAttributeModifier("class", "icon-play")));
+        link.add(new Label(labelId, "").add(new AttributeModifier("class", "icon-play")));
         return link;
     }
 
     private Link createStopLink(String linkId, String labelId) {
         Link link = new StopLink(linkId, getModel());
-        link.add(new Label(labelId, "").add(new SimpleAttributeModifier("class", "icon-pause")));
+        link.add(new Label(labelId, "").add(new AttributeModifier("class", "icon-pause")));
         return link;
     }
 }

@@ -32,8 +32,13 @@ import org.osgi.framework.Version;
 import org.osgi.service.packageadmin.ExportedPackage;
 import org.osgi.service.packageadmin.PackageAdmin;
 
+/**
+ * Single package page.
+ */
 @PaxWicketMountPoint(mountPoint = "/osgi/package/detail")
 public class SinglePackagePage extends OsgiPage {
+
+    private static final long serialVersionUID = 1L;
 
     @PaxWicketBean(name = "packageAdmin")
     private PackageAdmin admin;

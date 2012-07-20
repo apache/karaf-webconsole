@@ -25,7 +25,9 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.osgi.framework.Bundle;
 
-
+/**
+ * Action provider for blueprint.
+ */
 public class BlueprintActionProvider implements IActionProvider {
 
     private IBlueprintBundleStateTracker tracker;

@@ -21,8 +21,12 @@ import java.util.List;
 import org.apache.cxf.Bus;
 import org.apache.wicket.model.LoadableDetachableModel;
 
+/**
+ * Model of CXF bus.
+ */
 public class BusModel extends LoadableDetachableModel<Bus> {
 
+    private static final long serialVersionUID = 1L;
     private List<Bus> buses;
     private String id;
 

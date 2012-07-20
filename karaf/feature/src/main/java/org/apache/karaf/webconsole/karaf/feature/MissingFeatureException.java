@@ -16,7 +16,12 @@
  */
 package org.apache.karaf.webconsole.karaf.feature;
 
+/**
+ * Exception thrown when feature is missing.
+ */
 public class MissingFeatureException extends RuntimeException {
+
+    private static final long serialVersionUID = 1L;
 
     public MissingFeatureException(String name, String version) {
         super("Feature " + name + " with version " + version + " is no longer available");

@@ -40,6 +40,9 @@ import org.apache.wicket.markup.html.basic.Label;
  */
 public class DetailsPage extends SinglePage {
 
+    private static final long serialVersionUID = 1L;
+
+    @SuppressWarnings("serial")
     public DetailsPage(Exchange object) {
         add(new CssBehavior(DetailsPage.class, "message.css"));
 

@@ -20,7 +20,12 @@ import org.apache.karaf.features.Feature;
 import org.apache.karaf.features.FeaturesService;
 import org.apache.wicket.model.LoadableDetachableModel;
 
+/**
+ * Feature model.
+ */
 public class FeatureModel extends LoadableDetachableModel<Feature> {
+
+    private static final long serialVersionUID = 1L;
 
     private FeaturesService service;
     private String version;

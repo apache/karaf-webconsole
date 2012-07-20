@@ -25,6 +25,7 @@ import org.easymock.IAnswer;
 /**
  * Base class for link answers in many providers..
  */
+@SuppressWarnings("serial")
 public abstract class BaseLinkAnswer<T> implements IAnswer<T>, Serializable {
 
     public final T answer() throws Throwable {

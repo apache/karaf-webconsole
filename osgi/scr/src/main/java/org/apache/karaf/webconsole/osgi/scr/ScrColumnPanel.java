@@ -30,6 +30,8 @@ import org.apache.wicket.markup.repeater.RepeatingView;
  */
 public class ScrColumnPanel extends Panel {
 
+    private static final long serialVersionUID = 1L;
+
     public ScrColumnPanel(String id, Component[] components) {
         super(id);
 

@@ -16,7 +16,6 @@
  */
 package org.apache.karaf.webconsole.servicemix.internal;
 
-import java.io.Serializable;
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -25,7 +24,7 @@ import org.apache.servicemix.nmr.api.Exchange;
 /**
  * Implementation of tracking listener which keeps last few exchanges.
  */
-public class TrackingExchangeListener implements ITrackingExchangeListener, Serializable {
+public class TrackingExchangeListener implements ITrackingExchangeListener {
 
     private final int maxSize;
     private Deque<Exchange> exchanges = new LinkedList<Exchange>();

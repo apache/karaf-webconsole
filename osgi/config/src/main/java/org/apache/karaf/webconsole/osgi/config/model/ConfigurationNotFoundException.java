@@ -16,7 +16,12 @@
  */
 package org.apache.karaf.webconsole.osgi.config.model;
 
+/**
+ * Exception thrown when configuration is not found.
+ */
 public class ConfigurationNotFoundException extends RuntimeException {
+
+    private static final long serialVersionUID = 1L;
 
     public ConfigurationNotFoundException(String pid) {
         super(pid);

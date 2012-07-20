@@ -28,7 +28,12 @@ import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IModel;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 
+/**
+ * Actions for repository.
+ */
 public class RepositoriesActionPanel extends ActionsPanel<Repository> {
+
+    private static final long serialVersionUID = 1L;
 
     @PaxWicketBean(name = "featuresService")
     private FeaturesService featuresService;
@@ -38,6 +43,7 @@ public class RepositoriesActionPanel extends ActionsPanel<Repository> {
     }
 
     @Override
+    @SuppressWarnings({"rawtypes", "serial"})
     protected List<Link> getLinks(Repository object, String linkId, String labelId) {
         List<Link> links = new ArrayList<Link>();
 

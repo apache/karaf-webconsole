@@ -22,13 +22,18 @@ import java.util.List;
 import org.apache.karaf.features.Feature;
 import org.apache.karaf.features.FeaturesService;
 import org.apache.karaf.webconsole.core.table.ActionsPanel;
-import org.apache.wicket.behavior.SimpleAttributeModifier;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IModel;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 
+/**
+ * Actions for single feature.
+ */
 public class FeaturesActionsPanel extends ActionsPanel<Feature> {
+
+    private static final long serialVersionUID = 1L;
 
     @PaxWicketBean(name = "featuresService")
     private FeaturesService featuresService;
@@ -38,6 +43,7 @@ public class FeaturesActionsPanel extends ActionsPanel<Feature> {
     }
 
     @Override
+    @SuppressWarnings({"rawtypes", "serial"})
     protected List<Link> getLinks(Feature object, String linkId, String labelId) {
         Link link = new Link(linkId) {
 
@@ -57,7 +63,7 @@ public class FeaturesActionsPanel extends ActionsPanel<Feature> {
             }
         };
 
-        link.add(new SimpleAttributeModifier("class", isInstalled(object) ? "icon-eject" : "icon-play"));
+        link.add(new AttributeModifier("class", isInstalled(object) ? "icon-eject" : "icon-play"));
         link.add(new Label(labelId));
 
         // add image to the link

@@ -31,13 +31,14 @@ import org.apache.wicket.model.IModel;
  */
 public class InstanceActionsPanel extends ActionsPanel<Instance> {
 
-    private static final long serialVersionUID = 1205787953299100012L;
+    private static final long serialVersionUID = 1L;
 
     public InstanceActionsPanel(String id, IModel<Instance> model) {
         super(id, model);
     }
 
     @Override
+    @SuppressWarnings({"serial", "rawtypes"})
     protected List<Link> getLinks(Instance object, String linkId, final String labelId) {
         List<Link> links = new ArrayList<Link>();
 

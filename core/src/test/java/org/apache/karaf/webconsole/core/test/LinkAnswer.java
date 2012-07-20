@@ -23,6 +23,7 @@ import org.apache.wicket.markup.html.link.Link;
 /**
  * Easy mock answer to return prepared link.
  */
+@SuppressWarnings("serial")
 public class LinkAnswer extends BaseLinkAnswer<Link<Page>> {
 
     private String label;

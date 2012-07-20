@@ -27,6 +27,8 @@ import org.apache.wicket.markup.html.panel.Panel;
  */
 public class SidebarPage extends SecuredPage {
 
+    private static final long serialVersionUID = 1L;
+
     private Panel sidebar;
 
     public SidebarPage() {

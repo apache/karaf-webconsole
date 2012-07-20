@@ -24,6 +24,7 @@ import org.apache.wicket.request.Request;
  * Dummy session which does not handle authentication, simply returns true for
  * all input values and only one role.
  */
+@SuppressWarnings("serial")
 public class AlwaysAuthenticatedWebSession extends WebConsoleSession {
 
     private Roles roles;

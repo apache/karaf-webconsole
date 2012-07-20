@@ -18,7 +18,12 @@ package org.apache.karaf.webconsole.karaf.feature.model;
 
 import java.net.URI;
 
+/**
+ * Exception thrown when repository is not found.
+ */
 public class RepositoryNotFoundException extends RuntimeException {
+
+    private static final long serialVersionUID = 1L;
 
     public RepositoryNotFoundException(URI uri) {
         super(uri.toString());

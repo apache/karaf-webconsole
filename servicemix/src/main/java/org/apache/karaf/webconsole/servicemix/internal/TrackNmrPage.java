@@ -38,10 +38,12 @@ import org.ops4j.pax.wicket.api.PaxWicketBean;
  */
 public class TrackNmrPage extends ServiceMixPage {
 
+    private static final long serialVersionUID = 1L;
+
     @PaxWicketBean(name = "tracker")
     private ITrackingExchangeListener listener;
 
-    @SuppressWarnings({"unchecked", "rawtypes"})
+    @SuppressWarnings({"unchecked", "serial", "rawtypes"})
     public TrackNmrPage() {
         IColumn<Exchange>[] columns = new IColumn[] {
             new PropertyColumnExt<Exchange>("Id", "id"),

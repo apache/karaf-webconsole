@@ -25,7 +25,12 @@ import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvid
 import org.apache.wicket.model.IModel;
 import org.osgi.framework.ServiceReference;
 
+/**
+ * Data provider for bundle list.
+ */
 public class BlueprintDataProvider extends SortableDataProvider<ServiceReference> {
+
+    private static final long serialVersionUID = 1L;
 
     private final List<ServiceReference> containers;
 

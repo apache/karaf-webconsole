@@ -39,6 +39,8 @@ import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 @PaxWicketMountPoint(mountPoint = "/karaf/instance")
 public class InstancePage extends AdminPage {
 
+    private static final long serialVersionUID = 1L;
+
     @SuppressWarnings("unchecked")
     public InstancePage() {
         IColumn<Instance>[] columns = new IColumn[] {

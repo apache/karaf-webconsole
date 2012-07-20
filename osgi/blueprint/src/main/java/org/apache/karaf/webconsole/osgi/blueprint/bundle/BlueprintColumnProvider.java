@@ -39,6 +39,7 @@ public class BlueprintColumnProvider implements IColumnProvider {
         this.tracker = tracker;
     }
 
+    @SuppressWarnings("serial")
     public IColumn<Bundle> getColumn() {
         return new AbstractColumn<Bundle>(Model.of("Blueprint")) {
             public void populateItem(Item<ICellPopulator<Bundle>> cellItem, String componentId, IModel<Bundle> rowModel) {

@@ -50,11 +50,14 @@ import org.osgi.service.log.LogReaderService;
 @PaxWicketMountPoint(mountPoint = "/osgi/log")
 public class LogsPage extends OsgiPage {
 
+    private static final long serialVersionUID = 1L;
+
     @PaxWicketBean(name = "logReader")
     private LogReaderService logReader;
 
     private Options options = new Options();
 
+    @SuppressWarnings("serial")
     public LogsPage() {
         CompoundPropertyModel<Options> model = new CompoundPropertyModel<Options>(new PropertyModel<Options>(this, "options"));
         setDefaultModel(model);

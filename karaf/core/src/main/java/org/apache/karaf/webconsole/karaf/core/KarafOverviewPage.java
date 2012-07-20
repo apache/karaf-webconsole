@@ -28,6 +28,8 @@ import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 @PaxWicketMountPoint(mountPoint = "/karaf")
 public class KarafOverviewPage extends SinglePage {
 
+    private static final long serialVersionUID = 1L;
+
     public KarafOverviewPage() {
         setDefaultModel(new CompoundPropertyModel<WicketKaraf>(new WicketKaraf()));
 

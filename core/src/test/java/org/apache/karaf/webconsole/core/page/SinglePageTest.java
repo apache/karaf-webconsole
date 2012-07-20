@@ -205,5 +205,6 @@ public class SinglePageTest extends WebConsoleTest {
     // as ConsoleTabProviders are OSGi services.
     interface SerializableConsoleTabProvider extends Serializable, ConsoleTabProvider {}
 
+    @SuppressWarnings("serial")
     public static class SinglePageExt extends SinglePage {}
 }

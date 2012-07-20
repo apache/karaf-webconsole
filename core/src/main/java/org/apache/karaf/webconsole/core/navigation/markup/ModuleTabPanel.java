@@ -21,8 +21,8 @@ import java.util.List;
 
 import org.apache.karaf.webconsole.core.navigation.ConsoleTabProvider;
 import org.apache.karaf.webconsole.core.util.LinkUtils;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Page;
-import org.apache.wicket.behavior.SimpleAttributeModifier;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
@@ -37,17 +37,16 @@ import org.ops4j.pax.wicket.api.PaxWicketBean;
  */
 public class ModuleTabPanel extends Panel {
 
-    private static final long serialVersionUID = 1491009991152801134L;
+    private static final long serialVersionUID = 1L;
 
     @PaxWicketBean(name = "tabs")
     protected List<ConsoleTabProvider> tabs;
 
+    @SuppressWarnings("serial")
     public ModuleTabPanel(String id) {
         super(id);
 
         IModel<List<Link<Page>>> links = new LoadableDetachableModel<List<Link<Page>>>() {
-            private static final long serialVersionUID = 1L;
-
             @Override
             protected List<Link<Page>> load() {
                 if (tabs == null) {
@@ -64,14 +63,12 @@ public class ModuleTabPanel extends Panel {
         };
 
         add(new ListView<Link<Page>>("moduleLinks", links) {
-            private static final long serialVersionUID = 1L;
-
             @Override
             protected void populateItem(ListItem<Link<Page>> item) {
                 Link<Page> link = item.getModelObject();
                 item.add(link);
                 if (LinkUtils.isActiveTrail(link)) {
-                    item.add(new SimpleAttributeModifier("class", "active"));
+                    item.add(new AttributeModifier("class", "active"));
                 }
             }
         });

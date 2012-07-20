@@ -33,6 +33,8 @@ import org.osgi.service.prefs.BackingStoreException;
 @PaxWicketMountPoint(mountPoint = "/preferences")
 public class PreferencesPage extends SinglePage {
 
+    private static final long serialVersionUID = 1L;
+
     @PaxWicketBean(name = "preferencesProviders")
     private List<PanelProvider> providers;
 

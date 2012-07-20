@@ -38,6 +38,8 @@ import org.osgi.framework.ServiceReference;
 @PaxWicketMountPoint(mountPoint = "/osgi/service")
 public class ServicePage extends OsgiPage {
 
+    private static final long serialVersionUID = 1L;
+
     public ServicePage() {
         List<IColumn<ServiceReference>> columns = new ArrayList<IColumn<ServiceReference>>();
         columns.add(new ServicePropertyColumn("Service Id", Constants.SERVICE_ID));

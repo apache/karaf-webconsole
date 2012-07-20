@@ -21,7 +21,12 @@ import java.util.List;
 import org.apache.camel.CamelContext;
 import org.apache.wicket.model.LoadableDetachableModel;
 
+/**
+ * Camel context model.
+ */
 public class CamelContextModel extends LoadableDetachableModel<CamelContext> {
+
+    private static final long serialVersionUID = 1L;
 
     private String name;
     private List<CamelContext> contexts;

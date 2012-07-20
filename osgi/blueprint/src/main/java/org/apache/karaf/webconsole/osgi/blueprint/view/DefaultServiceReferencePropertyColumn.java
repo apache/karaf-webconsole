@@ -18,7 +18,12 @@ package org.apache.karaf.webconsole.osgi.blueprint.view;
 
 import org.apache.wicket.markup.html.basic.Label;
 
+/**
+ * Column representing given property from service reference.
+ */
 public class DefaultServiceReferencePropertyColumn extends ServiceReferencePropertyColumn {
+
+    private static final long serialVersionUID = 1L;
 
     public DefaultServiceReferencePropertyColumn(String displayModel, String sortProperty) {
         super(displayModel, sortProperty);

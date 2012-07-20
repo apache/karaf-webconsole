@@ -32,6 +32,7 @@ public class ExportServiceTable extends DefaultDataTable<ServiceReference> {
 
     private static final long serialVersionUID = 1L;
 
+    @SuppressWarnings("unchecked")
     private static IColumn<ServiceReference>[] columns = new IColumn[] {
         new ServicePropertyColumn("Service Id", Constants.SERVICE_ID),
         new ObjectClassColumn(Model.of("Object classes")),

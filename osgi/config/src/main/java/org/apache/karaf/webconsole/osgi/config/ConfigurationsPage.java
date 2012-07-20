@@ -23,8 +23,13 @@ import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 import org.osgi.service.cm.ConfigurationAdmin;
 
+/**
+ * Base page for configuration admin extension.
+ */
 @PaxWicketMountPoint(mountPoint = "/osgi/configuration")
 public class ConfigurationsPage extends OsgiPage {
+
+    private static final long serialVersionUID = 1L;
 
     @PaxWicketBean(name = "configurationAdmin")
     private ConfigurationAdmin configurationAdmin;

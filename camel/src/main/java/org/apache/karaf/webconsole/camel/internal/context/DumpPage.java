@@ -31,8 +31,14 @@ import org.apache.wicket.Session;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 
+/**
+ * Page with trace view.
+ */
 public class DumpPage extends CamelPage {
 
+    private static final long serialVersionUID = 1L;
+
+    @SuppressWarnings("serial")
     public DumpPage(TraceContainer container, CamelContext context) {
         Tracer tracer = container.getTracer(context);
         List<Map<String, Serializable>> info;

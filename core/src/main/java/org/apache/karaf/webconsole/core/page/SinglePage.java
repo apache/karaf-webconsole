@@ -24,6 +24,8 @@ import org.apache.karaf.webconsole.core.panel.feedback.BootstrapFeedbackPanel;
  */
 public class SinglePage extends SecuredPage {
 
+    private static final long serialVersionUID = 1L;
+
     public SinglePage() {
         add(new ModuleTabPanel("tabs"));
 

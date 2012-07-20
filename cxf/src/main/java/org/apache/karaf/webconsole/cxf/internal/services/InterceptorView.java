@@ -25,20 +25,25 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 
-public class InterceptorView extends ListView<Interceptor> {
+/**
+ * List of interceptors.
+ */
+public class InterceptorView extends ListView<Interceptor<?>> {
 
-    public InterceptorView(String id, List<Interceptor> interceptors) {
+    private static final long serialVersionUID = 1L;
+
+    public InterceptorView(String id, List<Interceptor<?>> interceptors) {
         super(id, interceptors);
     }
 
     @Override
-    protected void populateItem(ListItem<Interceptor> item) {
+    protected void populateItem(ListItem<Interceptor<?>> item) {
         Interceptor<? extends Message> interceptor = item.getModelObject();
 
         item.add(new Label("class", interceptor.getClass().getName()));
 
         if (interceptor instanceof PhaseInterceptor) {
-            PhaseInterceptor phaseInterceptor = (PhaseInterceptor) interceptor;
+            PhaseInterceptor<?> phaseInterceptor = (PhaseInterceptor<?>) interceptor;
             item.add(new Label("phase", phaseInterceptor.getPhase()));
             item.add(new Label("id", phaseInterceptor.getId()));
         } else {

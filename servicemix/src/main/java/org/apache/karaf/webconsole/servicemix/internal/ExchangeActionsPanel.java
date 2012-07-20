@@ -31,11 +31,14 @@ import org.apache.wicket.request.cycle.RequestCycle;
  */
 public class ExchangeActionsPanel extends ActionsPanel<Exchange> {
 
+    private static final long serialVersionUID = 1L;
+
     public ExchangeActionsPanel(String componentId, IModel<Exchange> model) {
         super(componentId, model);
     }
 
     @Override
+    @SuppressWarnings({"rawtypes", "serial"})
     protected List<Link> getLinks(final Exchange object, String linkId, String labelId) {
         List<Link> links = new ArrayList<Link>();
 

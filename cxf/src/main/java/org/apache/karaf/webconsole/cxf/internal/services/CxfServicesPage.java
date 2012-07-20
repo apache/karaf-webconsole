@@ -36,11 +36,17 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 
+/**
+ * Page representing CXF buses list.
+ */
 public class CxfServicesPage extends SinglePage {
+
+    private static final long serialVersionUID = 1L;
 
     @PaxWicketBean(name = "busList")
     private List<Bus> buses;
 
+    @SuppressWarnings("serial")
     public CxfServicesPage() {
         @SuppressWarnings("unchecked")
         IColumn<Bus>[] columns = new IColumn[] {

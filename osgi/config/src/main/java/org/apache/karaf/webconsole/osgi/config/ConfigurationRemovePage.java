@@ -31,6 +31,8 @@ import org.osgi.service.cm.ConfigurationAdmin;
 @PaxWicketMountPoint(mountPoint = "/osgi/configuration/remove")
 public class ConfigurationRemovePage extends OsgiPage {
 
+    private static final long serialVersionUID = 1L;
+
     @PaxWicketBean(name = "configurationAdmin")
     private ConfigurationAdmin configurationAdmin;
     private String pid;

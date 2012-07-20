@@ -29,10 +29,12 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 
 /**
- * Events admin.
+ * Event admin page.
  */
 @PaxWicketMountPoint(mountPoint = "/osgi/event")
 public class EventsPage extends OsgiPage {
+
+    private static final long serialVersionUID = 1L;
 
     public EventsPage() {
         List<IColumn<EventTopicInfo>> columns = new ArrayList<IColumn<EventTopicInfo>>();

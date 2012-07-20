@@ -45,8 +45,11 @@ import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 @PaxWicketMountPoint(mountPoint = "/karaf/features")
 public class FeaturesPage extends KarafFeaturesPage {
 
+    private static final long serialVersionUID = 1L;
+
     private Map<String, String> feature2repo = new HashMap<String, String>();
 
+    @SuppressWarnings({"rawtypes", "serial"})
     public FeaturesPage() throws Exception {
         add(new CssBehavior(FeaturesPage.class, "features.css"));
 
@@ -65,7 +68,7 @@ public class FeaturesPage extends KarafFeaturesPage {
 
         List<IColumn<Feature>> columns = new ArrayList<IColumn<Feature>>();
         columns.add(new PropertyColumn<Feature>(new StringResourceModel("table.version", this, version), "version", "version"));
-        columns.add(new PropertyColumn<Feature>(new StringResourceModel("table.name", this, state), "name", "name"));
+        columns.add(new PropertyColumn<Feature>(new StringResourceModel("table.name", this, name), "name", "name"));
         columns.add(new AbstractColumn<Feature>(new StringResourceModel("table.repository", this, repository), "repository") {
             public void populateItem(Item<ICellPopulator<Feature>> cellItem, String componentId, IModel<Feature> rowModel) {
                 cellItem.add(new Label(componentId, feature2repo.get(rowModel.getObject().getId())));

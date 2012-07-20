@@ -18,11 +18,10 @@ package org.apache.karaf.webconsole.osgi.core.bundle.install;
 
 import static org.apache.wicket.model.Model.of;
 
-import org.apache.karaf.webconsole.core.behavior.RemoveAttributeBehavior;
 import org.apache.karaf.webconsole.core.form.LabelBorder;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxCheckBox;
-import org.apache.wicket.behavior.SimpleAttributeModifier;
 import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.RequiredTextField;
@@ -62,7 +61,7 @@ public class InstallBundlePanel extends Panel {
                     } else {
                         onUnchecked();
                     }
-                    target.addComponent(file);
+                    target.add(file);
                 }
             }
         };
@@ -72,7 +71,7 @@ public class InstallBundlePanel extends Panel {
 
         file = new FileUploadField("file");
         file.setLabel(of("Bundle file"));
-        file.add(new SimpleAttributeModifier("disabled", "disabled"));
+        file.add(new AttributeModifier("disabled", "disabled"));
         file.setOutputMarkupId(true);
         border = new LabelBorder("fileGroup", file);
         form.add(border);
@@ -81,10 +80,10 @@ public class InstallBundlePanel extends Panel {
     }
 
     protected void onChecked() {
-        file.add(new RemoveAttributeBehavior("disabled"));
+        file.add(AttributeModifier.remove("disabled"));
     }
 
     protected void onUnchecked() {
-        file.add(new SimpleAttributeModifier("disabled", "disabled"));
+        file.add(new AttributeModifier("disabled", "disabled"));
     }
 }

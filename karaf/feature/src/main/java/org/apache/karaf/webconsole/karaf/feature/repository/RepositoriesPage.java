@@ -35,9 +35,15 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 
+/**
+ * Page with list of repositories.
+ */
 @PaxWicketMountPoint(mountPoint = "/karaf/repositories")
 public class RepositoriesPage extends KarafFeaturesPage {
 
+    private static final long serialVersionUID = 1L;
+
+    @SuppressWarnings({"rawtypes", "serial", "unchecked"})
     public RepositoriesPage() {
         IColumn<Repository>[] columns = new IColumn[] {
             new OrdinalColumn<Repository>(),

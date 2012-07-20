@@ -35,6 +35,8 @@ import org.osgi.framework.Bundle;
 @PaxWicketMountPoint(mountPoint = "/osgi/bundle/detail")
 public class SingleBundlePage extends OsgiPage {
 
+    private static final long serialVersionUID = 1L;
+
     public static String BUNDLE_ID = "bundleId";
 
     private long bundleId;

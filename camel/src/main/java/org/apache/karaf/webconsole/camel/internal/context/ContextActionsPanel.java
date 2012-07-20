@@ -28,7 +28,12 @@ import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IModel;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 
+/**
+ * Panel with actions for single camel context.
+ */
 public class ContextActionsPanel extends ActionsPanel<CamelContext> {
+
+    private static final long serialVersionUID = 1L;
 
     @PaxWicketBean(name = "tracer")
     private TraceContainer container;
@@ -38,6 +43,7 @@ public class ContextActionsPanel extends ActionsPanel<CamelContext> {
     }
 
     @Override
+    @SuppressWarnings({"rawtypes", "serial"})
     protected List<Link> getLinks(CamelContext object, String linkId, String labelId) {
         List<Link> links = new ArrayList<Link>();
 

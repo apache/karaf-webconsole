@@ -16,9 +16,7 @@
  */
 package org.apache.karaf.webconsole.camel.internal.context;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.camel.CamelContext;
@@ -30,8 +28,6 @@ import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulato
 import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.ISortableDataProvider;
-import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
@@ -39,8 +35,13 @@ import org.apache.wicket.model.Model;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 
+/**
+ * Camel contexts list page.
+ */
 @PaxWicketMountPoint(mountPoint = "/camel/contexts")
 public class CamelContextsPage extends CamelPage {
+
+    private static final long serialVersionUID = 1L;
 
     @PaxWicketBean(name = "contexts")
     private List<CamelContext> contexts;
@@ -48,8 +49,9 @@ public class CamelContextsPage extends CamelPage {
     @PaxWicketBean(name = "tracer")
     private TraceContainer container;
 
+    @SuppressWarnings("unchecked")
     public CamelContextsPage() {
-        @SuppressWarnings("unchecked")
+        @SuppressWarnings("serial")
         IColumn<CamelContext>[] columns = new IColumn[] {
             new OrdinalColumn<CamelContext>(),
             new PropertyColumnExt<CamelContext>("Name", "name"),
@@ -73,21 +75,7 @@ public class CamelContextsPage extends CamelPage {
             }
         };
 
-        ISortableDataProvider<CamelContext> provider = new SortableDataProvider<CamelContext>() {
-            public Iterator<? extends CamelContext> iterator(int first, int count) {
-                return new ArrayList<CamelContext>(contexts).subList(first, first + count).iterator();
-            }
-
-            public int size() {
-                return contexts.size();
-            }
-
-            public IModel<CamelContext> model(CamelContext object) {
-                return new CamelContextModel(contexts, object);
-            }
-        };
-
-        add(new DefaultDataTable<CamelContext>("contexts", Arrays.asList(columns), provider, 20));
+        add(new DefaultDataTable<CamelContext>("contexts", Arrays.asList(columns), new CamelContextsDataProvider(contexts), 20));
     }
 
 }

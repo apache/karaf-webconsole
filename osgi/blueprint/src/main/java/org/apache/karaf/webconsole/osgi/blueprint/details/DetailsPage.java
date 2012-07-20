@@ -36,6 +36,9 @@ import org.osgi.service.blueprint.reflect.ComponentMetadata;
 @PaxWicketMountPoint(mountPoint = "/osgi/blueprint/details")
 public class DetailsPage extends OsgiPage {
 
+    private static final long serialVersionUID = 1L;
+
+    @SuppressWarnings("serial")
     public DetailsPage(PageParameters params) {
         add(new DraculaBehavior());
         add(new JavaScriptBehavior(DetailsPage.class, "details.js"));

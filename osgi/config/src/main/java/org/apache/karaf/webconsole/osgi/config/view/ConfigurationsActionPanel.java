@@ -30,14 +30,19 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.osgi.service.cm.Configuration;
 
-@SuppressWarnings("rawtypes")
+/**
+ * Action panel for configuration.
+ */
 class ConfigurationsActionPanel extends ActionsPanel<Configuration> {
+
+    private static final long serialVersionUID = 1L;
 
     public ConfigurationsActionPanel(String componentId, IModel<Configuration> model) {
         super(componentId, model);
     }
 
     @Override
+    @SuppressWarnings("rawtypes")
     protected List<Link> getLinks(Configuration object, String linkId, String labelId) {
         PageParameters params = new PageParameters();
         params.add("pid", object.getPid());

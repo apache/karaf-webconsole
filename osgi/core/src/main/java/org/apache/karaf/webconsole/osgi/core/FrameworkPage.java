@@ -31,6 +31,8 @@ import org.osgi.framework.Bundle;
 @AuthorizeInstantiation({"admin", "osgi-user", "osgi-developer"})
 public class FrameworkPage extends OsgiPage {
 
+    private static final long serialVersionUID = 1L;
+
     public FrameworkPage() {
         setDefaultModel(new CompoundPropertyModel<Bundle>(new SystemBundleModel(context)));
 

@@ -27,13 +27,19 @@ import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
+/**
+ * Action panel for single CXF panel.
+ */
 public class CxfBusesActionPanel extends ActionsPanel<Bus> {
+
+    private static final long serialVersionUID = 1L;
 
     public CxfBusesActionPanel(String componentId, IModel<Bus> model) {
         super(componentId, model);
     }
 
     @Override
+    @SuppressWarnings("rawtypes")
     protected List<Link> getLinks(Bus object, String linkId, String labelId) {
         List<Link> links = new ArrayList<Link>();
 

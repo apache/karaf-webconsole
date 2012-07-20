@@ -38,6 +38,9 @@ import org.apache.wicket.model.Model;
  */
 public class EndpointsPage extends ServiceMixPage {
 
+    private static final long serialVersionUID = 1L;
+
+    @SuppressWarnings({"unchecked", "serial"})
     public EndpointsPage() {
         IColumn<Map<String, Object>>[] columns = new IColumn[] {
             new OrdinalColumn<Map<String, Object>>(),

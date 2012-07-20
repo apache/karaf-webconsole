@@ -18,7 +18,7 @@ package org.apache.karaf.webconsole.osgi.core.pkg.column;
 
 import org.apache.felix.utils.manifest.Clause;
 import org.apache.karaf.webconsole.osgi.core.pkg.SinglePackagePage;
-import org.apache.wicket.behavior.SimpleAttributeModifier;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -59,7 +59,7 @@ public class PackagePanel extends Panel {
 
         ExportedPackage exportedPackage = admin.getExportedPackage(pkg);
         if (exportedPackage == null) {
-            link.add(new SimpleAttributeModifier("class", "error"));
+            link.add(new AttributeModifier("class", "error"));
         }
 
         add(link);

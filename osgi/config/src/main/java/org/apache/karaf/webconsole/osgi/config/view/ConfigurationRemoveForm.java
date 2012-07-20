@@ -31,6 +31,8 @@ import org.osgi.service.cm.Configuration;
  */
 public class ConfigurationRemoveForm extends Form<Configuration> {
 
+    private static final long serialVersionUID = 1L;
+
     public ConfigurationRemoveForm(String id, IModel<Configuration> model) {
         super(id, model);
 

@@ -50,6 +50,8 @@ import org.osgi.service.startlevel.StartLevel;
 @PaxWicketMountPoint(mountPoint = "/osgi/bundle")
 public class BundlePage extends OsgiPage {
 
+    private static final long serialVersionUID = 1L;
+
     @PaxWicketBean(name = "columnProviders")
     private List<IColumnProvider> columnProviders;
 

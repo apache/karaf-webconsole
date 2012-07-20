@@ -30,6 +30,8 @@ import org.osgi.framework.ServiceReference;
  */
 public class ServiceDetailPage extends OsgiPage {
 
+    private static final long serialVersionUID = 1L;
+
     public ServiceDetailPage(PageParameters parameters) {
         long serviceId = parameters.get("id").toLong();
 

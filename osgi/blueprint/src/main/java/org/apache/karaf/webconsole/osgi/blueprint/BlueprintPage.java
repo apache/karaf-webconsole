@@ -24,8 +24,13 @@ import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 import org.osgi.framework.ServiceReference;
 
+/**
+ * Blueprint list page.
+ */
 @PaxWicketMountPoint(mountPoint = "/osgi/blueprint")
 public class BlueprintPage extends SinglePage {
+
+    private static final long serialVersionUID = 1L;
 
     @PaxWicketBean(name = "containers")
     private List<ServiceReference> containers;

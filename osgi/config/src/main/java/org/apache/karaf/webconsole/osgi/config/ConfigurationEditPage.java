@@ -36,13 +36,19 @@ import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 import org.osgi.service.cm.Configuration;
 import org.osgi.service.cm.ConfigurationAdmin;
 
+/**
+ * Configuration edit page.
+ */
 @PaxWicketMountPoint(mountPoint = "/osgi/configuration/edit")
 public class ConfigurationEditPage extends OsgiPage {
+
+    private static final long serialVersionUID = 1L;
 
     @PaxWicketBean(name = "configurationAdmin")
     private ConfigurationAdmin configurationAdmin;
     private String pid;
 
+    @SuppressWarnings("serial")
     public ConfigurationEditPage(PageParameters params) {
         pid = params.get("pid").toString();
 

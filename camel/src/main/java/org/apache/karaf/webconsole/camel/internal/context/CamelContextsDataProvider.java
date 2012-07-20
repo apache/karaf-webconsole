@@ -14,41 +14,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.karaf.feature;
+package org.apache.karaf.webconsole.camel.internal.context;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
-import org.apache.karaf.features.FeaturesService;
-import org.apache.karaf.features.Repository;
-import org.apache.karaf.webconsole.karaf.feature.model.RepositoryModel;
+import org.apache.camel.CamelContext;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.model.IModel;
 
 /**
- * Data provider for repository list.
+ * Camel context list data provider.
  */
-public class RepositoriesProvider extends SortableDataProvider<Repository> {
+public class CamelContextsDataProvider extends SortableDataProvider<CamelContext> {
 
     private static final long serialVersionUID = 1L;
 
-    private final FeaturesService service;
+    private final List<CamelContext> contexts;
 
-    public RepositoriesProvider(FeaturesService service) {
-        this.service = service;
-
+    public CamelContextsDataProvider(List<CamelContext> contexts) {
+        this.contexts = contexts;
     }
 
-    public Iterator<Repository> iterator(int first, int count) {
-        return Arrays.asList(service.listRepositories())
-            .subList(first, first + count).iterator();
+    public Iterator<? extends CamelContext> iterator(int first, int count) {
+        return new ArrayList<CamelContext>(contexts).subList(first, first + count).iterator();
     }
 
     public int size() {
-        return service.listRepositories().length;
+        return contexts.size();
     }
 
-    public IModel<Repository> model(Repository object) {
-        return new RepositoryModel(service, object);
+    public IModel<CamelContext> model(CamelContext object) {
+        return new CamelContextModel(contexts, object);
     }
 }
+

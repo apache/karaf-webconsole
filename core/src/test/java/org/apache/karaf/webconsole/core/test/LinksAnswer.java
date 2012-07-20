@@ -29,6 +29,7 @@ import org.apache.wicket.markup.html.link.Link;
 /**
  * An easy mock answer which returns list of links.
  */
+@SuppressWarnings("serial")
 public class LinksAnswer extends BaseLinkAnswer<List<Link<Page>>> {
 
     private Map<String, Class<? extends WebPage>> links = new LinkedHashMap<String, Class<? extends WebPage>>();

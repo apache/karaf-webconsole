@@ -33,9 +33,11 @@ import org.osgi.service.cm.ConfigurationAdmin;
 /**
  * Datatable which shows list of configurations from OSGi {@link ConfigurationAdmin}.
  */
-@SuppressWarnings({"rawtypes", "unchecked"})
 public class ConfigurationsDataTable extends DefaultDataTable<Configuration> {
 
+    private static final long serialVersionUID = 1L;
+
+    @SuppressWarnings({"rawtypes", "serial", "unchecked"})
     private static List COLUMNS = Arrays.asList(
         new PropertyColumn<Configuration>(Model.of("pid"), "pid"),
         new AbstractColumn<Configuration>(Model.of("operations")) {
@@ -45,6 +47,7 @@ public class ConfigurationsDataTable extends DefaultDataTable<Configuration> {
         }
     );
 
+    @SuppressWarnings("unchecked")
     public ConfigurationsDataTable(String id, ISortableDataProvider<Configuration> dataProvider, int rowsPerPage) {
         super(id, COLUMNS, dataProvider, rowsPerPage);
     }

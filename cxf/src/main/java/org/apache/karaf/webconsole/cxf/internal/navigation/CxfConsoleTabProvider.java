@@ -25,6 +25,9 @@ import org.apache.karaf.webconsole.cxf.internal.services.CxfServicesPage;
 import org.apache.wicket.Page;
 import org.apache.wicket.markup.html.link.Link;
 
+/**
+ * Navigation provider for console, introduces CXF module.
+ */
 public class CxfConsoleTabProvider implements ConsoleTabProvider {
 
     public List<Link<Page>> getItems(String componentId, String labelId) {

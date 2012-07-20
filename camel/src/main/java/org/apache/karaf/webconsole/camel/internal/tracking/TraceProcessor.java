@@ -50,7 +50,7 @@ public class TraceProcessor extends DelegateAsyncProcessor {
         Message msg = exchange.getIn();
         if (msg != null) {
             properties.put("exchangeInId", msg.getMessageId());
-            properties.put("exchangeInHeaders", new HashMap(msg.getHeaders()));
+            properties.put("exchangeInHeaders", new HashMap<String, Object>(msg.getHeaders()));
             Object body = msg.getBody();
             if (body instanceof Serializable) {
                 properties.put("exchangeInBody", (Serializable) body);
@@ -64,7 +64,7 @@ public class TraceProcessor extends DelegateAsyncProcessor {
         msg = exchange.getOut();
         if (msg != null) {
             properties.put("exchangeOutId", msg.getMessageId());
-            properties.put("exchangeOutHeaders", new HashMap(msg.getHeaders()));
+            properties.put("exchangeOutHeaders", new HashMap<String, Object>(msg.getHeaders()));
             Object body = msg.getBody();
             if (body instanceof Serializable) {
                 properties.put("exchangeOutBody", (Serializable) body);

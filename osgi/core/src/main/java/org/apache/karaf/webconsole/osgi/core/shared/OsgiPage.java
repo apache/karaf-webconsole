@@ -25,6 +25,8 @@ import org.osgi.framework.BundleContext;
  */
 public abstract class OsgiPage extends SinglePage {
 
+    private static final long serialVersionUID = 1L;
+
     @PaxWicketBean(name = "blueprintBundleContext")
     protected BundleContext context;
 

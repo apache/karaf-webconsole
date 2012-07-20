@@ -25,8 +25,6 @@ import org.osgi.framework.Bundle;
  */
 public class ScrColumnProvider extends ScrComponent implements IColumnProvider {
 
-    private static final long serialVersionUID = 1L;
-
     public IColumn<Bundle> getColumn() {
         return new ScrColumn(scr, "SCR");
     }

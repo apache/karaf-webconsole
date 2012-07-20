@@ -21,6 +21,7 @@ import org.ops4j.pax.wicket.util.proxy.IProxyTargetLocator;
 /**
  * Test target locator for test injections.
  */
+@SuppressWarnings("serial")
 public class TestTargetLocator implements IProxyTargetLocator {
 
     private Object value;

@@ -23,6 +23,8 @@ import java.io.Serializable;
  */
 public class WicketKaraf implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     public String getVersion() {
         return System.getProperty("karaf.version");
     }

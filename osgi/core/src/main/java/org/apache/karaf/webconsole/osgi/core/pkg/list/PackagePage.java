@@ -30,8 +30,13 @@ import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 import org.osgi.service.packageadmin.ExportedPackage;
 import org.osgi.service.packageadmin.PackageAdmin;
 
+/**
+ * Package list page.
+ */
 @PaxWicketMountPoint(mountPoint = "/osgi/package")
 public class PackagePage extends OsgiPage {
+
+    private static final long serialVersionUID = 1L;
 
     @PaxWicketBean(name = "packageAdmin")
     private PackageAdmin admin;

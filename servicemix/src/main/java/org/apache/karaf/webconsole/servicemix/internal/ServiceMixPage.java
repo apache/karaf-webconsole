@@ -26,6 +26,8 @@ import org.ops4j.pax.wicket.api.PaxWicketBean;
  */
 public class ServiceMixPage extends SidebarPage {
 
+    private static final long serialVersionUID = 1L;
+
     @PaxWicketBean(name = "nmr")
     protected NMR nmr;
 

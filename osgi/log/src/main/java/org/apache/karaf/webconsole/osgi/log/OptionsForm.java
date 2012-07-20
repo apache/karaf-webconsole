@@ -35,6 +35,7 @@ public class OptionsForm extends Form<Options> {
 
     private static final long serialVersionUID = 1L;
 
+    @SuppressWarnings("serial")
     public OptionsForm(String id, CompoundPropertyModel<Options> model) {
         super(id, model);
 
