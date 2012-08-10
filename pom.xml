@@ -34,7 +34,7 @@
         <felix-scr.version>1.6.0</felix-scr.version>
         <slf4j.version>1.6.1</slf4j.version>
         <log4j.version>1.2.14</log4j.version>
-        <ops4j.paxwicket.version>1.0.1</ops4j.paxwicket.version>
+        <ops4j.paxwicket.version>1.0.2</ops4j.paxwicket.version>
         <karaf.version>2.2.8</karaf.version>
         <nmr.version>1.4.0</nmr.version>
         <camel.version>2.6.0</camel.version>
