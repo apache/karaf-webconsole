@@ -20,6 +20,7 @@ import org.apache.wicket.Page;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.protocol.http.RequestUtils;
 import org.apache.wicket.request.cycle.RequestCycle;
 
 /**
@@ -54,13 +55,13 @@ public abstract class LinkUtils {
      */
     public static boolean isActiveTrail(Link<?> link) {
         if (link instanceof BookmarkablePageLink) {
+            RequestCycle requestCycle = RequestCycle.get();
+            String requestPath = requestCycle.getRequest().getUrl().toString();
             Class<? extends Page> pageClass = ((BookmarkablePageLink<?>) link).getPageClass();
 
-            RequestCycle requestCycle = RequestCycle.get();
-            String linkPath = (requestCycle.urlFor(pageClass, null) + "").replace("../", "");
+            String linkPath = requestCycle.urlFor(pageClass, null).toString();
 
-            String requestPath = requestCycle.getRequest().getUrl().toString();
-            return requestPath.contains(linkPath);
+            return requestPath.contains(RequestUtils.toAbsolutePath(requestPath, linkPath));
         }
         return false;
     }
