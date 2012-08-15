@@ -19,7 +19,7 @@
 
     <wicket:application id="karafWebConsole" 
         class="org.apache.karaf.webconsole.core.internal.WebConsoleApplication"
-        applicationName="karafWebConsole" mountPoint="cns" />
+        applicationName="karafWebConsole" mountPoint="console" />
 
     <reference-list id="tabs" interface="org.apache.karaf.webconsole.core.navigation.ConsoleTabProvider" availability="optional" />
 
