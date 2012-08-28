@@ -22,4 +22,4 @@ Instructions to build and deploy the project
 features:addurl mvn:org.apache.karaf.webconsole/apache-karaf-webconsole/0.3.0-SNAPSHOT/xml/features
 features:install webconsole-wicket
 
-7) Open cns website in your browser : http://localhost:8181/cns/
+7) Open cns website in your browser : http://localhost:8181/console/
