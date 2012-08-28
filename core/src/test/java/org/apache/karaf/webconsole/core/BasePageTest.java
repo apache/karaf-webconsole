@@ -60,12 +60,8 @@ public class BasePageTest extends WebConsoleTest {
 
         replay(brandProvider);
 
-        Map<String, Object> values = new HashMap<String, Object>();
-        values.put("brandProvider", brandProvider);
+        injector.registerBean("brandProvider", brandProvider);
 
-        injector.setValues(values);
-
-        WicketTester tester = new WicketTester(application);
         tester.startPage(BasePage.class);
 
         tester.assertVisible("topPanel:" + imageId);

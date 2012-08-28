@@ -36,11 +36,10 @@ public class LoginTest extends WebConsoleTest {
 
     @Test
     public void testSuccessLogin() throws Exception {
-        injector.getValues().put("widgets", new ArrayList<WidgetProvider>());
+        injector.registerBean("widgets", new ArrayList<WidgetProvider>());
 
-        WicketTester tester = new WicketTester(application);
         tester.startPage(LoginPage.class);
-        //tester.debugComponentTrees();
+
         FormTester form = tester.newFormTester("signIn:signInForm");
 
         form.setValue("username", "rootadmin");
@@ -53,7 +52,6 @@ public class LoginTest extends WebConsoleTest {
 
     @Test(expected = UnauthorizedInstantiationException.class)
     public void testWrongRoleLogin() throws Exception {
-        WicketTester tester = new WicketTester(application);
         tester.startPage(LoginPage.class);
 
         FormTester form = tester.newFormTester("signIn:signInForm");

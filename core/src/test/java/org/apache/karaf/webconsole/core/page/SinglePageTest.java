@@ -71,19 +71,17 @@ public class SinglePageTest extends WebConsoleTest {
         expect(mock.getItems(anyString(), anyString())).andReturn(emptyLinkList());
 
         tabs.add(mock);
-        values.put("tabs", tabs);
-        injector.setValues(values);
+        injector.registerBean("tabs", tabs);
 
         replay(mock);
 
-        WicketTester tester = new WicketTester(application);
         tester.startPage(SinglePageExt.class);
         tester.debugComponentTrees();
 
         tester.clickLink("topPanel:tabs:0:moduleLink");
 
-        assertTabs(tester, tabs);
-        assertTabLink(tester, 0, "test", SinglePageExt.class);
+        assertTabs(tabs);
+        assertTabLink(0, "test", SinglePageExt.class);
 
 
         verify(mock);
@@ -109,16 +107,14 @@ public class SinglePageTest extends WebConsoleTest {
         expect(mock.getModuleLink(anyString(), anyString())).andAnswer(new LinkAnswer("test", BasePage.class));
 
         tabs.add(mock);
-        values.put("tabs", tabs);
-        injector.setValues(values);
+        injector.registerBean("tabs", tabs);
 
         replay(mock);
 
-        WicketTester tester = new WicketTester(application);
         tester.startPage(SecuredPage.class);
 
-        assertTabs(tester, tabs);
-        assertTabLink(tester, 0, "test", BasePage.class, answer.getPageLinks());
+        assertTabs(tabs);
+        assertTabLink(0, "test", BasePage.class, answer.getPageLinks());
 
         tester.assertLabel("topPanel:tabs:0:moduleLinks:0:link:label", "A1");
         tester.assertLabel("topPanel:tabs:0:moduleLinks:1:link:label", "B1");
@@ -163,32 +159,30 @@ public class SinglePageTest extends WebConsoleTest {
         replay(mock);
         tabs.add(mock);
 
-        values.put("tabs", tabs);
-        injector.setValues(values);
+        injector.registerBean("tabs", tabs);
 
-        WicketTester tester = new WicketTester(application);
         tester.startPage(SecuredPage.class);
 
-        assertTabs(tester, tabs);
-        assertTabLink(tester, 0, "test1", BasePage.class);
-        assertTabLink(tester, 1, "test2", SecuredPage.class);
-        assertTabLink(tester, 2, "test3", SinglePage.class);
-        assertTabLink(tester, 3, "test4", SidebarPage.class);
+        assertTabs(tabs);
+        assertTabLink(0, "test1", BasePage.class);
+        assertTabLink(1, "test2", SecuredPage.class);
+        assertTabLink(2, "test3", SinglePage.class);
+        assertTabLink(3, "test4", SidebarPage.class);
 
         verify(mock);
     }
 
     // additional asserts
 
-    private void assertTabs(WicketTester tester, List<ConsoleTabProvider> tabs) {
+    private void assertTabs(List<ConsoleTabProvider> tabs) {
         tester.assertListView("topPanel:tabs", tabs);
     }
 
-    private void assertTabLink(WicketTester tester, int position, String label, Class<? extends WebPage> page) {
-        assertTabLink(tester, position, label, page, Collections.<Link<Page>>emptyList());
+    private void assertTabLink(int position, String label, Class<? extends WebPage> page) {
+        assertTabLink(position, label, page, Collections.<Link<Page>>emptyList());
     }
 
-    private void assertTabLink(WicketTester tester, int position, String label, Class<? extends WebPage> page, List<Link<Page>> children) {
+    private void assertTabLink(int position, String label, Class<? extends WebPage> page, List<Link<Page>> children) {
         tester.assertLabel("topPanel:tabs:" + position + ":moduleLink:moduleLabel", label);
         tester.assertBookmarkablePageLink("topPanel:tabs:" + position + ":moduleLink", page, new PageParameters());
         if (!children.isEmpty()) {
@@ -203,8 +197,10 @@ public class SinglePageTest extends WebConsoleTest {
 
     // Marker interface for tests, normally serialization is controlled by paxwicket
     // as ConsoleTabProviders are OSGi services.
-    interface SerializableConsoleTabProvider extends Serializable, ConsoleTabProvider {}
+    interface SerializableConsoleTabProvider extends Serializable, ConsoleTabProvider {
+    }
 
     @SuppressWarnings("serial")
-    public static class SinglePageExt extends SinglePage {}
+    public static class SinglePageExt extends SinglePage {
+    }
 }

@@ -17,11 +17,9 @@
 package org.apache.karaf.webconsole.core;
 
 import static org.easymock.EasyMock.anyObject;
+import static org.ops4j.pax.wicket.test.spring.SimplifiedPaxWicketInjector.registerBeanInjector;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.apache.karaf.webconsole.core.brand.DefaultBrandProvider;
 import org.apache.karaf.webconsole.core.internal.WebConsoleApplication;
@@ -29,24 +27,22 @@ import org.apache.karaf.webconsole.core.preferences.util.JdkPreferencesService;
 import org.apache.karaf.webconsole.core.security.KarafJaasWebSession;
 import org.apache.wicket.Page;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
+import org.apache.wicket.extensions.markup.html.tabs.ITab;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
+import org.ops4j.pax.wicket.internal.PaxWicketApplicationFactory;
+import org.ops4j.pax.wicket.test.spring.SimplifiedPaxWicketInjector;
 
 /**
  * Base class for webconsole tests.
  */
 public class WebConsoleTest {
 
-    /**
-     * Application instance.
-     */
     protected WebApplication application;
-
-    /**
-     * Test injector.
-     */
-    protected TestInjector injector;
+    protected WicketTester tester;
+    protected SimplifiedPaxWicketInjector injector;
 
     public WebConsoleTest() {
         super();
@@ -60,13 +56,12 @@ public class WebConsoleTest {
             }
         };
 
-        // default configurations values.
-        Map<String, Object> values = new HashMap<String, Object>();
-        values.put("brandProvider", new DefaultBrandProvider());
-        values.put("preferencesService", new JdkPreferencesService());
+        tester = new WicketTester(application);
 
-        injector = new TestInjector(values);
-        application.getComponentInstantiationListeners().add(injector);
+        injector = registerBeanInjector(tester);
+        injector.registerBean("brandProvider", new DefaultBrandProvider());
+        injector.registerBean("preferencesService", new JdkPreferencesService());
+        injector.registerBean("tabs", new ArrayList<ITab>());
     }
 
     protected Class<? extends AuthenticatedWebSession> getWebSessionClass() {

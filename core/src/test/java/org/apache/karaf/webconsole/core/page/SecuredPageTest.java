@@ -35,8 +35,6 @@ public class SecuredPageTest extends WebConsoleTest {
      */
     @Test
     public void shouldRenderLogoutLink() {
-        WicketTester tester = new WicketTester(application);
-
         tester.startPage(SinglePage.class);
         tester.debugComponentTrees();
         tester.clickLink("topPanel:logoutLink");

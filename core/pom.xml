@@ -46,7 +46,6 @@
             <artifactId>org.ops4j.pax.wicket.service</artifactId>
             <version>${ops4j.paxwicket.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.karaf.jaas</groupId>
             <artifactId>org.apache.karaf.jaas.modules</artifactId>
@@ -65,6 +64,11 @@
             <artifactId>junit</artifactId>
             <version>4.8.2</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.wicket</groupId>
+            <artifactId>org.ops4j.pax.wicket.test</artifactId>
+            <version>${ops4j.paxwicket.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>

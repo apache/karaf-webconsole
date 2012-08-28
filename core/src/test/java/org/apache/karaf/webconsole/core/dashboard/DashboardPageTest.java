@@ -55,13 +55,10 @@ public class DashboardPageTest extends WebConsoleTest {
         ArrayList<WidgetProvider> providers = new ArrayList<WidgetProvider>();
         providers.add(new TestWidgetProvider());
 
-        values.put("widgets", providers);
-        values.put("brandProvider", new DefaultBrandProvider());
-        values.put("preferencesService", new JdkPreferencesService());
+        injector.registerBean("widgets", providers);
+        injector.registerBean("brandProvider", new DefaultBrandProvider());
+        injector.registerBean("preferencesService", new JdkPreferencesService());
 
-        injector.setValues(values);
-
-        WicketTester tester = new WicketTester(application);
         tester.startPage(DashboardPage.class);
 
         tester.assertRenderedPage(DashboardPage.class);

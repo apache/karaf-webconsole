@@ -45,8 +45,6 @@ public class SidebarPageTest extends WebConsoleTest {
 
     @Test
     public void testSidebarWithoutSubItems() {
-        WicketTester tester = new WicketTester(application);
-
         SidebarProvider provider = createMock(SidebarProvider.class);
         expect(provider.getMasterPageLink(anyString(), anyString())).andAnswer(new LinkAnswer("Test link", DashboardPage.class));
         expect(provider.getItems(anyString(), anyString())).andReturn(emptyLinkList());
@@ -64,8 +62,6 @@ public class SidebarPageTest extends WebConsoleTest {
 
     @Test(expected = MarkupException.class)
     public void testNoSidebarProvider() {
-        WicketTester tester = new WicketTester(application);
-
         tester.startPage(SidebarPage.class);
     }
 
