@@ -44,42 +44,36 @@
         <dependency>
             <groupId>org.ops4j.pax.wicket</groupId>
             <artifactId>org.ops4j.pax.wicket.service</artifactId>
-            <version>${ops4j.paxwicket.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.karaf.jaas</groupId>
             <artifactId>org.apache.karaf.jaas.modules</artifactId>
-            <version>${karaf.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-servlet_2.5_spec</artifactId>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.8.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.ops4j.pax.wicket</groupId>
             <artifactId>org.ops4j.pax.wicket.test</artifactId>
-            <version>${ops4j.paxwicket.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>${slf4j.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.easymock</groupId>
             <artifactId>easymock</artifactId>
-            <version>3.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -89,7 +83,6 @@
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <version>${maven-bundle.version}</version>
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
@@ -138,7 +131,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.9</version>
                 <configuration>
                     <systemProperties>
                         <property>

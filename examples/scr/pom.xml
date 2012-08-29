@@ -30,20 +30,11 @@
     <name>Apache Karaf :: WebConsole :: Examples :: Scr</name>
     <packaging>bundle</packaging>
 
-
-<!--     <dependencies> -->
-<!--         <dependency> -->
-<!--             <groupId>org.osgi</groupId> -->
-<!--             <artifactId>org.osgi.compendium</artifactId> -->
-<!--         </dependency> -->
-<!--     </dependencies> -->
-
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <version>${maven-bundle.version}</version>
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>

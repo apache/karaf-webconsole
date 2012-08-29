@@ -40,19 +40,33 @@
     </scm>
 
     <properties>
-        <osgi.version>4.2.0</osgi.version>
-        <jetty.version>6.1.25</jetty.version>
+        <!-- Please keep properties in alphabetical order -->
+        <aries-blueprint.version>0.3.1</aries-blueprint.version>
+        <aries-proxy.version>0.3</aries-proxy.version>
+        <camel.version>2.6.0</camel.version>
+        <cxf.version>2.5.1</cxf.version>
+        <easymock.version>3.0</easymock.version>
+        <felix-framework.version>4.0.2</felix-framework.version>
         <felix-metatype.version>1.0.4</felix-metatype.version>
         <felix-prefs.version>1.0.4</felix-prefs.version>
         <felix-scr.version>1.6.0</felix-scr.version>
-        <slf4j.version>1.6.1</slf4j.version>
-        <log4j.version>1.2.14</log4j.version>
-        <ops4j.paxwicket.version>1.1.0</ops4j.paxwicket.version>
+        <felix-utils.version>1.1.0</felix-utils.version>
+        <felix-config.version>1.2.8</felix-config.version>
+        <felix-http.version>2.2.0</felix-http.version>
+        <jetty-plugin.version>7.5.4.v20111024</jetty-plugin.version>
+        <junit.version>4.8.2</junit.version>
         <karaf.version>2.2.8</karaf.version>
-        <nmr.version>1.4.0</nmr.version>
-        <camel.version>2.6.0</camel.version>
-        <cxf.version>2.5.1</cxf.version>
+        <log4j.version>1.2.14</log4j.version>
         <maven-bundle.version>2.3.7</maven-bundle.version>
+        <osgi.version>4.2.0</osgi.version>
+        <pax-exam-karaf.version>0.5.0</pax-exam-karaf.version>
+        <pax-exam-junit.version>2.3.0</pax-exam-junit.version>
+        <pax-logging.version>1.6.4</pax-logging.version>
+        <pax-wicket.version>1.1.0</pax-wicket.version>
+        <scala.version>2.9.1</scala.version>
+        <scala-plugin.version>2.15.2</scala-plugin.version>
+        <servicemix-nmr.version>1.4.0</servicemix-nmr.version>
+        <slf4j.version>1.6.1</slf4j.version>
     </properties>
 
     <modules>
@@ -81,6 +95,34 @@
                         <source>1.5</source>
                         <target>1.5</target>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.9</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>${maven-bundle.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.scala-tools</groupId>
+                    <artifactId>maven-scala-plugin</artifactId>
+                    <version>${scala-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>compile</goal>
+                                <goal>testCompile</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>jetty-maven-plugin</artifactId>
+                    <version>${jetty-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -113,6 +155,232 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- features descriptor -->
+            <dependency>
+                <groupId>org.apache.karaf.webconsole</groupId>
+                <artifactId>apache-karaf-webconsole</artifactId>
+                <version>${project.version}</version>
+                <classifier>features</classifier>
+                <type>xml</type>
+            </dependency>
+            <!-- WebConsole artifacts -->
+            <dependency>
+                <groupId>org.apache.karaf.webconsole</groupId>
+                <artifactId>org.apache.karaf.webconsole.core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- WebConsole OSGi artifacts -->
+            <dependency>
+                <groupId>org.apache.karaf.webconsole.osgi</groupId>
+                <artifactId>org.apache.karaf.webconsole.osgi.log</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.karaf.webconsole.osgi</groupId>
+                <artifactId>org.apache.karaf.webconsole.osgi.config</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.karaf.webconsole.osgi</groupId>
+                <artifactId>org.apache.karaf.webconsole.osgi.blueprint</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.karaf.webconsole.osgi</groupId>
+                <artifactId>org.apache.karaf.webconsole.osgi.event</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.karaf.webconsole.osgi</groupId>
+                <artifactId>org.apache.karaf.webconsole.osgi.scr</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.karaf.webconsole.osgi</groupId>
+                <artifactId>org.apache.karaf.webconsole.osgi.core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- WebConsole Karaf artifacts -->
+            <dependency>
+                <groupId>org.apache.karaf.webconsole.karaf</groupId>
+                <artifactId>org.apache.karaf.webconsole.karaf.core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.karaf.webconsole.karaf</groupId>
+                <artifactId>org.apache.karaf.webconsole.karaf.admin</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.karaf.webconsole.karaf</groupId>
+                <artifactId>org.apache.karaf.webconsole.karaf.feature</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!--  WebConsole misc artifacts -->
+            <dependency>
+                <groupId>org.apache.karaf.webconsole</groupId>
+                <artifactId>org.apache.karaf.webconsole.camel</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.karaf.webconsole</groupId>
+                <artifactId>org.apache.karaf.webconsole.cxf</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.karaf.webconsole</groupId>
+                <artifactId>org.apache.karaf.webconsole.servicemix</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.karaf.webconsole</groupId>
+                <artifactId>itest</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.karaf.webconsole</groupId>
+                <artifactId>manual</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- WebConsole example artifacts -->
+            <dependency>
+                <groupId>org.apache.karaf.webconsole.examples</groupId>
+                <artifactId>branding</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.karaf.webconsole.examples.events</groupId>
+                <artifactId>consumer</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.karaf.webconsole.examples.events</groupId>
+                <artifactId>provider</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.karaf.webconsole.examples</groupId>
+                <artifactId>scala</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.karaf.webconsole.examples</groupId>
+                <artifactId>org.apache.karaf.webconsole.examples.scr</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Aries -->
+            <dependency>
+                <groupId>org.apache.aries.blueprint</groupId>
+                <artifactId>org.apache.aries.blueprint</artifactId>
+                <version>${aries-blueprint.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.aries.proxy</groupId>
+                <artifactId>org.apache.aries.proxy.impl</artifactId>
+                <version>${aries-proxy.version}</version>
+            </dependency>
+
+            <!-- ServiceMix -->
+            <dependency>
+                <groupId>org.apache.servicemix.nmr</groupId>
+                <artifactId>org.apache.servicemix.nmr.api</artifactId>
+                <version>${servicemix-nmr.version}</version>
+            </dependency>
+
+            <!-- Camel -->
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-core</artifactId>
+                <version>${camel.version}</version>
+            </dependency>
+
+            <!-- CXF -->
+            <dependency>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-rt-core</artifactId>
+                <version>${cxf.version}</version>
+            </dependency>
+
+            <!-- Scala -->
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-library</artifactId>
+                <version>${scala.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-compiler</artifactId>
+                <version>${scala.version}</version>
+            </dependency>
+
+            <!-- Wicket and Pax Wicket -->
+            <dependency>
+                <groupId>org.ops4j.pax.wicket</groupId>
+                <artifactId>org.ops4j.pax.wicket.service</artifactId>
+                <version>${pax-wicket.version}</version>
+            </dependency>
+               <dependency>
+                <groupId>org.ops4j.pax.wicket</groupId>
+                <artifactId>org.ops4j.pax.wicket.test</artifactId>
+                <version>${pax-wicket.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- logging stuff -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+
+            <!-- Pax Logging -->
+            <dependency>
+                <groupId>org.ops4j.pax.logging</groupId>
+                <artifactId>pax-logging-api</artifactId>
+                <version>${pax-logging.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.ops4j.pax.logging</groupId>
+                <artifactId>pax-logging-service</artifactId>
+                <version>${pax-logging.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!-- Karaf .. -->
+            <dependency>
+                <groupId>org.apache.karaf.jaas</groupId>
+                <artifactId>org.apache.karaf.jaas.modules</artifactId>
+                <version>${karaf.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.karaf</groupId>
+                <artifactId>karaf</artifactId>
+                <version>${karaf.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.karaf.features</groupId>
+                <artifactId>org.apache.karaf.features.core</artifactId>
+                <version>${karaf.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.karaf.admin</groupId>
+                <artifactId>org.apache.karaf.admin.core</artifactId>
+                <version>${karaf.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>org.apache.felix.framework</artifactId>
+                <version>${felix-framework.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>org.apache.felix.metatype</artifactId>
@@ -125,9 +393,32 @@
             </dependency>
             <dependency>
                 <groupId>org.apache.felix</groupId>
+                <artifactId>org.apache.felix.configadmin</artifactId>
+                <version>${felix-config.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.felix</groupId>
                 <artifactId>org.apache.felix.scr</artifactId>
                 <version>${felix-scr.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>org.apache.felix.utils</artifactId>
+                <version>${felix-utils.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>org.apache.felix.http.bridge</artifactId>
+                <version>${felix-http.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>org.apache.felix.http.proxy</artifactId>
+                <version>${felix-http.version}</version>
+            </dependency>
+    
+                
 
             <dependency>
                 <groupId>org.osgi</groupId>
@@ -138,6 +429,39 @@
                 <groupId>org.osgi</groupId>
                 <artifactId>org.osgi.compendium</artifactId>
                 <version>${osgi.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.geronimo.specs</groupId>
+                <artifactId>geronimo-servlet_2.5_spec</artifactId>
+                <version>1.2</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!-- testing -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.easymock</groupId>
+                <artifactId>easymock</artifactId>
+                <version>${easymock.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.openengsb.labs.paxexam.karaf</groupId>
+                <artifactId>paxexam-karaf-container</artifactId>
+                <version>${pax-exam-karaf.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.ops4j.pax.exam</groupId>
+                <artifactId>pax-exam-junit4</artifactId>
+                <version>${pax-exam-junit.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

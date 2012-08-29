@@ -34,13 +34,11 @@
         <dependency>
             <groupId>org.apache.karaf.webconsole</groupId>
             <artifactId>org.apache.karaf.webconsole.core</artifactId>
-            <version>${project.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-core</artifactId>
-            <version>${cxf.version}</version>
         </dependency>
     </dependencies>
 
@@ -49,7 +47,6 @@
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <version>${maven-bundle.version}</version>
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>

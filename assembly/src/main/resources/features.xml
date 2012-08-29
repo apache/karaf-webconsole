@@ -17,7 +17,7 @@
 -->
 <features name="karaf-webconsole-${project.version}">
 
-  <repository>mvn:org.ops4j.pax.wicket/features/${ops4j.paxwicket.version}/xml/features</repository>
+  <repository>mvn:org.ops4j.pax.wicket/features/${pax-wicket.version}/xml/features</repository>
 
   <feature name="webconsole-wicket" version="${project.version}" description="Karaf Wicket Webconsole">
     <feature>webconsole-core</feature>

@@ -33,7 +33,6 @@
     <properties>
         <manual.dir>${project.build.directory}/manual</manual.dir>
         <manual>${manual.dir}/webconsole-manual-${project.version}</manual>
-        <scala.version>2.9.0-1</scala.version>
         <scalate.version>1.5.1</scalate.version>
         <webconsole.version>${project.version}</webconsole.version>
     </properties>
@@ -52,12 +51,10 @@
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
-            <version>${scala.version}</version>
         </dependency>
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-compiler</artifactId>
-            <version>${scala.version}</version>
         </dependency>
     </dependencies>
 
@@ -134,7 +131,6 @@
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>7.1.5.v20100705</version>
                 <configuration>
                     <!-- When editing the conf files, you can comment this line to run
                         mvn jetty:run

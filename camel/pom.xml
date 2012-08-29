@@ -34,13 +34,10 @@
         <dependency>
             <groupId>org.apache.karaf.webconsole</groupId>
             <artifactId>org.apache.karaf.webconsole.core</artifactId>
-            <version>${project.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-core</artifactId>
-            <version>${camel.version}</version>
         </dependency>
     </dependencies>
 
@@ -49,7 +46,6 @@
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <version>${maven-bundle.version}</version>
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>

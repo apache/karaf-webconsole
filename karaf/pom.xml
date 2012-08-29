@@ -36,24 +36,4 @@
         <module>feature</module>
     </modules>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.apache.karaf.webconsole</groupId>
-                <artifactId>org.apache.karaf.webconsole.core</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.karaf.features</groupId>
-                <artifactId>org.apache.karaf.features.core</artifactId>
-                <version>${karaf.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.karaf.admin</groupId>
-                <artifactId>org.apache.karaf.admin.core</artifactId>
-                <version>${karaf.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
 </project>
