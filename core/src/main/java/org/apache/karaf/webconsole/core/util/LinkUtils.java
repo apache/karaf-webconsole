@@ -22,6 +22,7 @@ import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.protocol.http.RequestUtils;
 import org.apache.wicket.request.cycle.RequestCycle;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 /**
  * Utility class to create links.
@@ -39,9 +40,25 @@ public abstract class LinkUtils {
      * @param page Page class to link.
      * @return Bookmarkable link.
      */
-    @SuppressWarnings({"rawtypes", "unchecked"})
     public static <T extends Page> Link<Page> createPageLink(String linkId, String labelId, String label, Class<T> page) {
-        Link link = new BookmarkablePageLink<T>(linkId, page);
+        return createPageLink(linkId, labelId, label, page, new PageParameters());
+    }
+
+    /**
+     * Creates bookmarkable page link with given page class and parameters.
+     * 
+     * @param <T> Type of page.
+     * 
+     * @param linkId Link element id.
+     * @param labelId Inner link element label.
+     * @param label Text label.
+     * @param page Page class to link.
+     * @param params Page parameters.
+     * @return Bookmarkable link.
+     */
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    public static <T extends Page> Link<Page> createPageLink(String linkId, String labelId, String label, Class<T> page, PageParameters params) {
+        Link link = new BookmarkablePageLink<T>(linkId, page, params);
         link.add(new Label(labelId, label));
         return link;
     }

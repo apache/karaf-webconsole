@@ -14,20 +14,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.osgi.blueprint.bundle;
+package org.apache.karaf.webconsole.core.panel;
 
-import org.apache.karaf.webconsole.osgi.core.shared.BundleModel;
-import org.apache.karaf.webconsole.osgi.core.spi.IActionProvider;
-import org.apache.wicket.Component;
-import org.osgi.framework.Bundle;
+import org.apache.wicket.markup.html.panel.Panel;
 
 /**
- * Action provider for blueprint.
+ * Simple panel with one link inside.
  */
-public class BlueprintActionProvider implements IActionProvider {
+public class SingleLinkPanel extends Panel {
 
-    public Component create(String componentId, Bundle bundle) {
-        return new BlueprintActionPanel(componentId, new BundleModel(bundle));
+    private static final long serialVersionUID = 1L;
+
+    public SingleLinkPanel(String id) {
+        super(id);
     }
 
 }

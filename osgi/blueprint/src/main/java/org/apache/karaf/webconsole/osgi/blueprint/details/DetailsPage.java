@@ -46,8 +46,8 @@ public class DetailsPage extends OsgiPage {
         IModel<List<ComponentMetadata>> model = new MetadataModel(context, params.get("bundleId").toInt());
 
         add(new ListView<ComponentMetadata>("components", model) {
+
             @Override
-            @SuppressWarnings("unchecked")
             protected void populateItem(ListItem<ComponentMetadata> item) {
                 ComponentMetadata metadata = item.getModelObject();
                 item.add(new Label("componentId", metadata.getId()));
