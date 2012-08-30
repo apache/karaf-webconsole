@@ -16,17 +16,26 @@
  */
 package org.apache.karaf.webconsole.osgi.blueprint.bundle;
 
-import org.apache.karaf.webconsole.osgi.core.spi.IColumnProvider;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
+import static org.apache.wicket.model.Model.of;
+
+import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
+import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
+import org.apache.wicket.markup.repeater.Item;
+import org.apache.wicket.model.IModel;
 import org.osgi.framework.Bundle;
 
 /**
- * Provides blueprint column in bundles view.
+ * Column representing items blueprint state.
  */
-public class BlueprintColumnProvider implements IColumnProvider {
+class BlueprintColumn extends AbstractColumn<Bundle> {
 
-    public IColumn<Bundle> getColumn() {
-        return new BlueprintColumn();
+    private static final long serialVersionUID = 1L;
+
+    public BlueprintColumn() {
+        super(of("Blueprint"));
     }
 
+    public void populateItem(Item<ICellPopulator<Bundle>> cellItem, String componentId, IModel<Bundle> rowModel) {
+        cellItem.add(new BlueprintPanel(componentId, rowModel));
+    }
 }

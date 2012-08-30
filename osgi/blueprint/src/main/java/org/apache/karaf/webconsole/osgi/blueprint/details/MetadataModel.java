@@ -66,5 +66,6 @@ class MetadataModel extends LoadableDetachableModel<List<ComponentMetadata>> {
         if (reference != null) {
             context.ungetService(reference);
         }
+        reference = null;
     }
 }

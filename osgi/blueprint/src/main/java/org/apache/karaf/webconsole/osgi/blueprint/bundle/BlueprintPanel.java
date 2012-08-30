@@ -16,17 +16,31 @@
  */
 package org.apache.karaf.webconsole.osgi.blueprint.bundle;
 
-import org.apache.karaf.webconsole.osgi.core.spi.IColumnProvider;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
+import org.apache.karaf.webconsole.osgi.blueprint.BlueprintState;
+import org.apache.karaf.webconsole.osgi.blueprint.IBlueprintBundleStateTracker;
+import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.IModel;
+import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.osgi.framework.Bundle;
 
-/**
- * Provides blueprint column in bundles view.
- */
-public class BlueprintColumnProvider implements IColumnProvider {
+public class BlueprintPanel extends Panel {
 
-    public IColumn<Bundle> getColumn() {
-        return new BlueprintColumn();
+    private static final long serialVersionUID = 1L;
+
+    @PaxWicketBean(name = "tracker")
+    private IBlueprintBundleStateTracker tracker;
+
+    public BlueprintPanel(String componentId, IModel<Bundle> model) {
+        super(componentId, model);
+
+        Bundle bundle = model.getObject();
+        BlueprintState state = tracker.getState(bundle);
+        if (state != null) {
+            add(new Label("state", state.name()));
+        } else {
+            add(new Label("state"));
+        }
     }
 
 }

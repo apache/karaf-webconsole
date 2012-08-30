@@ -31,29 +31,25 @@
 
     <bean id="provider" class="org.apache.karaf.webconsole.osgi.blueprint.navigation.BlueprintNavigationProvider" />
 
-    <bean id="tracker" class="org.apache.karaf.webconsole.osgi.blueprint.BlueprintBundleStateTracker" />
+    <bean id="trackerBean" class="org.apache.karaf.webconsole.osgi.blueprint.BlueprintBundleStateTracker" />
 
     <service auto-export="interfaces">
-        <bean class="org.apache.karaf.webconsole.osgi.blueprint.bundle.BlueprintActionProvider">
-            <argument ref="trackerService" />
-        </bean>
+        <bean class="org.apache.karaf.webconsole.osgi.blueprint.bundle.BlueprintActionProvider" />
     </service>
 
     <service auto-export="interfaces">
-        <bean class="org.apache.karaf.webconsole.osgi.blueprint.bundle.BlueprintColumnProvider">
-            <argument ref="trackerService" />
-        </bean>
+        <bean class="org.apache.karaf.webconsole.osgi.blueprint.bundle.BlueprintColumnProvider" />
     </service>
 
     <service auto-export="interfaces">
         <bean class="org.apache.karaf.webconsole.osgi.blueprint.bundle.BlueprintDecorationProvider">
-            <argument ref="trackerService" />
+            <argument ref="tracker" />
         </bean>
     </service>
 
-    <service ref="tracker" auto-export="interfaces" />
+    <reference id="tracker" interface="org.apache.karaf.webconsole.osgi.blueprint.IBlueprintBundleStateTracker" availability="optional" />
 
-    <reference id="trackerService" interface="org.apache.karaf.webconsole.osgi.blueprint.IBlueprintBundleStateTracker"
-        availability="optional" />
+    <service ref="trackerBean" auto-export="interfaces" />
+
 
 </blueprint>
