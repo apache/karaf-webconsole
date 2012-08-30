@@ -24,14 +24,18 @@ import org.apache.felix.scr.ScrService;
  */
 public class ScrComponent {
 
-    protected ScrService scr;
+    static protected ScrService scr;
 
     public void bind(ScrService service) {
-        this.scr = service;
+        scr = service;
     }
 
     public void unbind(ScrService service) {
-        this.scr = null;
+        scr = null;
+    }
+
+    public static ScrService getScrService() {
+        return scr;
     }
 
 }

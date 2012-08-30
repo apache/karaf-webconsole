@@ -23,10 +23,10 @@ import org.osgi.framework.Bundle;
 /**
  * Scr column provider, creates a dedicated column.
  */
-public class ScrColumnProvider extends ScrComponent implements IColumnProvider {
+public class ScrColumnProvider implements IColumnProvider {
 
     public IColumn<Bundle> getColumn() {
-        return new ScrColumn(scr, "SCR");
+        return new ScrColumn("SCR");
     }
 
 }

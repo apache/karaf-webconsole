@@ -16,8 +16,8 @@
  */
 
 .scr {
-    background: url("scr.gif");
-    width: 16px;
+    background: url("scr.png");
+    width: 13px;
     height: 16px;
     display: block;
 }

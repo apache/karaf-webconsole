@@ -16,8 +16,6 @@
  */
 package org.apache.karaf.webconsole.osgi.scr;
 
-import static org.apache.wicket.model.Model.of;
-
 import org.apache.felix.scr.Component;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -35,7 +33,7 @@ public class ScrColumnPanel extends Panel {
     public ScrColumnPanel(String id, Component[] components) {
         super(id);
 
-        RepeatingView view = new RepeatingView("components", of(components));
+        RepeatingView view = new RepeatingView("components");
 
         for (Component component : components) {
             MarkupContainer container = new WebMarkupContainer(view.newChildId());

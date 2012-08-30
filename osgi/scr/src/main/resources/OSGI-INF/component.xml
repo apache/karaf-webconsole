@@ -15,11 +15,8 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 -->
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="scr-column-plugin">
-   <implementation class="org.apache.karaf.webconsole.osgi.scr.ScrColumnProvider"/>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="scr-component">
+   <implementation class="org.apache.karaf.webconsole.osgi.scr.ScrComponent" />
 
-   <service>
-      <provide interface="org.apache.karaf.webconsole.osgi.core.spi.IColumnProvider"/>
-   </service>
-
+   <reference name="ScrService" cardinality="1..1" interface="org.apache.felix.scr.ScrService" policy="static" bind="bind" unbind="unbind" />
 </scr:component>

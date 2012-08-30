@@ -61,7 +61,7 @@
                         </Import-Package>
                         <Export-Package></Export-Package>
                         <Private-Package>org.apache.karaf.webconsole.osgi.scr*,</Private-Package>
-                        <Service-Component>OSGI-INF/column.xml,OSGI-INF/decoration.xml</Service-Component>
+                        <Service-Component>OSGI-INF/column.xml,OSGI-INF/decoration.xml,OSGI-INF/component.xml</Service-Component>
                     </instructions>
                 </configuration>
             </plugin>

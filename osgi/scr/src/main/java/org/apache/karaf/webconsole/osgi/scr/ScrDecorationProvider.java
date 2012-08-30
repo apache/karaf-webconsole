@@ -17,6 +17,7 @@
 
 package org.apache.karaf.webconsole.osgi.scr;
 
+import org.apache.felix.scr.ScrService;
 import org.apache.karaf.webconsole.core.behavior.CssBehavior;
 import org.apache.karaf.webconsole.core.panel.CssImagePanel;
 import org.apache.karaf.webconsole.osgi.core.spi.IDecorationProvider;
@@ -27,10 +28,11 @@ import org.osgi.framework.Bundle;
 /**
  * A decoration provider which add scr icon in first column of bundles.
  */
-public class ScrDecorationProvider extends ScrComponent implements IDecorationProvider {
+public class ScrDecorationProvider implements IDecorationProvider {
 
     public Panel getDecoration(String componentId, IModel<Bundle> model) {
         Bundle bundle = model.getObject();
+        ScrService scr = ScrComponent.getScrService();
 
         if (scr == null || scr.getComponents(bundle) == null) {
             return null;

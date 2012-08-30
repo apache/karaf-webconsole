@@ -34,24 +34,20 @@ public class ScrColumn extends AbstractColumn<Bundle> {
 
     private static final long serialVersionUID = 1L;
 
-    private ScrService scr;
-
-    public ScrColumn(ScrService scr, String title) {
+    public ScrColumn(String title) {
         super(of(title));
-        this.scr = scr;
     }
 
     public void populateItem(Item<ICellPopulator<Bundle>> cellItem, String componentId, IModel<Bundle> rowModel) {
-        if (scr == null) {
+        ScrService scr = ScrComponent.getScrService();
+
+        Component[] components = null;
+        if (scr == null || (components = scr.getComponents(rowModel.getObject())) == null) {
+            // no scr for this bundle
+            cellItem.add(new Label(componentId));
             return;
         }
 
-        Component[] components = scr.getComponents(rowModel.getObject());
-        if (components != null) {
-            cellItem.add(new ScrColumnPanel(componentId, components));
-        } else {
-            // no scr for this bundle
-            cellItem.add(new Label(componentId));
-        }
+        cellItem.add(new ScrColumnPanel(componentId, components));
     }
 }
