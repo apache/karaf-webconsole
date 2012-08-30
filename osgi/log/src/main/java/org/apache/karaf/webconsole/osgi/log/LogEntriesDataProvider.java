@@ -40,7 +40,7 @@ final class LogEntriesDataProvider extends SortableDataProvider<LogEntry> {
 
     private Options options;
 
-    private transient List<Matcher> matchers;
+    private List<Matcher> matchers;
 
     public LogEntriesDataProvider(LogReaderService logReader, Options options, List<Matcher> matchers) {
         this.logReader = logReader;

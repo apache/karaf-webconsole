@@ -27,4 +27,22 @@
 
     <reference id="logReader" interface="org.osgi.service.log.LogReaderService" />
 
+    <reference-list id="matchers" interface="org.apache.karaf.webconsole.osgi.log.search.Matcher" availability="optional" />
+
+    <service auto-export="interfaces">
+        <bean class="org.apache.karaf.webconsole.osgi.log.search.PriorityMatcher" />
+    </service>
+    <service auto-export="interfaces">
+        <bean class="org.apache.karaf.webconsole.osgi.log.search.MessageMatcher" />
+    </service>
+    <service auto-export="interfaces">
+        <bean class="org.apache.karaf.webconsole.osgi.log.search.BundleMatcher" />
+    </service>
+    <service auto-export="interfaces">
+        <bean class="org.apache.karaf.webconsole.osgi.log.search.DateFromMatcher" />
+    </service>
+    <service auto-export="interfaces">
+        <bean class="org.apache.karaf.webconsole.osgi.log.search.DateToMatcher" />
+    </service>
+
 </blueprint>

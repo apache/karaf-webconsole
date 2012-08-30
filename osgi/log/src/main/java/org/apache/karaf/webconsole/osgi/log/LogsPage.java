@@ -23,12 +23,7 @@ import java.util.List;
 
 import org.apache.karaf.webconsole.core.table.PropertyColumnExt;
 import org.apache.karaf.webconsole.osgi.core.shared.OsgiPage;
-import org.apache.karaf.webconsole.osgi.log.search.BundleMatcher;
-import org.apache.karaf.webconsole.osgi.log.search.DateFromMatcher;
-import org.apache.karaf.webconsole.osgi.log.search.DateToMatcher;
 import org.apache.karaf.webconsole.osgi.log.search.Matcher;
-import org.apache.karaf.webconsole.osgi.log.search.MessageMatcher;
-import org.apache.karaf.webconsole.osgi.log.search.PriorityMatcher;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
@@ -54,6 +49,9 @@ public class LogsPage extends OsgiPage {
 
     @PaxWicketBean(name = "logReader")
     private LogReaderService logReader;
+
+    @PaxWicketBean(name = "matchers")
+    private List<Matcher> matchers;
 
     private Options options = new Options();
 
@@ -83,14 +81,6 @@ public class LogsPage extends OsgiPage {
         };
 
         OptionsForm form = new OptionsForm("filters", model);
-
-        List<Matcher> matchers = Arrays.asList(
-            new PriorityMatcher(),
-            new MessageMatcher(),
-            new BundleMatcher(),
-            new DateFromMatcher(),
-            new DateToMatcher()
-        );
 
         LogEntriesDataProvider provider = new LogEntriesDataProvider(logReader, options, matchers);
         DefaultDataTable<LogEntry> table = new DefaultDataTable<LogEntry>("logs", Arrays.asList(columns), provider, 20);
