@@ -28,7 +28,6 @@ import org.apache.karaf.webconsole.osgi.core.bundle.list.link.StopLink;
 import org.apache.karaf.webconsole.osgi.core.bundle.list.link.UninstallLink;
 import org.apache.karaf.webconsole.osgi.core.bundle.list.link.UpdateLink;
 import org.apache.karaf.webconsole.osgi.core.shared.State;
-import org.apache.karaf.webconsole.osgi.core.spi.IActionProvider;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
@@ -43,17 +42,10 @@ public class BundleActionsPanel extends ActionsPanel<Bundle> {
 
     private static final long serialVersionUID = 1L;
 
-    public BundleActionsPanel(String componentId, final IModel<Bundle> model, List<IActionProvider> actionProviders) {
+    public BundleActionsPanel(String componentId, final IModel<Bundle> model) {
         super(componentId, model);
 
-        /*
-        add(new ListView<IActionProvider>("extensions", new ListModel<IActionProvider>(actionProviders)) {
-            @Override
-            protected void populateItem(ListItem<IActionProvider> item) {
-                item.add(item.getModelObject().create("extension", model.getObject()));
-            }
-        });
-        */
+        add(new ExtensionsPanel("extend", model));
     }
 
     @Override

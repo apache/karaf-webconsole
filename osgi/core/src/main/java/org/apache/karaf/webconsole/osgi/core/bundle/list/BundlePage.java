@@ -26,7 +26,6 @@ import org.apache.karaf.webconsole.osgi.core.bundle.install.InstallBundlePage;
 import org.apache.karaf.webconsole.osgi.core.shared.BundleDataProvider;
 import org.apache.karaf.webconsole.osgi.core.shared.OsgiPage;
 import org.apache.karaf.webconsole.osgi.core.shared.State;
-import org.apache.karaf.webconsole.osgi.core.spi.IActionProvider;
 import org.apache.karaf.webconsole.osgi.core.spi.IColumnProvider;
 import org.apache.karaf.webconsole.osgi.core.spi.IDecorationProvider;
 import org.apache.wicket.Page;
@@ -54,9 +53,6 @@ public class BundlePage extends OsgiPage {
 
     @PaxWicketBean(name = "columnProviders")
     private List<IColumnProvider> columnProviders;
-
-    @PaxWicketBean(name = "actionProviders")
-    private List<IActionProvider> actionProviders;
 
     @PaxWicketBean(name = "decorationProviders")
     private List<IDecorationProvider> decorationProviders;
@@ -101,7 +97,7 @@ public class BundlePage extends OsgiPage {
             private static final long serialVersionUID = 1L;
 
             public void populateItem(Item<ICellPopulator<Bundle>> cellItem, final String componentId, final IModel<Bundle> rowModel) {
-                cellItem.add(new BundleActionsPanel(componentId, rowModel, actionProviders));
+                cellItem.add(new BundleActionsPanel(componentId, rowModel));
             }
         });
 

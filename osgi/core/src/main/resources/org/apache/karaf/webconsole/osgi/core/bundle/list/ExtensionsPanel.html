@@ -16,15 +16,11 @@
    limitations under the License.
 -->
 <wicket:panel xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
-    <div class="actions pull-right">
-        <ul>
-            <li wicket:id="actions">
-                <a wicket:id="action">
-                    <span wicket:id="label"></span>
-                </a>
-            </li>
-        </ul>
-    </div>
-
-    <wicket:child />
+    <a href="#" data-toggle="dropdown" class="dropdown-toggle" title="Additional actions available">
+        <i class="icon-arrow-down"></i>
+    </a>
+    <ul class="dropdown-menu">
+        <li wicket:id="extensions">
+        </li>
+    </ul>
 </wicket:panel>
