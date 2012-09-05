@@ -53,20 +53,20 @@ public class ConfigurationEditPage extends OsgiPage {
         pid = params.get("pid").toString();
 
         add(new Label("pid", pid));
-        Configuration configuration = new ConfigurationModel(pid, configurationAdmin).getObject();
+        ConfigurationModel configuration = new ConfigurationModel(pid, configurationAdmin);
+        setDefaultModel(configuration);
 
         @SuppressWarnings("unchecked")
-        Map<String, String> properties = DictionaryUtils.map(configuration.getProperties());
+        Map<String, String> properties = DictionaryUtils.map(configuration.getObject().getProperties());
         Map<String, String> system = ConfigurationFilterUtil.filter(properties);
-        CompoundPropertyModel<Map<String, String>> formModel = new CompoundPropertyModel<Map<String, String>>(properties);
 
-        MapEditForm<String, String> mapEditForm = new MapEditForm<String, String>("edit", formModel) {
+        MapEditForm<String, String> mapEditForm = new MapEditForm<String, String>("edit", new CompoundPropertyModel<Map<String, String>>(properties)) {
             @Override
             protected void onSubmit() {
                 Map<String, String> map = getModelObject();
 
+                Configuration configuration = (Configuration) ConfigurationEditPage.this.getDefaultModelObject();
                 try {
-                    Configuration configuration = new ConfigurationModel(pid, configurationAdmin).getObject();
                     if (configuration.getBundleLocation() != null) {
                         configuration.setBundleLocation(null);
                     }
@@ -75,7 +75,7 @@ public class ConfigurationEditPage extends OsgiPage {
                     Session.get().info("Configuration " + pid + " updated.");
                     RequestCycle.get().setResponsePage(ConfigurationsPage.class);
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    error("Unable to update configuration " + e.getMessage());
                 }
             }
         };
