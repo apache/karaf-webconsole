@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.camel.CamelContext;
+import org.apache.karaf.webconsole.camel.internal.context.link.ResumeLink;
+import org.apache.karaf.webconsole.camel.internal.context.link.SuspendLink;
 import org.apache.karaf.webconsole.camel.internal.tracking.TraceContainer;
 import org.apache.karaf.webconsole.core.table.ActionsPanel;
 import org.apache.wicket.Session;
@@ -82,6 +84,16 @@ public class ContextActionsPanel extends ActionsPanel<CamelContext> {
                 }
             };
             link.add(new Label(labelId, "View messages"));
+            links.add(link);
+        }
+
+        if (!object.isSuspended()) {
+            Link link = new SuspendLink(linkId, getModel());
+            link.add(new Label(labelId, "Suspend"));
+            links.add(link);
+        } else {
+            Link link = new ResumeLink(linkId, getModel());
+            link.add(new Label(labelId, "Resume"));
             links.add(link);
         }
 
