@@ -38,15 +38,10 @@ public class ConfigurationProvider extends SortableDataProvider<Configuration> {
 
     public ConfigurationProvider(ConfigurationAdmin configurationAdmin) {
         this.configurationAdmin = configurationAdmin;
-        try {
-            this.configurations = configurationAdmin.listConfigurations(null);
-        } catch (Exception e) {
-            throw new ConfigurationNotFoundException(null, e);
-        }
     }
 
     public Iterator<? extends Configuration> iterator(int from, int count) {
-        return Arrays.asList(Arrays.copyOfRange(configurations, from, count)).iterator();
+        return Arrays.asList(Arrays.copyOfRange(getConfigurations(), from, from + count)).iterator();
     }
 
     public IModel<Configuration> model(Configuration object) {
@@ -54,9 +49,18 @@ public class ConfigurationProvider extends SortableDataProvider<Configuration> {
     }
 
     public int size() {
-        return configurations.length;
+        return getConfigurations().length;
     }
 
+    public Configuration[] getConfigurations() {
+        try {
+            configurations = configurationAdmin.listConfigurations(null);
+        } catch (Exception e) {
+            throw new ConfigurationNotFoundException(null, e);
+        }
+        return configurations;
+    }
+    
     @Override
     public void detach() {
         super.detach();

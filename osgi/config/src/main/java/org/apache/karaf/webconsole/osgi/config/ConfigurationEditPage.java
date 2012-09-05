@@ -67,6 +67,9 @@ public class ConfigurationEditPage extends OsgiPage {
 
                 try {
                     Configuration configuration = new ConfigurationModel(pid, configurationAdmin).getObject();
+                    if (configuration.getBundleLocation() != null) {
+                        configuration.setBundleLocation(null);
+                    }
                     configuration.update(DictionaryUtils.dictionary(map));
 
                     Session.get().info("Configuration " + pid + " updated.");

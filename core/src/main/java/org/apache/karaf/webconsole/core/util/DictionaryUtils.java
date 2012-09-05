@@ -28,7 +28,7 @@ import java.util.Map;
 public abstract class DictionaryUtils {
 
     private DictionaryUtils() {
-        System.out.println("How you did that?");
+        // utility class, no public constructor
     }
 
     /**

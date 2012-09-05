@@ -44,16 +44,21 @@ public abstract class MapEditForm<K, V> extends Form<Map<K, V>> {
         RepeatingView repeatingView = new RepeatingView("entries");
 
         for (K key : model.getObject().keySet()) {
-            IModel<V> bind = model.bind("" + key);
+            IModel<V> bind = model.bind("[" + key + "]");
             repeatingView.add(populateItem(repeatingView.newChildId(), key, bind));
         }
         add(repeatingView);
     }
 
     protected Component populateItem(String componentId, K key, IModel<V> value) {
-        FormComponent<V> field = new TextField<V>("value", value);
-        field.setLabel(of(key.toString()));
-        LabelBorder border = new LabelBorder(componentId, field);
-        return border;
+        return new LabelBorder(componentId, createField(key, value));
     }
+
+    private FormComponent<?> createField(K key, IModel<V> value) {
+        FormComponent<V> field = new TextField<V>("value", value);
+        field.setType(String.class);
+        field.setLabel(of(key.toString()));
+        return field;
+    }
+
 }

@@ -30,22 +30,27 @@ public class LabelBorder extends Border {
     private static final long serialVersionUID = 1L;
     private final FormComponent<?> component;
 
+    private Label help;
+
     public LabelBorder(String id, FormComponent<?> component) {
         super(id);
         this.component = component;
-        getBodyContainer().add(component);
 
-        add(new SimpleFormComponentLabel("label", component));
-        add(new Label("help", ""));
-        add(new ComponentFeedbackPanel("error", component));
+        add(component);
+
+        addToBorder(
+            new SimpleFormComponentLabel("label", component),
+            help = new Label("help", ""),
+            new ComponentFeedbackPanel("error", component)
+        );
     }
 
     public void setHelp(String message) {
-        addOrReplace(new Label("help", message));
+        help.setDefaultModelObject(message);
     }
 
     public void setHelp(IModel<?> message) {
-        addOrReplace(new Label("help", message));
+        help.setDefaultModel(message);
     }
 
     @Override

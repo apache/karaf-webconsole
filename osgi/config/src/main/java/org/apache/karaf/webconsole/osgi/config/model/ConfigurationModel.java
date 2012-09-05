@@ -46,7 +46,7 @@ public class ConfigurationModel extends LoadableDetachableModel<Configuration> {
     @Override
     protected Configuration load() {
         try {
-            return configurationAdmin.getConfiguration(pid);
+            return configurationAdmin.getConfiguration(pid, null);
         } catch (IOException e) {
             throw new ConfigurationNotFoundException(pid, e);
         }
