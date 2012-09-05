@@ -25,6 +25,7 @@ import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.ops4j.pax.wicket.api.PaxWicketBean;
 
 /**
  * Widget with list of camel contexts.
@@ -33,21 +34,22 @@ public class CamelWidget extends Panel {
 
     private static final long serialVersionUID = 1L;
 
+    @PaxWicketBean(name = "contexts")
+    private List<CamelContext> contexts;
+
     @SuppressWarnings("serial")
-    public CamelWidget(String id, List<CamelContext> contexts) {
+    public CamelWidget(String id) {
         super(id);
 
-//        List<CamelContext> subList = new ArrayList<CamelContext>(contexts);
-//        if (subList.size() > 4) {
-//            subList = subList.subList(0, 4);
-//        }
         add(new Label("count", "" + contexts.size()));
 
-        add(new ListView<CamelContext>("contexts"/*, subList*/) {
+        add(new ListView<CamelContext>("contexts", contexts) {
             @Override
             protected void populateItem(ListItem<CamelContext> item) {
                 CamelContext model = item.getModelObject();
-                add(new Label("name", model.getName()));
+                item.add(new Label("name", model.getName()));
+                item.add(new Label("uptime", model.getUptime()));
+                item.add(new Label("routeCount", ""+ model.getRouteDefinitions().size()));
             }
         });
 

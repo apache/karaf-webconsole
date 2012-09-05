@@ -16,17 +16,21 @@
    limitations under the License.
 -->
 <wicket:panel xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
-    <div class="grid_6 widget">
+    <div class="span6 widget">
         <h1>Deployed camel contexts</h1>
 
-        <p>You have <span wicket:id="count">13</span> camel contexts deployed. First four are:</p>
+        <p>You have <span wicket:id="count">13</span> camel contexts deployed.</p>
 
         <table class="table table-striped table-condensed">
             <tr>
                 <th>Name</th>
+                <th>Uptime</th>
+                <th title="Number of all routes">Routes</th>
             </tr>
             <tr wicket:id="contexts">
-                <td><span wicket:id="name">.test-context</span></td>
+                <td><span wicket:id="name"></span></td>
+                <td><span wicket:id="uptime"></span></td>
+                <td><span wicket:id="routeCount"></span></td>
             </tr>
         </table>
 
