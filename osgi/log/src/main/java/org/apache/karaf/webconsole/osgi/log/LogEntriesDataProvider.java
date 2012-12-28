@@ -21,8 +21,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataProvider;
 import org.apache.karaf.webconsole.osgi.log.search.Matcher;
-import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.model.IModel;
 import org.osgi.service.log.LogEntry;
 import org.osgi.service.log.LogReaderService;
@@ -30,7 +30,7 @@ import org.osgi.service.log.LogReaderService;
 /**
  * Data provider for log table.
  */
-final class LogEntriesDataProvider extends SortableDataProvider<LogEntry> {
+final class LogEntriesDataProvider extends BaseDataProvider<LogEntry> {
 
     private static final long serialVersionUID = 1L;
 
@@ -48,8 +48,8 @@ final class LogEntriesDataProvider extends SortableDataProvider<LogEntry> {
         this.matchers = matchers;
     }
 
-    public Iterator<? extends LogEntry> iterator(int first, int count) {
-        return getEntries().subList(first, first + count).iterator();
+    public Iterator<? extends LogEntry> iterator(long first, long count) {
+        return getEntries().subList((int) first, (int) first + (int) count).iterator();
     }
 
     private List<LogEntry> getEntries() {
@@ -78,7 +78,7 @@ final class LogEntriesDataProvider extends SortableDataProvider<LogEntry> {
         return new LogEntryModel(this.logReader, object);
     }
 
-    public int size() {
+    public long size() {
         return getEntries().size();
     }
 

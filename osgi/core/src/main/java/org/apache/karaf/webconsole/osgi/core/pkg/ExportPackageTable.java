@@ -30,7 +30,7 @@ public class ExportPackageTable extends HeaderTable {
 	private static final long serialVersionUID = 1L;
 
 	@SuppressWarnings("unchecked")
-	static IColumn<Clause>[] columns = new IColumn[] {
+	static IColumn<Clause, String>[] columns = new IColumn[] {
 		new OrdinalColumn<Clause>(),
 		new PackageColumn("Export"),
 //		new ResolutionColumn("Resolution"),

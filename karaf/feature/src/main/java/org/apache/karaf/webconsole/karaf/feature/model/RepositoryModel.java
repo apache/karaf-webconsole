@@ -33,6 +33,7 @@ public class RepositoryModel extends LoadableDetachableModel<Repository> {
     private URI uri;
 
     public RepositoryModel(FeaturesService service, Repository object) {
+        super(object);
         this.service = service;
         this.uri = object.getURI();
     }

@@ -21,6 +21,6 @@ import org.osgi.framework.Bundle;
 
 public interface IColumnProvider {
 
-    IColumn<Bundle> getColumn();
+    IColumn<Bundle, String> getColumn();
 
 }

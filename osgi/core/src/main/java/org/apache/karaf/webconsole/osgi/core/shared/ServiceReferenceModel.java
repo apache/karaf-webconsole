@@ -36,6 +36,7 @@ public class ServiceReferenceModel extends LoadableDetachableModel<ServiceRefere
     }
 
     public ServiceReferenceModel(ServiceReference object, Bundle bundle) {
+        super(object);
         this.bundle = bundle;
         serviceId = (Long) object.getProperty(Constants.SERVICE_ID);
     }

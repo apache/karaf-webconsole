@@ -25,7 +25,7 @@ import org.osgi.framework.Bundle;
  */
 public class BlueprintColumnProvider implements IColumnProvider {
 
-    public IColumn<Bundle> getColumn() {
+    public IColumn<Bundle, String> getColumn() {
         return new BlueprintColumn();
     }
 

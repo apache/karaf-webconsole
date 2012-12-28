@@ -21,13 +21,13 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.camel.CamelContext;
-import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataProvider;
 import org.apache.wicket.model.IModel;
 
 /**
  * Camel context list data provider.
  */
-public class CamelContextsDataProvider extends SortableDataProvider<CamelContext> {
+public class CamelContextsDataProvider extends BaseDataProvider<CamelContext> {
 
     private static final long serialVersionUID = 1L;
 
@@ -37,11 +37,11 @@ public class CamelContextsDataProvider extends SortableDataProvider<CamelContext
         this.contexts = contexts;
     }
 
-    public Iterator<? extends CamelContext> iterator(int first, int count) {
-        return new ArrayList<CamelContext>(contexts).subList(first, first + count).iterator();
+    public Iterator<? extends CamelContext> iterator(long first, long count) {
+        return new ArrayList<CamelContext>(contexts).subList((int) first, (int) first + (int) count).iterator();
     }
 
-    public int size() {
+    public long size() {
         return contexts.size();
     }
 

@@ -27,7 +27,7 @@ import org.osgi.framework.Bundle;
 /**
  * Column representing items blueprint state.
  */
-class BlueprintColumn extends AbstractColumn<Bundle> {
+class BlueprintColumn extends AbstractColumn<Bundle, String> {
 
     private static final long serialVersionUID = 1L;
 

@@ -21,10 +21,10 @@ import java.util.List;
 
 import org.apache.karaf.webconsole.core.table.OrdinalColumn;
 import org.apache.karaf.webconsole.core.table.PropertyColumnExt;
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataTable;
 import org.apache.karaf.webconsole.osgi.core.shared.OsgiPage;
 import org.apache.karaf.webconsole.osgi.event.model.EventTopicInfo;
 import org.apache.karaf.webconsole.osgi.event.model.EventTopicsProvider;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
 
@@ -37,12 +37,12 @@ public class EventsPage extends OsgiPage {
     private static final long serialVersionUID = 1L;
 
     public EventsPage() {
-        List<IColumn<EventTopicInfo>> columns = new ArrayList<IColumn<EventTopicInfo>>();
+        List<IColumn<EventTopicInfo, String>> columns = new ArrayList<IColumn<EventTopicInfo, String>>();
         columns.add(new OrdinalColumn<EventTopicInfo>());
         columns.add(new PropertyColumnExt<EventTopicInfo>("Topic", "topic"));
         columns.add(new PropertyColumnExt<EventTopicInfo>("Number of consumers", "consumers"));
 
-        add(new DefaultDataTable<EventTopicInfo>("topics", columns, new EventTopicsProvider(context), 100));
+        add(new BaseDataTable<EventTopicInfo>("topics", columns, new EventTopicsProvider(context), 100));
     }
 
 }

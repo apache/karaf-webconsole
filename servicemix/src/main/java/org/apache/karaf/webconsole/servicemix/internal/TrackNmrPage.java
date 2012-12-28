@@ -21,13 +21,13 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 import org.apache.karaf.webconsole.core.table.PropertyColumnExt;
+import org.apache.karaf.webconsole.core.table.advanced.AdvancedDataProvider;
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataProvider;
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataTable;
 import org.apache.servicemix.nmr.api.Exchange;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.ISortableDataProvider;
-import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -45,26 +45,26 @@ public class TrackNmrPage extends ServiceMixPage {
 
     @SuppressWarnings({"unchecked", "serial", "rawtypes"})
     public TrackNmrPage() {
-        IColumn<Exchange>[] columns = new IColumn[] {
+        IColumn<Exchange, String>[] columns = new IColumn[] {
             new PropertyColumnExt<Exchange>("Id", "id"),
             new PropertyColumnExt<Exchange>("Role", "role"),
             new PropertyColumnExt<Exchange>("Status", "status"),
             new PropertyColumnExt<Exchange>("Pattern", "pattern"),
             new PropertyColumnExt<Exchange>("Operation", "operation"),
-            new AbstractColumn<Exchange>(Model.of("Operations")) {
+            new AbstractColumn<Exchange, String>(Model.of("Operations")) {
                 public void populateItem(Item<ICellPopulator<Exchange>> cellItem, String componentId, IModel<Exchange> rowModel) {
                     cellItem.add(new ExchangeActionsPanel(componentId, rowModel));
                 }
             }
         };
 
-        ISortableDataProvider<Exchange> dataProvider = new SortableDataProvider<Exchange>() {
+        AdvancedDataProvider<Exchange> dataProvider = new BaseDataProvider<Exchange>() {
 
-            public Iterator<? extends Exchange> iterator(int first, int count) {
-                return new ArrayList(listener.getExchanges()).subList(first, first + count).iterator();
+            public Iterator<? extends Exchange> iterator(long first, long count) {
+                return new ArrayList(listener.getExchanges()).subList((int) first, (int) first + (int) count).iterator();
             }
 
-            public int size() {
+            public long size() {
                 return listener.getExchanges().size();
             }
 
@@ -74,7 +74,7 @@ public class TrackNmrPage extends ServiceMixPage {
 
         };
 
-        add(new DefaultDataTable<Exchange>("exchanges", Arrays.asList(columns), dataProvider, 20));
+        add(new BaseDataTable<Exchange>("exchanges", Arrays.asList(columns), dataProvider, 20));
 
     }
 

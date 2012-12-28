@@ -14,19 +14,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.webconsole.osgi.scr;
+package org.apache.karaf.webconsole.core.table.advanced;
 
-import org.apache.karaf.webconsole.osgi.core.spi.IColumnProvider;
+import java.util.List;
+
+import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
-import org.osgi.framework.Bundle;
 
 /**
- * Scr column provider, creates a dedicated column.
+ * Base class for data tables.
+ *
+ * @param <T> Type of model.
  */
-public class ScrColumnProvider implements IColumnProvider {
+public class BaseDataTable<T> extends DefaultDataTable<T, String> {
 
-    public IColumn<Bundle, String> getColumn() {
-        return new ScrColumn("SCR");
+    private static final long serialVersionUID = 1L;
+
+    public BaseDataTable(String id, List<IColumn<T, String>> columns, AdvancedDataProvider<T> dataProvider,
+        int rowsPerPage) {
+        super(id, columns, dataProvider, rowsPerPage);
     }
 
 }

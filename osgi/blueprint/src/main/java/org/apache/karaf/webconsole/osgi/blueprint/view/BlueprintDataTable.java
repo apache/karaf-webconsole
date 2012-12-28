@@ -19,10 +19,10 @@ package org.apache.karaf.webconsole.osgi.blueprint.view;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.karaf.webconsole.core.table.advanced.AdvancedDataProvider;
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.ISortableDataProvider;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -31,16 +31,16 @@ import org.osgi.framework.ServiceReference;
 /**
  * Table with blueprint containers.
  */
-public class BlueprintDataTable extends DefaultDataTable<ServiceReference> {
+public class BlueprintDataTable extends BaseDataTable<ServiceReference> {
 
     private static final long serialVersionUID = 1L;
 
-    @SuppressWarnings({"rawtypes", "unchecked", "serial"})
+    @SuppressWarnings({"rawtypes", "serial"})
     private static final List COLUMNS = Arrays.asList(
         new DefaultServiceReferencePropertyColumn("Id", "service.id"),
         new DefaultServiceReferencePropertyColumn("Container", "osgi.blueprint.container.symbolicname"),
         new DefaultServiceReferencePropertyColumn("Version", "osgi.blueprint.container.version"),
-        new AbstractColumn<ServiceReference>(Model.of("Operations")) {
+        new AbstractColumn<ServiceReference, String>(Model.of("Operations")) {
             public void populateItem(Item<ICellPopulator<ServiceReference>> cellItem, String componentId, IModel<ServiceReference> rowModel) {
                 cellItem.add(new BlueprintActionsPanel(componentId, rowModel));
             }
@@ -48,7 +48,7 @@ public class BlueprintDataTable extends DefaultDataTable<ServiceReference> {
     );
 
     @SuppressWarnings("unchecked")
-    public BlueprintDataTable(String id, ISortableDataProvider<ServiceReference> dataProvider, int rowsPerPage) {
+    public BlueprintDataTable(String id, AdvancedDataProvider<ServiceReference> dataProvider, int rowsPerPage) {
         super(id, COLUMNS, dataProvider, rowsPerPage);
     }
 

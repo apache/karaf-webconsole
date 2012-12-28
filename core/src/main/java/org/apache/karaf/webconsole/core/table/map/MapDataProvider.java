@@ -21,7 +21,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataProvider;
 import org.apache.wicket.model.IModel;
 
 /**
@@ -30,7 +30,7 @@ import org.apache.wicket.model.IModel;
  * @param <K> Key type.
  * @param <V> Value type.
  */
-public class MapDataProvider<K, V> extends SortableDataProvider<Entry<K, V>> {
+public class MapDataProvider<K, V> extends BaseDataProvider<Entry<K, V>> {
 
     private static final long serialVersionUID = 1L;
 
@@ -40,11 +40,11 @@ public class MapDataProvider<K, V> extends SortableDataProvider<Entry<K, V>> {
         this.map = map;
     }
 
-    public Iterator<? extends Entry<K, V>> iterator(int first, int count) {
-        return new ArrayList<Entry<K, V>>(map.entrySet()).subList(first, first + count).iterator();
+    public Iterator<? extends Entry<K, V>> iterator(long first, long count) {
+        return new ArrayList<Entry<K, V>>(map.entrySet()).subList((int) first, (int) (first + count)).iterator();
     }
 
-    public int size() {
+    public long size() {
         return map.size();
     }
 

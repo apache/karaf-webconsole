@@ -20,13 +20,13 @@ import java.util.Arrays;
 
 import org.apache.karaf.features.Repository;
 import org.apache.karaf.webconsole.core.table.OrdinalColumn;
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataTable;
 import org.apache.karaf.webconsole.karaf.feature.KarafFeaturesPage;
 import org.apache.karaf.webconsole.karaf.feature.RepositoriesProvider;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxFallbackLink;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
 import org.apache.wicket.markup.repeater.Item;
@@ -45,12 +45,12 @@ public class RepositoriesPage extends KarafFeaturesPage {
 
     @SuppressWarnings({"rawtypes", "serial", "unchecked"})
     public RepositoriesPage() {
-        IColumn<Repository>[] columns = new IColumn[] {
+        IColumn<Repository, String>[] columns = new IColumn[] {
             new OrdinalColumn<Repository>(),
-            new PropertyColumn<Repository>(Model.of("name"), "name", "name"),
-            new PropertyColumn<Repository>(Model.of("URI"), "URI", "URI"),
-            new PropertyColumn<Repository>(Model.of("valid"), "valid", "valid"),
-            new AbstractColumn<Repository>(Model.of("Operations")) {
+            new PropertyColumn<Repository, String>(Model.of("name"), "name", "name"),
+            new PropertyColumn<Repository, String>(Model.of("URI"), "URI", "URI"),
+            new PropertyColumn<Repository, String>(Model.of("valid"), "valid", "valid"),
+            new AbstractColumn<Repository, String>(Model.of("Operations")) {
                 public void populateItem(Item<ICellPopulator<Repository>> cellItem, String componentId, IModel<Repository> rowModel) {
                     cellItem.add(new RepositoriesActionPanel(componentId, rowModel));
                 }
@@ -68,7 +68,7 @@ public class RepositoriesPage extends KarafFeaturesPage {
             }
         });
 
-        add(new DefaultDataTable<Repository>("repositories", Arrays.asList(columns), new RepositoriesProvider(featuresService), 20));
+        add(new BaseDataTable<Repository>("repositories", Arrays.asList(columns), new RepositoriesProvider(featuresService), 20));
     }
 
 }

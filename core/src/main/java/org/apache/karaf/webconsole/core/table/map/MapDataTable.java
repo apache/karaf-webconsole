@@ -21,9 +21,9 @@ import java.util.Map.Entry;
 
 import org.apache.karaf.webconsole.core.table.OrdinalColumn;
 import org.apache.karaf.webconsole.core.table.PropertyColumnExt;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
+import org.apache.karaf.webconsole.core.table.advanced.AdvancedDataProvider;
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.ISortableDataProvider;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 
 /**
@@ -32,21 +32,21 @@ import org.apache.wicket.markup.repeater.data.IDataProvider;
  * @param <K> Key type.
  * @param <V> Value type.
  */
-public class MapDataTable<K, V> extends DefaultDataTable<Entry<K, V>> {
+public class MapDataTable<K, V> extends BaseDataTable<Entry<K, V>> {
 
     private static final long serialVersionUID = 1L;
 
-    public MapDataTable(String id, IColumn<Entry<K, V>>[] columns, ISortableDataProvider<Entry<K, V>> dataProvider, int rowsPerPage) {
+    public MapDataTable(String id, IColumn<Entry<K, V>, String>[] columns, AdvancedDataProvider<Entry<K, V>> dataProvider, int rowsPerPage) {
         super(id, Arrays.asList(columns), dataProvider, rowsPerPage);
     }
 
-    public MapDataTable(String id, ISortableDataProvider<Entry<K, V>> dataProvider, int rowsPerPage) {
+    public MapDataTable(String id, AdvancedDataProvider<Entry<K, V>> dataProvider, int rowsPerPage) {
         this(id, getDefaultColumns(dataProvider), dataProvider, rowsPerPage);
     }
 
     @SuppressWarnings("unchecked")
-    static <K,V> IColumn<Entry<K, V>>[] getDefaultColumns(IDataProvider<Entry<K, V>> provider) {
-        IColumn<Entry<K, V>>[] columns = new IColumn[] {
+    static <K,V> IColumn<Entry<K, V>, String>[] getDefaultColumns(IDataProvider<Entry<K, V>> provider) {
+        IColumn<Entry<K, V>, String>[] columns = new IColumn[] {
             new OrdinalColumn<Entry<K, V>>(),
             new PropertyColumnExt<Entry<K, V>>("Key", "key"),
             new PropertyColumnExt<Entry<K, V>>("Value", "value")

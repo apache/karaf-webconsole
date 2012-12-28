@@ -18,7 +18,9 @@ package org.apache.karaf.webconsole.core.behavior;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
-import org.apache.wicket.markup.html.IHeaderResponse;
+import org.apache.wicket.markup.head.CssHeaderItem;
+import org.apache.wicket.markup.head.IHeaderResponse;
+import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.request.resource.CssResourceReference;
 import org.apache.wicket.request.resource.JavaScriptResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
@@ -45,9 +47,9 @@ public abstract class CompositeBehavior extends Behavior {
 
         for (ResourceReference reference : getResourceReferences()) {
             if (reference instanceof JavaScriptResourceReference) {
-                response.renderJavaScriptReference(reference);
+                response.render(JavaScriptHeaderItem.forReference(reference));
             } else if (reference instanceof CssResourceReference) {
-                response.renderCSSReference(reference);
+                response.render(CssHeaderItem.forReference(reference));
             } else {
                 throw new IllegalArgumentException("Unknown type of resource reference " + reference);
             }

@@ -25,12 +25,12 @@ import org.apache.cxf.Bus;
 import org.apache.karaf.webconsole.core.page.SinglePage;
 import org.apache.karaf.webconsole.core.table.OrdinalColumn;
 import org.apache.karaf.webconsole.core.table.PropertyColumnExt;
+import org.apache.karaf.webconsole.core.table.advanced.AdvancedDataProvider;
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataProvider;
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.ISortableDataProvider;
-import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -49,22 +49,22 @@ public class CxfServicesPage extends SinglePage {
     @SuppressWarnings("serial")
     public CxfServicesPage() {
         @SuppressWarnings("unchecked")
-        IColumn<Bus>[] columns = new IColumn[] {
+        IColumn<Bus, String>[] columns = new IColumn[] {
             new OrdinalColumn<Bus>(),
             new PropertyColumnExt<Bus>("Bus id", "id"),
-            new AbstractColumn<Bus>(Model.of("Actions")) {
+            new AbstractColumn<Bus, String>(Model.of("Actions")) {
                 public void populateItem(Item<ICellPopulator<Bus>> cellItem, String componentId, IModel<Bus> rowModel) {
                     cellItem.add(new CxfBusesActionPanel(componentId, rowModel));
                 }
             }
         };
 
-        ISortableDataProvider<Bus> provider = new SortableDataProvider<Bus>() {
-            public Iterator<? extends Bus> iterator(int first, int count) {
-                return new ArrayList<Bus>(buses).subList(first, first + count).iterator();
+        AdvancedDataProvider<Bus> provider = new BaseDataProvider<Bus>() {
+            public Iterator<? extends Bus> iterator(long first, long count) {
+                return new ArrayList<Bus>(buses).subList((int) first, (int) first + (int) count).iterator();
             }
 
-            public int size() {
+            public long size() {
                 return buses.size();
             }
 
@@ -73,7 +73,7 @@ public class CxfServicesPage extends SinglePage {
             }
         };
 
-        add(new DefaultDataTable<Bus>("buses", Arrays.asList(columns), provider, 20));
+        add(new BaseDataTable<Bus>("buses", Arrays.asList(columns), provider, 20));
     }
 
 }

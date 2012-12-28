@@ -63,11 +63,13 @@
         <pax-exam-karaf.version>0.5.0</pax-exam-karaf.version>
         <pax-exam-junit.version>2.3.0</pax-exam-junit.version>
         <pax-logging.version>1.6.4</pax-logging.version>
-        <pax-wicket.version>1.1.0</pax-wicket.version>
+        <pax-wicket.version>2.0.1</pax-wicket.version>
         <scala.version>2.9.1</scala.version>
         <scala-plugin.version>2.15.2</scala-plugin.version>
         <servicemix-nmr.version>1.4.0</servicemix-nmr.version>
         <slf4j.version>1.6.1</slf4j.version>
+        <!-- should be in sync with pax-wicket dependencies -->
+        <wicket.version>6.2.0</wicket.version>
     </properties>
 
     <modules>

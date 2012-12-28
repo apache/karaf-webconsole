@@ -19,13 +19,13 @@ package org.apache.karaf.webconsole.osgi.core.service.list;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataTable;
 import org.apache.karaf.webconsole.osgi.core.service.column.ObjectClassColumn;
 import org.apache.karaf.webconsole.osgi.core.service.column.ServiceConsumerColumn;
 import org.apache.karaf.webconsole.osgi.core.service.column.ServicePropertyColumn;
 import org.apache.karaf.webconsole.osgi.core.service.column.ServiceProviderColumn;
 import org.apache.karaf.webconsole.osgi.core.shared.OsgiPage;
 import org.apache.karaf.webconsole.osgi.core.shared.ServiceDataProvider;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.model.Model;
 import org.ops4j.pax.wicket.api.PaxWicketMountPoint;
@@ -41,13 +41,13 @@ public class ServicePage extends OsgiPage {
     private static final long serialVersionUID = 1L;
 
     public ServicePage() {
-        List<IColumn<ServiceReference>> columns = new ArrayList<IColumn<ServiceReference>>();
+        List<IColumn<ServiceReference, String>> columns = new ArrayList<IColumn<ServiceReference, String>>();
         columns.add(new ServicePropertyColumn("Service Id", Constants.SERVICE_ID));
         columns.add(new ObjectClassColumn(Model.of("Object classes")));
         columns.add(new ServiceProviderColumn(Model.of("Provider")));
         columns.add(new ServiceConsumerColumn("Consumers"));
 
-        add(new DefaultDataTable<ServiceReference>("services", columns, new ServiceDataProvider(context, (String) null), Integer.MAX_VALUE));
+        add(new BaseDataTable<ServiceReference>("services", columns, new ServiceDataProvider(context, (String) null), Integer.MAX_VALUE));
     }
 
 }

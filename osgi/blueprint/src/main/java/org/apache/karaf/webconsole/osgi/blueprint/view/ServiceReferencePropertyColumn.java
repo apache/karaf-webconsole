@@ -27,7 +27,7 @@ import org.osgi.framework.ServiceReference;
 /**
  * Column representing single service reference property.
  */
-public abstract class ServiceReferencePropertyColumn extends AbstractColumn<ServiceReference> {
+public abstract class ServiceReferencePropertyColumn extends AbstractColumn<ServiceReference, String> {
 
     private static final long serialVersionUID = 1L;
 

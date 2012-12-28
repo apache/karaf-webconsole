@@ -92,22 +92,13 @@
                         <Import-Package>
                             !org.apache.karaf.webconsole.core*,
                             *,<!-- let bnd import direct dependencies -->
-                            org.apache.wicket,
-                            org.apache.wicket.util,
                             org.apache.wicket.event,
-                            org.apache.wicket.page,
-                            org.apache.wicket.request.resource,
-                            org.apache.wicket.request.mapper,
-                            org.apache.wicket.request.cycle,
-                            org.apache.wicket.markup.html,
-                            org.apache.wicket.markup.html.basic,
-                            org.apache.wicket.protocol.http,
                             org.apache.wicket.request.http,
-                            org.apache.wicket.settings,
-                            org.apache.wicket.session,
-                            org.apache.wicket.util.file,
-                            org.apache.wicket.request,
+                            org.apache.wicket.protocol.http,
+                            org.apache.wicket.util,
                             org.apache.wicket.ajax,
+                            org.apache.wicket.page,
+                            org.apache.wicket.core.request.mapper,
 
                             <!-- then wicket stuff -->
                             org.ops4j.pax.wicket.api,

@@ -23,11 +23,11 @@ import java.util.Arrays;
 import org.apache.karaf.admin.Instance;
 import org.apache.karaf.webconsole.core.table.OrdinalColumn;
 import org.apache.karaf.webconsole.core.table.PropertyColumnExt;
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataTable;
 import org.apache.karaf.webconsole.karaf.admin.AdminPage;
 import org.apache.karaf.webconsole.karaf.admin.model.InstanceDataProvider;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
@@ -43,14 +43,14 @@ public class InstancePage extends AdminPage {
 
     @SuppressWarnings("unchecked")
     public InstancePage() {
-        IColumn<Instance>[] columns = new IColumn[] {
+        IColumn<Instance, String>[] columns = new IColumn[] {
             new OrdinalColumn<Instance>(),
             new PropertyColumnExt<Instance>("PID", "pid"),
             new PropertyColumnExt<Instance>("Name", "name"),
             new PropertyColumnExt<Instance>("Root", "root"),
             new PropertyColumnExt<Instance>("State", "state"),
             new PropertyColumnExt<Instance>("Location", "location"),
-            new AbstractColumn<Instance>(of("Actions")) {
+            new AbstractColumn<Instance, String>(of("Actions")) {
                 private static final long serialVersionUID = 1L;
 
                 public void populateItem(Item<ICellPopulator<Instance>> cellItem, String componentId, IModel<Instance> rowModel) {
@@ -59,7 +59,7 @@ public class InstancePage extends AdminPage {
             }
         };
 
-        add(new DefaultDataTable<Instance>("instances", Arrays.asList(columns), new InstanceDataProvider(admin), 20));
+        add(new BaseDataTable<Instance>("instances", Arrays.asList(columns), new InstanceDataProvider(admin), 20));
     }
 
 }

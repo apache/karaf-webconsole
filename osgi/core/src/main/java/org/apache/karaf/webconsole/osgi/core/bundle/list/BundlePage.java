@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.karaf.webconsole.core.table.PropertyColumnExt;
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataTable;
 import org.apache.karaf.webconsole.osgi.core.bundle.install.InstallBundlePage;
 import org.apache.karaf.webconsole.osgi.core.shared.BundleDataProvider;
 import org.apache.karaf.webconsole.osgi.core.shared.OsgiPage;
@@ -31,7 +32,6 @@ import org.apache.karaf.webconsole.osgi.core.spi.IDecorationProvider;
 import org.apache.wicket.Page;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
@@ -61,8 +61,8 @@ public class BundlePage extends OsgiPage {
     private StartLevel startLevel;
 
     public BundlePage() {
-        List<IColumn<Bundle>> columns = new ArrayList<IColumn<Bundle>>();
-        columns.add(new AbstractColumn<Bundle>(of("")) {
+        List<IColumn<Bundle, String>> columns = new ArrayList<IColumn<Bundle, String>>();
+        columns.add(new AbstractColumn<Bundle, String>(of("")) {
             private static final long serialVersionUID = 1L;
 
             public void populateItem(Item<ICellPopulator<Bundle>> cellItem, final String componentId, final IModel<Bundle> rowModel) {
@@ -70,7 +70,7 @@ public class BundlePage extends OsgiPage {
             }
         });
         columns.add(new PropertyColumnExt<Bundle>("Bundle Id", "bundleId"));
-        columns.add(new AbstractColumn<Bundle>(of("State")) {
+        columns.add(new AbstractColumn<Bundle, String>(of("State")) {
             private static final long serialVersionUID = 1L;
 
             public void populateItem(Item<ICellPopulator<Bundle>> cellItem, final String componentId, final IModel<Bundle> rowModel) {
@@ -78,7 +78,7 @@ public class BundlePage extends OsgiPage {
             }
             
         });
-        columns.add(new AbstractColumn<Bundle>(of("Start level")) {
+        columns.add(new AbstractColumn<Bundle, String>(of("Start level")) {
             private static final long serialVersionUID = 1L;
 
             public void populateItem(Item<ICellPopulator<Bundle>> cellItem, final String componentId, final IModel<Bundle> rowModel) {
@@ -93,7 +93,7 @@ public class BundlePage extends OsgiPage {
 
         columns.add(new PropertyColumnExt<Bundle>("Name", "symbolicName"));
         columns.add(new PropertyColumnExt<Bundle>("Version", "version.toString"));
-        columns.add(new AbstractColumn<Bundle>(Model.of("Operations")) {
+        columns.add(new AbstractColumn<Bundle, String>(Model.of("Operations")) {
             private static final long serialVersionUID = 1L;
 
             public void populateItem(Item<ICellPopulator<Bundle>> cellItem, final String componentId, final IModel<Bundle> rowModel) {
@@ -101,7 +101,7 @@ public class BundlePage extends OsgiPage {
             }
         });
 
-        add(new DefaultDataTable<Bundle>("bundles", columns, new BundleDataProvider(context), 100));
+        add(new BaseDataTable<Bundle>("bundles", columns, new BundleDataProvider(context), 100));
 
         add(new BookmarkablePageLink<Page>("install", InstallBundlePage.class));
     }

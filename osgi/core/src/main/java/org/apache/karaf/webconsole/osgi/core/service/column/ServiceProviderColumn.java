@@ -22,7 +22,7 @@ import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
 import org.osgi.framework.ServiceReference;
 
-public class ServiceProviderColumn extends AbstractColumn<ServiceReference> {
+public class ServiceProviderColumn extends AbstractColumn<ServiceReference, String> {
 
     private static final long serialVersionUID = 1L;
 

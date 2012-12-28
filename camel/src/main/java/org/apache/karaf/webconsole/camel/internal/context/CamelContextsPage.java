@@ -24,9 +24,9 @@ import org.apache.karaf.webconsole.camel.internal.CamelPage;
 import org.apache.karaf.webconsole.camel.internal.tracking.TraceContainer;
 import org.apache.karaf.webconsole.core.table.OrdinalColumn;
 import org.apache.karaf.webconsole.core.table.PropertyColumnExt;
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.repeater.Item;
@@ -52,30 +52,30 @@ public class CamelContextsPage extends CamelPage {
     @SuppressWarnings("unchecked")
     public CamelContextsPage() {
         @SuppressWarnings("serial")
-        IColumn<CamelContext>[] columns = new IColumn[] {
+        IColumn<CamelContext, String>[] columns = new IColumn[] {
             new OrdinalColumn<CamelContext>(),
             new PropertyColumnExt<CamelContext>("Name", "name"),
             new PropertyColumnExt<CamelContext>("Version", "version"),
             new PropertyColumnExt<CamelContext>("Status", "status"),
             new PropertyColumnExt<CamelContext>("Uptime", "uptime"),
-            new AbstractColumn<CamelContext>(Model.of("Message preview")) {
+            new AbstractColumn<CamelContext, String>(Model.of("Message preview")) {
                 public void populateItem(Item<ICellPopulator<CamelContext>> cellItem, String componentId, IModel<CamelContext> rowModel) {
                     cellItem.add(new Label(componentId, "" + container.isTracePossible(rowModel.getObject())));
                 }
             },
-            new AbstractColumn<CamelContext>(Model.of("Tracing enabled")) {
+            new AbstractColumn<CamelContext, String>(Model.of("Tracing enabled")) {
                 public void populateItem(Item<ICellPopulator<CamelContext>> cellItem, String componentId, IModel<CamelContext> rowModel) {
                     cellItem.add(new Label(componentId, "" + container.isTraced(rowModel.getObject())));
                 }
             },
-            new AbstractColumn<CamelContext>(Model.of("Operations")) {
+            new AbstractColumn<CamelContext, String>(Model.of("Operations")) {
                 public void populateItem(Item<ICellPopulator<CamelContext>> cellItem, String componentId, IModel<CamelContext> rowModel) {
                     cellItem.add(new ContextActionsPanel(componentId, rowModel));
                 }
             }
         };
 
-        add(new DefaultDataTable<CamelContext>("contexts", Arrays.asList(columns), new CamelContextsDataProvider(contexts), 20));
+        add(new BaseDataTable<CamelContext>("contexts", Arrays.asList(columns), new CamelContextsDataProvider(contexts), 20));
     }
 
 }

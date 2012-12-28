@@ -18,7 +18,8 @@ package org.apache.karaf.webconsole.core.behavior;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
-import org.apache.wicket.markup.html.IHeaderResponse;
+import org.apache.wicket.markup.head.CssHeaderItem;
+import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.request.resource.CssResourceReference;
 
 public class CssBehavior extends Behavior {
@@ -37,7 +38,7 @@ public class CssBehavior extends Behavior {
 
     @Override
     public void renderHead(Component component, IHeaderResponse response) {
-        response.renderCSSReference(cssResourceReference);
+        response.render(CssHeaderItem.forReference(cssResourceReference));
     }
 
 }

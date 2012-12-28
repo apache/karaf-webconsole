@@ -30,7 +30,7 @@ import org.osgi.framework.Bundle;
 /**
  * A dedicated column to display scr component states.
  */
-public class ScrColumn extends AbstractColumn<Bundle> {
+public class ScrColumn extends AbstractColumn<Bundle, String> {
 
     private static final long serialVersionUID = 1L;
 

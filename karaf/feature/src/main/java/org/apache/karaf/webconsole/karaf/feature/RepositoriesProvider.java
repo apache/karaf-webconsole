@@ -21,14 +21,14 @@ import java.util.Iterator;
 
 import org.apache.karaf.features.FeaturesService;
 import org.apache.karaf.features.Repository;
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataProvider;
 import org.apache.karaf.webconsole.karaf.feature.model.RepositoryModel;
-import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.model.IModel;
 
 /**
  * Data provider for repository list.
  */
-public class RepositoriesProvider extends SortableDataProvider<Repository> {
+public class RepositoriesProvider extends BaseDataProvider<Repository> {
 
     private static final long serialVersionUID = 1L;
 
@@ -36,19 +36,19 @@ public class RepositoriesProvider extends SortableDataProvider<Repository> {
 
     public RepositoriesProvider(FeaturesService service) {
         this.service = service;
-
     }
 
-    public Iterator<Repository> iterator(int first, int count) {
+    public Iterator<Repository> iterator(long first, long count) {
         return Arrays.asList(service.listRepositories())
-            .subList(first, first + count).iterator();
+            .subList((int) first, (int) first + (int) count).iterator();
     }
 
-    public int size() {
+    public long size() {
         return service.listRepositories().length;
     }
 
     public IModel<Repository> model(Repository object) {
         return new RepositoryModel(service, object);
     }
+
 }

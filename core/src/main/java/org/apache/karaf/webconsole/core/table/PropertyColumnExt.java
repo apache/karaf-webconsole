@@ -24,7 +24,7 @@ import org.apache.wicket.model.Model;
  *
  * @param <T> Type of displayed data.
  */
-public class PropertyColumnExt<T> extends PropertyColumn<T> {
+public class PropertyColumnExt<T> extends PropertyColumn<T, String> {
 
     private static final long serialVersionUID = 1L;
 

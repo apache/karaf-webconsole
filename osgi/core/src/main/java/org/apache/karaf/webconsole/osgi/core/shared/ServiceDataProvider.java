@@ -21,7 +21,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataProvider;
 import org.apache.wicket.model.IModel;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.InvalidSyntaxException;
@@ -32,7 +32,7 @@ import org.osgi.framework.ServiceReference;
  * given criteria.
  * <strong>The service list might be outdated before model is used!</strong>
  */
-public class ServiceDataProvider extends SortableDataProvider<ServiceReference> {
+public class ServiceDataProvider extends BaseDataProvider<ServiceReference> {
 
     private static final long serialVersionUID = 1L;
 
@@ -81,16 +81,16 @@ public class ServiceDataProvider extends SortableDataProvider<ServiceReference> 
         this(context, clazz.getName());
     }
 
-    // provide methods
-    public Iterator<? extends ServiceReference> iterator(int first, int count) {
-        return services.subList(first, count).iterator();
+    // provider methods
+    public Iterator<? extends ServiceReference> iterator(long first, long count) {
+        return services.subList((int) first, (int) count).iterator();
     }
 
     public IModel<ServiceReference> model(ServiceReference object) {
         return new ServiceReferenceModel(object);
     }
 
-    public int size() {
+    public long size() {
         return services.size();
     }
 

@@ -23,14 +23,14 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.felix.utils.manifest.Clause;
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataProvider;
 import org.apache.karaf.webconsole.osgi.core.manifest.ManifestUtil;
-import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.model.IModel;
 import org.osgi.framework.Bundle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class HeaderDataProvider extends SortableDataProvider<Clause> {
+public class HeaderDataProvider extends BaseDataProvider<Clause> {
 
     private static final long serialVersionUID = 1L;
     private transient Logger logger = LoggerFactory.getLogger(getClass());
@@ -50,13 +50,13 @@ public class HeaderDataProvider extends SortableDataProvider<Clause> {
         }
     }
 
-    public Iterator<? extends Clause> iterator(int first, int count) {
+    public Iterator<? extends Clause> iterator(long first, long count) {
         List<Clause> clauses = new ArrayList<Clause>();
         clauses.addAll(Arrays.asList(this.clauses));
-        return clauses.subList(first, count).iterator();
+        return clauses.subList((int) first, (int) count).iterator();
     }
 
-    public int size() {
+    public long size() {
         return clauses.length;
     }
 

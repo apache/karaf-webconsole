@@ -19,11 +19,11 @@ package org.apache.karaf.webconsole.osgi.config.view;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.karaf.webconsole.core.table.PropertyColumnExt;
+import org.apache.karaf.webconsole.core.table.advanced.AdvancedDataProvider;
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.ISortableDataProvider;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -33,14 +33,14 @@ import org.osgi.service.cm.ConfigurationAdmin;
 /**
  * Datatable which shows list of configurations from OSGi {@link ConfigurationAdmin}.
  */
-public class ConfigurationsDataTable extends DefaultDataTable<Configuration> {
+public class ConfigurationsDataTable extends BaseDataTable<Configuration> {
 
     private static final long serialVersionUID = 1L;
 
     @SuppressWarnings({"rawtypes", "serial", "unchecked"})
     private static List COLUMNS = Arrays.asList(
-        new PropertyColumn<Configuration>(Model.of("pid"), "pid"),
-        new AbstractColumn<Configuration>(Model.of("operations")) {
+        new PropertyColumnExt<Configuration>("pid"),
+        new AbstractColumn<Configuration, String>(Model.of("operations")) {
             public void populateItem(Item<ICellPopulator<Configuration>> cellItem, String componentId, IModel<Configuration> model) {
                 cellItem.add(new ConfigurationsActionPanel(componentId, model));
             }
@@ -48,13 +48,12 @@ public class ConfigurationsDataTable extends DefaultDataTable<Configuration> {
     );
 
     @SuppressWarnings("unchecked")
-    public ConfigurationsDataTable(String id, ISortableDataProvider<Configuration> dataProvider, int rowsPerPage) {
+    public ConfigurationsDataTable(String id, AdvancedDataProvider<Configuration> dataProvider, int rowsPerPage) {
         super(id, COLUMNS, dataProvider, rowsPerPage);
     }
 
     @Override
-    protected Item<Configuration> newRowItem(String id, int index,
-            IModel<Configuration> model) {
+    protected Item<Configuration> newRowItem(String id, int index, IModel<Configuration> model) {
         Configuration cfg = model.getObject();
 
         if (cfg.getFactoryPid() != null) {

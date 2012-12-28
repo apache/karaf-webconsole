@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataProvider;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.osgi.framework.BundleContext;
@@ -32,7 +32,7 @@ import org.osgi.service.event.EventHandler;
 /**
  * Simple data provider which collects topic names from a registered listeners.
  */
-public class EventTopicsProvider  extends SortableDataProvider<EventTopicInfo> {
+public class EventTopicsProvider  extends BaseDataProvider<EventTopicInfo> {
 
     private static final long serialVersionUID = 1L;
 
@@ -69,11 +69,11 @@ public class EventTopicsProvider  extends SortableDataProvider<EventTopicInfo> {
         topics.get(topic).addConsumer();
     }
 
-    public Iterator<? extends EventTopicInfo> iterator(int first, int count) {
+    public Iterator<? extends EventTopicInfo> iterator(long first, long count) {
         return topics.values().iterator();
     }
 
-    public int size() {
+    public long size() {
         return topics.size();
     }
 

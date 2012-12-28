@@ -20,15 +20,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataProvider;
 import org.apache.karaf.webconsole.osgi.core.shared.ServiceReferenceModel;
-import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.model.IModel;
 import org.osgi.framework.ServiceReference;
 
 /**
  * Data provider for bundle list.
  */
-public class BlueprintDataProvider extends SortableDataProvider<ServiceReference> {
+public class BlueprintDataProvider extends BaseDataProvider<ServiceReference> {
 
     private static final long serialVersionUID = 1L;
 
@@ -38,15 +38,15 @@ public class BlueprintDataProvider extends SortableDataProvider<ServiceReference
         this.containers = containers;
     }
 
-    public Iterator<ServiceReference> iterator(int first, int count) {
-        return new ArrayList<ServiceReference>(containers).subList(first, first+count).iterator();
+    public Iterator<ServiceReference> iterator(long first, long count) {
+        return new ArrayList<ServiceReference>(containers).subList((int) first, (int) first + (int) count).iterator();
     }
 
     public IModel<ServiceReference> model(ServiceReference object) {
         return new ServiceReferenceModel(object);
     }
 
-    public int size() {
+    public long size() {
         return containers.size();
     }
 

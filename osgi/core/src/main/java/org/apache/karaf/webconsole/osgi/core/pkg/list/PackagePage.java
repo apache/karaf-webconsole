@@ -21,8 +21,8 @@ import java.util.List;
 
 import org.apache.karaf.webconsole.core.table.OrdinalColumn;
 import org.apache.karaf.webconsole.core.table.PropertyColumnExt;
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataTable;
 import org.apache.karaf.webconsole.osgi.core.shared.OsgiPage;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
@@ -42,12 +42,12 @@ public class PackagePage extends OsgiPage {
     private PackageAdmin admin;
 
     public PackagePage(PageParameters params) {
-        List<IColumn<ExportedPackage>> columns = new ArrayList<IColumn<ExportedPackage>>();
+        List<IColumn<ExportedPackage, String>> columns = new ArrayList<IColumn<ExportedPackage, String>>();
         columns.add(new OrdinalColumn<ExportedPackage>());
         columns.add(new PropertyColumnExt<ExportedPackage>("Package name", "name"));
         columns.add(new PropertyColumnExt<ExportedPackage>("Version", "version.toString"));
         columns.add(new PropertyColumnExt<ExportedPackage>("Provider", "exportingBundle.symbolicName"));
-        add(new DefaultDataTable<ExportedPackage>("packages", columns, new PackageDataProvider(admin), Integer.MAX_VALUE));
+        add(new BaseDataTable<ExportedPackage>("packages", columns, new PackageDataProvider(admin), Integer.MAX_VALUE));
     }
 
 }

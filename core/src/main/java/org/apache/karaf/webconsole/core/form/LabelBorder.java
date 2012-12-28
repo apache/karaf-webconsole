@@ -57,7 +57,7 @@ public class LabelBorder extends Border {
     protected void onBeforeRender() {
         super.onBeforeRender();
 
-        if (component.getFeedbackMessage() != null) {
+        if (component.getFeedbackMessages() != null) {
             add(new AttributeAppender("class", Model.of("error"), " "));
         }
     }

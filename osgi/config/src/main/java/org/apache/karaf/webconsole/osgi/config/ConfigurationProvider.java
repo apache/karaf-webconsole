@@ -19,9 +19,9 @@ package org.apache.karaf.webconsole.osgi.config;
 import java.util.Arrays;
 import java.util.Iterator;
 
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataProvider;
 import org.apache.karaf.webconsole.osgi.config.model.ConfigurationModel;
 import org.apache.karaf.webconsole.osgi.config.model.ConfigurationNotFoundException;
-import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.model.IModel;
 import org.osgi.service.cm.Configuration;
 import org.osgi.service.cm.ConfigurationAdmin;
@@ -29,7 +29,7 @@ import org.osgi.service.cm.ConfigurationAdmin;
 /**
  * Data provider for configuration list.
  */
-public class ConfigurationProvider extends SortableDataProvider<Configuration> {
+public class ConfigurationProvider extends BaseDataProvider<Configuration> {
 
     private static final long serialVersionUID = 1L;
 
@@ -40,15 +40,15 @@ public class ConfigurationProvider extends SortableDataProvider<Configuration> {
         this.configurationAdmin = configurationAdmin;
     }
 
-    public Iterator<? extends Configuration> iterator(int from, int count) {
-        return Arrays.asList(Arrays.copyOfRange(getConfigurations(), from, from + count)).iterator();
+    public Iterator<? extends Configuration> iterator(long from, long count) {
+        return Arrays.asList(Arrays.copyOfRange(getConfigurations(), (int) from, (int) from + (int) count)).iterator();
     }
 
     public IModel<Configuration> model(Configuration object) {
         return new ConfigurationModel(object, configurationAdmin);
     }
 
-    public int size() {
+    public long size() {
         return getConfigurations().length;
     }
 

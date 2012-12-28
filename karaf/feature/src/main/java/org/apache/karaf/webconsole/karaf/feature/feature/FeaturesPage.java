@@ -24,11 +24,11 @@ import java.util.Map;
 import org.apache.karaf.features.Feature;
 import org.apache.karaf.features.Repository;
 import org.apache.karaf.webconsole.core.behavior.CssBehavior;
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataTable;
 import org.apache.karaf.webconsole.karaf.feature.FeaturesProvider;
 import org.apache.karaf.webconsole.karaf.feature.KarafFeaturesPage;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
 import org.apache.wicket.markup.html.basic.Label;
@@ -66,27 +66,27 @@ public class FeaturesPage extends KarafFeaturesPage {
         IModel repository = Model.of("repository");
         IModel description = Model.of("description");
 
-        List<IColumn<Feature>> columns = new ArrayList<IColumn<Feature>>();
-        columns.add(new PropertyColumn<Feature>(new StringResourceModel("table.version", this, version), "version", "version"));
-        columns.add(new PropertyColumn<Feature>(new StringResourceModel("table.name", this, name), "name", "name"));
-        columns.add(new AbstractColumn<Feature>(new StringResourceModel("table.repository", this, repository), "repository") {
+        List<IColumn<Feature, String>> columns = new ArrayList<IColumn<Feature, String>>();
+        columns.add(new PropertyColumn<Feature, String>(new StringResourceModel("table.version", this, version), "version", "version"));
+        columns.add(new PropertyColumn<Feature, String>(new StringResourceModel("table.name", this, name), "name", "name"));
+        columns.add(new AbstractColumn<Feature, String>(new StringResourceModel("table.repository", this, repository), "repository") {
             public void populateItem(Item<ICellPopulator<Feature>> cellItem, String componentId, IModel<Feature> rowModel) {
                 cellItem.add(new Label(componentId, feature2repo.get(rowModel.getObject().getId())));
             }
         });
-        columns.add(new PropertyColumn<Feature>(new StringResourceModel("table.description", this, description), "description", "description"));
-        columns.add(new AbstractColumn<Feature>(new StringResourceModel("table.state", this, state), "state") {
+        columns.add(new PropertyColumn<Feature, String>(new StringResourceModel("table.description", this, description), "description", "description"));
+        columns.add(new AbstractColumn<Feature, String>(new StringResourceModel("table.state", this, state), "state") {
             public void populateItem(Item<ICellPopulator<Feature>> cellItem, String componentId, IModel<Feature> rowModel) {
                 cellItem.add(new Label(componentId, featuresService.isInstalled(rowModel.getObject()) ? "Installed" : "Uninstalled"));
             }
         });
-        columns.add(new AbstractColumn<Feature>(new ResourceModel("table.actions")) {
+        columns.add(new AbstractColumn<Feature, String>(new ResourceModel("table.actions")) {
             public void populateItem(Item<ICellPopulator<Feature>> cellItem, String componentId, IModel<Feature> model) {
                cellItem.add(new FeaturesActionsPanel(componentId, model));
             }
         });
 
-        add(new DefaultDataTable<Feature>("features", columns, new FeaturesProvider(featuresService), 20));
+        add(new BaseDataTable<Feature>("features", columns, new FeaturesProvider(featuresService), 20));
 
     }
 

@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataProvider;
 import org.apache.wicket.model.IModel;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -28,7 +28,7 @@ import org.osgi.framework.BundleContext;
 /**
  * Data provider to which lists all installed bundles.
  */
-public class BundleDataProvider extends SortableDataProvider<Bundle> {
+public class BundleDataProvider extends BaseDataProvider<Bundle> {
 
     private static final long serialVersionUID = 1L;
     private BundleContext context;
@@ -37,17 +37,17 @@ public class BundleDataProvider extends SortableDataProvider<Bundle> {
         this.context = context;
     }
 
-    public Iterator<? extends Bundle> iterator(int first, int count) {
+    public Iterator<? extends Bundle> iterator(long first, long count) {
         List<Bundle> bundles = Arrays.asList(context.getBundles());
 
-        return bundles.subList(first, first + count).iterator();
+        return bundles.subList((int) first, (int) first + (int) count).iterator();
     }
 
     public IModel<Bundle> model(Bundle object) {
         return new BundleModel(context, object);
     }
 
-    public int size() {
+    public long size() {
         return context.getBundles().length;
     }
 

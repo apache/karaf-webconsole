@@ -18,22 +18,22 @@ package org.apache.karaf.webconsole.osgi.core.service;
 
 import java.util.Arrays;
 
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataTable;
 import org.apache.karaf.webconsole.osgi.core.service.column.ObjectClassColumn;
 import org.apache.karaf.webconsole.osgi.core.service.column.ServiceConsumerColumn;
 import org.apache.karaf.webconsole.osgi.core.service.column.ServicePropertyColumn;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.model.Model;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceReference;
 
-public class ExportServiceTable extends DefaultDataTable<ServiceReference> {
+public class ExportServiceTable extends BaseDataTable<ServiceReference> {
 
     private static final long serialVersionUID = 1L;
 
     @SuppressWarnings("unchecked")
-    private static IColumn<ServiceReference>[] columns = new IColumn[] {
+    private static IColumn<ServiceReference, String>[] columns = new IColumn[] {
         new ServicePropertyColumn("Service Id", Constants.SERVICE_ID),
         new ObjectClassColumn(Model.of("Object classes")),
         new ServiceConsumerColumn("Consumers"),

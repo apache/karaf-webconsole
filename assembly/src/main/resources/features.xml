@@ -33,7 +33,9 @@
   <!-- Pax-Wicket Core Feature; loading all required features. Do a feature:install paxwicket and you're ready to go -->
   <feature name="webconsole-core" version="${project.version}" description="Karaf WebConsole Core">
     <details>The Webconsole core package provides the base view required for all bundles</details>
-    <feature>wicket-spring</feature>
+    <feature version="${wicket.version}">wicket</feature>
+    <feature version="${pax-wicket.version}">pax-wicket</feature>
+    <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.cglib/2.2.2_1</bundle>
     <bundle>mvn:org.apache.felix/org.apache.felix.prefs/${felix-prefs.version}</bundle>
     <bundle>mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.core/${project.version}</bundle>
   </feature>

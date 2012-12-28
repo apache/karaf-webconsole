@@ -22,15 +22,14 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.model.PropertyModel;
 
 /**
  * Column with ordinal number.
  */
-public class OrdinalColumn<T> extends AbstractColumn<T> {
+public class OrdinalColumn<T> extends AbstractColumn<T, String> {
 
     private static final long serialVersionUID = 1L;
-
-    private transient int counter = 1;
 
     public OrdinalColumn(String displayModel, String sortProperty) {
         super(Model.of(displayModel), sortProperty);
@@ -45,12 +44,15 @@ public class OrdinalColumn<T> extends AbstractColumn<T> {
     }
 
     public void populateItem(Item<ICellPopulator<T>> cellItem, String componentId, IModel<T> rowModel) {
-        cellItem.add(new Label(componentId, "" + counter++));
+        cellItem.add(new Label(componentId, new PropertyModel<Integer>(cellItem, "parent.parent.index") {
+            private static final long serialVersionUID = 1L;
+
+            @Override
+            public Integer getObject() {
+                // start counting from 1, not from 0
+                return super.getObject() + 1;
+            }
+        }));
     }
 
-    @Override
-    public void detach() {
-        super.detach();
-        counter = 1;
-    }
 }

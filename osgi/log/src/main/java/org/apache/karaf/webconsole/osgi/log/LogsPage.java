@@ -22,11 +22,11 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.karaf.webconsole.core.table.PropertyColumnExt;
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataTable;
 import org.apache.karaf.webconsole.osgi.core.shared.OsgiPage;
 import org.apache.karaf.webconsole.osgi.log.search.Matcher;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.repeater.Item;
@@ -61,15 +61,15 @@ public class LogsPage extends OsgiPage {
         setDefaultModel(model);
 
         @SuppressWarnings("unchecked")
-        IColumn<LogEntry>[] columns = new IColumn[] {
-            new AbstractColumn<LogEntry>(Model.of("time")) {
+        IColumn<LogEntry, String>[] columns = new IColumn[] {
+            new AbstractColumn<LogEntry, String>(Model.of("time")) {
                 public void populateItem(Item<ICellPopulator<LogEntry>> cellItem, String componentId, IModel<LogEntry> rowModel) {
                     long time = rowModel.getObject().getTime();
                     DateFormat format = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.FULL);
                     cellItem.add(new Label(componentId, format.format(new Date(time))));
                 }
             },
-            new AbstractColumn<LogEntry>(Model.of("level")) {
+            new AbstractColumn<LogEntry, String>(Model.of("level")) {
                 public void populateItem(Item<ICellPopulator<LogEntry>> cellItem, String componentId, IModel<LogEntry> rowModel) {
                     cellItem.add(new Label(componentId, Priority.valueOf(rowModel.getObject()).name()));
                 }
@@ -80,12 +80,9 @@ public class LogsPage extends OsgiPage {
             new PropertyColumnExt<LogEntry>("Exception", "exception"),
         };
 
-        OptionsForm form = new OptionsForm("filters", model);
+        add(new OptionsForm("filters", model));
 
         LogEntriesDataProvider provider = new LogEntriesDataProvider(logReader, options, matchers);
-        DefaultDataTable<LogEntry> table = new DefaultDataTable<LogEntry>("logs", Arrays.asList(columns), provider, 20);
-
-        add(table);
-        add(form);
+        add(new BaseDataTable<LogEntry>("logs", Arrays.asList(columns), provider, 20));
     }
 }

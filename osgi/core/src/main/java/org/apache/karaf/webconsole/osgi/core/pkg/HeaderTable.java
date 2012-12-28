@@ -19,16 +19,16 @@ package org.apache.karaf.webconsole.osgi.core.pkg;
 import java.util.Arrays;
 
 import org.apache.felix.utils.manifest.Clause;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.osgi.framework.Bundle;
 
-public class HeaderTable extends DefaultDataTable<Clause> {
+public class HeaderTable extends BaseDataTable<Clause> {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public HeaderTable(String id, IColumn<Clause>[] columns, Bundle bundle, String header) {
-		super(id, Arrays.asList(columns), new HeaderDataProvider(bundle, header), Integer.MAX_VALUE);
-	}
+    public HeaderTable(String id, IColumn<Clause, String>[] columns, Bundle bundle, String header) {
+        super(id, Arrays.asList(columns), new HeaderDataProvider(bundle, header), Integer.MAX_VALUE);
+    }
 
 }

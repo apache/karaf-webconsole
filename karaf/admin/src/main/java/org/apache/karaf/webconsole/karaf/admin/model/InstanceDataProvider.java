@@ -23,13 +23,13 @@ import java.util.List;
 
 import org.apache.karaf.admin.AdminService;
 import org.apache.karaf.admin.Instance;
-import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataProvider;
 import org.apache.wicket.model.IModel;
 
 /**
  * Data provider for instances list.
  */
-public class InstanceDataProvider extends SortableDataProvider<Instance> {
+public class InstanceDataProvider extends BaseDataProvider<Instance> {
 
     private static final long serialVersionUID = 1L;
 
@@ -39,13 +39,13 @@ public class InstanceDataProvider extends SortableDataProvider<Instance> {
         this.admin = admin;
     }
 
-    public Iterator<? extends Instance> iterator(int first, int count) {
+    public Iterator<? extends Instance> iterator(long first, long count) {
         List<Instance> list = new ArrayList<Instance>();
         Collections.addAll(list, admin.getInstances());
-        return list.subList(first, count).iterator();
+        return list.subList((int) first, (int) count).iterator();
     }
 
-    public int size() {
+    public long size() {
         return admin.getInstances().length;
     }
 

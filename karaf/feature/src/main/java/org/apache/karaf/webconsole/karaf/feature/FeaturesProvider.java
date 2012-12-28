@@ -25,14 +25,14 @@ import java.util.List;
 
 import org.apache.karaf.features.Feature;
 import org.apache.karaf.features.FeaturesService;
+import org.apache.karaf.webconsole.core.table.advanced.BaseDataProvider;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.SortOrder;
-import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.model.IModel;
 
 /**
  * Feature list data provider.
  */
-public class FeaturesProvider extends SortableDataProvider<Feature> {
+public class FeaturesProvider extends BaseDataProvider<Feature> {
 
     private static final long serialVersionUID = 1L;
 
@@ -44,7 +44,7 @@ public class FeaturesProvider extends SortableDataProvider<Feature> {
         setSort("name", SortOrder.ASCENDING);
     }
 
-    public Iterator<Feature> iterator(int first, int count) {
+    public Iterator<Feature> iterator(long first, long count) {
         List<Feature> data = new ArrayList<Feature>();
         try {
             data = Arrays.asList(service.listFeatures());
@@ -69,11 +69,11 @@ public class FeaturesProvider extends SortableDataProvider<Feature> {
                 return 0;
             }
         });
-        return data.subList(first, Math.min(first + count, data.size()))
+        return data.subList((int) first, (int) Math.min(first + count, data.size()))
             .iterator();
     }
 
-    public int size() {
+    public long size() {
         try {
             return service.listFeatures().length;
         } catch (Exception e) {
