@@ -16,7 +16,6 @@
  */
 package org.apache.karaf.webconsole.core.navigation.markup;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.karaf.webconsole.core.navigation.ConsoleTabProvider;
@@ -49,16 +48,7 @@ public class ModuleTabPanel extends Panel {
         IModel<List<Link<Page>>> links = new LoadableDetachableModel<List<Link<Page>>>() {
             @Override
             protected List<Link<Page>> load() {
-                if (tabs == null) {
-                    return new ArrayList<Link<Page>>();
-                }
-                for (ConsoleTabProvider provider : tabs) {
-                    Link<Page> moduleLink = provider.getModuleLink("moduleLink", "moduleLabel");
-                    if (LinkUtils.isActiveTrail(moduleLink)) {
-                        return provider.getItems("link", "label");
-                    }
-                }
-                return new ArrayList<Link<Page>>();
+                return findActiveModuleLinks();
             }
         };
 
@@ -68,10 +58,26 @@ public class ModuleTabPanel extends Panel {
                 Link<Page> link = item.getModelObject();
                 item.add(link);
                 if (LinkUtils.isActiveTrail(link)) {
-                    item.add(new AttributeModifier("class", "active"));
+                    item.getParent().add(new AttributeModifier("class", "active"));
                 }
             }
         });
+    }
+
+    private List<Link<Page>> findActiveModuleLinks() {
+        for (ConsoleTabProvider provider : tabs) {
+            Link<Page> moduleLink = provider.getModuleLink("moduleLink", "moduleLabel");
+            if (LinkUtils.isActiveTrail(moduleLink)) {
+                return provider.getItems("link", "label");
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public boolean isVisible() {
+        List<Link<Page>> activeModuleLinks = findActiveModuleLinks();
+        return activeModuleLinks != null && activeModuleLinks.size() > 0;
     }
 
 }

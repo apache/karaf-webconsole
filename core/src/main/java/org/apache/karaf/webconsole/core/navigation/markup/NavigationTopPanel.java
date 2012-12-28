@@ -28,14 +28,11 @@ import org.apache.karaf.webconsole.core.util.LinkUtils;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.Page;
-import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
-import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
 import org.ops4j.pax.wicket.api.PaxWicketBean;
 import org.osgi.service.prefs.PreferencesService;
 
@@ -73,34 +70,14 @@ public class NavigationTopPanel extends LanguageTopPanel {
 
             @Override
             protected void populateItem(ListItem<ConsoleTabProvider> item) {
-                populateTabItem(item, item.getModelObject());
+                Link<Page> link = item.getModelObject().getModuleLink("moduleLink", "moduleLabel");
+                item.add(link);
+
+                if (LinkUtils.isActiveTrail(link)) {
+                    item.add(AttributeModifier.append("class", "active"));
+                }
             }
         };
-    }
-
-    protected void populateTabItem(ListItem<ConsoleTabProvider> item, ConsoleTabProvider provider) {
-        Link<Page> link = provider.getModuleLink("moduleLink", "moduleLabel");
-        item.add(link);
-
-        if (LinkUtils.isActiveTrail(link)) {
-            item.add(new AttributeAppender("class", Model.of("active"), " "));
-        }
-    }
-
-    protected void populateSingleTabItem(ListItem<ConsoleTabProvider> item, ConsoleTabProvider provider) {
-        Link<Page> moduleLink = provider.getModuleLink("moduleLink", "moduleLabel");
-
-        // remove dropdown stuff
-        item.add(new AttributeModifier("class", ""));
-        moduleLink.add(new AttributeModifier("data-toggle", ""));
-        moduleLink.add(new AttributeModifier("class", ""));
-
-        if (LinkUtils.isActiveTrail(moduleLink)) {
-            item.add(new AttributeAppender("class", Model.of("active"), " "));
-        }
-
-        item.add(moduleLink);
-        item.add(new RepeatingView("moduleLinks"));
     }
 
 

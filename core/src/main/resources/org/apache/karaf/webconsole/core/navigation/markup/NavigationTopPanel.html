@@ -18,14 +18,12 @@
 <wicket:extend xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
 
     <ul class="nav">
-        <wicket:container wicket:id="tabs">
-            <li>
-                <a wicket:id="moduleLink">
-                    <span wicket:id="moduleLabel"></span>
-                </a>
-            </li>
-            <li class="divider-vertical"></li>
-        </wicket:container>
+        <li wicket:id="tabs">
+            <a wicket:id="moduleLink">
+                <span wicket:id="moduleLabel"></span>
+            </a>
+        </li>
+        <li class="divider-vertical"></li>
     </ul>
 
     <wicket:child />
