@@ -58,7 +58,7 @@ public class ModuleTabPanel extends Panel {
                 Link<Page> link = item.getModelObject();
                 item.add(link);
                 if (LinkUtils.isActiveTrail(link)) {
-                    item.getParent().add(new AttributeModifier("class", "active"));
+                    item.add(new AttributeModifier("class", "active"));
                 }
             }
         });
