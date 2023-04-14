@@ -44,7 +44,7 @@
         <!-- Please keep properties in alphabetical order -->
         <aries-blueprint.version>0.3.1</aries-blueprint.version>
         <aries-proxy.version>0.3</aries-proxy.version>
-        <camel.version>2.6.0</camel.version>
+        <camel.version>3.2.0</camel.version>
         <cxf.version>2.5.1</cxf.version>
         <easymock.version>3.0</easymock.version>
         <felix-framework.version>4.0.2</felix-framework.version>
