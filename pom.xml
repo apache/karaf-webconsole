@@ -55,7 +55,7 @@
         <felix-config.version>1.2.8</felix-config.version>
         <felix-http.version>2.2.0</felix-http.version>
         <jetty-plugin.version>7.5.4.v20111024</jetty-plugin.version>
-        <junit.version>4.8.2</junit.version>
+        <junit.version>4.13.1</junit.version>
         <karaf.version>2.2.8</karaf.version>
         <log4j.version>1.2.14</log4j.version>
         <maven-bundle.version>2.3.7</maven-bundle.version>
